@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/stroke_moshaverin"
+    android:layout_marginTop="10dp">
+
+    <TextView
+        android:id="@+id/TextRecordMoshaverin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="حمزه باتمانی"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/btnRecordMoshaverin"
+        android:layout_width="wrap_content"
+        android:layout_height="35sp"
+        android:text="تایید شده"
+        android:background="@color/colorBlue"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"/>
+
+</RelativeLayout>

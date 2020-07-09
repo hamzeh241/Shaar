@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:background="@color/colorWhite"
+    android:paddingBottom="20px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/Sort"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
+                android:paddingRight="20dp"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="15dp">
+
+                <RelativeLayout
+                    android:id="@+id/close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/close_filter"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rdo_New_old"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/New_old"
+                android:textColor="@color/colorGray"
+                android:textSize="16sp"
+                android:background="@drawable/stroke_feature_child"
+                android:buttonTint="@color/colorBlue"
+                android:layoutDirection="ltr"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rdo_Old_New"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/Old_New"
+                android:textColor="@color/colorGray"
+                android:textSize="16sp"
+                android:background="@drawable/stroke_feature_child"
+                android:buttonTint="@color/colorBlue"
+                android:layoutDirection="ltr"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rdo_Expensiv_Cheap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/Expensiv_Cheap"
+                android:textColor="@color/colorGray"
+                android:textSize="16sp"
+                android:background="@drawable/stroke_feature_child"
+                android:buttonTint="@color/colorBlue"
+                android:layoutDirection="ltr"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rdo_Cheap_Expensiv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/Cheap_Expensiv"
+                android:textColor="@color/colorGray"
+                android:textSize="16sp"
+                android:background="@drawable/stroke_feature_child"
+                android:buttonTint="@color/colorBlue"
+                android:layoutDirection="ltr"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rdo_Room_l_h"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/Room_l_h"
+                android:textColor="@color/colorGray"
+                android:textSize="16sp"
+                android:background="@drawable/stroke_feature_child"
+                android:buttonTint="@color/colorBlue"
+                android:layoutDirection="ltr"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"/>
+
+            <RadioButton
+                android:id="@+id/rdo_Room_h_l"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/Room_h_l"
+                android:textColor="@color/colorGray"
+                android:textSize="16sp"
+                android:background="@drawable/stroke_feature_child"
+                android:buttonTint="@color/colorBlue"
+                android:layoutDirection="ltr"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="20dp"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+</RelativeLayout>

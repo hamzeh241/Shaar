@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    android:textDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorCenteral">
+
+            <RelativeLayout
+                android:id="@+id/backall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/BackIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/Back_Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/BackIcon"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:text="@string/Add_Property"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_Target"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Target"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <RadioGroup
+                        android:id="@+id/Fragment_Add_Home_RadioGroup_Target"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/Fragment_Add_Home_RadioButton_Sell"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:buttonTint="@color/colorBlue"
+                            android:text="@string/Sell"
+                            android:textSize="15sp" />
+
+                        <RadioButton
+                            android:id="@+id/Fragment_Add_Home_RadioButton_Rent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/colorBlue"
+                            android:text="@string/Rent"
+                            android:textSize="15sp" />
+
+                    </RadioGroup>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="15dp"
+                        android:alpha="0.1"
+                        android:background="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_KindOfHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/KindOfHome"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <RadioGroup
+                        android:id="@+id/Fragment_Add_Home_RadioGroup_KindOfHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rdo_Residential"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:buttonTint="@color/colorBlue"
+                            android:text="@string/Residential"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/rdo_Commercial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:buttonTint="@color/colorBlue"
+                            android:text="@string/Commercial"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/rdo_Industrial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/colorBlue"
+                            android:text="@string/Industrial"
+                            android:textSize="12sp" />
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center">
+
+                        <ProgressBar
+                            android:id="@+id/loadingdata_progress"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerHorizontal="true"
+                            android:indeterminate="true"
+                            android:visibility="invisible"
+                            android:layout_marginTop="70dp"
+                            android:theme="@style/progressBarStyle" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Fragment_Add_Home_Recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_Location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/Location"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/Fragment_Add_Home_cmb_Location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:spinnerMode="dialog"
+                        android:textDirection="ltr"
+                        android:layoutDirection="ltr" />
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_Property_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/Property_details"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Add_Home_txt_AdTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:hint="@string/AdTitle"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <EditText
+                        android:id="@+id/Fragment_Add_Home_txt_DiscriptionHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:hint="@string/DiscriptionHome"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:id="@+id/lbl_CodePosty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/CodePosty"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/txt_CodePosty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:hint="@string/CodePosty"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:id="@+id/lbl_Address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/Address"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/txt_Address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:hint="@string/Address"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_Price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/Price"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Add_Home_txt_Price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:hint="@string/Price2"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:inputType="number"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_Rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/Rent_Price"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Add_Home_txt_Rent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:hint="@string/Price2"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:inputType="number"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_Mortgage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/Mortgage"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Add_Home_txt_Mortgage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:hint="@string/Price2"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:inputType="number"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_TheArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/TheArea"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Add_Home_txt_TheArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:hint="@string/TheArea2"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:inputType="number"
+                        android:textColor="@color/colorBlack"/>
+
+
+                    <TextView
+                        android:id="@+id/lbl_Year_of_construction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/Year_of_construction"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp"
+                        android:visibility="gone"/>
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/AgeHome"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:visibility="gone"/>-->
+
+                    <Spinner
+                        android:id="@+id/AgeHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:spinnerMode="dialog"
+                        android:visibility="gone"
+                        android:textDirection="ltr"
+                        android:layoutDirection="ltr"/>
+
+                    <TextView
+                        android:id="@+id/lbl_CountRoom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/CountRoom"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp"
+                        android:visibility="gone"/>
+
+
+                    <Spinner
+                        android:id="@+id/cmb_CountRoom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:spinnerMode="dialog"
+                        android:visibility="gone"
+                        android:textDirection="ltr"
+                        android:layoutDirection="ltr"/>
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_DiscriptionCall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/DiscriptionCall"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="10">
+
+                        <EditText
+                            android:id="@+id/Fragment_Add_Home_txt_Mob"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8"
+                            android:backgroundTint="@color/colorPaleBlack"
+                            android:hint="@string/Mobile"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorBlack"/>
+
+                        <EditText
+                            android:id="@+id/lbl_Mobile"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/colorWhite"
+                            android:enabled="false"
+                            android:textDirection="ltr"
+                            android:text="+98"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <EditText
+                            android:id="@+id/Fragment_Add_Home_txt_Phone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8"
+                            android:backgroundTint="@color/colorPaleBlack"
+                            android:hint="@string/Phone"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorBlack"/>
+
+                        <EditText
+                            android:id="@+id/lbl_Phone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:backgroundTint="@color/colorWhite"
+                            android:enabled="false"
+                            android:textDirection="ltr"
+                            android:text="+98 87"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_AddVideo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/AddVideo"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10"
+                        android:layout_marginTop="30dp">
+
+                        <EditText
+                            android:id="@+id/Fragment_Add_Home_txt_VideoLink"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:backgroundTint="@color/colorPaleBlack"
+                            android:hint="@string/VideoLink"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:singleLine="true"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorBlack"/>
+
+                        <Spinner
+                            android:id="@+id/Fragment_Add_Home_Spinner_VideoLink"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:layoutDirection="ltr"
+                            android:textDirection="ltr"/>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/lbl_Property"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/Property"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp"
+                        android:visibility="gone"/>
+
+                    <RelativeLayout
+                        android:id="@+id/Property_Home"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#454545"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="20dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/left_property"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Added_Property"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_property"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"/>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/Fragment_Add_Home_lbl_HaveImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/HaveImage"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/add_img_Home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:src="@drawable/addimage" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_add_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/AfterToSave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:text="@string/AfterToSave"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_Done"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/change_color_btn"
+                        android:text="@string/Save"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

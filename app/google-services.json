@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "974745386175",
+    "firebase_url": "https://ahvdic.firebaseio.com",
+    "project_id": "ahvdic",
+    "storage_bucket": "ahvdic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974745386175:android:babc3223b27fed0f",
+        "android_client_info": {
+          "package_name": "ir.tdaapp.diako.shaar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974745386175-rkfsg1u3ns08ddtobi4h3ovf8nfog5uo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmkQCaO3rLca7rdC1JNaqZocw854ncnxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974745386175-rkfsg1u3ns08ddtobi4h3ovf8nfog5uo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

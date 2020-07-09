@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorCenteral"
+            android:layoutDirection="ltr"
+            android:minHeight="?attr/actionBarSize">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp">
+
+                <ImageView
+                    android:id="@+id/Close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_close"
+                    android:layout_margin="10dp"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/MoreFilter"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/Target"
+                android:textColor="@color/colorBlue"
+                android:textSize="16sp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdo_SellAndBuy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:buttonTint="@color/colorBlue"
+                    android:text="@string/SellAndBuy"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/rdo_Rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorBlue"
+                    android:text="@string/Rent"
+                    android:textSize="15sp" />
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="20dp"
+                android:alpha="0.1"
+                android:background="@color/colorBlack" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Fragment_Search_Home_lbl_TypeHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/TypeHome"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="16sp" />
+
+
+                <RadioGroup
+                    android:id="@+id/Fragment_Add_Home_RadioGroup_KindOfHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rdo_Residential"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:buttonTint="@color/colorBlue"
+                        android:text="@string/Residential"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/rdo_Commercial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:buttonTint="@color/colorBlue"
+                        android:text="@string/Commercial"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/rdo_Industrial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorBlue"
+                        android:text="@string/Industrial"
+                        android:textSize="12sp" />
+
+                </RadioGroup>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+
+                <TextView
+                    android:id="@+id/Fragment_Search_Home_lbl_Area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/Location"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="16sp" />
+
+<!--                <Spinner-->
+<!--                    android:id="@+id/cmb_Location"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_marginTop="10dp" />-->
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/cmb_Location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:spinnerMode="dialog"
+                    android:layoutDirection="ltr"
+                    android:textDirection="ltr" />
+
+                <!--بخش مربوط به اجاره-->
+                <TextView
+                    android:id="@+id/Fragment_Search_Home_lbl_Rent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/Rent_Price"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/chk_FullRent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:buttonTint="@color/colorBlue"
+                    android:text="@string/FullRent"
+                    android:textDirection="rtl" />
+
+                <LinearLayout
+                    android:id="@+id/Rent_Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:weightSum="11">
+
+                    <EditText
+                        android:id="@+id/Fragment_Search_Home_txt_LowestRent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="5"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:gravity="center"
+                        android:hint="@string/Minimum_Rent"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Search_Home_txt_MaximumRent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="5"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:gravity="center"
+                        android:hint="@string/Maximum_Rent"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                </LinearLayout>
+
+                <!--پایان بخش مربوط به اجاره-->
+
+
+                <!--بخش مربوط به رهن-->
+
+                <TextView
+                    android:id="@+id/Fragment_Search_Home_lbl_Mortgage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/Mortgage"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/chk_FullMortgage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:buttonTint="@color/colorBlue"
+                    android:text="@string/FullMortgage"
+                    android:textDirection="rtl" />
+
+                <LinearLayout
+                    android:id="@+id/Mortgage_Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:weightSum="11">
+
+                    <EditText
+                        android:id="@+id/Fragment_Search_Home_txt_LowestMortgage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="5"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:gravity="center"
+                        android:hint="@string/Minimum_Mortgage"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Search_Home_txt_MaximumMortgage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="5"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:gravity="center"
+                        android:hint="@string/Maximum_Mortgage"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                </LinearLayout>
+
+                <!--پایان بخش مربوط به رهن-->
+
+                <TextView
+                    android:id="@+id/Fragment_Search_Home_lbl_Price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/Price"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/Price_Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="11">
+
+                    <EditText
+                        android:id="@+id/Fragment_Search_Home_txt_LowestPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="5"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:gravity="center"
+                        android:hint="@string/LowestPrice"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Search_Home_txt_MaximumPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="5"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:gravity="center"
+                        android:hint="@string/MaximumPrice"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/Fragment_Search_Home_lbl_TheArea_SquareMeters"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/TheArea_SquareMeters"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="11">
+
+                    <EditText
+                        android:id="@+id/Fragment_Search_Home_txt_LowestArea"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="5"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:gravity="center"
+                        android:hint="@string/LowestArea"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/Fragment_Search_Home_txt_MaximumArea"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="5"
+                        android:backgroundTint="@color/colorPaleBlack"
+                        android:gravity="center"
+                        android:hint="@string/MaximumArea"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlack"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/CountRoom"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="16sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Fragment_Search_Home_Recycler_CountRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/ClearAll"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/colorWhite"
+                        android:text="@string/ClearItem"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_Search"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/change_color_btn"
+                        android:text="@string/Search"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

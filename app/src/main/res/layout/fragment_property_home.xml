@@ -1,0 +1,2578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorCenteral">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/AddProperty"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/Back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_back" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="50dp">
+
+                <TextView
+                    android:id="@+id/Property_Home_Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="ویژگی ها(زمین مسکونی)"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="16sp" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/Fragment_PropertyHome_Possibilities"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stroke_feature_group">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="@string/Possibilities"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/Fragment_PropertyHome_Icon_Possibilities"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/down" />
+
+                            </RelativeLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/Fragment_PropertyHome_Child_Possibilities"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/p1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/View"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <CheckBox
+                                    android:id="@+id/p2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Balcony"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/lobby"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Double_glazed_window"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Central_air_conditioning_system"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Central_Motor_Home"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Electricity"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Shooting"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+
+                                <LinearLayout
+                                    android:id="@+id/p11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Floor"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p11"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textSize="16sp"
+                                        android:textColor="@color/colorBlack"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Number_of_building_floors"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p12"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p13"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Floor_of_the_floor"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/cmb_p13"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:spinnerMode="dialog"/>-->
+
+                                    <ir.hamsaa.RtlMaterialSpinner
+                                        android:id="@+id/cmb_p13"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        app:ms_alignLabels="false"
+                                        app:ms_arrowColor="@color/arrow"
+                                        app:ms_arrowSize="16dp"
+                                        app:ms_enableErrorLabel="false"
+                                        app:ms_enableFloatingLabel="false"
+                                        app:ms_floatingLabelColor="@color/floating_label"
+                                        app:ms_hintTextSize="25"
+                                        app:ms_thickness="1dp"
+                                        android:layout_marginTop="10dp"
+                                        android:spinnerMode="dialog"
+                                        app:ms_baseColor="@color/colorPaleBlack"/>
+
+
+
+                                </LinearLayout>
+
+                                <CheckBox
+                                    android:id="@+id/p14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Elevator"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <LinearLayout
+                                    android:id="@+id/p15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Other_key_features"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p15"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <CheckBox
+                                    android:id="@+id/p16"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Document_and_ownership"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p17"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Commercial_Appliances"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p24"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Toilet_number"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <LinearLayout
+                                    android:id="@+id/p37"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Parking"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p37"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p40"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Total_number_of_classes"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p40"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p44"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Wall_of_the_wall"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/cmb_p44"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:spinnerMode="dialog" />-->
+
+                                    <ir.hamsaa.RtlMaterialSpinner
+                                        android:id="@+id/cmb_p44"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        app:ms_alignLabels="false"
+                                        app:ms_arrowColor="@color/arrow"
+                                        app:ms_arrowSize="16dp"
+                                        app:ms_enableErrorLabel="false"
+                                        app:ms_enableFloatingLabel="false"
+                                        app:ms_floatingLabelColor="@color/floating_label"
+                                        app:ms_hintTextSize="25"
+                                        app:ms_thickness="1dp"
+                                        android:layout_marginTop="10dp"
+                                        android:spinnerMode="dialog"
+                                        app:ms_baseColor="@color/colorPaleBlack"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p45"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/heating_system"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/cmb_p45"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:spinnerMode="dialog" />-->
+
+                                    <ir.hamsaa.RtlMaterialSpinner
+                                        android:id="@+id/cmb_p45"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        app:ms_alignLabels="false"
+                                        app:ms_arrowColor="@color/arrow"
+                                        app:ms_arrowSize="16dp"
+                                        app:ms_enableErrorLabel="false"
+                                        app:ms_enableFloatingLabel="false"
+                                        app:ms_floatingLabelColor="@color/floating_label"
+                                        app:ms_hintTextSize="25"
+                                        app:ms_thickness="1dp"
+                                        android:layout_marginTop="10dp"
+                                        android:spinnerMode="dialog"
+                                        app:ms_baseColor="@color/colorPaleBlack"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p46"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/kitchen"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/cmb_p46"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:spinnerMode="dialog" />-->
+
+                                    <ir.hamsaa.RtlMaterialSpinner
+                                        android:id="@+id/cmb_p46"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        app:ms_alignLabels="false"
+                                        app:ms_arrowColor="@color/arrow"
+                                        app:ms_arrowSize="16dp"
+                                        app:ms_enableErrorLabel="false"
+                                        app:ms_enableFloatingLabel="false"
+                                        app:ms_floatingLabelColor="@color/floating_label"
+                                        app:ms_hintTextSize="25"
+                                        app:ms_thickness="1dp"
+                                        android:layout_marginTop="10dp"
+                                        android:spinnerMode="dialog"
+                                        app:ms_baseColor="@color/colorPaleBlack"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p47"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Facade"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/cmb_p47"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:spinnerMode="dialog" />-->
+
+                                    <ir.hamsaa.RtlMaterialSpinner
+                                        android:id="@+id/cmb_p47"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        app:ms_alignLabels="false"
+                                        app:ms_arrowColor="@color/arrow"
+                                        app:ms_arrowSize="16dp"
+                                        app:ms_enableErrorLabel="false"
+                                        app:ms_enableFloatingLabel="false"
+                                        app:ms_floatingLabelColor="@color/floating_label"
+                                        app:ms_hintTextSize="25"
+                                        app:ms_thickness="1dp"
+                                        android:layout_marginTop="10dp"
+                                        android:spinnerMode="dialog"
+                                        app:ms_baseColor="@color/colorPaleBlack"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p48"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Cabinets"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/cmb_p48"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:spinnerMode="dialog" />-->
+
+                                    <ir.hamsaa.RtlMaterialSpinner
+                                        android:id="@+id/cmb_p48"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        app:ms_alignLabels="false"
+                                        app:ms_arrowColor="@color/arrow"
+                                        app:ms_arrowSize="16dp"
+                                        app:ms_enableErrorLabel="false"
+                                        app:ms_enableFloatingLabel="false"
+                                        app:ms_floatingLabelColor="@color/floating_label"
+                                        app:ms_hintTextSize="25"
+                                        app:ms_thickness="1dp"
+                                        android:layout_marginTop="10dp"
+                                        android:spinnerMode="dialog"
+                                        app:ms_baseColor="@color/colorPaleBlack"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p49"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Height"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p49"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p50"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Property_location"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/cmb_p50"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:spinnerMode="dialog" />-->
+
+                                    <ir.hamsaa.RtlMaterialSpinner
+                                        android:id="@+id/cmb_p50"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        app:ms_alignLabels="false"
+                                        app:ms_arrowColor="@color/arrow"
+                                        app:ms_arrowSize="16dp"
+                                        app:ms_enableErrorLabel="false"
+                                        app:ms_enableFloatingLabel="false"
+                                        app:ms_floatingLabelColor="@color/floating_label"
+                                        app:ms_hintTextSize="25"
+                                        app:ms_thickness="1dp"
+                                        android:layout_marginTop="10dp"
+                                        android:spinnerMode="dialog"
+                                        app:ms_baseColor="@color/colorPaleBlack"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p51"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Service"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/cmb_p51"-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:spinnerMode="dialog" />-->
+
+                                    <ir.hamsaa.RtlMaterialSpinner
+                                        android:id="@+id/cmb_p51"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        app:ms_alignLabels="false"
+                                        app:ms_arrowColor="@color/arrow"
+                                        app:ms_arrowSize="16dp"
+                                        app:ms_enableErrorLabel="false"
+                                        app:ms_enableFloatingLabel="false"
+                                        app:ms_floatingLabelColor="@color/floating_label"
+                                        app:ms_hintTextSize="25"
+                                        app:ms_thickness="1dp"
+                                        android:layout_marginTop="10dp"
+                                        android:spinnerMode="dialog"
+                                        app:ms_baseColor="@color/colorPaleBlack"/>
+
+                                </LinearLayout>
+
+                                <CheckBox
+                                    android:id="@+id/p52"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Gas"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p53"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Water"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p54"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Remote_door"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p55"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/IPhone_video"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p56"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/sauna"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p57"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Rebuilding"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p58"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Phone"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p81"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/busy"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p82"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Endowments"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p83"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Nice_board"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <LinearLayout
+                                    android:id="@+id/p84"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/On"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p84"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p85"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Pass"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p85"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p86"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Flood"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p86"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p87"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Alleyway"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p87"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <CheckBox
+                                    android:id="@+id/p88"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Your_daddy"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p89"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Have_a_license_to_build"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p90"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Has_a_map_command"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <LinearLayout
+                                    android:id="@+id/p91"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Number_of_units"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p91"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p92"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Size_of_land"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p92"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p93"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Subscriber_Number"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p93"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/Fragment_PropertyHome_Rooms"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stroke_feature_group">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="@string/Rooms"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/Fragment_PropertyHome_Icon_Rooms"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/down" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/Fragment_PropertyHome_Child_Rooms"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:id="@+id/p19"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Prayer_room"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p20"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Laundry"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <LinearLayout
+                                    android:id="@+id/p25"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/CountRoom"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p25"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textSize="16sp"
+                                        android:textColor="@color/colorBlack"/>
+
+                                </LinearLayout>
+
+                                <CheckBox
+                                    android:id="@+id/p26"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Guard"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p38"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Warehouse"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p39"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Reading_room"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/Fragment_PropertyHome_Commerce"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stroke_feature_group">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="@string/Commerce_and_communications"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/Fragment_PropertyHome_Icon_Commerce"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/down" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/Fragment_PropertyHome_Child_Commerce"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:id="@+id/p21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/high_speed_Internet"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p22"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Conference_room"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p23"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/ATM"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/Fragment_PropertyHome_Health"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stroke_feature_group">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="@string/Health_centers"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/Fragment_PropertyHome_Icon_Health"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/down" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/Fragment_PropertyHome_Child_Health"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:id="@+id/p3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Barbecue"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Healthcare_center"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p18"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/sport_Club"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p27"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Swimming_pool"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/Fragment_PropertyHome_Nearby"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stroke_feature_group">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="@string/Nearby_Neighborhoods"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/Fragment_PropertyHome_Icon_Nearby"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/down" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/Fragment_PropertyHome_Child_Nearby"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/p28"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Schools_close_to_the_place"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p28"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p29"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Hospitals_close_to_the_property"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p29"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p30"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Shopping_centers_close_to_the_property"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p30"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p31"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Distance_from_airport"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p31"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:inputType="number"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p32"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Public_transportation_close_to_the_property"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p32"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/p33"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="15dp"
+                                    android:paddingTop="15dp"
+                                    android:weightSum="2"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:paddingRight="20dp"
+                                        android:text="@string/Other_important_centers_near_the_property"
+                                        android:textColor="@color/colorGray"
+                                        android:textSize="16sp" />
+
+                                    <EditText
+                                        android:id="@+id/txt_p33"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/stroke_edit_text_blue"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/Fragment_PropertyHome_Other"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stroke_feature_group">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="@string/Other_features"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/Fragment_PropertyHome_Icon_Other"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/down" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/Fragment_PropertyHome_Child_Other"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:id="@+id/p34"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/janitor"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p35"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Coffee_Shop"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p36"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Designed_to_fit_low_income_people"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p59"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/IPhone_video"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p60"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Electricity_and_emergency_water"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p61"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Sleep_master"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p64"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Swimming_pool"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p65"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Massage_salon"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p66"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Turkish_bath"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p68"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Barbecue"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p69"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Roof_garden"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p70"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Altar"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p71"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Fountain"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p72"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Fireplace"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p73"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Internal_Communication"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p74"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/chiller"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p75"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Fruit_garden"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p76"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Catering"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p77"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Parking_Distance"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p78"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Yard"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p79"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Conference_Hall"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/Fragment_PropertyHome_Security"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stroke_feature_group">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="@string/Security_System"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/Fragment_PropertyHome_Icon_Security"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/down" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/Fragment_PropertyHome_Child_Security"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:id="@+id/p41"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Emergency_Exit"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p42"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Automatic_Fire_Extinguishing_System"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p43"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Fire_Hose"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p62"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Fire_Extinguishing"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p63"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Internal_Security_System"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+
+                                <CheckBox
+                                    android:id="@+id/p80"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/CCTV"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+                                <CheckBox
+                                    android:id="@+id/p67"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/security_24_hour"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/Fragment_PropertyHome_Amazing"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stroke_feature_group">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="15dp"
+                                    android:text="@string/Amazing"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="16sp" />
+
+                                <ImageView
+                                    android:id="@+id/Fragment_PropertyHome_Icon_Amazing"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/down" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/Fragment_PropertyHome_Child_Amazing"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:id="@+id/p94"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="@drawable/stroke_feature_child"
+                                    android:buttonTint="@color/colorBlue"
+                                    android:layoutDirection="ltr"
+                                    android:paddingBottom="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="15dp"
+                                    android:text="@string/Wiring_UPS"
+                                    android:textColor="@color/colorGray"
+                                    android:textSize="16sp"
+                                    android:visibility="gone"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_Done"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Done"
+                android:textSize="16sp"
+                android:background="@drawable/change_color_btn"
+                android:textColor="@color/colorWhite"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
