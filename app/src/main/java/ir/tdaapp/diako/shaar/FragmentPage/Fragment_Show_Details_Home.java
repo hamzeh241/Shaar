@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -43,9 +44,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import androidx.viewpager.widget.ViewPager;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -377,16 +377,16 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
 
                         String ImageUrl = ApiImage + "ImageSave/" + response.getString("TblUserProImage");
 
-                        Glide.with(getActivity()).load(ImageUrl)
-                                .asBitmap().into(new SimpleTarget<Bitmap>() {
-                            @Override
-                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                                try {
-                                    profile_image.setImageBitmap(resource);
-                                } catch (Exception e) {
-                                }
-                            }
-                        });
+                        Glide.with(getActivity()).asBitmap().load(ImageUrl)
+                                .into(new SimpleTarget<Bitmap>() {
+                                  @Override
+                                  public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                    try {
+                                      profile_image.setImageBitmap(resource);
+                                    } catch (Exception e) {
+                                    }
+                                  }
+                                });
 
 
 

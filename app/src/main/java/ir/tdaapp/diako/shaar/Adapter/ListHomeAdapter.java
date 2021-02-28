@@ -88,7 +88,7 @@ public class ListHomeAdapter extends RecyclerView.Adapter<ListHomeAdapter.MyView
         }
 
         Glide.with(context).load(list_homes.get(position).getImage())
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .skipMemoryCache(true)
                 .placeholder(R.drawable.shaar_image).error(R.drawable.shaar_image).into(holder.img);
 

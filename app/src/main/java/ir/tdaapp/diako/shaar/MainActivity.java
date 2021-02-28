@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.ContentFrameLayout;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.ETC.SizeScreen;
 import ir.tdaapp.diako.shaar.ETC.Stack_Back;
@@ -23,7 +24,6 @@ import com.flurry.android.FlurryAgent;
 //import com.onesignal.OneSignal;
 import co.ronash.pushe.Pushe;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,6 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 }

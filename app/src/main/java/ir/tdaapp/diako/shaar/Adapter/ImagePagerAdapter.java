@@ -3,6 +3,7 @@ package ir.tdaapp.diako.shaar.Adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import android.transition.Transition;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -11,11 +12,12 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 import ir.tdaapp.diako.shaar.R;
 import ozaydin.serkan.com.image_zoom_view.ImageViewZoom;
@@ -48,16 +50,17 @@ public class ImagePagerAdapter extends PagerAdapter {
         final ImageViewZoom imageView = new ImageViewZoom(context);
         imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.shaar_image));
 
-        Glide.with(context).load(images.get(position))
-                .asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                try {
-                    imageView.setImageBitmap(resource);
-                } catch (Exception e) {
+        Glide.with(context).asBitmap().load(images.get(position))
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable com.bumptech.glide.request.transition.Transition<? super Bitmap> transition) {
+                        try {
+                            imageView.setImageBitmap(resource);
+                        } catch (Exception e) {
 
-                }
-            }
+                        }
+                    }
+
         });
         container.addView(imageView,0);
 

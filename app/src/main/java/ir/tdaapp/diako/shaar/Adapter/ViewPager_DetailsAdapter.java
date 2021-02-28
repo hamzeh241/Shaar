@@ -43,7 +43,7 @@ public class ViewPager_DetailsAdapter extends PagerAdapter {
         ImageView imageView=new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         Glide.with(context).load(images.get(position))
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .skipMemoryCache(true)
                 .placeholder(ir.tdaapp.diako.shaar.R.drawable.shaar_image).error(ir.tdaapp.diako.shaar.R.drawable.shaar_image).into(imageView);
         container.addView(imageView,0);

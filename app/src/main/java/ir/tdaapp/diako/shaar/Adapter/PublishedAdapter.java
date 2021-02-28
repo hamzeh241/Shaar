@@ -61,7 +61,7 @@ public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.MyVi
         holder.Price.setText(values.get(position).getPrice());
 
         Glide.with(context).load(values.get(position).getImage())
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .skipMemoryCache(true)
                 .placeholder(ir.tdaapp.diako.shaar.R.drawable.shaar_image).error(ir.tdaapp.diako.shaar.R.drawable.shaar_image).into(holder.img);
 
