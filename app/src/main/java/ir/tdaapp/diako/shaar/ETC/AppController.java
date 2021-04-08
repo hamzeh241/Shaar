@@ -8,7 +8,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 import androidx.multidex.MultiDexApplication;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
+import ir.tdaapp.diako.shaar.R;
 
 /**
  * Created by Diako on 6/22/2019.
@@ -16,49 +19,51 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class AppController extends MultiDexApplication {
 
-    public static final String TAG = AppController.class.getSimpleName();
+  public static final String TAG = AppController.class.getSimpleName();
 
-    private RequestQueue mRequestQueue;
+  private RequestQueue mRequestQueue;
 
-    private static AppController mInstance;
+  private static AppController mInstance;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mInstance = this;
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("font/vazir.ttf")
-                .setFontAttrId(ir.tdaapp.diako.shaar.R.attr.fontPath)
-                .build()
-        );
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    mInstance = this;
+    ViewPump.init(ViewPump.builder()
+      .addInterceptor(new CalligraphyInterceptor(
+        new CalligraphyConfig.Builder()
+          .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
+          .setFontAttrId(R.attr.fontPath)
+          .build()))
+      .build());
+  }
+
+  public static synchronized AppController getInstance() {
+    return mInstance;
+  }
+
+
+  public RequestQueue getRequestQueue() {
+    if (mRequestQueue == null) {
+      mRequestQueue = Volley.newRequestQueue(getApplicationContext());
     }
 
-    public static synchronized AppController getInstance() {
-        return mInstance;
+    return mRequestQueue;
+  }
+
+  public <T> void addToRequestQueue(Request<T> req, String tag) {
+    req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+    getRequestQueue().add(req);
+  }
+
+  public <T> void addToRequestQueue(Request<T> req) {
+    req.setTag(TAG);
+    getRequestQueue().add(req);
+  }
+
+  public void cancelPendingRequests(Object tag) {
+    if (mRequestQueue != null) {
+      mRequestQueue.cancelAll(tag);
     }
-
-
-    public RequestQueue getRequestQueue() {
-        if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
-
-        return mRequestQueue;
-    }
-
-    public <T> void addToRequestQueue(Request<T> req, String tag) {
-        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
-        getRequestQueue().add(req);
-    }
-
-    public <T> void addToRequestQueue(Request<T> req) {
-        req.setTag(TAG);
-        getRequestQueue().add(req);
-    }
-
-    public void cancelPendingRequests(Object tag) {
-        if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(tag);
-        }
-    }
+  }
 }
