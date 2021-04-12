@@ -275,6 +275,17 @@
   <string name="Permission">شما اجازه استفاده از این بخش را ندارید</string>
   <string name="categories">دسته بندی ها</string>
   <string name="fastSearch">جستجوی سریع</string>
+  <string name="addComment">ثبت نظر</string>
+  <string name="usersComments">نظرات کاربران</string>
+  <string name="addPhoto">افزودن عکس</string>
+  <string name="addRating">ثبت امتیاز</string>
+  <string name="usersPhotos">تصاویر کاربران</string>
+  <string name="moreInfo">اطلاعات بیشتر</string>
+  <string name="locationInfo">اطلاعات مکان</string>
+  <string name="sendPrivateMessage">ارسال پیام خصوصی</string>
+  <string name="makePhoneCall">تماس تلفنی</string>
+  <string name="instagramPage">صفحه اینستاگرام</string>
+  <string name="telegramChannel">کانال تلگرام</string>
   <string-array name="ListVideoApp">
     <item>آپارات</item>
     <item>تماشا</item>

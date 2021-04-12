@@ -20,6 +20,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.R;
 
 public class CategoryDetailsFragment extends BaseFragment {
@@ -97,7 +98,7 @@ public class CategoryDetailsFragment extends BaseFragment {
     detailsAdapter = new CategoryDetailsAdapter(detailModels, new OnItemClick() {
       @Override
       public void onClick(View view, int position) {
-        Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+        ((GuideActivity) getActivity()).onAddFragment(new CategoryItemDetailsFragment(), 0, 0, false, CategoryItemDetailsFragment.TAG);
       }
 
       @Override
