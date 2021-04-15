@@ -8,10 +8,11 @@
   app:cardElevation="4dp">
 
   <LinearLayout
+    android:id="@+id/categoryRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="?selectableItemBackground"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="8dp">
 

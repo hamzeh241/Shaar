@@ -1,16 +1,17 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels;
 
-public class CategoryDetailsModel {
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseModel;
+
+public class CategoryDetailsModel extends BaseModel {
 
   String title, address, imageUrl;
-  int id, rateCount;
-  float rating;
+  int id, rateCount,rating;
   boolean isFavorite;
 
   public CategoryDetailsModel() {
   }
 
-  public CategoryDetailsModel(String title, String address, String imageUrl, int id, int rateCount, float rating, boolean isFavorite) {
+  public CategoryDetailsModel(String title, String address, String imageUrl, int id, int rateCount, int rating, boolean isFavorite) {
     this.title = title;
     this.address = address;
     this.imageUrl = imageUrl;
@@ -64,7 +65,7 @@ public class CategoryDetailsModel {
     return rating;
   }
 
-  public void setRating(float rating) {
+  public void setRating(int rating) {
     this.rating = rating;
   }
 

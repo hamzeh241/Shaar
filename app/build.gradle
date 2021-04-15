@@ -53,6 +53,8 @@ dependencies {
     implementation 'com.flurry.android:analytics:11.6.0@aar'
     implementation 'co.ronash.android:pushe-base:1.6.3'
 
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
+
     implementation "io.reactivex.rxjava3:rxjava:3.0.11"
 
     implementation 'gun0912.ted:tedbottompicker:2.0.1'
