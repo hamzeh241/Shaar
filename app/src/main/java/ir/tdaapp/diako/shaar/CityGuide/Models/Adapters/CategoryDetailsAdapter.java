@@ -10,25 +10,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryItemClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseViewHolder;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsLoading;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.R;
 
-public class CategoryDetailsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetailsAdapter.ViewHolder> {
 
   Context context;
   onCategoryItemClick clickListener;
-  ArrayList<BaseModel> models;
-
-  private static final int VIEW_TYPE_LOADING = 0;
-  private static final int VIEW_TYPE_NORMAL = 1;
-  private boolean isLoaderVisible = false;
+  ArrayList<CategoryDetailsModel> models;
 
   public CategoryDetailsAdapter(Context context) {
     this.models = new ArrayList<>();
@@ -37,44 +31,13 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<BaseViewHolder>
 
   @NonNull
   @Override
-  public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    switch (viewType) {
-      case VIEW_TYPE_NORMAL:
-        return new ViewHolder(
-          LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_category_details, parent, false));
-      case VIEW_TYPE_LOADING:
-        return new ProgressViewHolder(
-          LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_category_item_pagination_loading, parent, false));
-      default:
-        return null;
-    }
+  public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_category_details, parent, false);
+    return new ViewHolder(view);
   }
 
-  @Override
-  public int getItemViewType(int position) {
-    if (isLoaderVisible) {
-      return position == models.size() - 1 ? VIEW_TYPE_LOADING : VIEW_TYPE_NORMAL;
-    } else {
-      return VIEW_TYPE_NORMAL;
-    }
-  }
-
-  public void addLoading() {
-    isLoaderVisible = true;
-    models.add(new CategoryDetailsLoading());
-    notifyItemInserted(models.size());
-  }
-
-  public void removeLoading() {
-    isLoaderVisible = false;
-    int position = models.size() - 1;
-    CategoryDetailsLoading item = (CategoryDetailsLoading) models.get(position);
-    models.remove(item);
-    notifyItemRemoved(position);
-  }
-
-  public void add(CategoryDetailsModel model) {
-    models.add(model);
+  public void add(CategoryDetailsModel categoryDetailsModels) {
+    models.add(categoryDetailsModels);
     notifyItemInserted(models.size());
   }
 
@@ -88,8 +51,21 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<BaseViewHolder>
   }
 
   @Override
-  public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-    holder.onBind(position);
+  public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    CategoryDetailsModel model = (CategoryDetailsModel) models.get(position);
+
+    holder.title.setText(model.getTitle());
+    holder.address.setText(model.getAddress());
+    holder.rateCount.setText(model.getRateCount() + " رای");
+
+    int resId = model.isFavorite() ? R.drawable.ic_baseline_favorite_24 : R.drawable.ic_baseline_favorite_border_24;
+    holder.favorite.setImageResource(resId);
+    holder.favorite.setOnClickListener(v -> {
+      clickListener.onFavorite(model);
+    });
+    holder.rootLayout.setOnClickListener(v -> {
+      clickListener.onClick(model);
+    });
   }
 
   @Override
@@ -97,7 +73,7 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<BaseViewHolder>
     return models.size();
   }
 
-  class ViewHolder extends BaseViewHolder {
+  class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView title, address, rateCount;
     ImageView favorite;
@@ -108,30 +84,6 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<BaseViewHolder>
       findView(itemView);
     }
 
-    @Override
-    protected void clear() {
-
-    }
-
-    @Override
-    public void onBind(int position) {
-      super.onBind(position);
-      CategoryDetailsModel model = (CategoryDetailsModel) models.get(position);
-
-      title.setText(model.getTitle());
-      address.setText(model.getAddress());
-      rateCount.setText(model.getRateCount() + " رای");
-
-      int resId = model.isFavorite() ? R.drawable.ic_baseline_favorite_24 : R.drawable.ic_baseline_favorite_border_24;
-      favorite.setImageResource(resId);
-      favorite.setOnClickListener(v -> {
-        clickListener.onFavorite(model);
-      });
-      rootLayout.setOnClickListener(v -> {
-        clickListener.onClick(model);
-      });
-    }
-
     private void findView(View itemView) {
       title = itemView.findViewById(R.id.txtCategoryTitle);
       address = itemView.findViewById(R.id.txtCategoryAddress);
@@ -140,30 +92,4 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<BaseViewHolder>
       rootLayout = itemView.findViewById(R.id.categoryItemRootLayout);
     }
   }
-
-  class ProgressViewHolder extends BaseViewHolder {
-
-    ProgressBar progressBar;
-
-    public ProgressViewHolder(@NonNull View itemView) {
-      super(itemView);
-      findView(itemView);
-    }
-
-    @Override
-    protected void clear() {
-
-    }
-
-    @Override
-    public void onBind(int position) {
-      super.onBind(position);
-    }
-
-    private void findView(View itemView) {
-      progressBar = itemView.findViewById(R.id.categoryProgressPaging);
-    }
-  }
-
-
 }

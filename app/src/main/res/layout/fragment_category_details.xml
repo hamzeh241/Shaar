@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:id="@+id/categoryDetailsRootLayout"
   android:background="@color/colorWhite"
   android:orientation="vertical">
 
@@ -76,6 +77,10 @@
     android:id="@+id/loadingCategoryDetails"
     android:layout_width="48dp"
     android:layout_height="48dp"
-    android:layout_centerInParent="true"
+    android:layout_below="@id/topBar"
+    android:layout_centerHorizontal="true"
+    android:layout_centerInParent="false"
+    android:layout_centerVertical="false"
+    android:layout_marginTop="16dp"
     android:src="@drawable/gear_loading" />
 </RelativeLayout>

@@ -1,5 +1,8 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
@@ -14,7 +17,7 @@ public interface CategoryDetailsFragmentService {
 
   void loadingState(boolean load);
 
-  void onLoadingPaging(boolean load);
+  void onPageFinished(List<CategoryDetailsModel> categoryDetailsModels);
 
   void onFinish();
 

@@ -1,8 +1,6 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels;
 
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseModel;
-
-public class CategoryDetailsModel extends BaseModel {
+public class CategoryDetailsModel {
 
   String title, address, imageUrl;
   int id, rateCount,rating;

@@ -1,47 +1,44 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.transition.Slide;
+import android.transition.TransitionManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsChipsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryChipClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryItemClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.PaginationListener;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryDetailsFragmentPresenter;
-import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.R;
 import pl.droidsonroids.gif.GifImageView;
 
-import static ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.PaginationListener.PAGE_START;
 
 public class CategoryDetailsFragment extends BaseFragment implements CategoryDetailsFragmentService {
 
   public static final String TAG = "CategoryDetailsFragment";
 
-  private int currentPage = PAGE_START;
-  private boolean isLastPage = false;
-  private int totalPage = 10;
-  private boolean isLoading = false;
-  int itemCount = 0;
+  private int previousTotal = 0;
+  private int page = 0;
+  private boolean isLoading = true;
+  private int visibleThreshold = 5;
+  int firstVisibleItem, visibleItemCount, totalItemCount;
 
   CategoryDetailsFragmentPresenter presenter;
 
@@ -51,6 +48,7 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
   RecyclerView chipsList, detailsList;
   EditText searchBar;
   GifImageView loading;
+  RelativeLayout root;
 
   CategoryDetailsAdapter detailsAdapter;
   CategoryDetailsChipsAdapter chipsAdapter;
@@ -79,12 +77,13 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
     detailModels = new ArrayList<>();
     chipModels = new ArrayList<>();
 
+    root = view.findViewById(R.id.categoryDetailsRootLayout);
     filter = view.findViewById(R.id.imgCategoryDetailsFilter);
     back = view.findViewById(R.id.imgCategoryDetailsBack);
     chipsList = view.findViewById(R.id.categoryDetailsChipsList);
     detailsList = view.findViewById(R.id.categoryDetailsList);
     searchBar = view.findViewById(R.id.edtCategoryDetailsSearch);
-    loading=view.findViewById(R.id.loadingCategoryDetails);
+    loading = view.findViewById(R.id.loadingCategoryDetails);
   }
 
   private void implement() {
@@ -105,7 +104,7 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
     chipsAdapter.setOnItemClick(model -> {
       detailsAdapter.clear();
       selectedModel = model;
-      presenter.getItemByFilter(model.getId(), 0);
+      presenter.getItemByFilter(model.getId(), page);
     });
     detailsAdapter.setOnItemClick(new onCategoryItemClick() {
       @Override
@@ -121,44 +120,37 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
   }
 
   private void setPagination() {
-    detailsList.addOnScrollListener(new PaginationListener(detailsLayoutManager) {
+    detailsList.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
-      protected void loadMoreItems() {
-        isLoading = true;
-        currentPage++;
-        detailsAdapter.addLoading();
-        presenter.getItemByFilter(3, currentPage);
-      }
+      public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+        super.onScrolled(recyclerView, dx, dy);
 
-      @Override
-      public boolean isLastPage() {
-        detailsAdapter.removeLoading();
-        return isLastPage;
-      }
+        visibleItemCount = detailsList.getChildCount();
+        totalItemCount = detailsLayoutManager.getItemCount();
+        firstVisibleItem = detailsLayoutManager.findFirstVisibleItemPosition();
 
-      @Override
-      public void removeLoading() {
+        if (isLoading) {
+          if (totalItemCount > previousTotal) {
+            isLoading = false;
+            previousTotal = totalItemCount;
+          }
+        }
+        if (!isLoading && (totalItemCount - visibleItemCount)
+          <= (firstVisibleItem + visibleThreshold)) {
+          // End has been reached
+          page++;
+          presenter.getItemByFilter(selectedModel != null ? selectedModel.getId() : 0, page);
+          // Do something
 
-      }
-
-      @Override
-      public boolean isLoading() {
-        return isLoading;
+          isLoading = true;
+        }
       }
     });
   }
 
   @Override
   public void onItemsReceived(CategoryDetailsModel model) {
-    if (currentPage != PAGE_START) detailsAdapter.removeLoading();
     detailsAdapter.add(model);
-    // check weather is last page or not
-    if (currentPage < totalPage) {
-      detailsAdapter.addLoading();
-    } else {
-      isLastPage = true;
-    }
-    isLoading = false;
   }
 
   @Override
@@ -172,8 +164,16 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
   }
 
   @Override
-  public void onLoadingPaging(boolean load) {
-
+  public void onPageFinished(List<CategoryDetailsModel> categoryDetailsModels) {
+//    if (currentPage != PAGE_START) detailsAdapter.removeLoading();
+//    detailsAdapter.addAll(detailModels);
+//    // check weather is last page or not
+//    if (currentPage < totalPage) {
+//      detailsAdapter.addLoading();
+//    } else {
+//      isLastPage = true;
+//    }
+//    isLoading = false;
   }
 
   @Override

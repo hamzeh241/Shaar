@@ -17,10 +17,10 @@
       android:layout_width="match_parent"
       android:layout_height="40dp"
       android:layout_below="@id/textView10"
-      android:layout_marginBottom="8dp"
+      android:layout_marginBottom="16dp"
       android:layout_marginEnd="8dp"
       android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
+      android:layout_marginTop="16dp"
       android:background="@drawable/white_search_background"
       android:gravity="center"
       android:orientation="horizontal">
@@ -88,6 +88,9 @@
     android:id="@+id/loadingCategory"
     android:layout_width="48dp"
     android:layout_height="48dp"
-    android:layout_centerInParent="true"
+    android:layout_below="@id/categoryToolbar"
+    android:layout_centerHorizontal="true"
+    android:layout_centerInParent="false"
+    android:layout_marginTop="16dp"
     android:src="@drawable/gear_loading" />
 </RelativeLayout>

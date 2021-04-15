@@ -89,6 +89,7 @@ public class CategoryDetailsFragmentPresenter {
     }, throwable -> {
 
     }, () -> {
+      categoryDetailsFragmentService.onPageFinished(categoryModels);
       categoryDetailsFragmentService.onFinish();
       categoryDetailsFragmentService.loadingState(false);
     });
