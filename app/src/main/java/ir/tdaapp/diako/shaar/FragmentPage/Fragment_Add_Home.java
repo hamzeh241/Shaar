@@ -538,7 +538,6 @@ public class Fragment_Add_Home extends Fragment implements IBase {
                       DA_Add_Home.Images.add(SaveImageToMob.SaveImageToSdCard(Name, b));
                     }
 
-                    Toast.makeText(getActivity(), "Selected: " + uriList.size(), Toast.LENGTH_SHORT).show();
                   });
               }
 

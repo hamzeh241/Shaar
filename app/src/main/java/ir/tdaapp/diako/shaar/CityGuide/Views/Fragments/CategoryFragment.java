@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class CategoryFragment extends BaseFragment implements CategoryFragmentSe
   private GridLayoutManager layoutManager;
   private CategoryAdapter adapter;
   private CategoryFragmentPresenter presenter;
-  private GifImageView loading;
+  private ProgressBar loading;
 
 
   @Nullable

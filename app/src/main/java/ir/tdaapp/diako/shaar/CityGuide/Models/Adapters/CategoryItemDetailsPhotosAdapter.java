@@ -5,11 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
+
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.R;
 
@@ -33,7 +37,13 @@ public class CategoryItemDetailsPhotosAdapter extends RecyclerView.Adapter<Categ
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    holder.imageView.setImageResource(R.drawable.a);
+    CategoryItemDetailsPhotoModel item = photos.get(position);
+
+    Glide.with(holder.imageView.getContext())
+      .load(BaseApi.API_IMAGE + item.getImageName())
+      .placeholder(R.drawable.ic_baseline_sync_24)
+      .error(R.drawable.ic_baseline_running_with_errors_24)
+      .into(holder.imageView);
   }
 
   @Override
@@ -41,7 +51,7 @@ public class CategoryItemDetailsPhotosAdapter extends RecyclerView.Adapter<Categ
     return photos.size();
   }
 
-  class ViewHolder extends RecyclerView.ViewHolder {
+  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     OnItemClick clickListener;
 
@@ -51,10 +61,16 @@ public class CategoryItemDetailsPhotosAdapter extends RecyclerView.Adapter<Categ
       super(itemView);
       this.clickListener = clickListener;
       findView(itemView);
+      itemView.setOnClickListener(this);
     }
 
     private void findView(View view) {
       imageView = view.findViewById(R.id.imgCategoryItemImage);
+    }
+
+    @Override
+    public void onClick(View v) {
+      clickListener.onClick(v, getAdapterPosition());
     }
   }
 }

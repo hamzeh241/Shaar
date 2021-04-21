@@ -18,7 +18,7 @@
       android:orientation="horizontal">
 
       <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnCategoryItemDetailsAddComment"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
@@ -35,7 +35,7 @@
       android:orientation="horizontal">
 
       <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/txtCategoryItemDetailsCommentCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -72,6 +72,8 @@
       android:id="@+id/btnCategoryDetailsShowComments"
       android:layout_width="wrap_content"
       android:layout_height="30dp"
+      android:layout_marginBottom="16dp"
+      android:layout_marginTop="16dp"
       android:background="@drawable/blue_border_background"
       android:paddingLeft="16dp"
       android:paddingRight="16dp"

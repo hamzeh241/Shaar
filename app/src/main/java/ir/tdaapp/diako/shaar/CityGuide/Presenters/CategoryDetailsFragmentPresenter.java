@@ -29,11 +29,11 @@ public class CategoryDetailsFragmentPresenter {
   public void start(int categoryId) {
     categoryDetailsFragmentService.onPresenterStart();
     getChips(categoryId);
-    getItems(categoryId, 0);
+    getItems("", categoryId, 0);
   }
 
-  public void getItemByFilter(int filterId, int page) {
-    getItems(filterId, page);
+  public void getItemByFilter(String search, int filterId, int page) {
+    getItems(search, filterId, page);
   }
 
   private void getChips(int categoryId) {
@@ -44,6 +44,7 @@ public class CategoryDetailsFragmentPresenter {
       @Override
       public void onSuccess(List<CategoryDetailsChipModel> categoryModels) {
         setChips(categoryModels);
+
       }
 
       @Override
@@ -65,9 +66,9 @@ public class CategoryDetailsFragmentPresenter {
       });
   }
 
-  private void getItems(int filterId, int page) {
+  private void getItems(String search, int filterId, int page) {
     categoryDetailsFragmentService.loadingState(true);
-    Single<List<CategoryDetailsModel>> data = categoryDetailsApi.getItems(filterId, page);
+    Single<List<CategoryDetailsModel>> data = categoryDetailsApi.getItems(search, filterId, page);
 
     getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {
       @Override
@@ -85,6 +86,7 @@ public class CategoryDetailsFragmentPresenter {
   private void setItems(List<CategoryDetailsModel> categoryModels) {
     Observable<CategoryDetailsModel> data = Observable.fromIterable(categoryModels);
     setChipsDisposable = data.subscribe(item -> {
+      categoryDetailsFragmentService.loadingState(false);
       categoryDetailsFragmentService.onItemsReceived(item);
     }, throwable -> {
 

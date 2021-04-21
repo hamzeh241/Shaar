@@ -1,5 +1,7 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Repositories;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,16 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
-import io.reactivex.SingleEmitter;
-import io.reactivex.SingleOnSubscribe;
-import io.reactivex.annotations.NonNull;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
-import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryDetailsFragment;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
-import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonArray;
-import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
 
 public class CategoryDetailsApi extends BaseApi {
@@ -31,7 +27,7 @@ public class CategoryDetailsApi extends BaseApi {
 
         try {
 
-          getChipsVolley = new GetJsonArrayVolley(apiUrl + "Category/GetFilters?CategoriesId=" + categoryId, resault -> {
+          getChipsVolley = new GetJsonArrayVolley(API_URL + "Category/GetFilters?CategoriesId=" + categoryId, resault -> {
 
             if (resault.getResault() == ResaultCode.Success) {
               List<CategoryDetailsChipModel> models = new ArrayList<>();
@@ -63,12 +59,13 @@ public class CategoryDetailsApi extends BaseApi {
     });
   }
 
-  public Single<List<CategoryDetailsModel>> getItems(int filterId, int page) {
+  public Single<List<CategoryDetailsModel>> getItems(String search, int filterId, int page) {
     return Single.create(emitter -> {
 
       new Thread(() -> {
         try {
-          getItemVolley = new GetJsonArrayVolley(apiUrl + "CityGuide/GetCityGuideLists?FilterId=" + filterId + "&Page=" + page, resault -> {
+          Log.i("LOGLOG", "CityGuide/GetCityGuideListsForSerch?TextSerch=\"" + search + "\"&Page=" + page + "&FilterId=" + filterId);
+          getItemVolley = new GetJsonArrayVolley(API_URL + "CityGuide/GetCityGuideListsForSerch?TextSerch=\"" + search + "\"&Page=" + page + "&FilterId=" + filterId, resault -> {
             if (resault.getResault() == ResaultCode.Success) {
 
               List<CategoryDetailsModel> models = new ArrayList<>();
@@ -82,8 +79,9 @@ public class CategoryDetailsApi extends BaseApi {
                   model.setId(object.getInt("Id"));
                   model.setTitle(object.getString("Title"));
                   model.setAddress(object.getString("Address"));
-                  model.setImageUrl("ImageCityGuide");
+                  model.setImageUrl(object.getString("ImageCityGuide"));
                   model.setRating(object.getInt("Stars"));
+                  model.setRateCount(object.getInt("RateCount"));
 
                   models.add(model);
                 } catch (JSONException e) {

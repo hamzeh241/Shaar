@@ -16,7 +16,7 @@
     android:background="#F3F3F3">
 
     <ImageView
-      android:id="@+id/imageView30"
+      android:id="@+id/imgCommentlike"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentLeft="true"
@@ -24,16 +24,22 @@
       android:layout_marginBottom="8dp"
       android:layout_marginLeft="16dp"
       android:layout_marginTop="8dp"
+      android:clickable="true"
+      android:focusable="true"
+      android:background="?selectableItemBackgroundBorderless"
       app:srcCompat="@drawable/ic_outline_thumb_up_24" />
 
     <ImageView
-      android:id="@+id/imageView31"
+      android:id="@+id/imgCommentDislike"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_below="@+id/txtCommentMessage"
       android:layout_marginBottom="8dp"
       android:layout_marginLeft="16dp"
       android:layout_marginTop="8dp"
+      android:clickable="true"
+      android:focusable="true"
+      android:background="?selectableItemBackgroundBorderless"
       android:layout_toEndOf="@+id/txtCommentLikeCount"
       app:srcCompat="@drawable/ic_outline_thumb_down_alt_24" />
 
@@ -76,9 +82,9 @@
       android:id="@+id/txtCommentLikeCount"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_alignBottom="@+id/imageView30"
+      android:layout_alignBottom="@+id/imgCommentlike"
       android:layout_marginLeft="8dp"
-      android:layout_toEndOf="@+id/imageView30"
+      android:layout_toEndOf="@+id/imgCommentlike"
       android:text="9"
       android:textColor="#1a1d24" />
 
@@ -86,9 +92,9 @@
       android:id="@+id/txtCommentDislikeCount"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_alignBottom="@+id/imageView31"
+      android:layout_alignBottom="@+id/imgCommentDislike"
       android:layout_marginLeft="8dp"
-      android:layout_toEndOf="@+id/imageView31"
+      android:layout_toEndOf="@+id/imgCommentDislike"
       android:text="2"
       android:textColor="#1a1d24" />
 

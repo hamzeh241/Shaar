@@ -286,6 +286,21 @@
   <string name="makePhoneCall">تماس تلفنی</string>
   <string name="instagramPage">صفحه اینستاگرام</string>
   <string name="telegramChannel">کانال تلگرام</string>
+  <string name="commentPostedSuccessfully">نظر شما با موفقیت درج شد</string>
+  <string name="postingComment">در حال درج کامنت...</string>
+  <string name="createAccountFirst">ابتدا یک حساب کاربری ایجاد کنید</string>
+  <string name="rateThisShop">به این مغازه امتیاز دهید</string>
+  <string name="rateSentSuccessfully">نظر شما با موفقیت ثبت شد</string>
+  <string name="rateSendingFailed">خطا در ثبت امتیاز</string>
+  <string name="selectPhoto">عکس انتخاب کنید</string>
+  <string name="submit">تایید</string>
+  <string name="noPhotoSelected">عکسی انتخاب نشده</string>
+  <string name="maximumPhotoSelectionReached3">حد مجاز انتخاب 3 عکس میباشد</string>
+  <string name="maximumPhotoSelectionReached6">حد مجاز انتخاب 6 عکس میباشد</string>
+  <string name="favorites">علاقه مندی ها</string>
+  <string name="allow_storage_permission">لطفا اجازه دسترسی به حافظه را صادر کنید</string>
+  <string name="imageUploadingFailed">بارگذاری عکس با مشکل مواجه شد</string>
+  <string name="storage_permisison_needed">برای انتخاب عکس مجوز دسترسی به حافظه گوشی نیاز است</string>
   <string-array name="ListVideoApp">
     <item>آپارات</item>
     <item>تماشا</item>

@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFavoriteItemsFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragment;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.UserItemsFragment;
 import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.R;
 
@@ -14,10 +17,14 @@ import android.os.Bundle;
 
 public class GuideActivity extends AppCompatActivity {
 
+  DBAdapter dbAdapter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_guide);
+
+    dbAdapter=new DBAdapter(this);
 
     onAddFragment(new CategoryFragment(), 0,0,false,CategoryFragment.TAG);
   }
@@ -46,5 +53,9 @@ public class GuideActivity extends AppCompatActivity {
 
     //در اینجا فرگمنت نمایش داده می شود
     transaction.commit();
+  }
+
+  public DBAdapter getAdapter(){
+    return dbAdapter;
   }
 }

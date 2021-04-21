@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryItemClick;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.R;
 
@@ -32,7 +36,7 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
   @NonNull
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_category_details, parent, false);
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_category_details, parent, false);
     return new ViewHolder(view);
   }
 
@@ -57,12 +61,13 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
     holder.title.setText(model.getTitle());
     holder.address.setText(model.getAddress());
     holder.rateCount.setText(model.getRateCount() + " رای");
-
-    int resId = model.isFavorite() ? R.drawable.ic_baseline_favorite_24 : R.drawable.ic_baseline_favorite_border_24;
-    holder.favorite.setImageResource(resId);
-    holder.favorite.setOnClickListener(v -> {
-      clickListener.onFavorite(model);
-    });
+    holder.ratingBar.setRating(model.getRating());
+    String imageName = model.getImageUrl();
+    Glide.with(context)
+      .load(BaseApi.API_IMAGE + imageName)
+      .placeholder(R.drawable.ic_baseline_sync_24)
+      .error(R.drawable.ic_baseline_running_with_errors_24)
+      .into(holder.image);
     holder.rootLayout.setOnClickListener(v -> {
       clickListener.onClick(model);
     });
@@ -76,8 +81,9 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
   class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView title, address, rateCount;
-    ImageView favorite;
+    ImageView favorite, image;
     LinearLayout rootLayout;
+    RatingBar ratingBar;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -88,8 +94,9 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
       title = itemView.findViewById(R.id.txtCategoryTitle);
       address = itemView.findViewById(R.id.txtCategoryAddress);
       rateCount = itemView.findViewById(R.id.txtCategoryDetailsRateCount);
-      favorite = itemView.findViewById(R.id.imgCategoryDetailsFavorite);
       rootLayout = itemView.findViewById(R.id.categoryItemRootLayout);
+      ratingBar = itemView.findViewById(R.id.categoryDetailsRatingBar);
+      image = itemView.findViewById(R.id.imgCategoryDetail);
     }
   }
 }

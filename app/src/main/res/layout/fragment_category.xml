@@ -17,10 +17,10 @@
       android:layout_width="match_parent"
       android:layout_height="40dp"
       android:layout_below="@id/textView10"
-      android:layout_marginBottom="16dp"
+      android:layout_marginBottom="8dp"
       android:layout_marginEnd="8dp"
       android:layout_marginStart="8dp"
-      android:layout_marginTop="16dp"
+      android:layout_marginTop="8dp"
       android:background="@drawable/white_search_background"
       android:gravity="center"
       android:orientation="horizontal">
@@ -40,8 +40,8 @@
         android:id="@+id/imageView5"
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:background="#B8B8B8" />
 
       <EditText
@@ -84,13 +84,13 @@
     android:layout_below="@id/categoryToolbar"
     android:layout_weight="1" />
 
-  <pl.droidsonroids.gif.GifImageView
+  <ProgressBar
     android:id="@+id/loadingCategory"
+    style="@style/Widget.AppCompat.ProgressBar"
     android:layout_width="48dp"
     android:layout_height="48dp"
     android:layout_below="@id/categoryToolbar"
     android:layout_centerHorizontal="true"
     android:layout_centerInParent="false"
-    android:layout_marginTop="16dp"
-    android:src="@drawable/gear_loading" />
+    android:layout_marginTop="16dp" />
 </RelativeLayout>

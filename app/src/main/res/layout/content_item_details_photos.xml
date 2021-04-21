@@ -15,7 +15,7 @@
     android:paddingTop="8dp">
 
     <Button
-      android:id="@+id/button4"
+      android:id="@+id/btnCategoryItemDetailsAddPhotos"
       android:layout_width="wrap_content"
       android:layout_height="30dp"
       android:background="@drawable/blue_border_background"

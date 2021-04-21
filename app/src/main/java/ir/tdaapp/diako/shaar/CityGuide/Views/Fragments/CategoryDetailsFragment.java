@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.transition.Slide;
 import android.transition.TransitionManager;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +30,12 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryDetailsFragmentPresenter;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.R;
 import pl.droidsonroids.gif.GifImageView;
 
 
-public class CategoryDetailsFragment extends BaseFragment implements CategoryDetailsFragmentService {
+public class CategoryDetailsFragment extends BaseFragment implements CategoryDetailsFragmentService, View.OnClickListener {
 
   public static final String TAG = "CategoryDetailsFragment";
 
@@ -47,8 +52,9 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
   ImageButton filter, back;
   RecyclerView chipsList, detailsList;
   EditText searchBar;
-  GifImageView loading;
+  ProgressBar loading;
   RelativeLayout root;
+  FloatingActionButton fab;
 
   CategoryDetailsAdapter detailsAdapter;
   CategoryDetailsChipsAdapter chipsAdapter;
@@ -84,12 +90,26 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
     detailsList = view.findViewById(R.id.categoryDetailsList);
     searchBar = view.findViewById(R.id.edtCategoryDetailsSearch);
     loading = view.findViewById(R.id.loadingCategoryDetails);
+    fab = view.findViewById(R.id.categoryDetailsAddItemFab);
   }
 
   private void implement() {
     detailsList.setLayoutManager(detailsLayoutManager);
     chipsList.setLayoutManager(chipsLayoutManager);
     presenter.start(getArguments().getInt("ID"));
+
+    searchBar.setOnKeyListener((v, keyCode, event) -> {
+      // If the event is a key-down event on the "enter" button
+      if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+        // Perform action on key press
+        filter.performClick();
+        return true;
+      }
+      return false;
+    });
+
+    fab.setOnClickListener(this);
   }
 
   @Override
@@ -104,18 +124,16 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
     chipsAdapter.setOnItemClick(model -> {
       detailsAdapter.clear();
       selectedModel = model;
-      presenter.getItemByFilter(model.getId(), page);
+      presenter.getItemByFilter(searchBar.getText().toString(), model.getId(), page);
     });
-    detailsAdapter.setOnItemClick(new onCategoryItemClick() {
-      @Override
-      public void onClick(CategoryDetailsModel model) {
+    detailsAdapter.setOnItemClick(model -> {
 
-      }
-
-      @Override
-      public void onFavorite(CategoryDetailsModel model) {
-
-      }
+      Bundle bundle = new Bundle();
+      bundle.putInt("ID", model.getId());
+      CategoryItemDetailsFragment fragment = new CategoryItemDetailsFragment();
+      fragment.setArguments(bundle);
+      ((GuideActivity) getActivity()).onAddFragment(fragment,
+        0, 0, false, CategoryItemDetailsFragment.TAG);
     });
   }
 
@@ -139,7 +157,7 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
           <= (firstVisibleItem + visibleThreshold)) {
           // End has been reached
           page++;
-          presenter.getItemByFilter(selectedModel != null ? selectedModel.getId() : 0, page);
+          presenter.getItemByFilter(searchBar.getText().toString(), selectedModel != null ? selectedModel.getId() : 0, page);
           // Do something
 
           isLoading = true;
@@ -185,5 +203,17 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
   @Override
   public void onError(String result) {
 
+  }
+
+  @Override
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.categoryDetailsAddItemFab:
+        ((GuideActivity) getActivity()).onAddFragment(new AddItemFragment(), 0, 0, true, AddItemFragment.TAG);
+        break;
+      case R.id.imgCategoryDetailsFilter:
+
+        break;
+    }
   }
 }

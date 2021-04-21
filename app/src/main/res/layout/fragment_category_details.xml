@@ -30,7 +30,8 @@
         android:background="?selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
-        app:srcCompat="@drawable/ic_baseline_filter_alt_24" />
+        android:tint="#1a1d24"
+        app:srcCompat="@drawable/ic_baseline_search_24" />
 
       <ImageView
         android:id="@+id/imageView7"
@@ -49,12 +50,16 @@
         android:background="#d6d6d6"
         android:ems="10"
         android:hint="@string/fastSearch"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#1a1d24" />
 
       <ImageButton
         android:id="@+id/imgCategoryDetailsBack"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?selectableItemBackgroundBorderless"
         app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
     </LinearLayout>
@@ -73,7 +78,7 @@
     android:layout_below="@id/topBar"
     android:visibility="gone" />
 
-  <pl.droidsonroids.gif.GifImageView
+  <ProgressBar
     android:id="@+id/loadingCategoryDetails"
     android:layout_width="48dp"
     android:layout_height="48dp"
@@ -82,5 +87,17 @@
     android:layout_centerInParent="false"
     android:layout_centerVertical="false"
     android:layout_marginTop="16dp"
-    android:src="@drawable/gear_loading" />
+    />
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/categoryDetailsAddItemFab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginBottom="16dp"
+    android:layout_marginRight="16dp"
+    android:clickable="true"
+    app:backgroundTint="@color/colorBlue"
+    app:srcCompat="@drawable/ic_baseline_add_24" />
 </RelativeLayout>

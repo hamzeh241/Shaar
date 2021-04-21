@@ -6,6 +6,4 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 public interface onCategoryItemClick {
 
   void onClick(CategoryDetailsModel model);
-
-  void onFavorite(CategoryDetailsModel model);
 }

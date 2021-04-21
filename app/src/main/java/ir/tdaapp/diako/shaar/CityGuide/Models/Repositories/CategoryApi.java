@@ -10,12 +10,8 @@ import java.util.List;
 
 import io.reactivex.Single;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
-import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonArray;
-import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
 
 public class CategoryApi extends BaseApi {
@@ -29,7 +25,7 @@ public class CategoryApi extends BaseApi {
       new Thread(() -> {
         try {
 
-          getCategoriesVolley = new GetJsonArrayVolley(apiUrl + "Category/GetCategories", resault -> {
+          getCategoriesVolley = new GetJsonArrayVolley(API_URL + "Category/GetCategories", resault -> {
 
             if (resault.getResault() == ResaultCode.Success) {
 
