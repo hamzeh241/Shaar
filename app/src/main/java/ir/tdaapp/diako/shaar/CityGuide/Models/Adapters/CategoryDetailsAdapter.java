@@ -6,19 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryItemClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.R;
 
@@ -64,7 +62,7 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
     holder.ratingBar.setRating(model.getRating());
     String imageName = model.getImageUrl();
     Glide.with(context)
-      .load(BaseApi.API_IMAGE + imageName)
+      .load(CityGuideBaseApi.API_IMAGE + imageName)
       .placeholder(R.drawable.ic_baseline_sync_24)
       .error(R.drawable.ic_baseline_running_with_errors_24)
       .into(holder.image);

@@ -9,18 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonArray;
-import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonObject;
 import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonArrayVolley;
-import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonObjectVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
 
-public class CategoryItemCommentsApi extends BaseApi {
+public class CategoryItemCommentsApiCityGuide extends CityGuideBaseApi {
 
   GetJsonArrayVolley getJsonArrayVolley;
   PostJsonObjectVolley postJsonObjectVolley;

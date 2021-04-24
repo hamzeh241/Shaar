@@ -12,7 +12,7 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryItemCommentsApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryItemCommentsApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemCommentsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
@@ -21,13 +21,13 @@ public class CategoryItemCommentsFragmentPresenter {
 
   Context context;
   CategoryItemCommentsFragmentService service;
-  CategoryItemCommentsApi api;
+  CategoryItemCommentsApiCityGuide api;
   Disposable getCommentsDisposable, setCommentsDisposable;
 
   public CategoryItemCommentsFragmentPresenter(Context context, CategoryItemCommentsFragmentService categoryItemCommentsFragmentService) {
     this.context = context;
     this.service = categoryItemCommentsFragmentService;
-    api = new CategoryItemCommentsApi();
+    api = new CategoryItemCommentsApiCityGuide();
   }
 
   public void start(int itemId, int userId) {

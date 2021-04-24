@@ -1,9 +1,5 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Repositories;
 
-import android.content.ClipData;
-
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,17 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultRatingViewModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ItemStructureViewModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
 
-public class AddItemApi extends BaseApi {
+public class AddItemApiCityGuide extends CityGuideBaseApi {
 
   PostJsonObjectVolley volley;
   GetJsonArrayVolley getCategoriesVolley, getFiltersVolley;

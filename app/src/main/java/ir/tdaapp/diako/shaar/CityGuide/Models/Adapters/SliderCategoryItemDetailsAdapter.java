@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnGlideImageListener;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.R;
 
@@ -47,7 +47,7 @@ public class SliderCategoryItemDetailsAdapter extends RecyclerView.Adapter<Slide
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     CategoryItemDetailsPhotoModel item = models.get(position);
     Glide.with(context)
-      .load(BaseApi.API_IMAGE + item.getImageName())
+      .load(CityGuideBaseApi.API_IMAGE + item.getImageName())
       .listener(new RequestListener<Drawable>() {
         @Override
         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

@@ -1,6 +1,6 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Utilities;
 
-public class BaseApi {
+public class CityGuideBaseApi {
 
   public static final String API_URL = "https://api.shaarapp.ir/api/";
 

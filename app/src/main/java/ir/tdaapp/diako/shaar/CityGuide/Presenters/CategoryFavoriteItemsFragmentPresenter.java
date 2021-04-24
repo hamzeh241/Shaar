@@ -2,29 +2,22 @@ package ir.tdaapp.diako.shaar.CityGuide.Presenters;
 
 import android.content.Context;
 
-import org.json.JSONArray;
-
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
-import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryDetailsApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryFavoriteItemsApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryFavoriteItemsApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.Database.TblFavorites;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFavoriteItemsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
-import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 
 public class CategoryFavoriteItemsFragmentPresenter {
 
   Context context;
   CategoryFavoriteItemsFragmentService service;
-  CategoryFavoriteItemsApi api;
+  CategoryFavoriteItemsApiCityGuide api;
   Disposable getFavoritesDisposable, setFavoritesDisposable;
   TblFavorites tblFavorites;
 
@@ -32,7 +25,7 @@ public class CategoryFavoriteItemsFragmentPresenter {
   public CategoryFavoriteItemsFragmentPresenter(Context context, CategoryFavoriteItemsFragmentService service) {
     this.context = context;
     this.service = service;
-    api = new CategoryFavoriteItemsApi();
+    api = new CategoryFavoriteItemsApiCityGuide();
     tblFavorites=new TblFavorites(context);
   }
 

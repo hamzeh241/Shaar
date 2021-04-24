@@ -20,41 +20,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.fragment.app.FragmentActivity;
-import es.dmoral.toasty.Toasty;
 import gun0912.tedbottompicker.TedBottomPicker;
-import gun0912.tedbottompicker.TedRxBottomPicker;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryItemDetailsApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFragmentService;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryItemDetailsApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemDetailsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.RateDialogService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultRatingViewModel;
 import ir.tdaapp.diako.shaar.ETC.FileManger;
 import ir.tdaapp.diako.shaar.R;
-import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
-import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonArrayVolley;
 
 public class CategoryItemDetailsFragmentPresenter {
 
   Context context;
   CategoryItemDetailsFragmentService service;
   RateDialogService rateService;
-  CategoryItemDetailsApi api;
+  CategoryItemDetailsApiCityGuide api;
   Disposable getDetailsDisposable, sendRatingDisposable;
 
   public CategoryItemDetailsFragmentPresenter(Context context, CategoryItemDetailsFragmentService service, RateDialogService rateService) {
     this.context = context;
     this.service = service;
     this.rateService = rateService;
-    api = new CategoryItemDetailsApi();
+    api = new CategoryItemDetailsApiCityGuide();
   }
 
   public void start(int userId, int itemId) {
@@ -95,7 +87,7 @@ public class CategoryItemDetailsFragmentPresenter {
       .setSelectedUriList(selectedUriList)
       .showMultiImage(uriList -> {
         new Thread(() -> {
-          FileManger fileManger = new FileManger(BaseApi.API_URL + "CityGuide/PostUserImageCityGuide");
+          FileManger fileManger = new FileManger(CityGuideBaseApi.API_URL + "CityGuide/PostUserImageCityGuide");
           for (Uri uri : uriList) {
             try {
               JSONObject object = new JSONObject();

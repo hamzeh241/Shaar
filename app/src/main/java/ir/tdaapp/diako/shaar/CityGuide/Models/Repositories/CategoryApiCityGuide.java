@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
 
-public class CategoryApi extends BaseApi {
+public class CategoryApiCityGuide extends CityGuideBaseApi {
 
   GetJsonArrayVolley getCategoriesVolley;
 

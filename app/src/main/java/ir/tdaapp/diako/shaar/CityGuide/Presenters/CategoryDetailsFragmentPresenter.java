@@ -8,7 +8,7 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryDetailsApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryDetailsApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
@@ -17,19 +17,24 @@ public class CategoryDetailsFragmentPresenter {
 
   Context context;
   CategoryDetailsFragmentService categoryDetailsFragmentService;
-  CategoryDetailsApi categoryDetailsApi;
+  CategoryDetailsApiCityGuide categoryDetailsApi;
   Disposable getChipsDisposable, setChipsDisposable;
 
   public CategoryDetailsFragmentPresenter(Context context, CategoryDetailsFragmentService categoryDetailsFragmentService) {
     this.context = context;
     this.categoryDetailsFragmentService = categoryDetailsFragmentService;
-    categoryDetailsApi = new CategoryDetailsApi();
+    categoryDetailsApi = new CategoryDetailsApiCityGuide();
   }
 
   public void start(int categoryId) {
     categoryDetailsFragmentService.onPresenterStart();
     getChips(categoryId);
     getItems("", categoryId, 0);
+  }
+
+  public void start(String search, int filterId, int page) {
+    categoryDetailsFragmentService.onPresenterRestart();
+    getItems(search, filterId, page);
   }
 
   public void getItemByFilter(String search, int filterId, int page) {
@@ -92,7 +97,6 @@ public class CategoryDetailsFragmentPresenter {
 
     }, () -> {
       categoryDetailsFragmentService.onPageFinished(categoryModels);
-      categoryDetailsFragmentService.onFinish();
       categoryDetailsFragmentService.loadingState(false);
     });
   }

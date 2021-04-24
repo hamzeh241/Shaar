@@ -300,7 +300,7 @@
   <string name="favorites">علاقه مندی ها</string>
   <string name="allow_storage_permission">لطفا اجازه دسترسی به حافظه را صادر کنید</string>
   <string name="imageUploadingFailed">بارگذاری عکس با مشکل مواجه شد</string>
-  <string name="storage_permisison_needed">برای انتخاب عکس مجوز دسترسی به حافظه گوشی نیاز است</string>
+  <string name="storage_permisison_needed">برای انتخاب عکس مجوز دسترسی به حافظه گوشی و دوربین نیاز است</string>
   <string-array name="ListVideoApp">
     <item>آپارات</item>
     <item>تماشا</item>

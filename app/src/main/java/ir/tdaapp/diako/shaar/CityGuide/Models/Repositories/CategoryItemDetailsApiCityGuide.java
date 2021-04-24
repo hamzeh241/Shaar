@@ -1,7 +1,5 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Repositories;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,18 +8,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import io.reactivex.Single;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultRatingViewModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
-import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonObject;
-import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonObjectVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonObjectVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
 
-public class CategoryItemDetailsApi extends BaseApi {
+public class CategoryItemDetailsApiCityGuide extends CityGuideBaseApi {
 
   GetJsonObjectVolley getDetailsObjectVolley;
   PostJsonObjectVolley postJsonObjectVolley;

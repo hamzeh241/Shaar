@@ -2,8 +2,6 @@ package ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels;
 
 import java.util.ArrayList;
 
-import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryItemCommentsFragment;
-
 public class CategoryItemDetailsViewModel {
 
   int starCount, rateCount, userScore;

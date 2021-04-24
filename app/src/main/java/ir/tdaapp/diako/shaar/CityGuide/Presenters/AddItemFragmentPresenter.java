@@ -7,11 +7,10 @@ import android.net.Uri;
 import android.os.Handler;
 
 import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,25 +18,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
 
 import androidx.fragment.app.FragmentActivity;
 import gun0912.tedbottompicker.TedBottomPicker;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.AddItemApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryItemDetailsApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.AddItemApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.AddItemFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemDetailsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.RateDialogService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultRatingViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ItemStructureViewModel;
 import ir.tdaapp.diako.shaar.ETC.FileManger;
 import ir.tdaapp.diako.shaar.R;
@@ -46,14 +39,14 @@ public class AddItemFragmentPresenter {
 
   Context context;
   AddItemFragmentService service;
-  AddItemApi api;
+  AddItemApiCityGuide api;
   Disposable sendDetailsDisposable, getFiltersDisposable, setFiltersDisposable, getCategoryDisposable, setCategoryDisposable;
 
 
   public AddItemFragmentPresenter(Context context, AddItemFragmentService service) {
     this.context = context;
     this.service = service;
-    api = new AddItemApi();
+    api = new AddItemApiCityGuide();
   }
 
   public void start() {
@@ -62,22 +55,23 @@ public class AddItemFragmentPresenter {
   }
 
   public void requestStoragePermission(Activity activity) {
-    Dexter.withActivity(activity).withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new PermissionListener() {
-      @Override
-      public void onPermissionGranted(PermissionGrantedResponse response) {
-        service.onStoragePermissionGranted();
-      }
+    Dexter.withActivity(activity)
+      .withPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+      .withListener(new MultiplePermissionsListener() {
+        @Override
+        public void onPermissionsChecked(MultiplePermissionsReport report) {
+          if (report.areAllPermissionsGranted()){
+            service.onStoragePermissionGranted();
+          }else {
+            service.onStoragePermissionDenied();
+          }
+        }
 
-      @Override
-      public void onPermissionDenied(PermissionDeniedResponse response) {
-        service.onStoragePermissionDenied();
-      }
+        @Override
+        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
 
-      @Override
-      public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-
-      }
-    }).check();
+        }
+      }).check();
   }
 
   public void openImageSelector(FragmentActivity activity) {
@@ -95,7 +89,7 @@ public class AddItemFragmentPresenter {
       .showMultiImage(uriList -> {
         new Thread(() -> {
           service.onImageUploading(true);
-          FileManger fileManger = new FileManger(BaseApi.API_URL + "CityGuide");
+          FileManger fileManger = new FileManger(CityGuideBaseApi.API_URL + "CityGuide");
           for (Uri uri : uriList) {
             images.add(fileManger.uploadFile(uri.getPath()));
           }

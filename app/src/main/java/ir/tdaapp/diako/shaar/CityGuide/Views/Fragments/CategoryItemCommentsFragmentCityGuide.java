@@ -1,7 +1,6 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +9,9 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,10 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryItemDetailsCommentsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemCommentsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryItemDetailsCommentsClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryItemCommentsFragmentPresenter;
@@ -35,13 +29,9 @@ import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.MessageDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
-import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonObject;
-import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonObjectVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
 
-import static ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi.API_URL;
-
-public class CategoryItemCommentsFragment extends BaseFragment implements CategoryItemCommentsFragmentService, View.OnClickListener {
+public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment implements CategoryItemCommentsFragmentService, View.OnClickListener {
 
   public static final String TAG = "CategoryItemCommentsFragment";
 
@@ -142,7 +132,7 @@ public class CategoryItemCommentsFragment extends BaseFragment implements Catego
     } catch (JSONException e) {
       e.printStackTrace();
     }
-    volley = new PostJsonObjectVolley(BaseApi.API_URL + "CityGuide/LikeComment", object, resault -> {
+    volley = new PostJsonObjectVolley(CityGuideBaseApi.API_URL + "CityGuide/LikeComment", object, resault -> {
       if (resault.getResault() == ResaultCode.Success) {
         JSONObject resultObject = resault.getObject();
         CategoryResultCommentsViewModel viewModel = new CategoryResultCommentsViewModel();

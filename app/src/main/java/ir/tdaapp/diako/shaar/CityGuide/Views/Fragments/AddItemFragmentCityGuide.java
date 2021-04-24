@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.AddItemPhotosAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.AddItemFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.Validation;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.AddItemPhotosModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
@@ -36,7 +36,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.MessageDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
 
-public class AddItemFragment extends BaseFragment implements View.OnClickListener, AddItemFragmentService {
+public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements View.OnClickListener, AddItemFragmentService {
 
   public static final String TAG = "AddItemFragment";
 
@@ -225,7 +225,7 @@ public class AddItemFragment extends BaseFragment implements View.OnClickListene
       sending.show(getActivity().getSupportFragmentManager(),MessageDialog.TAG);
     }else {
       sending.dismiss();
-      ((GuideActivity)getActivity()).onAddFragment(new CategoryFragment(),0,0,true,AddItemFragment.TAG);
+      ((GuideActivity)getActivity()).onAddFragment(new CategoryFragmentCityGuide(),0,0,true, AddItemFragmentCityGuide.TAG);
     }
   }
 

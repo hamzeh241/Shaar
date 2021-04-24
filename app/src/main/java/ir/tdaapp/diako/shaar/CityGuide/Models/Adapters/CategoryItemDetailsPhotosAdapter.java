@@ -6,14 +6,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.R;
 
@@ -40,7 +39,7 @@ public class CategoryItemDetailsPhotosAdapter extends RecyclerView.Adapter<Categ
     CategoryItemDetailsPhotoModel item = photos.get(position);
 
     Glide.with(holder.imageView.getContext())
-      .load(BaseApi.API_IMAGE + item.getImageName())
+      .load(CityGuideBaseApi.API_IMAGE + item.getImageName())
       .placeholder(R.drawable.ic_baseline_sync_24)
       .error(R.drawable.ic_baseline_running_with_errors_24)
       .into(holder.imageView);

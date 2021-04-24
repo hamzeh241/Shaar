@@ -1,4 +1,4 @@
-package ir.tdaapp.diako.shaar.CityGuide.Views.Activities;
+package ir.tdaapp.diako.shaar.Cars.View.Activities;
 
 import androidx.annotation.AnimRes;
 import androidx.annotation.AnimatorRes;
@@ -12,14 +12,14 @@ import ir.tdaapp.diako.shaar.R;
 
 import android.os.Bundle;
 
-public class GuideActivity extends AppCompatActivity {
+public class CarActivity extends AppCompatActivity {
 
   DBAdapter dbAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_guide);
+    setContentView(R.layout.activity_car);
 
     dbAdapter=new DBAdapter(this);
 

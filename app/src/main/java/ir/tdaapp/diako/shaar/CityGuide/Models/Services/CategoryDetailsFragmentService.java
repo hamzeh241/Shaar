@@ -11,6 +11,8 @@ public interface CategoryDetailsFragmentService {
 
   void onPresenterStart();
 
+  void onPresenterRestart();
+
   void onItemsReceived(CategoryDetailsModel model);
 
   void onChipsReceived(CategoryDetailsChipModel model);

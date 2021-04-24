@@ -1,35 +1,24 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.R;
-import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonArray;
-import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonArrayVolley;
-import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
-import pl.droidsonroids.gif.GifImageView;
 
-public class CategoryFragment extends BaseFragment implements CategoryFragmentService, View.OnClickListener {
+public class CategoryFragmentCityGuide extends CityGuideBaseFragment implements CategoryFragmentService, View.OnClickListener {
 
   public static final String TAG = "CategoryFragment";
 
@@ -39,6 +28,7 @@ public class CategoryFragment extends BaseFragment implements CategoryFragmentSe
   private CategoryAdapter adapter;
   private CategoryFragmentPresenter presenter;
   private ProgressBar loading;
+  private ViewGroup searchBar;
 
 
   @Nullable
@@ -55,6 +45,7 @@ public class CategoryFragment extends BaseFragment implements CategoryFragmentSe
   private void findView(View itemView) {
     recyclerView = itemView.findViewById(R.id.categoryList);
     loading = itemView.findViewById(R.id.loadingCategory);
+    searchBar = itemView.findViewById(R.id.categorySearchBar);
     layoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);
     presenter = new CategoryFragmentPresenter(getContext(), this);
   }
@@ -63,11 +54,23 @@ public class CategoryFragment extends BaseFragment implements CategoryFragmentSe
     presenter.start();
     recyclerView.setVisibility(View.GONE);
     loading.setVisibility(View.VISIBLE);
+
+    searchBar.setOnClickListener(this);
   }
 
   @Override
   public void onClick(View v) {
+    switch (v.getId()){
+      case R.id.categorySearchBar:
+        CategoryDetailsFragmentCityGuide fragment = new CategoryDetailsFragmentCityGuide();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID", 0);
+        fragment.setArguments(bundle);
 
+        ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryDetailsFragmentCityGuide.TAG);
+
+        break;
+    }
   }
 
   @Override
@@ -78,12 +81,12 @@ public class CategoryFragment extends BaseFragment implements CategoryFragmentSe
 
     adapter.setOnItemClick(model -> {
 
-      CategoryDetailsFragment fragment = new CategoryDetailsFragment();
+      CategoryDetailsFragmentCityGuide fragment = new CategoryDetailsFragmentCityGuide();
       Bundle bundle = new Bundle();
       bundle.putInt("ID", model.getId());
       fragment.setArguments(bundle);
 
-      ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryDetailsFragment.TAG);
+      ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryDetailsFragmentCityGuide.TAG);
     });
   }
 
@@ -103,4 +106,5 @@ public class CategoryFragment extends BaseFragment implements CategoryFragmentSe
   public void onError(String result) {
 
   }
+
 }

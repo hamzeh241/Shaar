@@ -1,10 +1,7 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
-import android.Manifest;
-import android.net.Uri;
 import android.os.Bundle;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,22 +12,9 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.BasePermissionListener;
-import com.karumi.dexter.listener.single.PermissionListener;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,12 +23,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import es.dmoral.toasty.Toasty;
-import gun0912.tedbottompicker.TedBottomPicker;
-import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
-import gun0912.tedbottompicker.TedRxBottomPicker;
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryItemDetailsCommentsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryItemDetailsPhotosAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.SliderCategoryItemDetailsAdapter;
@@ -53,9 +31,8 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemDetailsFragme
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnGlideImageListener;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.RateDialogService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryItemDetailsCommentsClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.ZoomOutPageTransformer;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
@@ -65,16 +42,13 @@ import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryItemDetailsFragmentPre
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.MessageDialog;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.RateDialog;
-import ir.tdaapp.diako.shaar.ETC.FileManger;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
-import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonArray;
-import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
 
-public class CategoryItemDetailsFragment extends BaseFragment implements OnGlideImageListener, CategoryItemDetailsFragmentService, RateDialogService, View.OnClickListener {
+public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment implements OnGlideImageListener, CategoryItemDetailsFragmentService, RateDialogService, View.OnClickListener {
 
   public static final String TAG = "CategoryItemDetailsFragment";
 
@@ -86,7 +60,7 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
   CoordinatorLayout root;
   ViewPager2 slider;
   TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader;
-  Button phoneCall, sendText, showDescription, addPhoto, showComments;
+  Button phoneCall, sendText, showDescription, addPhoto, showComments, btnAddComments;
   RecyclerView photoList, commentsList;
   ImageButton retry, favorite;
   ImageView back, forward;
@@ -142,6 +116,7 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
     showDescription = view.findViewById(R.id.btnCategoryItemDetailsShowDescription);
     addPhoto = view.findViewById(R.id.btnCategoryItemDetailsAddPhotos);
     showComments = view.findViewById(R.id.btnCategoryDetailsShowComments);
+    btnAddComments = view.findViewById(R.id.btnCategoryItemDetailsAddComment);
 
     photoList = view.findViewById(R.id.recyclerCategoryItemPhotos);
     commentsList = view.findViewById(R.id.recyclerItemDetailsComments);
@@ -166,6 +141,7 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
     addPhotoLayout.setOnClickListener(this);
     retry.setOnClickListener(this);
     favorite.setOnClickListener(this);
+    btnAddComments.setOnClickListener(this);
 
     userPhotosLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
     userPhotosLayoutManager.setReverseLayout(true);
@@ -184,6 +160,9 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
         goToComments();
         break;
       case R.id.categoryItemDetailsAddComment:
+        goToComments();
+        break;
+      case R.id.btnCategoryItemDetailsAddComment:
         goToComments();
         break;
       case R.id.categoryItemDetailsAddPhoto:
@@ -225,16 +204,19 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
         RateDialog dialog = new RateDialog(this);
         dialog.show(getActivity().getSupportFragmentManager(), RateDialog.TAG);
         break;
+      case R.id.btnCategoryItemDetailsAddPhotos:
+        addPhotoLayout.performClick();
+        break;
     }
   }
 
   private void goToComments() {
-    CategoryItemCommentsFragment fragment = new CategoryItemCommentsFragment();
+    CategoryItemCommentsFragmentCityGuide fragment = new CategoryItemCommentsFragmentCityGuide();
     Bundle bundle = new Bundle();
     bundle.putInt("ItemId", itemId);
     bundle.putInt("UserId", userId);
     fragment.setArguments(bundle);
-    ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryItemCommentsFragment.TAG);
+    ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryItemCommentsFragmentCityGuide.TAG);
   }
 
   @Override
@@ -267,9 +249,11 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
     descriptionHeader.setText("درباره " + model.getTitle());
     descriptionString = model.getDescription();
     if (descriptionString.length() > 300) {
+      showDescription.setVisibility(View.VISIBLE);
       String sub = descriptionString.substring(0, 300);
       description.setText(sub);
-    }else {
+    } else {
+      showDescription.setVisibility(View.GONE);
       description.setText(descriptionString);
     }
     ratingBar.setRating(model.getStarCount());
@@ -278,7 +262,7 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
 
     sliderPhotosAdapter = new SliderCategoryItemDetailsAdapter(getContext(), model.getSliderModels(), this);
 
-    if (model.getPhotoModels() !=null){
+    if (model.getPhotoModels() != null) {
       photosAdapter = new CategoryItemDetailsPhotosAdapter(model.getPhotoModels(), new OnItemClick() {
         @Override
         public void onClick(View view, int position) {
@@ -311,7 +295,7 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
   @Override
   public void onImagesUploaded(JSONArray array) {
 
-    PostJsonArrayVolley postJsonArrayVolley = new PostJsonArrayVolley(BaseApi.API_URL +
+    PostJsonArrayVolley postJsonArrayVolley = new PostJsonArrayVolley(CityGuideBaseApi.API_URL +
       "CityGuide/AddUserImageCityGuide?UserId=" + userId, array, resault -> {
 
       if (resault.getResault() == ResaultCode.Success) {
@@ -344,7 +328,7 @@ public class CategoryItemDetailsFragment extends BaseFragment implements OnGlide
     } catch (JSONException e) {
       e.printStackTrace();
     }
-    volley = new PostJsonObjectVolley(BaseApi.API_URL + "CityGuide/LikeComment", object, resault -> {
+    volley = new PostJsonObjectVolley(CityGuideBaseApi.API_URL + "CityGuide/LikeComment", object, resault -> {
       if (resault.getResault() == ResaultCode.Success) {
         JSONObject resultObject = resault.getObject();
         CategoryResultCommentsViewModel viewModel = new CategoryResultCommentsViewModel();

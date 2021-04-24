@@ -47,6 +47,10 @@ public class CategoryDetailsChipsAdapter extends RecyclerView.Adapter<CategoryDe
     });
   }
 
+  public CategoryDetailsChipModel getItemAt(int position) {
+    return models.get(position);
+  }
+
   public void add(CategoryDetailsChipModel model) {
     models.add(model);
     notifyItemInserted(models.size());

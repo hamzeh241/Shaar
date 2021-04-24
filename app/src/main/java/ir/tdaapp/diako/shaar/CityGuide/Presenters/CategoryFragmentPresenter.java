@@ -7,10 +7,8 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableSingleObserver;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 
@@ -18,13 +16,13 @@ public class CategoryFragmentPresenter {
 
   Context context;
   CategoryFragmentService categoryFragmentService;
-  CategoryApi categoryApi;
+  CategoryApiCityGuide categoryApi;
   Disposable getCategoryDisposable, setCategoryDisposable;
 
   public CategoryFragmentPresenter(Context context, CategoryFragmentService categoryFragmentService) {
     this.context = context;
     this.categoryFragmentService = categoryFragmentService;
-    categoryApi = new CategoryApi();
+    categoryApi = new CategoryApiCityGuide();
   }
 
   public void start() {

@@ -1,9 +1,7 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.os.Bundle;
-import android.transition.Slide;
-import android.transition.TransitionManager;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,17 +23,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsChipsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryItemClick;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryDetailsFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.R;
-import pl.droidsonroids.gif.GifImageView;
 
 
-public class CategoryDetailsFragment extends BaseFragment implements CategoryDetailsFragmentService, View.OnClickListener {
+public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment implements CategoryDetailsFragmentService, View.OnClickListener {
 
   public static final String TAG = "CategoryDetailsFragment";
 
@@ -98,6 +94,7 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
     chipsList.setLayoutManager(chipsLayoutManager);
     presenter.start(getArguments().getInt("ID"));
 
+    root.setOnClickListener(this);
     searchBar.setOnKeyListener((v, keyCode, event) -> {
       // If the event is a key-down event on the "enter" button
       if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
@@ -110,30 +107,42 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
     });
 
     fab.setOnClickListener(this);
+    filter.setOnClickListener(this);
   }
 
   @Override
   public void onPresenterStart() {
+    initializeChipsAdapter();
+    initializeDetailsAdapter();
+    setPagination();
+  }
+
+  @Override
+  public void onPresenterRestart() {
+    initializeDetailsAdapter();
+  }
+
+  private void initializeChipsAdapter() {
     chipsAdapter = new CategoryDetailsChipsAdapter(getContext());
     chipsList.setAdapter(chipsAdapter);
-    detailsAdapter = new CategoryDetailsAdapter(getContext());
-    detailsList.setAdapter(detailsAdapter);
-
-    setPagination();
 
     chipsAdapter.setOnItemClick(model -> {
       detailsAdapter.clear();
       selectedModel = model;
       presenter.getItemByFilter(searchBar.getText().toString(), model.getId(), page);
     });
-    detailsAdapter.setOnItemClick(model -> {
+  }
 
+  private void initializeDetailsAdapter() {
+    detailsAdapter = new CategoryDetailsAdapter(getContext());
+    detailsList.setAdapter(detailsAdapter);
+    detailsAdapter.setOnItemClick(model -> {
       Bundle bundle = new Bundle();
       bundle.putInt("ID", model.getId());
-      CategoryItemDetailsFragment fragment = new CategoryItemDetailsFragment();
+      CategoryItemDetailsFragmentCityGuide fragment = new CategoryItemDetailsFragmentCityGuide();
       fragment.setArguments(bundle);
       ((GuideActivity) getActivity()).onAddFragment(fragment,
-        0, 0, false, CategoryItemDetailsFragment.TAG);
+        0, 0, true, CategoryItemDetailsFragmentCityGuide.TAG);
     });
   }
 
@@ -157,7 +166,7 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
           <= (firstVisibleItem + visibleThreshold)) {
           // End has been reached
           page++;
-          presenter.getItemByFilter(searchBar.getText().toString(), selectedModel != null ? selectedModel.getId() : 0, page);
+          presenter.getItemByFilter(searchBar.getText().toString(), selectedModel != null ? selectedModel.getId() : 1, page);
           // Do something
 
           isLoading = true;
@@ -196,7 +205,12 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
 
   @Override
   public void onFinish() {
-    chipsList.setVisibility(View.VISIBLE);
+    if (chipsAdapter.getItemCount() == 0) {
+      chipsList.setVisibility(View.GONE);
+    } else {
+      chipsList.setVisibility(View.VISIBLE);
+      selectedModel = chipsAdapter.getItemAt(0);
+    }
     detailsList.setVisibility(View.VISIBLE);
   }
 
@@ -209,10 +223,11 @@ public class CategoryDetailsFragment extends BaseFragment implements CategoryDet
   public void onClick(View v) {
     switch (v.getId()) {
       case R.id.categoryDetailsAddItemFab:
-        ((GuideActivity) getActivity()).onAddFragment(new AddItemFragment(), 0, 0, true, AddItemFragment.TAG);
+        ((GuideActivity) getActivity()).onAddFragment(new AddItemFragmentCityGuide(), 0, 0, true, AddItemFragmentCityGuide.TAG);
         break;
       case R.id.imgCategoryDetailsFilter:
-
+        presenter.start(searchBar.getText().toString(), selectedModel.getId(), 0);
+        Log.i("LOGLOG", searchBar.getText().toString() + " - " + selectedModel.getId() + " - " + page);
         break;
     }
   }

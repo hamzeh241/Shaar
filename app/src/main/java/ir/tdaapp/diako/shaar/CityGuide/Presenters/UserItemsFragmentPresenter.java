@@ -8,9 +8,7 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryDetailsApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.UserItemsApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.UserItemsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 

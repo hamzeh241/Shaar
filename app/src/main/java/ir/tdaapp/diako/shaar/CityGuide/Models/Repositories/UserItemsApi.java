@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseApi;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
@@ -23,7 +23,7 @@ public class UserItemsApi {
 
       new Thread(() -> {
         try {
-          getItemVolley = new GetJsonArrayVolley(BaseApi.API_URL + "CityGuide/GetCityGuideUser?UserId="+userId, resault -> {
+          getItemVolley = new GetJsonArrayVolley(CityGuideBaseApi.API_URL + "CityGuide/GetCityGuideUser?UserId="+userId, resault -> {
             if (resault.getResault() == ResaultCode.Success) {
 
               List<CategoryDetailsModel> models = new ArrayList<>();

@@ -12,14 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.UserItemsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.UserItemsFragmentPresenter;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
 
-public class UserItemsFragment extends BaseFragment implements UserItemsFragmentService {
+public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements UserItemsFragmentService {
 
   public static final String TAG = "UserItemsFragment";
 

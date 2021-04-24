@@ -1,7 +1,6 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFavoriteItemsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.BaseFragment;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryFavoriteItemsFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.R;
 
-public class CategoryFavoriteItemsFragment extends BaseFragment implements View.OnClickListener, CategoryFavoriteItemsFragmentService {
+public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragment implements View.OnClickListener, CategoryFavoriteItemsFragmentService {
 
   public static final String TAG = "CategoryFavoriteItemsFragment";
 
@@ -56,11 +55,11 @@ public class CategoryFavoriteItemsFragment extends BaseFragment implements View.
     list.setLayoutManager(new LinearLayoutManager(getContext()));
 
     adapter.setOnItemClick(model -> {
-      CategoryItemDetailsFragment fragment = new CategoryItemDetailsFragment();
+      CategoryItemDetailsFragmentCityGuide fragment = new CategoryItemDetailsFragmentCityGuide();
       Bundle bundle = new Bundle();
       bundle.putInt("ID", model.getId());
       fragment.setArguments(bundle);
-      ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryItemDetailsFragment.TAG);
+      ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryItemDetailsFragmentCityGuide.TAG);
     });
   }
 
