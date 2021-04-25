@@ -41,7 +41,7 @@ public class GuideActivity extends AppCompatActivity {
     }
 
     //در اینجا فرگمنت اضافه می شود
-    transaction.add(R.id.carFrameLayout, fragment, fragmentTAG);
+    transaction.add(R.id.guideFrame, fragment, fragmentTAG);
 
     //در اینجا فرگمنت را به پشته اضافه می کند
     if (backStack) {
