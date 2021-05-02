@@ -23,4 +23,5 @@
     <color name="arrow">#D83A3435</color>
     <color name="floating_label">#D81B60</color>
     <color name="base">#CCCCCC</color>
+    <color name="line">#8c8c8c</color>
 </resources>

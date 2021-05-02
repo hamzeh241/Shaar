@@ -15,89 +15,89 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 
 public class CategoryDetailsFragmentPresenter {
 
-  Context context;
-  CategoryDetailsFragmentService categoryDetailsFragmentService;
-  CategoryDetailsApiCityGuide categoryDetailsApi;
-  Disposable getChipsDisposable, setChipsDisposable;
+    Context context;
+    CategoryDetailsFragmentService categoryDetailsFragmentService;
+    CategoryDetailsApiCityGuide categoryDetailsApi;
+    Disposable getChipsDisposable, setChipsDisposable;
 
-  public CategoryDetailsFragmentPresenter(Context context, CategoryDetailsFragmentService categoryDetailsFragmentService) {
-    this.context = context;
-    this.categoryDetailsFragmentService = categoryDetailsFragmentService;
-    categoryDetailsApi = new CategoryDetailsApiCityGuide();
-  }
+    public CategoryDetailsFragmentPresenter(Context context, CategoryDetailsFragmentService categoryDetailsFragmentService) {
+        this.context = context;
+        this.categoryDetailsFragmentService = categoryDetailsFragmentService;
+        categoryDetailsApi = new CategoryDetailsApiCityGuide();
+    }
 
-  public void start(int categoryId) {
-    categoryDetailsFragmentService.onPresenterStart();
-    getChips(categoryId);
-    getItems("", categoryId, 0);
-  }
+    public void start(int categoryId) {
+        categoryDetailsFragmentService.onPresenterStart();
+        getChips(categoryId);
+        getItems("", categoryId, 0);
+    }
 
-  public void start(String search, int filterId, int page) {
-    categoryDetailsFragmentService.onPresenterRestart();
-    getItems(search, filterId, page);
-  }
+    public void start(String search, int filterId, int page) {
+        categoryDetailsFragmentService.onPresenterRestart();
+        getItems(search, filterId, page);
+    }
 
-  public void getItemByFilter(String search, int filterId, int page) {
-    getItems(search, filterId, page);
-  }
+    public void getItemByFilter(String search, int filterId, int page) {
+        getItems(search, filterId, page);
+    }
 
-  private void getChips(int categoryId) {
-    categoryDetailsFragmentService.loadingState(true);
-    Single<List<CategoryDetailsChipModel>> data = categoryDetailsApi.getChips(categoryId);
+    private void getChips(int categoryId) {
+        categoryDetailsFragmentService.loadingState(true);
+        Single<List<CategoryDetailsChipModel>> data = categoryDetailsApi.getChips(categoryId);
 
-    getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsChipModel>>() {
-      @Override
-      public void onSuccess(List<CategoryDetailsChipModel> categoryModels) {
-        setChips(categoryModels);
+        getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsChipModel>>() {
+            @Override
+            public void onSuccess(List<CategoryDetailsChipModel> categoryModels) {
+                setChips(categoryModels);
 
-      }
+            }
 
-      @Override
-      public void onError(Throwable e) {
-        categoryDetailsFragmentService.onError(e.getMessage());
-      }
-    });
-  }
+            @Override
+            public void onError(Throwable e) {
+                categoryDetailsFragmentService.onError(e.getMessage());
+            }
+        });
+    }
 
-  private void setChips(List<CategoryDetailsChipModel> categoryModels) {
-    Observable<CategoryDetailsChipModel> data = Observable.fromIterable(categoryModels);
-    setChipsDisposable = data.subscribe(chip ->
-        categoryDetailsFragmentService.onChipsReceived(chip),
-      throwable -> {
+    private void setChips(List<CategoryDetailsChipModel> categoryModels) {
+        Observable<CategoryDetailsChipModel> data = Observable.fromIterable(categoryModels);
+        setChipsDisposable = data.subscribe(chip ->
+                        categoryDetailsFragmentService.onChipsReceived(chip),
+                throwable -> {
 
-      }, () -> {
-        categoryDetailsFragmentService.loadingState(false);
-        categoryDetailsFragmentService.onFinish();
-      });
-  }
+                }, () -> {
+                    categoryDetailsFragmentService.loadingState(false);
+                    categoryDetailsFragmentService.onFinish();
+                });
+    }
 
-  private void getItems(String search, int filterId, int page) {
-    categoryDetailsFragmentService.loadingState(true);
-    Single<List<CategoryDetailsModel>> data = categoryDetailsApi.getItems(search, filterId, page);
+    private void getItems(String search, int filterId, int page) {
+        categoryDetailsFragmentService.loadingState(true);
+        Single<List<CategoryDetailsModel>> data = categoryDetailsApi.getItems(search, filterId, page);
 
-    getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {
-      @Override
-      public void onSuccess(List<CategoryDetailsModel> categoryModels) {
-        setItems(categoryModels);
-      }
+        getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {
+            @Override
+            public void onSuccess(List<CategoryDetailsModel> categoryModels) {
+                setItems(categoryModels);
+            }
 
-      @Override
-      public void onError(Throwable e) {
-        categoryDetailsFragmentService.onError(e.getMessage());
-      }
-    });
-  }
+            @Override
+            public void onError(Throwable e) {
+                categoryDetailsFragmentService.onError(e.getMessage());
+            }
+        });
+    }
 
-  private void setItems(List<CategoryDetailsModel> categoryModels) {
-    Observable<CategoryDetailsModel> data = Observable.fromIterable(categoryModels);
-    setChipsDisposable = data.subscribe(item -> {
-      categoryDetailsFragmentService.loadingState(false);
-      categoryDetailsFragmentService.onItemsReceived(item);
-    }, throwable -> {
+    private void setItems(List<CategoryDetailsModel> categoryModels) {
+        Observable<CategoryDetailsModel> data = Observable.fromIterable(categoryModels);
+        setChipsDisposable = data.subscribe(item -> {
+            categoryDetailsFragmentService.loadingState(false);
+            categoryDetailsFragmentService.onItemsReceived(item);
+        }, throwable -> {
 
-    }, () -> {
-      categoryDetailsFragmentService.onPageFinished(categoryModels);
-      categoryDetailsFragmentService.loadingState(false);
-    });
-  }
+        }, () -> {
+            categoryDetailsFragmentService.onPageFinished(categoryModels);
+            categoryDetailsFragmentService.loadingState(false);
+        });
+    }
 }

@@ -245,6 +245,20 @@
   <string name="FullDisplay">نمایش کامل</string>
   <string name="Wait">در حال دریافت اطلاعات...</string>
   <string name="PleaseAddedImageYourHome">حتما یک عکس وارد کنید</string>
+  <string name="CarBodySituation">وضعیت بدنه</string>
+  <string name="CarMadeYaer">تعیین</string>
+  <string name="SpeedMeter">کارکرد</string>
+  <string name="brandAndModel">برند و مدل</string>
+  <string name="engineSituation">وضعیت موتور</string>
+  <string name="Chassis">وضعیت شاسی</string>
+  <string name="InsuranceTime">مهلت بیمه</string>
+  <string name="gearBox">گیربکس</string>
+  <string name="ducument">سند</string>
+  <string name="sales">نحوه ی فروش</string>
+  <string name="carPrice">قیمت</string>
+  <string name="carDescription">توضیحات وارد شده توسط کاربر</string>
+  <string name="yourExpert">کارشناس شما</string>
+  <string name="milage"> کارکرد</string>
 
 
   <string name="Law_And_Regulations">پذیرش قوانین \n
@@ -281,6 +295,7 @@
   <string name="addRating">ثبت امتیاز</string>
   <string name="usersPhotos">تصاویر کاربران</string>
   <string name="moreInfo">اطلاعات بیشتر</string>
+  <string name="showmore">نمایش بیشتر</string>
   <string name="locationInfo">اطلاعات مکان</string>
   <string name="sendPrivateMessage">ارسال پیام خصوصی</string>
   <string name="makePhoneCall">تماس تلفنی</string>

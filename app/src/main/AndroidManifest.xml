@@ -22,12 +22,12 @@
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
+
     </activity>
     <activity
       android:name=".CityGuide.Views.Activities.GuideActivity"
       android:screenOrientation="portrait"
       android:windowSoftInputMode="stateVisible|adjustResize">
-
     </activity>
     <activity
       android:name=".MainActivity"
