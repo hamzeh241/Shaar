@@ -2,6 +2,9 @@ package ir.tdaapp.diako.shaar.Cars.Presenter;
 
 import android.content.Context;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -53,8 +56,10 @@ public class CarListFragmentPresenter {
 
   private void setCarChips(List<CarChipsListModel> categoryModels) {
     Observable<CarChipsListModel> data = Observable.fromIterable(categoryModels);
-    setCarChipsDisposable = data.subscribe(chips ->
-        service.onChipsReceived(chips),
+    setCarChipsDisposable = data.subscribe(chips -> {
+        service.onChipsReceived(chips);
+        service.loadingState(false);
+      },
       throwable -> {
 
       }, () -> {
@@ -63,7 +68,21 @@ public class CarListFragmentPresenter {
   }
 
   private void getCars() {
-    Single<List<CarListModel>> data = api.getCars();
+    JSONObject object = new JSONObject();
+    try {
+      object.put("CategoryId", 0);
+      object.put("BrandId", 0);
+      object.put("FromPrice", 0);
+      object.put("ToPrice", 0);
+      object.put("FormDate", 0);
+      object.put("ToDate", 0);
+      object.put("GearboxId", 0);
+      object.put("Paging", 0);
+      object.put("TextSerch", "");
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    Single<List<CarListModel>> data = api.getCars(object);
 
     getCarChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CarListModel>>() {
       @Override
@@ -85,7 +104,7 @@ public class CarListFragmentPresenter {
       throwable -> {
 
       }, () -> {
-        service.loadingState(false);
+
       });
 
   }

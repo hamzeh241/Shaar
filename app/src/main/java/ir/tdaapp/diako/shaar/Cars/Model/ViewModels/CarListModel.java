@@ -3,9 +3,12 @@ package ir.tdaapp.diako.shaar.Cars.Model.ViewModels;
 public class CarListModel {
 
   int id;
-  String title, productionYear, price, gearbox, mileage, brand;
+  String title, productionYear, price, gearbox, mileage, brand, color, imageUrl;
 
-  public CarListModel(int id, String title, String productionYear, String price, String gearbox, String mileage, String brand) {
+  public CarListModel() {
+  }
+
+  public CarListModel(int id, String title, String productionYear, String price, String gearbox, String mileage, String brand, String color, String imageUrl) {
     this.id = id;
     this.title = title;
     this.productionYear = productionYear;
@@ -13,9 +16,8 @@ public class CarListModel {
     this.gearbox = gearbox;
     this.mileage = mileage;
     this.brand = brand;
-  }
-
-  public CarListModel() {
+    this.color = color;
+    this.imageUrl = imageUrl;
   }
 
   public int getId() {
@@ -72,5 +74,21 @@ public class CarListModel {
 
   public void setBrand(String brand) {
     this.brand = brand;
+  }
+
+  public String getColor() {
+    return color;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

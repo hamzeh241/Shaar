@@ -9,7 +9,10 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;
+import ir.tdaapp.diako.shaar.Cars.Model.Adapters.ChipsListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
@@ -28,6 +31,11 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
   private ImageButton back, filter;
   private ProgressBar loading;
 
+  private LinearLayoutManager chipsManager;
+
+  private CarListAdapter carAdapter;
+  private ChipsListAdapter chipsAdapter;
+
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,15 +50,24 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
   private void findView(View view) {
     presenter = new CarListFragmentPresenter(getContext(), this);
 
+    carAdapter = new CarListAdapter(getContext());
+    chipsAdapter = new ChipsListAdapter(getContext());
+
     carList = view.findViewById(R.id.carList);
     chipsList = view.findViewById(R.id.carChipsList);
     back = view.findViewById(R.id.imgCarListBack);
     filter = view.findViewById(R.id.imgCarListFilter);
     loading = view.findViewById(R.id.carListLoading);
+
+    chipsManager = new LinearLayoutManager(getContext());
+    chipsManager.setOrientation(RecyclerView.HORIZONTAL);
   }
 
   private void implement() {
-    //presenter.start();
+    presenter.start();
+
+    chipsList.setLayoutManager(chipsManager);
+    carList.setLayoutManager(new LinearLayoutManager(getContext()));
 
     back.setOnClickListener(this);
     filter.setOnClickListener(this);
@@ -60,7 +77,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
   public void onClick(View v) {
     switch (v.getId()) {
       case R.id.imgCarListBack:
-        ((CarActivity) getActivity()).onBackPressed();
+        getActivity().onBackPressed();
         break;
       case R.id.imgCarListFilter:
         break;
@@ -69,17 +86,18 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
   @Override
   public void onCarReceived(CarListModel model) {
-
+    carAdapter.add(model);
   }
 
   @Override
   public void onChipsReceived(CarChipsListModel model) {
-
+    chipsAdapter.add(model);
   }
 
   @Override
   public void onPresenterStart() {
-
+    carList.setAdapter(carAdapter);
+    chipsList.setAdapter(chipsAdapter);
   }
 
   @Override

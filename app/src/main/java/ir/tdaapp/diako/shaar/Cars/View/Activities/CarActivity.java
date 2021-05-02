@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
+import ir.tdaapp.diako.shaar.Cars.View.Fragments.AddCarFragment;
+import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarListFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragmentCityGuide;
 import ir.tdaapp.diako.shaar.R;
 
@@ -23,7 +25,7 @@ public class CarActivity extends AppCompatActivity {
 
     dbAdapter=new DBAdapter(this);
 
-    onAddFragment(new CategoryFragmentCityGuide(), 0,0,false, CategoryFragmentCityGuide.TAG);
+    onAddFragment(new CarListFragment(), 0,0,false, CarListFragment.TAG);
   }
 
 

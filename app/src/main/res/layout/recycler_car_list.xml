@@ -4,6 +4,10 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:orientation="horizontal"
+  android:id="@+id/carListRoot"
+  android:focusable="true"
+  android:clickable="true"
+  android:background="?selectableItemBackground"
   android:weightSum="2">
 
   <LinearLayout
@@ -103,7 +107,7 @@
           android:textSize="12sp" />
 
         <TextView
-          android:id="@+id/txtCarListPro"
+          android:id="@+id/txtCarListColor"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_weight="1"
@@ -129,6 +133,7 @@
     android:layout_width="0dp"
     android:layout_height="match_parent"
     android:layout_weight="0.7"
+    android:scaleType="centerInside"
     app:srcCompat="@drawable/c" />
 
 </LinearLayout>
