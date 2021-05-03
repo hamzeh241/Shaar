@@ -1,0 +1,749 @@
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/Repository/Server/CarListApi.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.Model.Repository.Server;\r\n\r\nimport android.util.Log;\r\n\r\nimport org.json.JSONArray;\r\nimport org.json.JSONException;\r\nimport org.json.JSONObject;\r\n\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport io.reactivex.Single;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;\r\nimport ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;\r\nimport ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;\r\nimport ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObject_And_GetJsonArrayVolley;\r\n\r\npublic class CarListApi extends CarBaseApi {\r\n\r\n  GetJsonArrayVolley getChipsVolley;\r\n  PostJsonObject_And_GetJsonArrayVolley getCars;\r\n\r\n  public Single<List<CarListModel>> getCars(JSONObject carObject) {\r\n    return Single.create(emitter -> {\r\n      new Thread(() -> {\r\n        try {\r\n          getCars = new PostJsonObject_And_GetJsonArrayVolley(API_URL + \"Car/PostCarLists\", carObject, resault -> {\r\n            if (resault.getResault() == ResaultCode.Success) {\r\n\r\n              List<CarListModel> models = new ArrayList<>();\r\n              JSONArray array = resault.getJsonArray();\r\n              for (int i = 0; i < array.length(); i++) {\r\n                try {\r\n\r\n                  JSONObject object = array.getJSONObject(i);\r\n                  CarListModel model = new CarListModel();\r\n\r\n                  model.setId(object.getInt(\"Id\"));\r\n                  model.setTitle(object.getString(\"Title\"));\r\n                  //model.setBrand(object.getString(\"Brand\"));\r\n                  model.setMileage(object.getString(\"Function\"));\r\n                  model.setGearbox(object.getString(\"Gearbox\"));\r\n                  model.setPrice(object.getString(\"Price\"));\r\n                  model.setProductionYear(object.getString(\"ShamsiDate\"));\r\n                  model.setImageUrl(object.getString(\"ImageUrl\"));\r\n\r\n                  models.add(model);\r\n                } catch (JSONException e) {\r\n                  e.printStackTrace();\r\n                }\r\n              }\r\n              emitter.onSuccess(models);\r\n            } else {\r\n              emitter.onError(new IOException(resault.getResault().toString()));\r\n            }\r\n\r\n          });\r\n        } catch (Exception e) {\r\n          emitter.onError(e);\r\n        }\r\n      }).start();\r\n    });\r\n  }\r\n\r\n  public Single<List<CarChipsListModel>> getChips() {\r\n    return Single.create(emitter -> {\r\n      new Thread(() -> {\r\n        try {\r\n          getChipsVolley = new GetJsonArrayVolley(API_URL + \"Car/GetCarCategories\", resault -> {\r\n            if (resault.getResault() == ResaultCode.Success) {\r\n              List<CarChipsListModel> models = new ArrayList<>();\r\n              JSONArray array = resault.getJsonArray();\r\n\r\n              for (int i = 0; i < array.length(); i++) {\r\n                try {\r\n                  JSONObject object = array.getJSONObject(i);\r\n                  CarChipsListModel model = new CarChipsListModel();\r\n\r\n                  model.setId(object.getInt(\"Id\"));\r\n                  model.setTitle(object.getString(\"Title\").replace(\"\\n\", \"\").replace(\"\\r\", \"\"));\r\n\r\n                  models.add(model);\r\n                } catch (JSONException e) {\r\n                  e.printStackTrace();\r\n                }\r\n              }\r\n              emitter.onSuccess(models);\r\n\r\n            } else {\r\n              emitter.onError(new IOException(resault.getResault().toString()));\r\n            }\r\n          });\r\n        } catch (Exception e) {\r\n          emitter.onError(e);\r\n        }\r\n      }).start();\r\n    });\r\n  }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/Repository/Server/CarListApi.java	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/Repository/Server/CarListApi.java	(date 1619935101707)
+@@ -1,7 +1,5 @@
+ package ir.tdaapp.diako.shaar.Cars.Model.Repository.Server;
+ 
+-import android.util.Log;
+-
+ import org.json.JSONArray;
+ import org.json.JSONException;
+ import org.json.JSONObject;
+@@ -16,18 +14,16 @@
+ import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
+ import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
+ import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
+-import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObject_And_GetJsonArrayVolley;
+ 
+ public class CarListApi extends CarBaseApi {
+ 
+-  GetJsonArrayVolley getChipsVolley;
+-  PostJsonObject_And_GetJsonArrayVolley getCars;
++  GetJsonArrayVolley getListVolley, getChipsVolley;
+ 
+-  public Single<List<CarListModel>> getCars(JSONObject carObject) {
++  public Single<List<CarListModel>> getCars(JSONObject object) {
+     return Single.create(emitter -> {
+       new Thread(() -> {
+         try {
+-          getCars = new PostJsonObject_And_GetJsonArrayVolley(API_URL + "Car/PostCarLists", carObject, resault -> {
++          getListVolley = new GetJsonArrayVolley(API_URL , resault -> {
+             if (resault.getResault() == ResaultCode.Success) {
+ 
+               List<CarListModel> models = new ArrayList<>();
+@@ -40,12 +36,11 @@
+ 
+                   model.setId(object.getInt("Id"));
+                   model.setTitle(object.getString("Title"));
+-                  //model.setBrand(object.getString("Brand"));
+-                  model.setMileage(object.getString("Function"));
++                  model.setBrand(object.getString("Brand"));
++                  model.setMileage(object.getString("Mileage"));
+                   model.setGearbox(object.getString("Gearbox"));
+                   model.setPrice(object.getString("Price"));
+-                  model.setProductionYear(object.getString("ShamsiDate"));
+-                  model.setImageUrl(object.getString("ImageUrl"));
++                  model.setProductionYear(object.getString("ProductionYear"));
+ 
+                   models.add(model);
+                 } catch (JSONException e) {
+@@ -61,7 +56,7 @@
+         } catch (Exception e) {
+           emitter.onError(e);
+         }
+-      }).start();
++      });
+     });
+   }
+ 
+@@ -69,7 +64,7 @@
+     return Single.create(emitter -> {
+       new Thread(() -> {
+         try {
+-          getChipsVolley = new GetJsonArrayVolley(API_URL + "Car/GetCarCategories", resault -> {
++          getChipsVolley = new GetJsonArrayVolley(API_URL, resault -> {
+             if (resault.getResault() == ResaultCode.Success) {
+               List<CarChipsListModel> models = new ArrayList<>();
+               JSONArray array = resault.getJsonArray();
+@@ -80,7 +75,7 @@
+                   CarChipsListModel model = new CarChipsListModel();
+ 
+                   model.setId(object.getInt("Id"));
+-                  model.setTitle(object.getString("Title").replace("\n", "").replace("\r", ""));
++                  model.setTitle(object.getString("Title"));
+ 
+                   models.add(model);
+                 } catch (JSONException e) {
+@@ -96,7 +91,7 @@
+         } catch (Exception e) {
+           emitter.onError(e);
+         }
+-      }).start();
++      });
+     });
+   }
+ 
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/Presenter/CarListFragmentPresenter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.Presenter;\r\n\r\nimport android.content.Context;\r\n\r\nimport org.json.JSONException;\r\nimport org.json.JSONObject;\r\n\r\nimport java.util.List;\r\n\r\nimport io.reactivex.Observable;\r\nimport io.reactivex.Single;\r\nimport io.reactivex.disposables.Disposable;\r\nimport io.reactivex.observers.DisposableSingleObserver;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Repository.Server.CarListApi;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryApiCityGuide;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFragmentService;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;\r\n\r\npublic class CarListFragmentPresenter {\r\n\r\n  Context context;\r\n  CarListFragmentService service;\r\n  CarListApi api;\r\n  Disposable getCarChipsDisposable, setCarChipsDisposable, getCarsDisposable, setCarsDisposable;\r\n\r\n  public CarListFragmentPresenter(Context context, CarListFragmentService service) {\r\n    this.context = context;\r\n    this.service = service;\r\n    api = new CarListApi();\r\n  }\r\n\r\n  public void start() {\r\n    service.onPresenterStart();\r\n    getCarChips();\r\n  }\r\n\r\n  private void getCarChips() {\r\n    service.loadingState(true);\r\n    Single<List<CarChipsListModel>> data = api.getChips();\r\n\r\n    getCarChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CarChipsListModel>>() {\r\n      @Override\r\n      public void onSuccess(List<CarChipsListModel> carChipsModels) {\r\n        setCarChips(carChipsModels);\r\n      }\r\n\r\n      @Override\r\n      public void onError(Throwable e) {\r\n        service.onError(e.getMessage());\r\n      }\r\n    });\r\n  }\r\n\r\n  private void setCarChips(List<CarChipsListModel> categoryModels) {\r\n    Observable<CarChipsListModel> data = Observable.fromIterable(categoryModels);\r\n    setCarChipsDisposable = data.subscribe(chips -> {\r\n        service.onChipsReceived(chips);\r\n        service.loadingState(false);\r\n      },\r\n      throwable -> {\r\n\r\n      }, () -> {\r\n        getCars();\r\n      });\r\n  }\r\n\r\n  private void getCars() {\r\n    JSONObject object = new JSONObject();\r\n    try {\r\n      object.put(\"CategoryId\", 0);\r\n      object.put(\"BrandId\", 0);\r\n      object.put(\"FromPrice\", 0);\r\n      object.put(\"ToPrice\", 0);\r\n      object.put(\"FormDate\", 0);\r\n      object.put(\"ToDate\", 0);\r\n      object.put(\"GearboxId\", 0);\r\n      object.put(\"Paging\", 0);\r\n      object.put(\"TextSerch\", \"\");\r\n    } catch (JSONException e) {\r\n      e.printStackTrace();\r\n    }\r\n    Single<List<CarListModel>> data = api.getCars(object);\r\n\r\n    getCarChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CarListModel>>() {\r\n      @Override\r\n      public void onSuccess(List<CarListModel> cars) {\r\n        setCars(cars);\r\n      }\r\n\r\n      @Override\r\n      public void onError(Throwable e) {\r\n        service.onError(e.getMessage());\r\n      }\r\n    });\r\n  }\r\n\r\n  private void setCars(List<CarListModel> categoryModels) {\r\n    Observable<CarListModel> data = Observable.fromIterable(categoryModels);\r\n    setCarChipsDisposable = data.subscribe(car ->\r\n        service.onCarReceived(car),\r\n      throwable -> {\r\n\r\n      }, () -> {\r\n\r\n      });\r\n\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/Presenter/CarListFragmentPresenter.java	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/Presenter/CarListFragmentPresenter.java	(date 1619934320182)
+@@ -67,7 +67,7 @@
+       });
+   }
+ 
+-  private void getCars() {
++  private void  getCars() {
+     JSONObject object = new JSONObject();
+     try {
+       object.put("CategoryId", 0);
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n  xmlns:tools=\"http://schemas.android.com/tools\"\r\n  package=\"ir.tdaapp.diako.shaar\">\r\n\r\n  <application\r\n    android:name=\".ETC.AppController\"\r\n    android:allowBackup=\"true\"\r\n    android:icon=\"@mipmap/ic_launcher\"\r\n    android:label=\"@string/app_name\"\r\n    android:largeHeap=\"true\"\r\n    android:networkSecurityConfig=\"@xml/network_security_config\"\r\n    android:requestLegacyExternalStorage=\"true\"\r\n    android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n    android:supportsRtl=\"true\"\r\n    android:theme=\"@style/Theme.AppCompat.Light.NoActionBar\">\r\n    <activity android:name=\".Cars.View.Activities.CarActivity\"\r\n      android:screenOrientation=\"portrait\"\r\n      android:windowSoftInputMode=\"stateVisible|adjustResize\">\r\n      <intent-filter>\r\n        <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n        <category android:name=\"android.intent.category.LAUNCHER\" />\r\n      </intent-filter>\r\n    </activity>\r\n    <activity\r\n      android:name=\".CityGuide.Views.Activities.GuideActivity\"\r\n      android:screenOrientation=\"portrait\"\r\n      android:windowSoftInputMode=\"stateVisible|adjustResize\">\r\n\r\n    </activity>\r\n    <activity\r\n      android:name=\".MainActivity\"\r\n      android:screenOrientation=\"portrait\"></activity>\r\n\r\n    <meta-data\r\n      android:name=\"co.ronash.pushe.token\"\r\n      android:value=\"PUSHE_157859137951\" />\r\n\r\n    <provider\r\n      android:name=\"androidx.core.content.FileProvider\"\r\n      android:authorities=\"${applicationId}.provider\"\r\n      android:exported=\"false\"\r\n      android:grantUriPermissions=\"true\">\r\n      <meta-data\r\n        android:name=\"android.support.FILE_PROVIDER_PATHS\"\r\n        android:resource=\"@xml/provider_paths\" />\r\n    </provider>\r\n\r\n    <uses-library\r\n      android:name=\"org.apache.http.legacy\"\r\n      android:required=\"false\" />\r\n  </application>\r\n  <uses-permission android:name=\"android.permission.INTERNET\" />\r\n  <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n  <uses-permission android:name=\"android.permission.VIBRATE\" />\r\n  <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n  <uses-permission android:name=\"android.permission.CAMERA\" />\r\n\r\n  <uses-permission\r\n    android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"\r\n    tools:ignore=\"ScopedStorage\" />\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/AndroidManifest.xml	(date 1619934326498)
+@@ -17,17 +17,16 @@
+     <activity android:name=".Cars.View.Activities.CarActivity"
+       android:screenOrientation="portrait"
+       android:windowSoftInputMode="stateVisible|adjustResize">
+-      <intent-filter>
+-        <action android:name="android.intent.action.MAIN" />
+-
+-        <category android:name="android.intent.category.LAUNCHER" />
+-      </intent-filter>
+     </activity>
+     <activity
+       android:name=".CityGuide.Views.Activities.GuideActivity"
+       android:screenOrientation="portrait"
+       android:windowSoftInputMode="stateVisible|adjustResize">
++      <intent-filter>
++        <action android:name="android.intent.action.MAIN" />
+ 
++        <category android:name="android.intent.category.LAUNCHER" />
++      </intent-filter>
+     </activity>
+     <activity
+       android:name=".MainActivity"
+Index: app/src/main/res/layout/content_item_details_contact.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout android:layout_width=\"match_parent\"\r\n  android:layout_height=\"match_parent\"\r\n  xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n  android:layout_marginTop=\"16dp\"\r\n  android:gravity=\"right\"\r\n  android:orientation=\"vertical\"\r\n  xmlns:android=\"http://schemas.android.com/apk/res/android\">\r\n\r\n  <TextView\r\n    android:id=\"@+id/textView\"\r\n    android:layout_width=\"wrap_content\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_marginRight=\"16dp\"\r\n    android:text=\"@string/locationInfo\" />\r\n\r\n  <LinearLayout\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_marginTop=\"8dp\"\r\n    android:orientation=\"horizontal\">\r\n\r\n    <Button\r\n      android:id=\"@+id/btnCategoryItemMessage\"\r\n      android:layout_width=\"0dp\"\r\n      android:layout_height=\"30dp\"\r\n      android:layout_marginLeft=\"8dp\"\r\n      android:layout_marginRight=\"4dp\"\r\n      android:layout_weight=\"1\"\r\n      android:background=\"@drawable/blue_border_background\"\r\n      android:text=\"@string/sendPrivateMessage\"\r\n      android:textColor=\"@color/colorBlue\"\r\n      android:textSize=\"12sp\" />\r\n\r\n    <Button\r\n      android:id=\"@+id/btnCategoryItemCall\"\r\n      android:layout_width=\"0dp\"\r\n      android:layout_height=\"30dp\"\r\n      android:layout_marginLeft=\"4dp\"\r\n      android:layout_marginRight=\"8dp\"\r\n      android:layout_weight=\"1\"\r\n      android:background=\"@drawable/blue_solid_background\"\r\n      android:text=\"@string/makePhoneCall\"\r\n      android:textColor=\"#fff\"\r\n      android:textSize=\"12sp\" />\r\n  </LinearLayout>\r\n\r\n  <LinearLayout\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_marginTop=\"16dp\"\r\n    android:gravity=\"right\"\r\n    android:orientation=\"vertical\">\r\n\r\n    <LinearLayout\r\n      android:layout_width=\"match_parent\"\r\n      android:layout_height=\"wrap_content\"\r\n      android:gravity=\"right|center_vertical\"\r\n      android:orientation=\"horizontal\">\r\n\r\n      <ImageView\r\n        android:id=\"@+id/imageView21\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginRight=\"8dp\"\r\n        app:srcCompat=\"@drawable/ic_baseline_keyboard_arrow_down_24\" />\r\n\r\n      <TextView\r\n        android:id=\"@+id/txtCategoryItemPhone\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginRight=\"16dp\"\r\n        android:text=\"989218092161\"\r\n        android:textAlignment=\"textEnd\"\r\n        android:textColor=\"#1a1d24\" />\r\n\r\n      <ImageView\r\n        android:id=\"@+id/imageView20\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginRight=\"8dp\"\r\n        app:srcCompat=\"@drawable/ic_outline_call_24\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <ImageView\r\n      android:id=\"@+id/imageView27\"\r\n      android:layout_width=\"match_parent\"\r\n      android:layout_height=\"1dp\"\r\n      android:layout_marginLeft=\"8dp\"\r\n      android:layout_marginRight=\"8dp\"\r\n      android:layout_marginTop=\"8dp\"\r\n      android:background=\"#8c8c8c\" />\r\n\r\n    <LinearLayout\r\n      android:layout_width=\"match_parent\"\r\n      android:layout_height=\"wrap_content\"\r\n      android:gravity=\"right|center_vertical\"\r\n      android:orientation=\"horizontal\"\r\n      android:paddingLeft=\"8dp\"\r\n      android:paddingRight=\"8dp\"\r\n      android:paddingTop=\"8dp\">\r\n\r\n      <ImageView\r\n        android:id=\"@+id/imageView24\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginLeft=\"8dp\"\r\n        app:srcCompat=\"@drawable/ic_navigate\" />\r\n\r\n      <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginRight=\"16dp\"\r\n        android:layout_weight=\"1\"\r\n        android:text=\"@string/instagramPage\"\r\n        android:textColor=\"#1a1d24\" />\r\n\r\n      <ImageView\r\n        android:id=\"@+id/imageView23\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:srcCompat=\"@drawable/ic_instagram\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <ImageView\r\n      android:id=\"@+id/imageView22\"\r\n      android:layout_width=\"match_parent\"\r\n      android:layout_height=\"1dp\"\r\n      android:layout_marginLeft=\"8dp\"\r\n      android:layout_marginRight=\"8dp\"\r\n      android:layout_marginTop=\"8dp\"\r\n      android:background=\"#8c8c8c\" />\r\n\r\n    <LinearLayout\r\n      android:layout_width=\"match_parent\"\r\n      android:layout_height=\"wrap_content\"\r\n      android:gravity=\"right|center_vertical\"\r\n      android:orientation=\"horizontal\"\r\n      android:paddingLeft=\"8dp\"\r\n      android:paddingRight=\"8dp\"\r\n      android:paddingTop=\"8dp\">\r\n\r\n      <ImageView\r\n        android:id=\"@+id/imageView24\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginLeft=\"8dp\"\r\n        app:srcCompat=\"@drawable/ic_navigate\" />\r\n\r\n      <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginRight=\"16dp\"\r\n        android:layout_weight=\"1\"\r\n        android:text=\"@string/telegramChannel\"\r\n        android:textColor=\"#1a1d24\" />\r\n\r\n      <ImageView\r\n        android:id=\"@+id/imageView23\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:srcCompat=\"@drawable/ic_telegram\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <ImageView\r\n      android:id=\"@+id/imageView26\"\r\n      android:layout_width=\"match_parent\"\r\n      android:layout_height=\"1dp\"\r\n      android:layout_marginLeft=\"8dp\"\r\n      android:layout_marginRight=\"8dp\"\r\n      android:layout_marginTop=\"8dp\"\r\n      android:background=\"#8c8c8c\" />\r\n\r\n    <LinearLayout\r\n      android:layout_width=\"match_parent\"\r\n      android:layout_height=\"wrap_content\"\r\n      android:gravity=\"right|center_vertical\"\r\n      android:orientation=\"horizontal\"\r\n      android:paddingLeft=\"8dp\"\r\n      android:paddingRight=\"8dp\"\r\n      android:paddingTop=\"8dp\">\r\n\r\n      <TextView\r\n        android:id=\"@+id/txtCategoryItemDetailsAddress\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginRight=\"16dp\"\r\n        android:layout_weight=\"1\"\r\n        android:text=\"بهاران، روبروی رستوران پاچنار\"\r\n        android:textColor=\"#1a1d24\" />\r\n\r\n      <ImageView\r\n        android:id=\"@+id/imageView23\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:srcCompat=\"@drawable/ic_outline_place_24\" />\r\n\r\n    </LinearLayout>\r\n\r\n  </LinearLayout>\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_item_details_contact.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/res/layout/content_item_details_contact.xml	(date 1619934329151)
+@@ -102,11 +102,11 @@
+       android:paddingTop="8dp">
+ 
+       <ImageView
+-        android:id="@+id/imageView24"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginLeft="8dp"
+-        app:srcCompat="@drawable/ic_navigate" />
++          android:id="@+id/imageView24"
++          android:layout_width="wrap_content"
++          android:layout_height="wrap_content"
++          android:layout_marginLeft="8dp"
++          app:srcCompat="@drawable/ic_navigate" />
+ 
+       <TextView
+         android:layout_width="wrap_content"
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"RemoteRepositoriesConfiguration\">\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"central\" />\r\n      <option name=\"name\" value=\"Maven Central repository\" />\r\n      <option name=\"url\" value=\"https://repo1.maven.org/maven2\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"jboss.community\" />\r\n      <option name=\"name\" value=\"JBoss Community repository\" />\r\n      <option name=\"url\" value=\"https://repository.jboss.org/nexus/content/repositories/public/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"MavenRepo\" />\r\n      <option name=\"name\" value=\"MavenRepo\" />\r\n      <option name=\"url\" value=\"https://repo.maven.apache.org/maven2/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"BintrayJCenter\" />\r\n      <option name=\"name\" value=\"BintrayJCenter\" />\r\n      <option name=\"url\" value=\"https://jcenter.bintray.com/\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"maven\" />\r\n      <option name=\"name\" value=\"maven\" />\r\n      <option name=\"url\" value=\"https://jitpack.io\" />\r\n    </remote-repository>\r\n    <remote-repository>\r\n      <option name=\"id\" value=\"Google\" />\r\n      <option name=\"name\" value=\"Google\" />\r\n      <option name=\"url\" value=\"https://dl.google.com/dl/android/maven2/\" />\r\n    </remote-repository>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/jarRepositories.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ .idea/jarRepositories.xml	(date 1619934329164)
+@@ -31,5 +31,10 @@
+       <option name="name" value="Google" />
+       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
+     </remote-repository>
++    <remote-repository>
++      <option name="id" value="IDEScout, Inc." />
++      <option name="name" value="IDEScout, Inc." />
++      <option name="url" value="http://www.idescout.com/maven/repo/" />
++    </remote-repository>
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/assetWizardSettings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"WizardSettings\">\r\n    <option name=\"children\">\r\n      <map>\r\n        <entry key=\"vectorWizard\">\r\n          <value>\r\n            <PersistentState>\r\n              <option name=\"children\">\r\n                <map>\r\n                  <entry key=\"vectorAssetStep\">\r\n                    <value>\r\n                      <PersistentState>\r\n                        <option name=\"children\">\r\n                          <map>\r\n                            <entry key=\"clipartAsset\">\r\n                              <value>\r\n                                <PersistentState>\r\n                                  <option name=\"values\">\r\n                                    <map>\r\n                                      <entry key=\"url\" value=\"file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/speed/baseline_speed_24.xml\" />\r\n                                    </map>\r\n                                  </option>\r\n                                </PersistentState>\r\n                              </value>\r\n                            </entry>\r\n                          </map>\r\n                        </option>\r\n                        <option name=\"values\">\r\n                          <map>\r\n                            <entry key=\"assetSourceType\" value=\"FILE\" />\r\n                            <entry key=\"color\" value=\"696969\" />\r\n                            <entry key=\"outputName\" value=\"ic_transmission\" />\r\n                            <entry key=\"sourceFile\" value=\"C:\\Users\\sam\\Downloads\\transmission.svg\" />\r\n                          </map>\r\n                        </option>\r\n                      </PersistentState>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </PersistentState>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/assetWizardSettings.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ .idea/assetWizardSettings.xml	(date 1619934329173)
+@@ -18,7 +18,7 @@
+                                 <PersistentState>
+                                   <option name="values">
+                                     <map>
+-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/speed/baseline_speed_24.xml" />
++                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/add_a_photo/baseline_add_a_photo_24.xml" />
+                                     </map>
+                                   </option>
+                                 </PersistentState>
+@@ -29,9 +29,9 @@
+                         <option name="values">
+                           <map>
+                             <entry key="assetSourceType" value="FILE" />
+-                            <entry key="color" value="696969" />
+-                            <entry key="outputName" value="ic_transmission" />
+-                            <entry key="sourceFile" value="C:\Users\sam\Downloads\transmission.svg" />
++                            <entry key="color" value="1a1d24" />
++                            <entry key="outputName" value="ic_waiting" />
++                            <entry key="sourceFile" value="C:\Users\SoraN\Downloads\waiting.svg" />
+                           </map>
+                         </option>
+                       </PersistentState>
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Fri Jan 10 22:56:58 PST 2020\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-5.4.1-all.zip\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1619934331413)
+@@ -3,4 +3,4 @@
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-5.4.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-bin.zip
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\n\r\nbuildscript {\r\n    \r\n    repositories {\r\n        mavenCentral()\r\n        google()\r\n        jcenter()\r\n    }\r\n    dependencies {\r\n        classpath 'com.android.tools.build:gradle:3.5.0'\r\n\r\n\r\n//        classpath 'com.google.gms:google-services:4.2.0'\r\n//        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.11.0, 0.99.99]'\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        mavenCentral()\r\n        maven { url \"https://jitpack.io\" }\r\n        jcenter()\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ build.gradle	(date 1619934331421)
+@@ -24,6 +24,10 @@
+         mavenCentral()
+         maven { url "https://jitpack.io" }
+         jcenter()
++        maven {
++            url 'http://www.idescout.com/maven/repo/'
++            name 'IDEScout, Inc.'
++        }
+     }
+ }
+ 
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/ViewModels/CarListModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.Model.ViewModels;\r\n\r\npublic class CarListModel {\r\n\r\n  int id;\r\n  String title, productionYear, price, gearbox, mileage, brand, color, imageUrl;\r\n\r\n  public CarListModel() {\r\n  }\r\n\r\n  public CarListModel(int id, String title, String productionYear, String price, String gearbox, String mileage, String brand, String color, String imageUrl) {\r\n    this.id = id;\r\n    this.title = title;\r\n    this.productionYear = productionYear;\r\n    this.price = price;\r\n    this.gearbox = gearbox;\r\n    this.mileage = mileage;\r\n    this.brand = brand;\r\n    this.color = color;\r\n    this.imageUrl = imageUrl;\r\n  }\r\n\r\n  public int getId() {\r\n    return id;\r\n  }\r\n\r\n  public void setId(int id) {\r\n    this.id = id;\r\n  }\r\n\r\n  public String getTitle() {\r\n    return title;\r\n  }\r\n\r\n  public void setTitle(String title) {\r\n    this.title = title;\r\n  }\r\n\r\n  public String getProductionYear() {\r\n    return productionYear;\r\n  }\r\n\r\n  public void setProductionYear(String productionYear) {\r\n    this.productionYear = productionYear;\r\n  }\r\n\r\n  public String getPrice() {\r\n    return price;\r\n  }\r\n\r\n  public void setPrice(String price) {\r\n    this.price = price;\r\n  }\r\n\r\n  public String getGearbox() {\r\n    return gearbox;\r\n  }\r\n\r\n  public void setGearbox(String gearbox) {\r\n    this.gearbox = gearbox;\r\n  }\r\n\r\n  public String getMileage() {\r\n    return mileage;\r\n  }\r\n\r\n  public void setMileage(String mileage) {\r\n    this.mileage = mileage;\r\n  }\r\n\r\n  public String getBrand() {\r\n    return brand;\r\n  }\r\n\r\n  public void setBrand(String brand) {\r\n    this.brand = brand;\r\n  }\r\n\r\n  public String getColor() {\r\n    return color;\r\n  }\r\n\r\n  public void setColor(String color) {\r\n    this.color = color;\r\n  }\r\n\r\n  public String getImageUrl() {\r\n    return imageUrl;\r\n  }\r\n\r\n  public void setImageUrl(String imageUrl) {\r\n    this.imageUrl = imageUrl;\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/ViewModels/CarListModel.java	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/ViewModels/CarListModel.java	(date 1619934320094)
+@@ -3,12 +3,9 @@
+ public class CarListModel {
+ 
+   int id;
+-  String title, productionYear, price, gearbox, mileage, brand, color, imageUrl;
++  String title, productionYear, price, gearbox, mileage, brand;
+ 
+-  public CarListModel() {
+-  }
+-
+-  public CarListModel(int id, String title, String productionYear, String price, String gearbox, String mileage, String brand, String color, String imageUrl) {
++  public CarListModel(int id, String title, String productionYear, String price, String gearbox, String mileage, String brand) {
+     this.id = id;
+     this.title = title;
+     this.productionYear = productionYear;
+@@ -16,8 +13,9 @@
+     this.gearbox = gearbox;
+     this.mileage = mileage;
+     this.brand = brand;
+-    this.color = color;
+-    this.imageUrl = imageUrl;
++  }
++
++  public CarListModel() {
+   }
+ 
+   public int getId() {
+@@ -75,20 +73,4 @@
+   public void setBrand(String brand) {
+     this.brand = brand;
+   }
+-
+-  public String getColor() {
+-    return color;
+-  }
+-
+-  public void setColor(String color) {
+-    this.color = color;
+-  }
+-
+-  public String getImageUrl() {
+-    return imageUrl;
+-  }
+-
+-  public void setImageUrl(String imageUrl) {
+-    this.imageUrl = imageUrl;
+-  }
+ }
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"PLATFORM\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n        <option name=\"useQualifiedModuleNames\" value=\"true\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ .idea/gradle.xml	(date 1619934331433)
+@@ -5,6 +5,7 @@
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <option name="testRunner" value="PLATFORM" />
++        <option name="disableWrapperSourceDistributionNotification" value="true" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="modules">
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/modules/Shaar.iml\" filepath=\"$PROJECT_DIR$/.idea/modules/Shaar.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml\" filepath=\"$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ .idea/modules.xml	(date 1619934331442)
+@@ -2,7 +2,7 @@
+ <project version="4">
+   <component name="ProjectModuleManager">
+     <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shaar.iml" filepath="$PROJECT_DIR$/.idea/modules/Shaar.iml" />
++      <module fileurl="file://$PROJECT_DIR$/.idea/Shaar.iml" filepath="$PROJECT_DIR$/.idea/Shaar.iml" />
+       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml" />
+     </modules>
+   </component>
+Index: app/src/main/res/layout/fragment_car_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n  xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n  android:orientation=\"vertical\" android:layout_width=\"match_parent\"\r\n  android:layout_height=\"match_parent\">\r\n\r\n  <LinearLayout\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_margin=\"8dp\"\r\n    android:background=\"@drawable/gray_search_background\"\r\n    android:gravity=\"center_vertical\"\r\n    android:orientation=\"horizontal\"\r\n    android:padding=\"16dp\">\r\n\r\n    <ImageButton\r\n      android:id=\"@+id/imgCarListFilter\"\r\n      android:layout_width=\"wrap_content\"\r\n      android:layout_height=\"wrap_content\"\r\n      android:background=\"?selectableItemBackgroundBorderless\"\r\n      android:clickable=\"true\"\r\n      android:focusable=\"true\"\r\n      app:srcCompat=\"@drawable/ic_baseline_filter_alt_24\"\r\n      app:tint=\"#1a1d24\" />\r\n\r\n    <ImageView\r\n      android:layout_width=\"1dp\"\r\n      android:layout_height=\"match_parent\"\r\n      android:layout_marginLeft=\"16dp\"\r\n      android:background=\"#1a1d24\" />\r\n\r\n    <EditText\r\n      android:id=\"@+id/edtCarListSearch\"\r\n      android:layout_width=\"wrap_content\"\r\n      android:layout_height=\"wrap_content\"\r\n      android:layout_marginLeft=\"8dp\"\r\n      android:layout_marginRight=\"8dp\"\r\n      android:layout_weight=\"1\"\r\n      android:background=\"#d6d6d6\"\r\n      android:ems=\"10\"\r\n      android:hint=\"@string/fastSearch\"\r\n      android:inputType=\"textPersonName\"\r\n      android:textColor=\"#1a1d24\" />\r\n\r\n    <ImageButton\r\n      android:id=\"@+id/imgCarListBack\"\r\n      android:layout_width=\"wrap_content\"\r\n      android:layout_height=\"wrap_content\"\r\n      android:clickable=\"true\"\r\n      android:focusable=\"true\"\r\n      android:background=\"?selectableItemBackgroundBorderless\"\r\n      app:srcCompat=\"@drawable/ic_baseline_arrow_forward_24\" />\r\n\r\n  </LinearLayout>\r\n\r\n  <ProgressBar\r\n    android:id=\"@+id/carListLoading\"\r\n    style=\"?android:attr/progressBarStyle\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\" />\r\n\r\n  <androidx.recyclerview.widget.RecyclerView\r\n    android:id=\"@+id/carChipsList\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_marginBottom=\"8dp\" />\r\n\r\n  <ImageView\r\n    android:id=\"@+id/imageView3\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"1dp\"\r\n    android:background=\"#888888\" />\r\n\r\n  <androidx.recyclerview.widget.RecyclerView\r\n    android:id=\"@+id/carList\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\" />\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_car_list.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/res/layout/fragment_car_list.xml	(date 1619934320168)
+@@ -14,14 +14,14 @@
+     android:padding="16dp">
+ 
+     <ImageButton
+-      android:id="@+id/imgCarListFilter"
+-      android:layout_width="wrap_content"
+-      android:layout_height="wrap_content"
+-      android:background="?selectableItemBackgroundBorderless"
+-      android:clickable="true"
+-      android:focusable="true"
+-      app:srcCompat="@drawable/ic_baseline_filter_alt_24"
+-      app:tint="#1a1d24" />
++        android:id="@+id/imgCarListFilter"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:background="?selectableItemBackgroundBorderless"
++        android:clickable="true"
++        android:focusable="true"
++        app:srcCompat="@drawable/ic_baseline_filter_alt_24"
++        app:tint="#1a1d24" />
+ 
+     <ImageView
+       android:layout_width="1dp"
+Index: app/src/main/java/ir/tdaapp/diako/shaar/CityGuide/Presenters/CategoryDetailsFragmentPresenter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.CityGuide.Presenters;\r\n\r\nimport android.content.Context;\r\n\r\nimport java.util.List;\r\n\r\nimport io.reactivex.Observable;\r\nimport io.reactivex.Single;\r\nimport io.reactivex.disposables.Disposable;\r\nimport io.reactivex.observers.DisposableSingleObserver;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryDetailsApiCityGuide;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;\r\n\r\npublic class CategoryDetailsFragmentPresenter {\r\n\r\n  Context context;\r\n  CategoryDetailsFragmentService categoryDetailsFragmentService;\r\n  CategoryDetailsApiCityGuide categoryDetailsApi;\r\n  Disposable getChipsDisposable, setChipsDisposable;\r\n\r\n  public CategoryDetailsFragmentPresenter(Context context, CategoryDetailsFragmentService categoryDetailsFragmentService) {\r\n    this.context = context;\r\n    this.categoryDetailsFragmentService = categoryDetailsFragmentService;\r\n    categoryDetailsApi = new CategoryDetailsApiCityGuide();\r\n  }\r\n\r\n  public void start(int categoryId) {\r\n    categoryDetailsFragmentService.onPresenterStart();\r\n    getChips(categoryId);\r\n    getItems(\"\", categoryId, 0);\r\n  }\r\n\r\n  public void start(String search, int filterId, int page) {\r\n    categoryDetailsFragmentService.onPresenterRestart();\r\n    getItems(search, filterId, page);\r\n  }\r\n\r\n  public void getItemByFilter(String search, int filterId, int page) {\r\n    getItems(search, filterId, page);\r\n  }\r\n\r\n  private void getChips(int categoryId) {\r\n    categoryDetailsFragmentService.loadingState(true);\r\n    Single<List<CategoryDetailsChipModel>> data = categoryDetailsApi.getChips(categoryId);\r\n\r\n    getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsChipModel>>() {\r\n      @Override\r\n      public void onSuccess(List<CategoryDetailsChipModel> categoryModels) {\r\n        setChips(categoryModels);\r\n\r\n      }\r\n\r\n      @Override\r\n      public void onError(Throwable e) {\r\n        categoryDetailsFragmentService.onError(e.getMessage());\r\n      }\r\n    });\r\n  }\r\n\r\n  private void setChips(List<CategoryDetailsChipModel> categoryModels) {\r\n    Observable<CategoryDetailsChipModel> data = Observable.fromIterable(categoryModels);\r\n    setChipsDisposable = data.subscribe(chip ->\r\n        categoryDetailsFragmentService.onChipsReceived(chip),\r\n      throwable -> {\r\n\r\n      }, () -> {\r\n        categoryDetailsFragmentService.loadingState(false);\r\n        categoryDetailsFragmentService.onFinish();\r\n      });\r\n  }\r\n\r\n  private void getItems(String search, int filterId, int page) {\r\n    categoryDetailsFragmentService.loadingState(true);\r\n    Single<List<CategoryDetailsModel>> data = categoryDetailsApi.getItems(search, filterId, page);\r\n\r\n    getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {\r\n      @Override\r\n      public void onSuccess(List<CategoryDetailsModel> categoryModels) {\r\n        setItems(categoryModels);\r\n      }\r\n\r\n      @Override\r\n      public void onError(Throwable e) {\r\n        categoryDetailsFragmentService.onError(e.getMessage());\r\n      }\r\n    });\r\n  }\r\n\r\n  private void setItems(List<CategoryDetailsModel> categoryModels) {\r\n    Observable<CategoryDetailsModel> data = Observable.fromIterable(categoryModels);\r\n    setChipsDisposable = data.subscribe(item -> {\r\n      categoryDetailsFragmentService.loadingState(false);\r\n      categoryDetailsFragmentService.onItemsReceived(item);\r\n    }, throwable -> {\r\n\r\n    }, () -> {\r\n      categoryDetailsFragmentService.onPageFinished(categoryModels);\r\n      categoryDetailsFragmentService.loadingState(false);\r\n    });\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/CityGuide/Presenters/CategoryDetailsFragmentPresenter.java	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/java/ir/tdaapp/diako/shaar/CityGuide/Presenters/CategoryDetailsFragmentPresenter.java	(date 1619934331455)
+@@ -15,89 +15,89 @@
+ 
+ public class CategoryDetailsFragmentPresenter {
+ 
+-  Context context;
+-  CategoryDetailsFragmentService categoryDetailsFragmentService;
+-  CategoryDetailsApiCityGuide categoryDetailsApi;
+-  Disposable getChipsDisposable, setChipsDisposable;
++    Context context;
++    CategoryDetailsFragmentService categoryDetailsFragmentService;
++    CategoryDetailsApiCityGuide categoryDetailsApi;
++    Disposable getChipsDisposable, setChipsDisposable;
+ 
+-  public CategoryDetailsFragmentPresenter(Context context, CategoryDetailsFragmentService categoryDetailsFragmentService) {
+-    this.context = context;
+-    this.categoryDetailsFragmentService = categoryDetailsFragmentService;
+-    categoryDetailsApi = new CategoryDetailsApiCityGuide();
+-  }
++    public CategoryDetailsFragmentPresenter(Context context, CategoryDetailsFragmentService categoryDetailsFragmentService) {
++        this.context = context;
++        this.categoryDetailsFragmentService = categoryDetailsFragmentService;
++        categoryDetailsApi = new CategoryDetailsApiCityGuide();
++    }
+ 
+-  public void start(int categoryId) {
+-    categoryDetailsFragmentService.onPresenterStart();
+-    getChips(categoryId);
+-    getItems("", categoryId, 0);
+-  }
++    public void start(int categoryId) {
++        categoryDetailsFragmentService.onPresenterStart();
++        getChips(categoryId);
++        getItems("", categoryId, 0);
++    }
+ 
+-  public void start(String search, int filterId, int page) {
+-    categoryDetailsFragmentService.onPresenterRestart();
+-    getItems(search, filterId, page);
+-  }
++    public void start(String search, int filterId, int page) {
++        categoryDetailsFragmentService.onPresenterRestart();
++        getItems(search, filterId, page);
++    }
+ 
+-  public void getItemByFilter(String search, int filterId, int page) {
+-    getItems(search, filterId, page);
+-  }
++    public void getItemByFilter(String search, int filterId, int page) {
++        getItems(search, filterId, page);
++    }
+ 
+-  private void getChips(int categoryId) {
+-    categoryDetailsFragmentService.loadingState(true);
+-    Single<List<CategoryDetailsChipModel>> data = categoryDetailsApi.getChips(categoryId);
++    private void getChips(int categoryId) {
++        categoryDetailsFragmentService.loadingState(true);
++        Single<List<CategoryDetailsChipModel>> data = categoryDetailsApi.getChips(categoryId);
+ 
+-    getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsChipModel>>() {
+-      @Override
+-      public void onSuccess(List<CategoryDetailsChipModel> categoryModels) {
+-        setChips(categoryModels);
++        getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsChipModel>>() {
++            @Override
++            public void onSuccess(List<CategoryDetailsChipModel> categoryModels) {
++                setChips(categoryModels);
+ 
+-      }
++            }
+ 
+-      @Override
+-      public void onError(Throwable e) {
+-        categoryDetailsFragmentService.onError(e.getMessage());
+-      }
+-    });
+-  }
++            @Override
++            public void onError(Throwable e) {
++                categoryDetailsFragmentService.onError(e.getMessage());
++            }
++        });
++    }
+ 
+-  private void setChips(List<CategoryDetailsChipModel> categoryModels) {
+-    Observable<CategoryDetailsChipModel> data = Observable.fromIterable(categoryModels);
+-    setChipsDisposable = data.subscribe(chip ->
+-        categoryDetailsFragmentService.onChipsReceived(chip),
+-      throwable -> {
++    private void setChips(List<CategoryDetailsChipModel> categoryModels) {
++        Observable<CategoryDetailsChipModel> data = Observable.fromIterable(categoryModels);
++        setChipsDisposable = data.subscribe(chip ->
++                        categoryDetailsFragmentService.onChipsReceived(chip),
++                throwable -> {
+ 
+-      }, () -> {
+-        categoryDetailsFragmentService.loadingState(false);
+-        categoryDetailsFragmentService.onFinish();
+-      });
+-  }
++                }, () -> {
++                    categoryDetailsFragmentService.loadingState(false);
++                    categoryDetailsFragmentService.onFinish();
++                });
++    }
+ 
+-  private void getItems(String search, int filterId, int page) {
+-    categoryDetailsFragmentService.loadingState(true);
+-    Single<List<CategoryDetailsModel>> data = categoryDetailsApi.getItems(search, filterId, page);
++    private void getItems(String search, int filterId, int page) {
++        categoryDetailsFragmentService.loadingState(true);
++        Single<List<CategoryDetailsModel>> data = categoryDetailsApi.getItems(search, filterId, page);
+ 
+-    getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {
+-      @Override
+-      public void onSuccess(List<CategoryDetailsModel> categoryModels) {
+-        setItems(categoryModels);
+-      }
++        getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {
++            @Override
++            public void onSuccess(List<CategoryDetailsModel> categoryModels) {
++                setItems(categoryModels);
++            }
+ 
+-      @Override
+-      public void onError(Throwable e) {
+-        categoryDetailsFragmentService.onError(e.getMessage());
+-      }
+-    });
+-  }
++            @Override
++            public void onError(Throwable e) {
++                categoryDetailsFragmentService.onError(e.getMessage());
++            }
++        });
++    }
+ 
+-  private void setItems(List<CategoryDetailsModel> categoryModels) {
+-    Observable<CategoryDetailsModel> data = Observable.fromIterable(categoryModels);
+-    setChipsDisposable = data.subscribe(item -> {
+-      categoryDetailsFragmentService.loadingState(false);
+-      categoryDetailsFragmentService.onItemsReceived(item);
+-    }, throwable -> {
++    private void setItems(List<CategoryDetailsModel> categoryModels) {
++        Observable<CategoryDetailsModel> data = Observable.fromIterable(categoryModels);
++        setChipsDisposable = data.subscribe(item -> {
++            categoryDetailsFragmentService.loadingState(false);
++            categoryDetailsFragmentService.onItemsReceived(item);
++        }, throwable -> {
+ 
+-    }, () -> {
+-      categoryDetailsFragmentService.onPageFinished(categoryModels);
+-      categoryDetailsFragmentService.loadingState(false);
+-    });
+-  }
++        }, () -> {
++            categoryDetailsFragmentService.onPageFinished(categoryModels);
++            categoryDetailsFragmentService.loadingState(false);
++        });
++    }
+ }
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\n\r\nandroid {\r\n    compileSdkVersion 29\r\n    defaultConfig {\r\n        applicationId \"ir.tdaapp.diako.shaar\"\r\n        minSdkVersion 19\r\n        targetSdkVersion 29\r\n        versionCode 18\r\n        versionName \"3.5\"\r\n        vectorDrawables.useSupportLibrary = true\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n        useLibrary 'org.apache.http.legacy'\r\n        multiDexEnabled true\r\n//        manifestPlaceholders = [\r\n//                onesignal_app_id: '368f4235-e876-427b-b980-a47b149b1dbc',\r\n//                // Project number pulled from dashboard, local value is ignored.\r\n//                onesignal_google_project_number: 'REMOTE'\r\n//        ]\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = 1.8\r\n        targetCompatibility = 1.8\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(include: ['*.jar'], dir: 'libs')\r\n    implementation 'androidx.annotation:annotation:1.2.0'\r\n    //    implementation 'com.android.support:appcompat-v7:25.4.0'\r\n//    implementation 'com.android.support.constraint:constraint-layout:1.0.2'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test:runner:1.1.1'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'\r\n//    implementation 'com.android.support:cardview-v7:25.4.0'\r\n    //   implementation 'com.android.support:recyclerview-v7:25.4.0'\r\n//    implementation 'com.android.support:design:25.4.0'\r\n    implementation 'id.zelory:compressor:2.1.1'\r\n    implementation 'com.android.volley:volley:1.1.0'\r\n    implementation 'de.hdodenhof:circleimageview:3.0.0'\r\n    implementation 'com.github.bumptech.glide:glide:4.12.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'\r\n    implementation 'io.github.inflationx:calligraphy3:3.1.1'\r\n    implementation 'io.github.inflationx:viewpump:2.0.3'\r\n    implementation 'com.karumi:dexter:5.0.0'\r\n    implementation 'com.flurry.android:analytics:11.6.0@aar'\r\n    implementation 'co.ronash.android:pushe-base:1.6.3'\r\n\r\n    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'\r\n    implementation 'com.github.chrisbanes:PhotoView:2.3.0'\r\n    implementation 'com.github.GrenderG:Toasty:1.5.0'\r\n\r\n    implementation \"io.reactivex.rxjava3:rxjava:3.0.11\"\r\n\r\n    implementation 'gun0912.ted:tedbottompicker:2.0.1'\r\n\r\n    implementation 'androidx.appcompat:appcompat:1.+'\r\n    implementation 'com.google.android.material:material:1.2.0-alpha06'\r\n    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'\r\n    implementation 'androidx.navigation:navigation-fragment:2.0.0'\r\n    implementation 'androidx.navigation:navigation-ui:2.0.0'\r\n    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'\r\n//    implementation 'androidx.recyclerview:recyclerview:1.1.0'\r\n    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta01'\r\n//    implementation 'com.google.firebase:firebase-core:15.+'\r\n//    implementation 'com.onesignal:OneSignal:[3.9.1, 3.99.99]'\r\n\r\n    implementation 'com.github.hsmnzaydn:imagezoom:1.2.1'\r\n    androidTestImplementation 'androidx.test:rules:1.3.0-alpha02'\r\n    implementation('com.github.hamsaadev:RTLMaterialSpinner:1.2.1') {\r\n        exclude group: 'com.android.support', module: 'appcompat-v7'\r\n    }\r\n    implementation 'com.android.support:multidex:1.0.3'\r\n\r\n    implementation('org.apache.httpcomponents:httpmime:4.5.6') {\r\n        exclude module: 'httpclient'\r\n    }\r\n\r\n    implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/build.gradle	(date 1619934331465)
+@@ -85,5 +85,10 @@
+     }
+ 
+     implementation 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
++    debugImplementation 'com.idescout.sql:sqlscout-server:4.1'
++    releaseImplementation 'com.idescout.sql:sqlscout-server-noop:4.1'
++
++
++    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+ 
+ }
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <color name=\"colorPrimary\">#3F51B5</color>\r\n    <color name=\"colorPrimaryDark\">#303F9F</color>\r\n    <color name=\"colorAccent\">#ffc000</color>\r\n    <color name=\"colorCenteral\">#E53935</color>\r\n    <color name=\"colorWhite\">#ffffff</color>\r\n    <color name=\"colorCityToYourHand\">#EEFF41</color>\r\n    <color name=\"colorBlue\">#0055a5</color>\r\n    <color name=\"colorLowBlue\">#3374b1</color>\r\n    <color name=\"colorBlack\">#000000</color>\r\n    <color name=\"colorPaleBlack\">#E1E1E1</color>\r\n    <color name=\"colorGray\">#828282</color>\r\n    <color name=\"colorRed\">#d50000</color>\r\n    <color name=\"colorGrey_Darken_4\">#212121</color>\r\n    <color name=\"colorResend\">#006064</color>\r\n    <color name=\"colorLowResend\">#00838F</color>\r\n    <color name=\"colorDark\">#4d4d4d</color>\r\n    <color name=\"colorLowRed\">#FF6666</color>\r\n    <color name=\"highlight\">#D81B60</color>\r\n    <color name=\"error\">#D81B60</color>\r\n    <color name=\"hint\">#D81B60</color>\r\n    <color name=\"arrow\">#D83A3435</color>\r\n    <color name=\"floating_label\">#D81B60</color>\r\n    <color name=\"base\">#CCCCCC</color>\r\n</resources>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/res/values/colors.xml	(date 1619934331472)
+@@ -23,4 +23,5 @@
+     <color name="arrow">#D83A3435</color>
+     <color name="floating_label">#D81B60</color>
+     <color name="base">#CCCCCC</color>
++    <color name="line">#8c8c8c</color>
+ </resources>
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n  <string name=\"app_name\">Amlake Yousef</string>\r\n  <string name=\"app_namePersian\">املاک یوسف</string>\r\n  <string name=\"LogIn\">ورود</string>\r\n  <string name=\"Home\">خانه</string>\r\n  <string name=\"NewSearch\">جستجوی جدید</string>\r\n  <string name=\"LastSearch\">آخرین جستجو</string>\r\n  <string name=\"SearchSaved\">جستجوی ذخیره شده</string>\r\n  <string name=\"Like\">لیست مورد علاقه</string>\r\n  <string name=\"AdManagement\">مدیریت آگهی</string>\r\n  <string name=\"AddHome\">افزودن ملک</string>\r\n  <string name=\"Add_Property\">ملک اضافه کنید</string>\r\n  <string name=\"MyHome\">املاک من</string>\r\n  <string name=\"Telephone\">تماس با ما</string>\r\n  <string name=\"Setting\">تنظیمات</string>\r\n  <string name=\"AboutMe\">درباره ما</string>\r\n  <string name=\"OpenNavigation\">بازشدن منو</string>\r\n  <string name=\"CloseNavigation\">بسته شدن منو</string>\r\n  <string name=\"SamaneShaar\">جامع\u200Cترین سامانه آگهی املاک سنندج</string>\r\n  <string name=\"SearchHome\">جستجوی ملک</string>\r\n  <string name=\"NewsHome\">جدید\u200Cترین املاک</string>\r\n  <string name=\"Help\">راهنما</string>\r\n  <string name=\"Next\">بعدی</string>\r\n  <string name=\"NotAccount_AddAccount\">حساب کاربری نداری؟ همین حالا ثبت\u200Cنام کن</string>\r\n  <string name=\"AddAccount\">حساب کاربری جدید ایجاد کن</string>\r\n  <string name=\"LogInWithEmail\">ورود با ایمیل</string>\r\n  <string name=\"LogInMoshaverin\">ورود مشاورین</string>\r\n  <string name=\"Email\">ایمیل(اختیاری)</string>\r\n  <string name=\"Password\">رمز عبور</string>\r\n  <string name=\"Forget\">رمز عبور خود را فراموش کرده اید؟</string>\r\n  <string name=\"Name_Family\">نام و نام خانوادگی</string>\r\n  <string name=\"ComparePassword\">تکرار رمز عبور</string>\r\n  <string name=\"Register\">ثبت نام</string>\r\n  <string name=\"NewAccount\">حساب کاربری جدید</string>\r\n  <string name=\"Target\">هدف</string>\r\n  <string name=\"Sell\">فروش</string>\r\n  <string name=\"Rent\">اجاره</string>\r\n  <string name=\"KindOfHome\">نوع ملک*</string>\r\n  <string name=\"Residential\">مسکونی</string>\r\n  <string name=\"Commercial\">تجاری</string>\r\n  <string name=\"Industrial\">صنعتی</string>\r\n  <string name=\"Location\">موقعیت*</string>\r\n  <string name=\"Area\">منطقه خود را وارد نمایید</string>\r\n  <string name=\"Property_details\">جزییات ملک</string>\r\n  <string name=\"AdTitle\">عنوان آگهی*</string>\r\n  <string name=\"DiscriptionHome\">توضیحات ملک*</string>\r\n  <string name=\"Price\">قیمت* (تومان)</string>\r\n  <string name=\"Price2\">قیمت</string>\r\n  <string name=\"TheArea\">متراژ*</string>\r\n  <string name=\"TheArea2\">متراژ</string>\r\n  <string name=\"DiscriptionCall\">جزییات تماس</string>\r\n  <string name=\"Mobile\">موبایل</string>\r\n  <string name=\"Phone\">تلفن</string>\r\n  <string name=\"AddVideo\">اضافه کردن ویدیو</string>\r\n  <string name=\"VideoLink\">لینک ویدیو</string>\r\n  <string name=\"HaveImage\">دارای عکس</string>\r\n  <string name=\"AfterToSave\">بعدا ثبت کنید</string>\r\n  <string name=\"Save\">ثبت</string>\r\n  <string name=\"AddHouse\">ملک اضافه کنید</string>\r\n  <string name=\"SellAndBuy\">خرید و فروش</string>\r\n  <string name=\"TypeHome\">نوع ملک</string>\r\n  <string name=\"LowestPrice\">پایین ترین قیمت</string>\r\n  <string name=\"MaximumPrice\">بالاترین قیمت</string>\r\n  <string name=\"TheArea_SquareMeters\">متراژ (متر مربع)</string>\r\n  <string name=\"LowestArea\">پایین ترین متراژ</string>\r\n  <string name=\"MaximumArea\">بالاترین متراژ</string>\r\n  <string name=\"CountRoom\">تعداد اتاق</string>\r\n  <string name=\"Edit\">ویرایش</string>\r\n  <string name=\"ClearItem\">پاک کردن گزینه ها</string>\r\n  <string name=\"MoreFilter\">فیلترهای بیشتر</string>\r\n  <string name=\"ResaultSearch\">نتایج جستجو</string>\r\n  <string name=\"Share\">اشتراک</string>\r\n  <string name=\"LikeHome\">پسندیدن</string>\r\n  <string name=\"Map\">نقشه</string>\r\n  <string name=\"More_Information\">اطلاعات بیشتر</string>\r\n  <string name=\"Property\">ویژگی ها</string>\r\n  <string name=\"WritingBy\">درج شده توسط</string>\r\n  <string name=\"Call\">تماس</string>\r\n  <string name=\"SMS\">پیامک</string>\r\n  <string name=\"EditMoshaverin\">تنظیمات مشاورین</string>\r\n  <string name=\"Clear\">پاک کن</string>\r\n  <string name=\"AddProperty\">ویژگی ها را اضافه کنید</string>\r\n  <string name=\"Done\">انجام شد</string>\r\n  <string name=\"Possibilities\">امکانات</string>\r\n  <string name=\"View\">منظره</string>\r\n  <string name=\"Balcony\">بالکن</string>\r\n  <string name=\"lobby\">لابی</string>\r\n  <string name=\"Double_glazed_window\">پنجره دو جداره</string>\r\n  <string name=\"Central_air_conditioning_system\">سیستم تهویه هوای مرکزی</string>\r\n  <string name=\"Central_Motor_Home\">موتور خانه مرکزی</string>\r\n  <string name=\"Electricity\">حیاط</string>\r\n  <string name=\"Shooting\">شوتینگ</string>\r\n  <string name=\"Floor\">طبقه</string>\r\n  <string name=\"Number_of_building_floors\">تعداد طبقات ساختمان</string>\r\n  <string name=\"Floor_of_the_floor\">جنس کف</string>\r\n  <string name=\"Elevator\">آسانسور</string>\r\n  <string name=\"Other_key_features\">دیگر ویژگی های کلیدی</string>\r\n  <string name=\"Document_and_ownership\">سند و مالکیت</string>\r\n  <string name=\"Commercial_Appliances\">لوازم تجاری</string>\r\n  <string name=\"Toilet_number\">تعداد پارکینگ</string>\r\n  <string name=\"Parking\">پارکینگ</string>\r\n  <string name=\"Total_number_of_classes\">تعداد کل طبقات</string>\r\n  <string name=\"Wall_of_the_wall\">جنس دیوار</string>\r\n  <string name=\"heating_system\">سیستم گرمایشی</string>\r\n  <string name=\"kitchen\">آشپزخانه</string>\r\n  <string name=\"Facade\">نما</string>\r\n  <string name=\"Cabinets\">کابینت</string>\r\n  <string name=\"Height\">ارتفاع</string>\r\n  <string name=\"Property_location\">موقعیت ملک</string>\r\n  <string name=\"Service\">سرویس</string>\r\n  <string name=\"Gas\">گاز</string>\r\n  <string name=\"Water\">آب</string>\r\n  <string name=\"Remote_door\">درب ریموت</string>\r\n  <string name=\"IPhone_video\">آیفون تصویری</string>\r\n  <string name=\"sauna\">سونا</string>\r\n  <string name=\"Rebuilding\">بازسازی</string>\r\n  <string name=\"busy\">پرتردد</string>\r\n  <string name=\"Endowments\">اوقافی</string>\r\n  <string name=\"Nice_board\">تابلو خور خوب</string>\r\n  <string name=\"On\">بر</string>\r\n  <string name=\"Pass\">گذر</string>\r\n  <string name=\"Flood\">قواره</string>\r\n  <string name=\"Alleyway\">گذر کوچه</string>\r\n  <string name=\"Your_daddy\">دونبش</string>\r\n  <string name=\"Have_a_license_to_build\">دارای جواز ساخت</string>\r\n  <string name=\"Has_a_map_command\">دارای دستور نقشه</string>\r\n  <string name=\"Number_of_units\">تعداد واحد</string>\r\n  <string name=\"Size_of_land\">متراژ زمین</string>\r\n  <string name=\"Subscriber_Number\">تعداد واحد زیرتجاری</string>\r\n  <string name=\"Rooms\">اتاق ها</string>\r\n  <string name=\"Prayer_room\">نماز خانه</string>\r\n  <string name=\"Laundry\">خشکشویی</string>\r\n  <string name=\"Guard\">نگهبان</string>\r\n  <string name=\"Warehouse\">انباری</string>\r\n  <string name=\"Reading_room\">سالن مطالعه</string>\r\n  <string name=\"Commerce_and_communications\">تجارت و ارتباطات</string>\r\n  <string name=\"high_speed_Internet\">اینترنت پر سرعت</string>\r\n  <string name=\"Conference_room\">اتاق کنفرانس</string>\r\n  <string name=\"ATM\">دستگاه خودپرداز در ساختمان</string>\r\n  <string name=\"Health_centers\">مراکز درمانی و بهداشتی</string>\r\n  <string name=\"Barbecue\">باربیکیو</string>\r\n  <string name=\"Healthcare_center\">مرکز ارایه خدمات درمانی</string>\r\n  <string name=\"sport_Club\">باشگاه ورزشی</string>\r\n  <string name=\"Swimming_pool\">استخر</string>\r\n  <string name=\"Nearby_Neighborhoods\">محله های نزدیک</string>\r\n  <string name=\"Schools_close_to_the_place\">مدارس نزدیک به ملک</string>\r\n  <string name=\"Hospitals_close_to_the_property\">بیمارستان های نزدیک به ملک</string>\r\n  <string name=\"Shopping_centers_close_to_the_property\">مراکز خرید نزدیک به ملک</string>\r\n  <string name=\"Distance_from_airport\">فاصله از فرودگاه</string>\r\n  <string name=\"Public_transportation_close_to_the_property\">وسایل حمل و نقل عمومی نزدیک به ملک</string>\r\n  <string name=\"Other_important_centers_near_the_property\">مراکز مهم دیگر در نزدیکی ملک</string>\r\n  <string name=\"Other_features\">دیگر امکانات</string>\r\n  <string name=\"janitor\">نظافت چی</string>\r\n  <string name=\"Coffee_Shop\">کافی شاپ</string>\r\n  <string name=\"Designed_to_fit_low_income_people\">طراحی متناسب با افراد کم توان</string>\r\n  <string name=\"Electricity_and_emergency_water\">برق و اب اضطراری</string>\r\n  <string name=\"Sleep_master\">خواب مستر</string>\r\n  <string name=\"Massage_salon\">سالن ماساژ</string>\r\n  <string name=\"Turkish_bath\">حمام ترکی</string>\r\n  <string name=\"Roof_garden\">روف گاردن</string>\r\n  <string name=\"Altar\">آلاچیق</string>\r\n  <string name=\"Fountain\">آب نما</string>\r\n  <string name=\"Fireplace\">آتشکده</string>\r\n  <string name=\"Internal_Communication\">ارتباط داخلی</string>\r\n  <string name=\"chiller\">چیلر</string>\r\n  <string name=\"Fruit_garden\">باغ میوه</string>\r\n  <string name=\"Catering\">کیترینگ</string>\r\n  <string name=\"Parking_Distance\">ریموت پارکینگ</string>\r\n  <string name=\"Yard\">حیاط</string>\r\n  <string name=\"Conference_Hall\">سالن اجتماعات</string>\r\n  <string name=\"Security_System\">سیستم امنیتی</string>\r\n  <string name=\"Emergency_Exit\">خروجی اضطراری</string>\r\n  <string name=\"Automatic_Fire_Extinguishing_System\">سیستم اطفا حریق خودکار</string>\r\n  <string name=\"Fire_Hose\">شیلنگ آتش نشانی</string>\r\n  <string name=\"Fire_Extinguishing\">اطفاء حریق</string>\r\n  <string name=\"Internal_Security_System\">سیتم امنیتی داخلی</string>\r\n  <string name=\"TwentyFour_hour_Security\">سیتم امنیتی داخلی</string>\r\n  <string name=\"CCTV\">دوربین مداربسته</string>\r\n  <string name=\"Amazing\">فوق العاده</string>\r\n  <string name=\"Wiring_UPS\">سیم کشی ups</string>\r\n  <string name=\"ForLater\">برای بعد</string>\r\n  <string name=\"Confirmation\">تایید</string>\r\n  <string name=\"Search\">جستجو</string>\r\n  <string name=\"SearchById\">جستجو براساس کدآگهی</string>\r\n  <string name=\"Added_Property\">ویژگی ها را اضافه کنید</string>\r\n  <string name=\"Rent_Price\">اجاره* (تومان)</string>\r\n  <string name=\"Mortgage\">رهن* (تومان)</string>\r\n  <string name=\"security_24_hour\">نگهبانی 24 ساعته</string>\r\n  <string name=\"Disregard\">صرف نظر</string>\r\n  <string name=\"Verification_Code\">کد تایید</string>\r\n  <string name=\"Resend\">ارسال مجدد</string>\r\n  <string name=\"Year_of_construction\">سال ساخت</string>\r\n  <string name=\"Address\">آدرس</string>\r\n  <string name=\"CodePosty\">کدپستی</string>\r\n  <string name=\"MyHomes\">املاک من</string>\r\n  <string name=\"Draft\">پیش نویس</string>\r\n  <string name=\"Published\">منتشر شده</string>\r\n  <string name=\"Minimum_Mortgage\">پایین ترین رهن</string>\r\n  <string name=\"Maximum_Mortgage\">بالاترین رهن</string>\r\n  <string name=\"Maximum_Rent\">بالاترین اجاره</string>\r\n  <string name=\"Minimum_Rent\">پایین ترین اجاره</string>\r\n  <string name=\"FullRent\">اجاره کامل</string>\r\n  <string name=\"FullMortgage\">رهن کامل</string>\r\n  <string name=\"Special\">جیاواز</string>\r\n  <string name=\"SMSMessage\">باسلام در خصوص آگهی </string>\r\n  <string name=\"ShareHome1\">آگهی شماره</string>\r\n  <string name=\"ShareHome2\">در اپلیکیشن املاک یوسف</string>\r\n  <string name=\"PhoneYourUserPro\">شماره تماس مشاور شما</string>\r\n  <string name=\"Sort\">مرتب سازی</string>\r\n  <string name=\"New_old\">تاریخ (جدید به قدیم)</string>\r\n  <string name=\"Old_New\">تاریخ (قدیم به جدید)</string>\r\n  <string name=\"Expensiv_Cheap\">قیمت (زیاد به کم)</string>\r\n  <string name=\"Cheap_Expensiv\">قیمت (کم به زیاد)</string>\r\n  <string name=\"Room_l_h\">اتاق (کم به زیاد)</string>\r\n  <string name=\"Room_h_l\">اتاق (زیاد به کم)</string>\r\n  <string name=\"YourUserPro\">کارشناس شما</string>\r\n  <string name=\"city_in_your_hand\">شهر در دستان توست</string>\r\n  <string name=\"NotFoundData\">هیچ داده ای یافت نشد</string>\r\n  <string name=\"NotDataToDataBase\">در پایگاه داده هیچ داده ای وجود ندارد</string>\r\n  <string name=\"SaveSearch\">ذخیره کن</string>\r\n  <string name=\"NameToSave\">یک نام برای ذخیره انتخاب کنید</string>\r\n  <string name=\"like_Home\">املاک مورد علاقه</string>\r\n  <string name=\"List_Search\">لیست جستجو</string>\r\n  <string name=\"List_SaveSearch\">جستجوهای ذخیره شده</string>\r\n  <string name=\"EmptyTitle\">لطفا عنوان را وارد نمایید</string>\r\n  <string name=\"ThisFieldNotEmpty\">این مورد باید پر شود</string>\r\n  <string name=\"YousefiHome\">املاک یوسف - کد ۹</string>\r\n  <string name=\"Established\">سال تاسیس 1355</string>\r\n  <string name=\"BoardAddress\">آدرس: بلوار شبلی ،روبروی کانون وکلا</string>\r\n  <string name=\"TelephoneBoard\">تلفن: ۳۳۵۶۹۶۰۱-۰۸۷</string>\r\n  <string name=\"ZaraeiMobile\">زارعی: ۰۹۱۸۳۷۱۴۹۱۷</string>\r\n  <string name=\"CallMe\">تماس باما</string>\r\n  <string name=\"Exit\">خروج از برنامه</string>\r\n  <string name=\"SelectedLocation\">محل ملک</string>\r\n  <string name=\"close\">بستن</string>\r\n  <string name=\"TextNewVersionApp\">خبر خوش نسخه جدید املاک یوسف رسید و باید اپلیکیشن خود را آپدیت کنید</string>\r\n  <string name=\"TextNewVersionApp2\">خبر خوش نسخه جدید املاک یوسف رسید و اگر دوست دارید نسخه خود را آپدیت کنید</string>\r\n  <string name=\"CheckYourInternet\">لطفا اتصال اینترنت خود را چک نمایید</string>\r\n  <string name=\"Error\">خطا</string>\r\n  <string name=\"Reload\">بارگذاری مجدد</string>\r\n  <string name=\"YourInternetIsVerySlow\">اینترنت شما بسیار کند است</string>\r\n  <string name=\"Message\">پیغام</string>\r\n  <string name=\"Ok\">باشه</string>\r\n  <string name=\"NotNo\">فعلا نه</string>\r\n  <string name=\"FullDisplay\">نمایش کامل</string>\r\n  <string name=\"Wait\">در حال دریافت اطلاعات...</string>\r\n  <string name=\"PleaseAddedImageYourHome\">حتما یک عکس وارد کنید</string>\r\n\r\n\r\n  <string name=\"Law_And_Regulations\">پذیرش قوانین \\n\r\n۱) شما متعهد می\u200Cگردید که شماره تلفن و مشخصات، متعلق به مالک یا وکیل ایشان است و به صورت صحیح درج شده است.\\n\r\n۲) جهت حفظ حریم خصوصی شما و کمترین ایجاد مزاحمت، شماره تلفن و نشانی کامل آگهی\u200Cدهنده منتشر نمی\u200Cشود و شما تنها با فرد مشاور منطقه\u200Cای که پس از انتشار آگهی به صورت خودکار معرفی می\u200Cگردد در ارتباط خواهید بود.\\n\r\n۳) طبق بند قبلی، اپلیکیشن املاک یوسف متعهد می\u200Cگردد اطلاعات شما مانند نشانی و شماره تلفن را جز در اختیار خریداران و بازدیدکنندگان از ملکی که مشاور شما معرفی می\u200Cکند قرار ندهد.\\n\r\n۴) در صورت وجود هر گونه مشکل و ادعای قانونی یا دادن مشخصات غیرصحیح مالک و یا به تقاضای مراجع قضایی، آگهی مورد نظر حذف خواهد شد.\\n\r\n۵) انتشار آگهی شما در «املاک یوسف» به منزله تعهد ما برای فروش نیست و این منوط به وجود خریدار یا خواهان است. املاک فروخته شده یا اجاره داده شده نیز بلافاصله برچسب «واگذار شد» خواهند خورد.\\n\r\n۶) «املاک یوسف» مجاز به ویرایش یا حذف مواردی خواهد بود که آگهی\u200Cدهنده در اختیار آن می\u200Cگذارد.\\n\r\n</string>\r\n\r\n\r\n  <string name=\"Text\">۱) شما متعهد می\u200Cگردید که شماره تلفن و مشخصات، متعلق به مالک یا وکیل ایشان است و به صورت صحیح درج شده است.\r\n۲) جهت حفظ حریم خصوصی شما و کمترین ایجاد مزاحمت، شماره تلفن و نشانی کامل آگهی\u200Cدهنده منتشر نمی\u200Cشود و شما تنها با فرد مشاور منطقه\u200Cای که پس از انتشار آگهی به صورت خودکار معرفی می\u200Cگردد در ارتباط خواهید بود.\r\n۳) طبق بند قبلی، اپلیکیشن املاک یوسف متعهد می\u200Cگردد اطلاعات شما مانند نشانی و شماره تلفن را جز در اختیار خریداران و بازدیدکنندگان از ملکی که مشاور شما معرفی می\u200Cکند قرار ندهد.\r\n۴) در صورت وجود هر گونه مشکل و ادعای قانونی یا دادن مشخصات غیرصحیح مالک و یا به تقاضای مراجع قضایی، آگهی مورد نظر حذف خواهد شد.\r\n۵) انتشار آگهی شما در «املاک یوسف» به منزله تعهد ما برای فروش نیست و این منوط به وجود خریدار یا خواهان است. املاک فروخته شده یا اجاره داده شده نیز بلافاصله برچسب «واگذار شد» خواهند خورد.\r\n۶) «املاک یوسف» مجاز به ویرایش یا حذف مواردی خواهد بود که آگهی\u200Cدهنده در اختیار آن می\u200Cگذارد.</string>\r\n\r\n  <string name=\"AboutMeText\">\r\nفکر اولیه ایجاد اپلیکیشن جامع آگهی املاک شهر سنندج در سال ۱۳۹۷ شکل گرفته و در نهایت در سال ۱۳۹۸ با ثبت شرکت «تسهیلگران و مشاوران املاک شار» و طراحی اپلیکیشن املاک یوسف توسط ماهرترین برنامه\u200Cنویسان، حرکت خود را برای خدمتی سالم و مبتنی بر دانش روز و دانش حقوقی در حوزه املاک آغاز نمودیم.\r\nیکی از مشکلاتی که اپلیکیشن\u200Cهای آگهی املاک دارند این است که خریدار و فروشنده بدون واسطه قانونی با همدیگر ارتباط برقرار می\u200Cکنند و هر دو تصور می\u200Cکنند که بُرد کرده\u200Cاند اما غیر از ایجاد مزاحمت\u200Cهای مکرر برای مالکان، به تدریج مشکلاتی برای آنان به وجود می\u200Cآید که نمونه\u200Cهای آن بسیار است. در حالی که برای وسایل و کالاهای معمولی، این قضیه مفید و خوب است اما برای مواردی نظیر خودرو و املاک باید حتماً مشاور و واسطه قانونی وجود باشد تا معامله منصفانه و بدون مشکلات قانونی صورت گیرد.\\n\r\nما در اپلیکیشن «شار» که در نوع خود در ایران بی\u200Cنظیر است این خدمت را انجام داده\u200Cایم و با معرفی هر ملک، فروشنده را به مشاوران زبده و مورد اعتماد معرفی می\u200Cکنیم که علاوه بر آگهی رایگان و دیدن ملک شما توسط هزاران کاربر و خریدار، بتواند با یافتن خریدار برای آن از انجام معامله\u200Cای قانونی و مطمئن بهره گیرد. علاوه بر آن تیم ما جمعی از کارشناسان حقوق را نیز در کنار خود دارد که در زمینه داوری و دعاوی املاک شما را تا پایان یک معامله سالم  و قانونی راهنمایی خواهند کرد.\\n\r\nاز «املاک یوسف» و امکانات آن لذت ببرید.\\n\r\n\r\nشرکت مشاوران املاک نیشتمان شار یوسف\r\n    </string>\r\n  <string name=\"Permission\">شما اجازه استفاده از این بخش را ندارید</string>\r\n  <string name=\"categories\">دسته بندی ها</string>\r\n  <string name=\"fastSearch\">جستجوی سریع</string>\r\n  <string name=\"addComment\">ثبت نظر</string>\r\n  <string name=\"usersComments\">نظرات کاربران</string>\r\n  <string name=\"addPhoto\">افزودن عکس</string>\r\n  <string name=\"addRating\">ثبت امتیاز</string>\r\n  <string name=\"usersPhotos\">تصاویر کاربران</string>\r\n  <string name=\"moreInfo\">اطلاعات بیشتر</string>\r\n  <string name=\"locationInfo\">اطلاعات مکان</string>\r\n  <string name=\"sendPrivateMessage\">ارسال پیام خصوصی</string>\r\n  <string name=\"makePhoneCall\">تماس تلفنی</string>\r\n  <string name=\"instagramPage\">صفحه اینستاگرام</string>\r\n  <string name=\"telegramChannel\">کانال تلگرام</string>\r\n  <string name=\"commentPostedSuccessfully\">نظر شما با موفقیت درج شد</string>\r\n  <string name=\"postingComment\">در حال درج کامنت...</string>\r\n  <string name=\"createAccountFirst\">ابتدا یک حساب کاربری ایجاد کنید</string>\r\n  <string name=\"rateThisShop\">به این مغازه امتیاز دهید</string>\r\n  <string name=\"rateSentSuccessfully\">نظر شما با موفقیت ثبت شد</string>\r\n  <string name=\"rateSendingFailed\">خطا در ثبت امتیاز</string>\r\n  <string name=\"selectPhoto\">عکس انتخاب کنید</string>\r\n  <string name=\"submit\">تایید</string>\r\n  <string name=\"noPhotoSelected\">عکسی انتخاب نشده</string>\r\n  <string name=\"maximumPhotoSelectionReached3\">حد مجاز انتخاب 3 عکس میباشد</string>\r\n  <string name=\"maximumPhotoSelectionReached6\">حد مجاز انتخاب 6 عکس میباشد</string>\r\n  <string name=\"favorites\">علاقه مندی ها</string>\r\n  <string name=\"allow_storage_permission\">لطفا اجازه دسترسی به حافظه را صادر کنید</string>\r\n  <string name=\"imageUploadingFailed\">بارگذاری عکس با مشکل مواجه شد</string>\r\n  <string name=\"storage_permisison_needed\">برای انتخاب عکس مجوز دسترسی به حافظه گوشی و دوربین نیاز است</string>\r\n  <string-array name=\"ListVideoApp\">\r\n    <item>آپارات</item>\r\n    <item>تماشا</item>\r\n  </string-array>\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/res/values/strings.xml	(date 1619934331485)
+@@ -245,6 +245,20 @@
+   <string name="FullDisplay">نمایش کامل</string>
+   <string name="Wait">در حال دریافت اطلاعات...</string>
+   <string name="PleaseAddedImageYourHome">حتما یک عکس وارد کنید</string>
++  <string name="CarBodySituation">وضعیت بدنه</string>
++  <string name="CarMadeYaer">تعیین</string>
++  <string name="SpeedMeter">کارکرد</string>
++  <string name="brandAndModel">برند و مدل</string>
++  <string name="engineSituation">وضعیت موتور</string>
++  <string name="Chassis">وضعیت شاسی</string>
++  <string name="InsuranceTime">مهلت بیمه</string>
++  <string name="gearBox">گیربکس</string>
++  <string name="ducument">سند</string>
++  <string name="sales">نحوه ی فروش</string>
++  <string name="carPrice">قیمت</string>
++  <string name="carDescription">توضیحات وارد شده توسط کاربر</string>
++  <string name="yourExpert">کارشناس شما</string>
++  <string name="milage"> کارکرد</string>
+ 
+ 
+   <string name="Law_And_Regulations">پذیرش قوانین \n
+@@ -281,6 +295,7 @@
+   <string name="addRating">ثبت امتیاز</string>
+   <string name="usersPhotos">تصاویر کاربران</string>
+   <string name="moreInfo">اطلاعات بیشتر</string>
++  <string name="showmore">نمایش بیشتر</string>
+   <string name="locationInfo">اطلاعات مکان</string>
+   <string name="sendPrivateMessage">ارسال پیام خصوصی</string>
+   <string name="makePhoneCall">تماس تلفنی</string>
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n  <style name=\"Theme.AppCompat.Light.NoActionBar\">\r\n    <item name=\"windowNoTitle\">true</item>\r\n    <item name=\"windowActionBar\">false</item>\r\n    <item name=\"android:windowFullscreen\">true</item>\r\n    <item name=\"android:windowContentOverlay\">@null</item>\r\n    <item name=\"android:fontFamily\">@font/vazir</item>\r\n\r\n  </style>\r\n\r\n  <style name=\"CityGuideTheme\" parent=\"Theme.AppCompat.Light.NoActionBar\">\r\n    <item name=\"windowNoTitle\">true</item>\r\n    <item name=\"windowActionBar\">false</item>\r\n    <item name=\"android:windowFullscreen\">true</item>\r\n    <item name=\"android:windowContentOverlay\">@null</item>\r\n    <item name=\"android:fontFamily\">@font/vazir</item>\r\n\r\n  </style>\r\n\r\n\r\n  <style name=\"ToolBarStyle\" parent=\"ThemeOverlay.AppCompat.Dark\">\r\n    <item name=\"android:textColorPrimary\">@color/colorWhite</item>\r\n    <item name=\"android:textSize\">18dp</item>\r\n  </style>\r\n\r\n  <style name=\"StyleTextInputLayout\" parent=\"Widget.MaterialComponents.TextInputLayout.FilledBox\">\r\n    <item name=\"android:textColorHint\">@color/colorWhite</item>\r\n    <item name=\"colorAccent\">@color/colorWhite</item>\r\n    <item name=\"android:textSize\">18sp</item>\r\n  </style>\r\n\r\n  <style name=\"mySpinnerStyle\" parent=\"android:style/Widget.ListView.DropDown\">\r\n    <item name=\"android:divider\">#01579B</item>\r\n    <item name=\"android:dividerHeight\">1dp</item>\r\n  </style>\r\n\r\n  <style name=\"progressBarStyle\" parent=\"@style/Theme.AppCompat\">\r\n    <item name=\"colorAccent\">@color/colorBlue</item>\r\n  </style>\r\n\r\n  <style name=\"progressBarStyle2\" parent=\"@style/Theme.AppCompat\">\r\n    <item name=\"colorAccent\">@color/colorWhite</item>\r\n  </style>\r\n\r\n\r\n  <style name=\"AppTheme.NavigationView\">\r\n    <item name=\"colorPrimary\">@color/colorBlack</item>\r\n    <item name=\"android:textColorPrimary\">@color/colorBlack</item>\r\n    <item name=\"android:textColor\">@color/colorBlack</item>\r\n    <item name=\"android:subtitleTextColor\" tools:targetApi=\"m\">@color/colorBlack</item>\r\n  </style>\r\n\r\n</resources>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/res/values/styles.xml	(date 1619934331495)
+@@ -44,6 +44,13 @@
+   </style>
+ 
+ 
++  <style name="carDetails" >
++
++    <item name="android:textColor">@color/black</item>
++
++  </style>
++
++
+   <style name="AppTheme.NavigationView">
+     <item name="colorPrimary">@color/colorBlack</item>
+     <item name="android:textColorPrimary">@color/colorBlack</item>
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarListFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.View.Fragments;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ProgressBar;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Adapters.ChipsListAdapter;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;\r\nimport ir.tdaapp.diako.shaar.Cars.Presenter.CarListFragmentPresenter;\r\nimport ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;\r\nimport ir.tdaapp.diako.shaar.R;\r\n\r\npublic class CarListFragment extends CarBaseFragment implements View.OnClickListener, CarListFragmentService {\r\n\r\n  public static final String TAG = \"CarListFragment\";\r\n\r\n  private CarListFragmentPresenter presenter;\r\n\r\n  private RecyclerView carList, chipsList;\r\n  private ImageButton back, filter;\r\n  private ProgressBar loading;\r\n\r\n  private LinearLayoutManager chipsManager;\r\n\r\n  private CarListAdapter carAdapter;\r\n  private ChipsListAdapter chipsAdapter;\r\n\r\n  @Nullable\r\n  @Override\r\n  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\r\n    View view = inflater.inflate(R.layout.fragment_car_list, container, false);\r\n\r\n    findView(view);\r\n    implement();\r\n\r\n    return view;\r\n  }\r\n\r\n  private void findView(View view) {\r\n    presenter = new CarListFragmentPresenter(getContext(), this);\r\n\r\n    carAdapter = new CarListAdapter(getContext());\r\n    chipsAdapter = new ChipsListAdapter(getContext());\r\n\r\n    carList = view.findViewById(R.id.carList);\r\n    chipsList = view.findViewById(R.id.carChipsList);\r\n    back = view.findViewById(R.id.imgCarListBack);\r\n    filter = view.findViewById(R.id.imgCarListFilter);\r\n    loading = view.findViewById(R.id.carListLoading);\r\n\r\n    chipsManager = new LinearLayoutManager(getContext());\r\n    chipsManager.setOrientation(RecyclerView.HORIZONTAL);\r\n  }\r\n\r\n  private void implement() {\r\n    presenter.start();\r\n\r\n    chipsList.setLayoutManager(chipsManager);\r\n    carList.setLayoutManager(new LinearLayoutManager(getContext()));\r\n\r\n    back.setOnClickListener(this);\r\n    filter.setOnClickListener(this);\r\n  }\r\n\r\n  @Override\r\n  public void onClick(View v) {\r\n    switch (v.getId()) {\r\n      case R.id.imgCarListBack:\r\n        getActivity().onBackPressed();\r\n        break;\r\n      case R.id.imgCarListFilter:\r\n        break;\r\n    }\r\n  }\r\n\r\n  @Override\r\n  public void onCarReceived(CarListModel model) {\r\n    carAdapter.add(model);\r\n  }\r\n\r\n  @Override\r\n  public void onChipsReceived(CarChipsListModel model) {\r\n    chipsAdapter.add(model);\r\n  }\r\n\r\n  @Override\r\n  public void onPresenterStart() {\r\n    carList.setAdapter(carAdapter);\r\n    chipsList.setAdapter(chipsAdapter);\r\n  }\r\n\r\n  @Override\r\n  public void onError(String s) {\r\n\r\n  }\r\n\r\n  @Override\r\n  public void onFinish() {\r\n\r\n  }\r\n\r\n  @Override\r\n  public void loadingState(boolean state) {\r\n    loading.setVisibility(state ? View.VISIBLE : View.GONE);\r\n    carList.setVisibility(state ? View.GONE : View.VISIBLE);\r\n    chipsList.setVisibility(state ? View.GONE : View.VISIBLE);\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarListFragment.java	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarListFragment.java	(date 1619934323607)
+@@ -9,10 +9,7 @@
+ 
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+-import ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;
+-import ir.tdaapp.diako.shaar.Cars.Model.Adapters.ChipsListAdapter;
+ import ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;
+ import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
+ import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
+@@ -31,11 +28,6 @@
+   private ImageButton back, filter;
+   private ProgressBar loading;
+ 
+-  private LinearLayoutManager chipsManager;
+-
+-  private CarListAdapter carAdapter;
+-  private ChipsListAdapter chipsAdapter;
+-
+   @Nullable
+   @Override
+   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+@@ -50,24 +42,15 @@
+   private void findView(View view) {
+     presenter = new CarListFragmentPresenter(getContext(), this);
+ 
+-    carAdapter = new CarListAdapter(getContext());
+-    chipsAdapter = new ChipsListAdapter(getContext());
+-
+     carList = view.findViewById(R.id.carList);
+     chipsList = view.findViewById(R.id.carChipsList);
+     back = view.findViewById(R.id.imgCarListBack);
+     filter = view.findViewById(R.id.imgCarListFilter);
+     loading = view.findViewById(R.id.carListLoading);
+-
+-    chipsManager = new LinearLayoutManager(getContext());
+-    chipsManager.setOrientation(RecyclerView.HORIZONTAL);
+   }
+ 
+   private void implement() {
+-    presenter.start();
+-
+-    chipsList.setLayoutManager(chipsManager);
+-    carList.setLayoutManager(new LinearLayoutManager(getContext()));
++    //presenter.start();
+ 
+     back.setOnClickListener(this);
+     filter.setOnClickListener(this);
+@@ -77,7 +60,7 @@
+   public void onClick(View v) {
+     switch (v.getId()) {
+       case R.id.imgCarListBack:
+-        getActivity().onBackPressed();
++        ((CarActivity) getActivity()).onBackPressed();
+         break;
+       case R.id.imgCarListFilter:
+         break;
+@@ -86,18 +69,17 @@
+ 
+   @Override
+   public void onCarReceived(CarListModel model) {
+-    carAdapter.add(model);
++
+   }
+ 
+   @Override
+   public void onChipsReceived(CarChipsListModel model) {
+-    chipsAdapter.add(model);
++
+   }
+ 
+   @Override
+   public void onPresenterStart() {
+-    carList.setAdapter(carAdapter);
+-    chipsList.setAdapter(chipsAdapter);
++
+   }
+ 
+   @Override
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Activities/CarActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.View.Activities;\r\n\r\nimport androidx.annotation.AnimRes;\r\nimport androidx.annotation.AnimatorRes;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentManager;\r\nimport androidx.fragment.app.FragmentTransaction;\r\nimport ir.tdaapp.diako.shaar.Adapter.DBAdapter;\r\nimport ir.tdaapp.diako.shaar.Cars.View.Fragments.AddCarFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.View.Fragments.CarListFragment;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragmentCityGuide;\r\nimport ir.tdaapp.diako.shaar.R;\r\n\r\nimport android.os.Bundle;\r\n\r\npublic class CarActivity extends AppCompatActivity {\r\n\r\n  DBAdapter dbAdapter;\r\n\r\n  @Override\r\n  protected void onCreate(Bundle savedInstanceState) {\r\n    super.onCreate(savedInstanceState);\r\n    setContentView(R.layout.activity_car);\r\n\r\n    dbAdapter=new DBAdapter(this);\r\n\r\n    onAddFragment(new CarListFragment(), 0,0,false, CarListFragment.TAG);\r\n  }\r\n\r\n\r\n  public void onAddFragment(Fragment fragment,\r\n                            @AnimatorRes @AnimRes int animEnter,\r\n                            @AnimatorRes @AnimRes int animExit,\r\n                            boolean backStack, String fragmentTAG) {\r\n\r\n    FragmentManager fragmentManager = getSupportFragmentManager();\r\n    FragmentTransaction transaction = fragmentManager.beginTransaction();\r\n\r\n    //اگر ورودی های انیمیشن غیر صفر باشند انیمیشن ها را اضافه می کند\r\n    if (animEnter != 0 && animExit != 0) {\r\n      transaction.setCustomAnimations(animEnter, animExit, animEnter, animExit);\r\n    }\r\n\r\n    //در اینجا فرگمنت اضافه می شود\r\n    transaction.add(R.id.carFrameLayout, fragment, fragmentTAG);\r\n\r\n    //در اینجا فرگمنت را به پشته اضافه می کند\r\n    if (backStack) {\r\n      transaction.addToBackStack(null);\r\n    }\r\n\r\n    //در اینجا فرگمنت نمایش داده می شود\r\n    transaction.commit();\r\n  }\r\n\r\n  public DBAdapter getAdapter(){\r\n    return dbAdapter;\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Activities/CarActivity.java	(revision 6aa8a2b77ff0a653a8baccde88512903d27e5dbb)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Activities/CarActivity.java	(date 1619934366500)
+@@ -7,7 +7,6 @@
+ import androidx.fragment.app.FragmentManager;
+ import androidx.fragment.app.FragmentTransaction;
+ import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
+-import ir.tdaapp.diako.shaar.Cars.View.Fragments.AddCarFragment;
+ import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarListFragment;
+ import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragmentCityGuide;
+ import ir.tdaapp.diako.shaar.R;
