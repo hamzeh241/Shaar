@@ -120,7 +120,6 @@ public class CategoryItemDetailsFragmentPresenter {
       @Override
       public void onError(@NonNull Throwable e) {
         rateService.onRateSendingState(false, "خطا در ارتباط");
-
       }
     });
   }

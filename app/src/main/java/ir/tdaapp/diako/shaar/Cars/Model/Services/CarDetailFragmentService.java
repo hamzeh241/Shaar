@@ -8,7 +8,7 @@ public interface CarDetailFragmentService {
 
     void onPresenterStart();
 
-    void onError();
+    void onError(String error);
 
     void onFinish();
 

@@ -9,11 +9,13 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.ChipsListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;
+import ir.tdaapp.diako.shaar.Cars.Model.Services.onCarListClickListener;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
@@ -68,6 +70,14 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
     chipsList.setLayoutManager(chipsManager);
     carList.setLayoutManager(new LinearLayoutManager(getContext()));
+    carAdapter.setClickListener((model, position) -> {
+      CarDeatailFragment fragment = new CarDeatailFragment();
+      Bundle bundle = new Bundle();
+      bundle.putInt("ID", model.getId());
+      fragment.setArguments(bundle);
+
+      ((CarActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CarDeatailFragment.TAG);
+    });
 
     back.setOnClickListener(this);
     filter.setOnClickListener(this);
