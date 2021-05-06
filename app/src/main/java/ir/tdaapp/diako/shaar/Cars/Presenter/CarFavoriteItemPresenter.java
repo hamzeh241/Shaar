@@ -46,7 +46,7 @@ public class CarFavoriteItemPresenter {
 
             @Override
             public void onError(@NonNull Throwable e) {
-
+                    service.onError(e.getMessage());
             }
         });
 

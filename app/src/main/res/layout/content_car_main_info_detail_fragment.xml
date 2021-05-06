@@ -41,7 +41,7 @@
                     app:tint="@color/black" />
 
                 <TextView
-                    android:id="@+id/txt_car_body_status"
+                    android:id="@+id/txt_car_body_status_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"

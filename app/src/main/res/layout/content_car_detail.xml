@@ -21,7 +21,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="4dp"
             android:layout_marginRight="8dp"
-            android:text="@string/brandAndModel" />
+            android:text="@string/brand" />
 
         <TextView
             android:id="@+id/txt_car_brand"
@@ -40,43 +40,18 @@
         android:layout_below="@id/relative1"
         android:background="@color/line" />
 
-    <RelativeLayout
-        android:id="@+id/relative2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_below="@id/relative1"
-        android:layout_marginTop="4dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/CarBodySituation" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/carDetails"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/CarMadeYaer" />
-
-    </RelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/relative2"
+        android:layout_below="@id/relative1"
         android:background="@color/line" />
 
     <RelativeLayout
         android:id="@+id/relative3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/relative2"
+        android:layout_below="@id/relative1"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="4dp">
 
@@ -266,6 +241,76 @@
 
     </RelativeLayout>
 
+
+
+    <RelativeLayout
+        android:id="@+id/relative10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative8"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/exchange" />
+
+        <TextView
+            android:id="@+id/txt_car_exchange"
+            style="@style/carDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/CarMadeYaer" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/relative10"
+        android:background="@color/line" />
+
+
+    <RelativeLayout
+        android:id="@+id/relative11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative10"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/address" />
+
+        <TextView
+            android:id="@+id/txt_car_address"
+            style="@style/carDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/CarMadeYaer" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/relative11"
+        android:background="@color/line" />
+
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -276,7 +321,7 @@
         android:id="@+id/relative9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/relative8"
+        android:layout_below="@id/relative11"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="4dp">
 

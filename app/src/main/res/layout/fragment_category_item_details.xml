@@ -1,147 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="#FFF"
-  android:id="@+id/categoryItemDetailsRootLayout"
-  android:fitsSystemWindows="true">
-
-  <com.google.android.material.appbar.AppBarLayout
-    android:id="@+id/appBarLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/categoryItemDetailsRootLayout"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:fitsSystemWindows="true">
 
-    <com.google.android.material.appbar.CollapsingToolbarLayout
-      android:id="@+id/collapsing_toolbar_layout"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:contentScrim="@color/colorRed"
-      app:expandedTitleGravity="top"
-      app:expandedTitleMarginEnd="64dp"
-      app:expandedTitleMarginStart="48dp"
-      app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-      <RelativeLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
-        <ImageButton
-          android:id="@+id/imgSliderRefresh"
-          android:layout_width="32dp"
-          android:layout_height="32dp"
-          android:layout_centerInParent="true"
-          android:background="?selectableItemBackgroundBorderless"
-          android:clickable="true"
-          android:focusable="true"
-          app:srcCompat="@drawable/ic_baseline_refresh_24" />
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/colorRed"
+            app:expandedTitleGravity="top"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <androidx.viewpager2.widget.ViewPager2
-          android:id="@+id/sliderCategoryItemDetails"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          app:layout_collapseMode="parallax"
-          app:layout_collapseParallaxMultiplier="0.7" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
 
-        <ImageView
-          android:id="@+id/imgSliderCategoryForward"
-          android:layout_width="32dp"
-          android:layout_height="32dp"
-          android:layout_alignParentRight="true"
-          android:layout_centerVertical="true"
-          android:background="#B38C8C8C"
-          android:padding="4dp"
-          app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+                <ImageButton
+                    android:id="@+id/imgSliderRefresh"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerInParent="true"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:srcCompat="@drawable/ic_baseline_refresh_24"
+                    />
 
-        <ImageView
-          android:id="@+id/imgSliderCategoryBack"
-          android:layout_width="32dp"
-          android:layout_height="32dp"
-          android:layout_alignParentLeft="true"
-          android:layout_centerVertical="true"
-          android:background="#B38C8C8C"
-          android:padding="4dp"
-          app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/sliderCategoryItemDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7" />
 
-      </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imgSliderCategoryForward"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="#B38C8C8C"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
-      <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+                <ImageView
+                    android:id="@+id/imgSliderCategoryBack"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="#B38C8C8C"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/imgItemDetailsToggleFavorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="?selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_collapseMode="pin" >
-        <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-          <ImageButton
-            android:id="@+id/imgItemDetailsToggleFavorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="?selectableItemBackgroundBorderless"
-            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
-        </RelativeLayout>
-      </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-  </com.google.android.material.appbar.AppBarLayout>
-
-  <androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    android:clipToPadding="false"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:gravity="center"
-      android:orientation="vertical">
-
-      <ProgressBar
-        android:id="@+id/categoryItemDetailsLoading"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp" />
+            <ProgressBar
+                android:id="@+id/categoryItemDetailsLoading"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp" />
 
 
-      <include layout="@layout/content_item_details_title" />
+            <include layout="@layout/content_item_details_title" />
 
-      <include layout="@layout/content_item_details_contact" />
+            <include layout="@layout/content_item_details_contact" />
 
-      <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_marginTop="16dp"
-        android:background="#D5D5D5" />
+            <ImageView
+                android:id="@+id/imageView25"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="16dp"
+                android:background="#D5D5D5" />
 
-      <include layout="@layout/content_item_details_description" />
+            <include layout="@layout/content_item_details_description" />
 
-      <ImageView
-        android:id="@+id/imageView28"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_marginTop="16dp"
-        android:background="#D5D5D5" />
+            <ImageView
+                android:id="@+id/imageView28"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="16dp"
+                android:background="#D5D5D5" />
 
-      <include layout="@layout/content_item_details_photos"/>
+            <include layout="@layout/content_item_details_photos" />
 
-      <ImageView
-        android:id="@+id/imageView29"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_marginTop="16dp"
-        android:background="#D5D5D5" />
+            <ImageView
+                android:id="@+id/imageView29"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="16dp"
+                android:background="#D5D5D5" />
 
-      <include layout="@layout/content_item_details_comment"/>
+            <include layout="@layout/content_item_details_comment" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-  </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
