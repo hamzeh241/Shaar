@@ -29,7 +29,7 @@ public class CarFavoriteitemsApi extends CarBaseApi {
                     for (int i : ids) {
                         array.put(i);
                     }
-                    postJsonArrayVolley = new PostJsonArrayVolley(API_URL + "Car/GetFavoritesCar", array, resault -> {
+                    postJsonArrayVolley = new PostJsonArrayVolley(API_URL + "Car/PostFavoritesCar", array, resault -> {
 
                         if (resault.getResault() == ResaultCode.Success) {
 

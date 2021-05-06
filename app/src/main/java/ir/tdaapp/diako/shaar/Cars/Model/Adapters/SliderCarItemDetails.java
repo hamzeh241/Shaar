@@ -49,7 +49,7 @@ public class SliderCarItemDetails extends RecyclerView.Adapter<SliderCarItemDeta
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     CarDetailsPhotoModel item = models.get(position);
     Glide.with(context)
-      .load(CarBaseApi.API_IMAGE + item.getImageName())
+      .load(CarBaseApi.API_IMAGE_CAR+ item.getImageName())
       .listener(new RequestListener<Drawable>() {
         @Override
         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

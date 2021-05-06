@@ -4,5 +4,6 @@ public class CarBaseApi {
 
   public static final String API_URL = "https://api.shaarapp.ir/api/";
 
-  public static final String API_IMAGE = "https://api.shaarapp.ir/api/Car/PostImageCar";
+  public static final String API_IMAGE = "https://api.shaarapp.ir/CityGuideImage/Items/";
+  public static final String API_IMAGE_CAR = "https://api.shaarapp.ir/CarImage/";
 }
