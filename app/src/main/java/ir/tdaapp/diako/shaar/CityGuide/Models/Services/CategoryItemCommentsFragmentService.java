@@ -1,7 +1,7 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Services;
 
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 
 public interface CategoryItemCommentsFragmentService {
 
@@ -11,7 +11,7 @@ public interface CategoryItemCommentsFragmentService {
 
   void onLoading(boolean state);
 
-  void onCommentPostFinished(CategoryResultCommentsViewModel model);
+  void onCommentPostFinished(ResultViewModel model);
 
   void onCommentPostLoading(boolean state);
 

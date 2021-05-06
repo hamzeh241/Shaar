@@ -7,7 +7,7 @@ import java.util.List;
 
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 
 public interface AddItemFragmentService {
 
@@ -23,7 +23,7 @@ public interface AddItemFragmentService {
 
   void onCategoryReceived(List<CategoryModel> model);
 
-  void onResultReceived(CategoryResultCommentsViewModel model);
+  void onResultReceived(ResultViewModel model);
 
   void onStoragePermissionGranted();
 

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -32,6 +34,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
   private RecyclerView carList, chipsList;
   private ImageButton back, filter;
   private ProgressBar loading;
+  private FloatingActionButton addCar;
 
   private LinearLayoutManager chipsManager;
 
@@ -60,6 +63,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     back = view.findViewById(R.id.imgCarListBack);
     filter = view.findViewById(R.id.imgCarListFilter);
     loading = view.findViewById(R.id.carListLoading);
+    addCar = view.findViewById(R.id.fabAddCar);
 
     chipsManager = new LinearLayoutManager(getContext());
     chipsManager.setOrientation(RecyclerView.HORIZONTAL);
@@ -81,6 +85,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
     back.setOnClickListener(this);
     filter.setOnClickListener(this);
+    addCar.setOnClickListener(this);
   }
 
   @Override
@@ -91,6 +96,11 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
         break;
       case R.id.imgCarListFilter:
         break;
+
+      case R.id.fabAddCar:
+        ((CarActivity) getActivity()).onAddFragment(new AddCarFragment(), 0, 0, true, AddCarFragment.TAG);
+        break;
+
     }
   }
 

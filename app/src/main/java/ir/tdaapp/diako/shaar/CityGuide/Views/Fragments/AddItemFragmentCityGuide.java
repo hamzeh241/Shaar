@@ -28,7 +28,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.Validation;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.AddItemPhotosModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ItemStructureViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.AddItemFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
@@ -179,11 +179,11 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
   }
 
   @Override
-  public void onResultReceived(CategoryResultCommentsViewModel model) {
+  public void onResultReceived(ResultViewModel model) {
     if (model.getStatus()) {
       Toasty.success(getContext(), model.getTitle()).show();
     } else {
-      Toasty.error(getContext(), model.getTitle() + " - " + model.getCode()).show();
+      Toasty.error(getContext(), model.getTitle()).show();
     }
   }
 
@@ -231,11 +231,11 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
 
   private boolean checkValidation() {
     boolean a = Validation.Required(title, "نام کسب و کار باید پر شود");
-    boolean b = Validation.Required(cellphone, "نام کسب و کار باید پر شود");
-    boolean c = Validation.Required(description, "نام کسب و کار باید پر شود");
-    boolean d = Validation.Required(tel1, "نام کسب و کار باید پر شود");
-    boolean e = Validation.Required(instaId, "نام کسب و کار باید پر شود");
-    boolean f = Validation.Required(telegramId, "نام کسب و کار باید پر شود");
+    boolean b = Validation.Required(cellphone, "شماره باید پر شود");
+    boolean c = Validation.Required(description, "توضیحات باید پر شود");
+    boolean d = Validation.Required(tel1, "تلفن اول باید پر شود");
+    boolean e = Validation.Required(instaId, "آیدی اینستاگرام باید پر شود");
+    boolean f = Validation.Required(telegramId, "آیدی تلگرام باید پر شود");
     boolean g = checkImagesUploaded();
 
     return a && b && c && d && e && f && g;

@@ -36,7 +36,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.ZoomOutPageTransformer;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultRatingViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryItemDetailsFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
@@ -331,7 +331,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     volley = new PostJsonObjectVolley(CityGuideBaseApi.API_URL + "CityGuide/LikeComment", object, resault -> {
       if (resault.getResault() == ResaultCode.Success) {
         JSONObject resultObject = resault.getObject();
-        CategoryResultCommentsViewModel viewModel = new CategoryResultCommentsViewModel();
+        ResultViewModel viewModel = new ResultViewModel();
         try {
           viewModel.setTitle(resultObject.getString("Titel"));
           viewModel.setCode(resultObject.getInt("Code"));

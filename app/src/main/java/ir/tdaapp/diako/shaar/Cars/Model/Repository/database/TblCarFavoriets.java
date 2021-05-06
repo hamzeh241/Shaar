@@ -1,4 +1,4 @@
-package ir.tdaapp.diako.shaar.Cars.Model.Repository.database;
+package ir.tdaapp.diako.shaar.Cars.Model.Repository.Database;
 
 import android.content.Context;
 import android.database.Cursor;

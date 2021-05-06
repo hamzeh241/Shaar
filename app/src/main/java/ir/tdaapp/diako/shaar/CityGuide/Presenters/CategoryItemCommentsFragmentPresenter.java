@@ -15,7 +15,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryItemCommentsApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemCommentsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 
 public class CategoryItemCommentsFragmentPresenter {
 
@@ -70,11 +70,11 @@ public class CategoryItemCommentsFragmentPresenter {
   public void sendComment(String text, int itemId, int userId) {
     JSONObject object = createObject(text, itemId, userId);
     service.onCommentPostLoading(true);
-    Single<CategoryResultCommentsViewModel> data = api.sendComment(object);
+    Single<ResultViewModel> data = api.sendComment(object);
 
-    getCommentsDisposable = data.subscribeWith(new DisposableSingleObserver<CategoryResultCommentsViewModel>() {
+    getCommentsDisposable = data.subscribeWith(new DisposableSingleObserver<ResultViewModel>() {
       @Override
-      public void onSuccess(CategoryResultCommentsViewModel model) {
+      public void onSuccess(ResultViewModel model) {
         Log.i("LOG", "" + model.getTitle());
         service.onCommentPostLoading(false);
         service.onCommentPostFinished(model);

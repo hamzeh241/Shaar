@@ -27,7 +27,7 @@ public class CarActivity extends AppCompatActivity {
 
     dbAdapter=new DBAdapter(this);
 
-    onAddFragment(new CarDeatailFragment(), 0,0,false, CarDeatailFragment.TAG);
+    onAddFragment(new CarListFragment(), 0,0,false, CarListFragment.TAG);
   }
 
 

@@ -12,7 +12,7 @@ import io.reactivex.Single;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
@@ -22,7 +22,7 @@ public class AddItemApiCityGuide extends CityGuideBaseApi {
   PostJsonObjectVolley volley;
   GetJsonArrayVolley getCategoriesVolley, getFiltersVolley;
 
-  public Single<CategoryResultCommentsViewModel> sendData(JSONObject object) {
+  public Single<ResultViewModel> sendData(JSONObject object) {
     return Single.create(emitter -> {
       new Thread(() -> {
         try {
@@ -31,7 +31,7 @@ public class AddItemApiCityGuide extends CityGuideBaseApi {
 
             if (resault.getResault() == ResaultCode.Success) {
               JSONObject jsonObject = resault.getObject();
-              CategoryResultCommentsViewModel model = new CategoryResultCommentsViewModel();
+              ResultViewModel model = new ResultViewModel();
               try {
                 model.setTitle(jsonObject.getString("Titel"));
                 model.setStatus(jsonObject.getBoolean("Status"));

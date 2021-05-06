@@ -11,7 +11,7 @@ import java.util.List;
 import io.reactivex.Single;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonArray;
 import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonArrayVolley;
@@ -72,7 +72,7 @@ public class CategoryItemCommentsApiCityGuide extends CityGuideBaseApi {
     });
   }
 
-  public Single<CategoryResultCommentsViewModel> sendComment(JSONObject object) {
+  public Single<ResultViewModel> sendComment(JSONObject object) {
     return Single.create(emitter -> {
       new Thread(() -> {
         try {
@@ -82,7 +82,7 @@ public class CategoryItemCommentsApiCityGuide extends CityGuideBaseApi {
 
             if (resault.getResault() == ResaultCode.Success) {
               JSONObject jsonObject = resault.getObject();
-              CategoryResultCommentsViewModel result = new CategoryResultCommentsViewModel();
+              ResultViewModel result = new ResultViewModel();
 
               try {
                 result.setStatus(jsonObject.getBoolean("Status"));

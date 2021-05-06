@@ -30,7 +30,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Services.AddItemFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ItemStructureViewModel;
 import ir.tdaapp.diako.shaar.ETC.FileManger;
 import ir.tdaapp.diako.shaar.R;
@@ -125,12 +125,12 @@ public class AddItemFragmentPresenter {
       e.printStackTrace();
     }
 
-    Single<CategoryResultCommentsViewModel> data = api.sendData(object);
+    Single<ResultViewModel> data = api.sendData(object);
 
-    sendDetailsDisposable = data.subscribeWith(new DisposableSingleObserver<CategoryResultCommentsViewModel>() {
+    sendDetailsDisposable = data.subscribeWith(new DisposableSingleObserver<ResultViewModel>() {
 
       @Override
-      public void onSuccess(@NonNull CategoryResultCommentsViewModel model) {
+      public void onSuccess(@NonNull ResultViewModel model) {
         service.onDataSendingState(false);
         service.onResultReceived(model);
       }

@@ -23,7 +23,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemCommentsFragm
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultCommentsViewModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryItemCommentsFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.MessageDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
@@ -103,7 +103,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
   }
 
   @Override
-  public void onCommentPostFinished(CategoryResultCommentsViewModel model) {
+  public void onCommentPostFinished(ResultViewModel model) {
     if (model.getStatus()) {
       Toasty.success(getContext(), getString(R.string.commentPostedSuccessfully)).show();
       presenter.start(itemId, userId);
@@ -135,7 +135,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
     volley = new PostJsonObjectVolley(CityGuideBaseApi.API_URL + "CityGuide/LikeComment", object, resault -> {
       if (resault.getResault() == ResaultCode.Success) {
         JSONObject resultObject = resault.getObject();
-        CategoryResultCommentsViewModel viewModel = new CategoryResultCommentsViewModel();
+        ResultViewModel viewModel = new ResultViewModel();
         try {
           viewModel.setTitle(resultObject.getString("Titel"));
           viewModel.setCode(resultObject.getInt("Code"));

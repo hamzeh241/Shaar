@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import ir.tdaapp.diako.shaar.Cars.Model.Repository.database.TblCarFavoriets;
+import ir.tdaapp.diako.shaar.Cars.Model.Repository.Database.TblCarFavoriets;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
@@ -65,6 +65,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
   private void findView(View view) {
     presenter = new CarDetailFragmentPresenter(getContext(), this);
+    itemId=getArguments().getInt("ID");
     //car main info
     carName = view.findViewById(R.id.car_name_detail_fragment);
     productionYear = view.findViewById(R.id.txt_production_yaer);
@@ -104,7 +105,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
   }
 
   private void implement() {
-    presenter.start(1);
+    presenter.start(itemId);
     callExpert.setOnClickListener(this);
     textExpert.setOnClickListener(this);
     showMoreDescribe.setOnClickListener(this);
