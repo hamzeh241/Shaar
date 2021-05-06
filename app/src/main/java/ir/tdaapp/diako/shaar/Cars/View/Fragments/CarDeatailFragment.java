@@ -46,7 +46,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
             expertName, txtExchange, address;
 
     CircleImageView circleImageView;
-    ImageButton favorite, refresh;
+    ImageButton favorite, refresh, btnBack;
     ImageView back, forward;
     ShimmerFrameLayout loading;
     Button textExpert, callExpert, showMoreDescribe;
@@ -109,13 +109,12 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         callExpert = view.findViewById(R.id.btn_call_expert);
         textExpert = view.findViewById(R.id.btn_text_expert);
         refresh = view.findViewById(R.id.imgBtn_refresh_car);
+        btnBack = view.findViewById(R.id.imageButton_details_car);
 
         loading = view.findViewById(R.id.viewPager_loading);
         root = view.findViewById(R.id.car_detail_root_layout);
         viewPager = view.findViewById(R.id.viewPager_car_detail);
         tblCarFavoriets = new TblCarFavoriets(getContext());
-
-
 
 
         CarDetailModel model = new CarDetailModel();
@@ -133,6 +132,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         refresh.setOnClickListener(this);
         back.setOnClickListener(this);
         forward.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
         viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
@@ -182,6 +182,10 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+            case R.id.imageButton_details_car:
+                getActivity().onBackPressed();
+                break;
         }
     }
 
@@ -193,7 +197,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     //ارسال پیام به کارشناس
     private void sendTextToExpert() {
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.setData(Uri.parse("sms: 9540644 " ));
+        sendIntent.setData(Uri.parse("sms: 9540644 "));
         sendIntent.putExtra("sms_body", "this is a test message");
         startActivity(sendIntent);
     }
@@ -243,7 +247,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         }
 
 
-        viewPagerAdapter = new SliderCarItemDetails(getContext(),model.getPhotos(),this);
+        viewPagerAdapter = new SliderCarItemDetails(getContext(), model.getPhotos(), this);
 
         viewPager.setAdapter(viewPagerAdapter);
 
