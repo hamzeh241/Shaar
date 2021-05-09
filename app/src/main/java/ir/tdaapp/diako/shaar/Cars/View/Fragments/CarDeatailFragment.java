@@ -242,7 +242,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         }
 
         //ست کردن عکس کارشناس
-        String ImageUrl = CarBaseApi.API_IMAGE_CAR_EXPERT + "ImageSave/pic/" + model.getExpertImage();
+        String ImageUrl = CarBaseApi.API_IMAGE_CAR_EXPERT + "ImageSave/" + model.getExpertImage();
         Glide.with(getContext()).load(ImageUrl).into(circleImageView);
 
         descriptionText = model.getDescription();
