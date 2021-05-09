@@ -26,7 +26,7 @@ public class CarFavoriteItemPresenter {
     public CarFavoriteItemPresenter(Context context, CarFavoriteItemfragmentService service) {
         this.context = context;
         this.service = service;
-        this.api = new CarFavoriteitemsApi();
+        api = new CarFavoriteitemsApi();
         this.tblCarFavoriets = new TblCarFavoriets(context);
     }
 
@@ -46,7 +46,7 @@ public class CarFavoriteItemPresenter {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                    service.onError(e.getMessage());
+                service.onError(e.getMessage());
             }
         });
 

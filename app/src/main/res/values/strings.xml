@@ -8,7 +8,7 @@
     <string name="SearchSaved">جستجوی ذخیره شده</string>
     <string name="Like">لیست مورد علاقه</string>
     <string name="AdManagement">مدیریت آگهی</string>
-    <string name="AddHome">افزودن ملک</string>
+    <string name="AddHome"> املاک </string>
     <string name="Add_Property">ملک اضافه کنید</string>
     <string name="MyHome">املاک من</string>
     <string name="Telephone">تماس با ما</string>
@@ -16,9 +16,9 @@
     <string name="AboutMe">درباره ما</string>
     <string name="OpenNavigation">بازشدن منو</string>
     <string name="CloseNavigation">بسته شدن منو</string>
-    <string name="SamaneShaar">جامع‌ترین سامانه آگهی املاک سنندج</string>
-    <string name="SearchHome">جستجوی ملک</string>
-    <string name="NewsHome">جدید‌ترین املاک</string>
+    <string name="SamaneShaar">جامع‌ترین بانک اطلاعاتی سنندج</string>
+    <string name="SearchHome">خودرو</string>
+    <string name="NewsHome">بانک اطلاعاتی</string>
     <string name="Help">راهنما</string>
     <string name="Next">بعدی</string>
     <string name="NotAccount_AddAccount">حساب کاربری نداری؟ همین حالا ثبت‌نام کن</string>

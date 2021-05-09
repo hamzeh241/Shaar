@@ -1,5 +1,6 @@
 package ir.tdaapp.diako.shaar.Cars.View.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import ir.tdaapp.diako.shaar.Cars.Model.Services.CarFavoriteItemfragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.Cars.Presenter.CarFavoriteItemPresenter;
+import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.R;
 
@@ -24,7 +26,6 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
 
     public static final String TAG = "CarFavoriteItemsFragment";
     private CarFavoriteItemPresenter presenter;
-    private CarListAdapter carListAdapter;
     private RecyclerView recyclerView;
     private ProgressBar loading;
     private ImageButton brn_back;
@@ -48,7 +49,6 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         adapter = new CarListAdapter(getContext());
         recyclerView = view.findViewById(R.id.recyclear_favorite_car);
         loading = view.findViewById(R.id.car_favorite_loading);
-        carListAdapter = new CarListAdapter(getContext());
         brn_back = view.findViewById(R.id.imageButton_favorite_car);
 
     }
@@ -58,6 +58,17 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         presenter = new CarFavoriteItemPresenter(getContext(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         brn_back.setOnClickListener(this);
+
+
+        adapter.setClickListener((model, position) -> {
+            CarDeatailFragment fragment = new CarDeatailFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("ID", model.getId());
+            fragment.setArguments(bundle);
+            ((CarActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CarDeatailFragment.TAG);
+        });
+
+
     }
 
     @Override

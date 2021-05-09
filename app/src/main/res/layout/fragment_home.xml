@@ -14,13 +14,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorCenteral"
+        android:background="@color/colorCenteral2"
         android:layoutDirection="rtl">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/mtoolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorCenteral"
+            android:background="@color/colorCenteral2"
             android:theme="@style/ToolBarStyle" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,20 +60,14 @@
                     android:weightSum="4">
 
                     <ImageView
-                        android:id="@+id/Home_TextShaa"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
+                        app:srcCompat = "@drawable/useff_title"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
-                        android:src="@drawable/shaar_text"
-                        android:layout_marginBottom="5dp"/>
+                        />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:src="@drawable/city_in_your_hand" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -93,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@drawable/helali"
+                android:background="@drawable/helali2"
                 android:orientation="vertical"
                 android:paddingTop="20dp"
                 android:weightSum="4">
@@ -122,7 +116,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:src="@drawable/ic_add_home" />
+                            android:src="@drawable/ic_homee" />
 
                         <TextView
                             android:id="@+id/Home_AddHomeText"
@@ -156,7 +150,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:src="@drawable/ic_search_home" />
+                            android:src="@drawable/ic_car_main" />
 
                         <TextView
                             android:id="@+id/Home_SearchHometext"
@@ -192,7 +186,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:src="@drawable/ic_news_home" />
+                            android:src="@drawable/b_information" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
