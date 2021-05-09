@@ -1,0 +1,903 @@
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/ViewModels/CarDetailModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.Model.ViewModels;\r\n\r\npublic class CarDetailModel {\r\n    int id;\r\n    String name, productionYear, mileage, carBodyStatus, brand, chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description;\r\n\r\n\r\n    public CarDetailModel(int id, String name, String productionYear, String mileage, String carBodyStatus, String brand, String chasisStatus, String insuranceTime, String gearBox, String ducument, String salesType, String price, String description) {\r\n        this.id = id;\r\n        this.name = name;\r\n        this.productionYear = productionYear;\r\n        this.mileage = mileage;\r\n        this.carBodyStatus = carBodyStatus;\r\n        this.brand = brand;\r\n        this.chasisStatus = chasisStatus;\r\n        this.insuranceTime = insuranceTime;\r\n        this.gearBox = gearBox;\r\n        this.ducument = ducument;\r\n        this.salesType = salesType;\r\n        this.price = price;\r\n        this.description = description;\r\n    }\r\n\r\n    public CarDetailModel() {\r\n\r\n    }\r\n\r\n    public int getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(int id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public void setName(String name) {\r\n        this.name = name;\r\n    }\r\n\r\n    public String getProductionYear() {\r\n        return productionYear;\r\n    }\r\n\r\n    public void setProductionYear(String productionYear) {\r\n        this.productionYear = productionYear;\r\n    }\r\n\r\n    public String getMileage() {\r\n        return mileage;\r\n    }\r\n\r\n    public void setMileage(String mileage) {\r\n        this.mileage = mileage;\r\n    }\r\n\r\n    public String getCarBodyStatus() {\r\n        return carBodyStatus;\r\n    }\r\n\r\n    public void setCarBodyStatus(String carBodyStatus) {\r\n        this.carBodyStatus = carBodyStatus;\r\n    }\r\n\r\n    public String getBrand() {\r\n        return brand;\r\n    }\r\n\r\n    public void setBrand(String brand) {\r\n        this.brand = brand;\r\n    }\r\n\r\n    public String getChasisStatus() {\r\n        return chasisStatus;\r\n    }\r\n\r\n    public void setChasisStatus(String chasisStatus) {\r\n        this.chasisStatus = chasisStatus;\r\n    }\r\n\r\n    public String getInsuranceTime() {\r\n        return insuranceTime;\r\n    }\r\n\r\n    public void setInsuranceTime(String insuranceTime) {\r\n        this.insuranceTime = insuranceTime;\r\n    }\r\n\r\n    public String getGearBox() {\r\n        return gearBox;\r\n    }\r\n\r\n    public void setGearBox(String gearBox) {\r\n        this.gearBox = gearBox;\r\n    }\r\n\r\n    public String getDucument() {\r\n        return ducument;\r\n    }\r\n\r\n    public void setDucument(String ducument) {\r\n        this.ducument = ducument;\r\n    }\r\n\r\n    public String getSalesType() {\r\n        return salesType;\r\n    }\r\n\r\n    public void setSalesType(String salesType) {\r\n        this.salesType = salesType;\r\n    }\r\n\r\n    public String getPrice() {\r\n        return price;\r\n    }\r\n\r\n    public void setPrice(String price) {\r\n        this.price = price;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public void setDescription(String description) {\r\n        this.description = description;\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/ViewModels/CarDetailModel.java	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/Model/ViewModels/CarDetailModel.java	(date 1620042274288)
+@@ -1,132 +1,199 @@
+ package ir.tdaapp.diako.shaar.Cars.Model.ViewModels;
+ 
++import java.util.ArrayList;
++
+ public class CarDetailModel {
+-    int id;
+-    String name, productionYear, mileage, carBodyStatus, brand, chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description;
++  int id;
++  String name, productionYear, mileage, carBodyStatus, brand,
++    chassisStatus, engineStatus, insuranceTime, gearBox, document,
++    salesType, price, description, expertName, expertImage, phone, address;
++  boolean exchange;
++  ArrayList<CarDetailsPhotoModel> photos;
+ 
+ 
+-    public CarDetailModel(int id, String name, String productionYear, String mileage, String carBodyStatus, String brand, String chasisStatus, String insuranceTime, String gearBox, String ducument, String salesType, String price, String description) {
+-        this.id = id;
+-        this.name = name;
+-        this.productionYear = productionYear;
+-        this.mileage = mileage;
+-        this.carBodyStatus = carBodyStatus;
+-        this.brand = brand;
+-        this.chasisStatus = chasisStatus;
+-        this.insuranceTime = insuranceTime;
+-        this.gearBox = gearBox;
+-        this.ducument = ducument;
+-        this.salesType = salesType;
+-        this.price = price;
+-        this.description = description;
+-    }
+-
+-    public CarDetailModel() {
+-
+-    }
++  }
++
++  public CarDetailModel(int id, String name, String productionYear, String mileage, String carBodyStatus, String brand, String chassisStatus, String engineStatus, String insuranceTime, String gearBox, String document, String salesType, String price, String description, String expertName, String expertImage, String phone, String address, boolean exchange, ArrayList<CarDetailsPhotoModel> photos) {
++    this.id = id;
++    this.name = name;
++    this.productionYear = productionYear;
++    this.mileage = mileage;
++    this.carBodyStatus = carBodyStatus;
++    this.brand = brand;
++    this.chassisStatus = chassisStatus;
++    this.engineStatus = engineStatus;
++    this.insuranceTime = insuranceTime;
++    this.gearBox = gearBox;
++    this.document = document;
++    this.salesType = salesType;
++    this.price = price;
++    this.description = description;
++    this.expertName = expertName;
++    this.expertImage = expertImage;
++    this.phone = phone;
++    this.address = address;
++    this.exchange = exchange;
++    this.photos = photos;
++  }
+ 
+-    public int getId() {
+-        return id;
+-    }
++  public int getId() {
++    return id;
++  }
+ 
+-    public void setId(int id) {
+-        this.id = id;
+-    }
++  public void setId(int id) {
++    this.id = id;
++  }
+ 
+-    public String getName() {
+-        return name;
+-    }
++  public String getName() {
++    return name;
++  }
+ 
+-    public void setName(String name) {
+-        this.name = name;
+-    }
++  public void setName(String name) {
++    this.name = name;
++  }
+ 
+-    public String getProductionYear() {
+-        return productionYear;
+-    }
++  public String getProductionYear() {
++    return productionYear;
++  }
+ 
+-    public void setProductionYear(String productionYear) {
+-        this.productionYear = productionYear;
+-    }
++  public void setProductionYear(String productionYear) {
++    this.productionYear = productionYear;
++  }
+ 
+-    public String getMileage() {
+-        return mileage;
+-    }
++  public String getMileage() {
++    return mileage;
++  }
+ 
+-    public void setMileage(String mileage) {
+-        this.mileage = mileage;
+-    }
++  public void setMileage(String mileage) {
++    this.mileage = mileage;
++  }
+ 
+-    public String getCarBodyStatus() {
+-        return carBodyStatus;
+-    }
++  public String getCarBodyStatus() {
++    return carBodyStatus;
++  }
+ 
+-    public void setCarBodyStatus(String carBodyStatus) {
+-        this.carBodyStatus = carBodyStatus;
+-    }
++  public void setCarBodyStatus(String carBodyStatus) {
++    this.carBodyStatus = carBodyStatus;
++  }
+ 
+-    public String getBrand() {
+-        return brand;
+-    }
++  public String getBrand() {
++    return brand;
++  }
+ 
+-    public void setBrand(String brand) {
+-        this.brand = brand;
+-    }
++  public void setBrand(String brand) {
++    this.brand = brand;
++  }
+ 
+-    public String getChasisStatus() {
+-        return chasisStatus;
+-    }
++  public String getChassisStatus() {
++    return chassisStatus;
++  }
+ 
+-    public void setChasisStatus(String chasisStatus) {
+-        this.chasisStatus = chasisStatus;
+-    }
++  public void setChassisStatus(String chassisStatus) {
++    this.chassisStatus = chassisStatus;
++  }
+ 
+-    public String getInsuranceTime() {
+-        return insuranceTime;
+-    }
++  public String getInsuranceTime() {
++    return insuranceTime;
++  }
+ 
+-    public void setInsuranceTime(String insuranceTime) {
+-        this.insuranceTime = insuranceTime;
+-    }
++  public void setInsuranceTime(String insuranceTime) {
++    this.insuranceTime = insuranceTime;
++  }
+ 
+-    public String getGearBox() {
+-        return gearBox;
+-    }
++  public String getGearBox() {
++    return gearBox;
++  }
+ 
+-    public void setGearBox(String gearBox) {
+-        this.gearBox = gearBox;
+-    }
++  public void setGearBox(String gearBox) {
++    this.gearBox = gearBox;
++  }
+ 
+-    public String getDucument() {
+-        return ducument;
+-    }
++  public String getDocument() {
++    return document;
++  }
+ 
+-    public void setDucument(String ducument) {
+-        this.ducument = ducument;
+-    }
++  public void setDocument(String document) {
++    this.document = document;
++  }
+ 
+-    public String getSalesType() {
+-        return salesType;
+-    }
++  public String getSalesType() {
++    return salesType;
++  }
+ 
+-    public void setSalesType(String salesType) {
+-        this.salesType = salesType;
+-    }
++  public void setSalesType(String salesType) {
++    this.salesType = salesType;
++  }
+ 
+-    public String getPrice() {
+-        return price;
+-    }
++  public String getPrice() {
++    return price;
++  }
+ 
+-    public void setPrice(String price) {
+-        this.price = price;
+-    }
++  public void setPrice(String price) {
++    this.price = price;
++  }
+ 
+-    public String getDescription() {
+-        return description;
+-    }
++  public String getDescription() {
++    return description;
++  }
+ 
+-    public void setDescription(String description) {
+-        this.description = description;
+-    }
++  public void setDescription(String description) {
++    this.description = description;
++  }
++
++  public ArrayList<CarDetailsPhotoModel> getPhotos() {
++    return photos;
++  }
++
++  public void setPhotos(ArrayList<CarDetailsPhotoModel> photos) {
++    this.photos = photos;
++  }
++
++  public String getEngineStatus() {
++    return engineStatus;
++  }
++
++  public void setEngineStatus(String engineStatus) {
++    this.engineStatus = engineStatus;
++  }
++
++  public String getExpertName() {
++    return expertName;
++  }
++
++  public void setExpertName(String expertName) {
++    this.expertName = expertName;
++  }
++
++  public String getExpertImage() {
++    return expertImage;
++  }
++
++  public void setExpertImage(String expertImage) {
++    this.expertImage = expertImage;
++  }
++
++  public String getPhone() {
++    return phone;
++  }
++
++  public void setPhone(String phone) {
++    this.phone = phone;
++  }
++
++  public String getAddress() {
++    return address;
++  }
++
++  public void setAddress(String address) {
++    this.address = address;
++  }
++
++  public boolean isExchange() {
++    return exchange;
++  }
++
++  public void setExchange(boolean exchange) {
++    this.exchange = exchange;
++  }
+ }
+ 
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarDeatailFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.View.Fragments;\r\n\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.transition.TransitionManager;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.coordinatorlayout.widget.CoordinatorLayout;\r\nimport androidx.viewpager2.widget.ViewPager2;\r\n\r\nimport com.facebook.shimmer.ShimmerFrameLayout;\r\n\r\nimport de.hdodenhof.circleimageview.CircleImageView;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Repository.database.TblCarFavoriets;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;\r\nimport ir.tdaapp.diako.shaar.R;\r\n\r\npublic class CarDeatailFragment extends CarBaseFragment implements CarDetailFragmentService, View.OnClickListener {\r\n\r\n    public static final String TAG = \"CarDeatailFragment\";\r\n\r\n    int itemId, userId;\r\n\r\n    TextView carName, productionYear, mileage, carBodyStatus, carBodyStatus2, brand, chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description, expertName;\r\n\r\n    CircleImageView circleImageView;\r\n\r\n    ImageButton favorite;\r\n\r\n    ImageView back, forward;\r\n\r\n    ShimmerFrameLayout loading;\r\n\r\n    Button textExpert, callExpert;\r\n\r\n    Button showMoreDescribe;\r\n\r\n    CoordinatorLayout root;\r\n\r\n    ViewPager2 viewPager;\r\n\r\n    String descriptionText;\r\n\r\n    TblCarFavoriets tblCarFavoriets;\r\n\r\n\r\n    @Nullable\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\r\n\r\n        View view = inflater.inflate(R.layout.car_details_fragment, container, false);\r\n\r\n        findView(view);\r\n        implement();\r\n\r\n        return view;\r\n    }\r\n\r\n    private void findView(View view) {\r\n\r\n\r\n        //car main info\r\n        carName = view.findViewById(R.id.car_name_detail_fragment);\r\n        productionYear = view.findViewById(R.id.txt_production_yaer);\r\n        mileage = view.findViewById(R.id.txt_milage_detail);\r\n        carBodyStatus = view.findViewById(R.id.txt_car_body_status);\r\n        carBodyStatus2 = view.findViewById(R.id.txt_car_body_status2);\r\n        brand = view.findViewById(R.id.txt_car_brand);\r\n        chasisStatus = view.findViewById(R.id.tct_car_chasis_status);\r\n        insuranceTime = view.findViewById(R.id.txt_car_insurance_time);\r\n        gearBox = view.findViewById(R.id.txt_car_gearBox_type);\r\n        ducument = view.findViewById(R.id.txt_car_ducument_type);\r\n        salesType = view.findViewById(R.id.txt_car_sales_type);\r\n        price = view.findViewById(R.id.txt_car_price);\r\n\r\n        //other TextViews\r\n        description = view.findViewById(R.id.txt_car_description);\r\n        expertName = view.findViewById(R.id.txt_expert_name);\r\n\r\n        //ImageViews\r\n        circleImageView = view.findViewById(R.id.circle_imageview_expert);\r\n        favorite = view.findViewById(R.id.img_faverite_detail);\r\n        back = view.findViewById(R.id.img_back_viewPager);\r\n        forward = view.findViewById(R.id.img_forward_viewPager);\r\n\r\n        //Buttons\r\n        showMoreDescribe = view.findViewById(R.id.btn_show_more_describe);\r\n        callExpert = view.findViewById(R.id.btn_call_expert);\r\n        textExpert = view.findViewById(R.id.btn_text_expert);\r\n\r\n        loading = view.findViewById(R.id.viewPager_loading);\r\n\r\n        root = view.findViewById(R.id.car_detail_root_layout);\r\n\r\n        viewPager = view.findViewById(R.id.viewPager_car_detail);\r\n\r\n        tblCarFavoriets = new TblCarFavoriets(getContext());\r\n    }\r\n\r\n    private void implement() {\r\n\r\n        loading.startShimmer();\r\n        callExpert.setOnClickListener(this);\r\n        textExpert.setOnClickListener(this);\r\n        showMoreDescribe.setOnClickListener(this);\r\n        favorite.setOnClickListener(this);\r\n\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n\r\n        switch (v.getId()) {\r\n\r\n            case R.id.btn_call_expert:\r\n                dialContactPhone(\"12312345\");\r\n                break;\r\n\r\n            case R.id.btn_text_expert:\r\n                sendTextToExpert();\r\n                break;\r\n\r\n            case R.id.btn_show_more_describe:\r\n\r\n                descriptionText = description.getText().toString();\r\n                if (description.length() > 150) {\r\n                    showMoreDescribe.setVisibility(View.VISIBLE);\r\n                    String subString = descriptionText.substring(0, 150);\r\n                    description.setText(subString);\r\n                } else {\r\n                    showMoreDescribe.setVisibility(View.GONE);\r\n                }\r\n\r\n                TransitionManager.beginDelayedTransition(root);\r\n                description.setText(descriptionText);\r\n                showMoreDescribe.setVisibility(View.GONE);\r\n\r\n\r\n                break;\r\n\r\n            case R.id.img_faverite_detail:\r\n                if (tblCarFavoriets.checkState(itemId)) {\r\n                    tblCarFavoriets.deleteFavorite(itemId);\r\n                    favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24);\r\n                } else {\r\n                    tblCarFavoriets.addToFavorite(itemId);\r\n                    favorite.setImageResource(R.drawable.ic_baseline_favorite_24);\r\n                }\r\n                break;\r\n\r\n        }\r\n\r\n\r\n    }\r\n\r\n    //تماس با کارشناس\r\n    private void dialContactPhone(final String phoneNumber) {\r\n        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts(\"tel\", phoneNumber, null)));\r\n    }\r\n\r\n    //ارسال پیام به کارشناس\r\n    private void sendTextToExpert() {\r\n        Intent sendIntent = new Intent(Intent.ACTION_VIEW);\r\n        sendIntent.setData(Uri.parse(\"sms:\"));\r\n        sendIntent.putExtra(\"sms_body\", \"this is a test message\");\r\n        startActivity(sendIntent);\r\n    }\r\n\r\n    @Override\r\n    public void onCarReceived(CarDetailModel model) {\r\n\r\n\r\n        int resId = tblCarFavoriets.checkState(itemId) ? R.drawable.ic_baseline_favorite_24 : R.drawable.ic_baseline_favorite_border_24;\r\n        favorite.setImageResource(resId);\r\n\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onPresenterStart() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onError() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onFinish() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void loadingState(boolean loading) {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarDeatailFragment.java	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarDeatailFragment.java	(date 1620042274248)
+@@ -26,186 +26,201 @@
+ import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;
+ import ir.tdaapp.diako.shaar.R;
+ 
+-public class CarDeatailFragment extends CarBaseFragment implements CarDetailFragmentService, View.OnClickListener {
++public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageListener, CarDetailFragmentService, View.OnClickListener {
+ 
+-    public static final String TAG = "CarDeatailFragment";
++  public static final String TAG = "CarDeatailFragment";
+ 
+-    int itemId, userId;
++  int itemId, userId;
+ 
+-    TextView carName, productionYear, mileage, carBodyStatus, carBodyStatus2, brand, chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description, expertName;
+-
+-    CircleImageView circleImageView;
+-
+-    ImageButton favorite;
+-
+-    ImageView back, forward;
+-
+-    ShimmerFrameLayout loading;
+-
+-    Button textExpert, callExpert;
+-
+-    Button showMoreDescribe;
+-
+-    CoordinatorLayout root;
+-
+-    ViewPager2 viewPager;
++  TextView carName, productionYear, mileage, carBodyStatus, carBodyStatus2, brand, chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description, expertName;
++  CircleImageView circleImageView;
++  ImageButton favorite;
++  ImageView back, forward;
++  ShimmerFrameLayout loading;
++  Button textExpert, callExpert;
++  Button showMoreDescribe;
++  CoordinatorLayout root;
++  ViewPager2 viewPager;
+ 
+-    String descriptionText;
+-
+-    TblCarFavoriets tblCarFavoriets;
++  String descriptionText;
++  TblCarFavoriets tblCarFavoriets;
+ 
++  CarDetailFragmentPresenter presenter;
+ 
+-    @Nullable
+-    @Override
+-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
++  @Nullable
++  @Override
++  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+ 
+-        View view = inflater.inflate(R.layout.car_details_fragment, container, false);
++    View view = inflater.inflate(R.layout.car_details_fragment, container, false);
+ 
+-        findView(view);
+-        implement();
++    findView(view);
++    implement();
+ 
+-        return view;
+-    }
++    return view;
++  }
+ 
+-    private void findView(View view) {
+-
+-
+-        //car main info
+-        carName = view.findViewById(R.id.car_name_detail_fragment);
+-        productionYear = view.findViewById(R.id.txt_production_yaer);
+-        mileage = view.findViewById(R.id.txt_milage_detail);
+-        carBodyStatus = view.findViewById(R.id.txt_car_body_status);
+-        carBodyStatus2 = view.findViewById(R.id.txt_car_body_status2);
+-        brand = view.findViewById(R.id.txt_car_brand);
+-        chasisStatus = view.findViewById(R.id.tct_car_chasis_status);
+-        insuranceTime = view.findViewById(R.id.txt_car_insurance_time);
+-        gearBox = view.findViewById(R.id.txt_car_gearBox_type);
+-        ducument = view.findViewById(R.id.txt_car_ducument_type);
+-        salesType = view.findViewById(R.id.txt_car_sales_type);
+-        price = view.findViewById(R.id.txt_car_price);
++  private void findView(View view) {
++    presenter = new CarDetailFragmentPresenter(getContext(), this);
++    //car main info
++    carName = view.findViewById(R.id.car_name_detail_fragment);
++    productionYear = view.findViewById(R.id.txt_production_yaer);
++    mileage = view.findViewById(R.id.txt_milage_detail);
++    carBodyStatus = view.findViewById(R.id.txt_car_body_status);
++    carBodyStatus2 = view.findViewById(R.id.txt_car_body_status2);
++    brand = view.findViewById(R.id.txt_car_brand);
++    chasisStatus = view.findViewById(R.id.tct_car_chasis_status);
++    insuranceTime = view.findViewById(R.id.txt_car_insurance_time);
++    gearBox = view.findViewById(R.id.txt_car_gearBox_type);
++    ducument = view.findViewById(R.id.txt_car_ducument_type);
++    salesType = view.findViewById(R.id.txt_car_sales_type);
++    price = view.findViewById(R.id.txt_car_price);
+ 
+-        //other TextViews
+-        description = view.findViewById(R.id.txt_car_description);
+-        expertName = view.findViewById(R.id.txt_expert_name);
++    //other TextViews
++    description = view.findViewById(R.id.txt_car_description);
++    expertName = view.findViewById(R.id.txt_expert_name);
+ 
+-        //ImageViews
+-        circleImageView = view.findViewById(R.id.circle_imageview_expert);
+-        favorite = view.findViewById(R.id.img_faverite_detail);
+-        back = view.findViewById(R.id.img_back_viewPager);
+-        forward = view.findViewById(R.id.img_forward_viewPager);
++    //ImageViews
++    circleImageView = view.findViewById(R.id.circle_imageview_expert);
++    favorite = view.findViewById(R.id.img_faverite_detail);
++    back = view.findViewById(R.id.img_back_viewPager);
++    forward = view.findViewById(R.id.img_forward_viewPager);
+ 
+-        //Buttons
+-        showMoreDescribe = view.findViewById(R.id.btn_show_more_describe);
+-        callExpert = view.findViewById(R.id.btn_call_expert);
+-        textExpert = view.findViewById(R.id.btn_text_expert);
++    //Buttons
++    showMoreDescribe = view.findViewById(R.id.btn_show_more_describe);
++    callExpert = view.findViewById(R.id.btn_call_expert);
++    textExpert = view.findViewById(R.id.btn_text_expert);
+ 
+-        loading = view.findViewById(R.id.viewPager_loading);
++    loading = view.findViewById(R.id.viewPager_loading);
+ 
+-        root = view.findViewById(R.id.car_detail_root_layout);
++    root = view.findViewById(R.id.car_detail_root_layout);
+ 
+-        viewPager = view.findViewById(R.id.viewPager_car_detail);
++    viewPager = view.findViewById(R.id.viewPager_car_detail);
+ 
+-        tblCarFavoriets = new TblCarFavoriets(getContext());
+-    }
++    tblCarFavoriets = new TblCarFavoriets(getContext());
++  }
+ 
+-    private void implement() {
+-
+-        loading.startShimmer();
+-        callExpert.setOnClickListener(this);
+-        textExpert.setOnClickListener(this);
+-        showMoreDescribe.setOnClickListener(this);
+-        favorite.setOnClickListener(this);
+-
+-
+-    }
++  private void implement() {
++    presenter.start(1);
++    callExpert.setOnClickListener(this);
++    textExpert.setOnClickListener(this);
++    showMoreDescribe.setOnClickListener(this);
++    favorite.setOnClickListener(this);
++  }
+ 
+ 
+-    @Override
+-    public void onClick(View v) {
++  @Override
++  public void onClick(View v) {
+ 
+-        switch (v.getId()) {
++    switch (v.getId()) {
+ 
+-            case R.id.btn_call_expert:
+-                dialContactPhone("12312345");
+-                break;
++      case R.id.btn_call_expert:
++        dialContactPhone("12312345");
++        break;
+ 
+-            case R.id.btn_text_expert:
+-                sendTextToExpert();
+-                break;
++      case R.id.btn_text_expert:
++        sendTextToExpert();
++        break;
+ 
+-            case R.id.btn_show_more_describe:
++      case R.id.btn_show_more_describe:
+ 
+-                descriptionText = description.getText().toString();
+-                if (description.length() > 150) {
+-                    showMoreDescribe.setVisibility(View.VISIBLE);
+-                    String subString = descriptionText.substring(0, 150);
+-                    description.setText(subString);
+-                } else {
+-                    showMoreDescribe.setVisibility(View.GONE);
+-                }
++        descriptionText = description.getText().toString();
++        if (description.length() > 150) {
++          showMoreDescribe.setVisibility(View.VISIBLE);
++          String subString = descriptionText.substring(0, 150);
++          description.setText(subString);
++        } else {
++          showMoreDescribe.setVisibility(View.GONE);
++        }
+ 
+-                TransitionManager.beginDelayedTransition(root);
+-                description.setText(descriptionText);
+-                showMoreDescribe.setVisibility(View.GONE);
++        TransitionManager.beginDelayedTransition(root);
++        description.setText(descriptionText);
++        showMoreDescribe.setVisibility(View.GONE);
+ 
+ 
+-                break;
++        break;
+ 
+-            case R.id.img_faverite_detail:
+-                if (tblCarFavoriets.checkState(itemId)) {
+-                    tblCarFavoriets.deleteFavorite(itemId);
+-                    favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+-                } else {
+-                    tblCarFavoriets.addToFavorite(itemId);
+-                    favorite.setImageResource(R.drawable.ic_baseline_favorite_24);
+-                }
+-                break;
++      case R.id.img_faverite_detail:
++        if (tblCarFavoriets.checkState(itemId)) {
++          tblCarFavoriets.deleteFavorite(itemId);
++          favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24);
++        } else {
++          tblCarFavoriets.addToFavorite(itemId);
++          favorite.setImageResource(R.drawable.ic_baseline_favorite_24);
++        }
++        break;
+ 
+-        }
++    }
+ 
+ 
+-    }
++  }
+ 
+-    //تماس با کارشناس
+-    private void dialContactPhone(final String phoneNumber) {
+-        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
+-    }
++  //تماس با کارشناس
++  private void dialContactPhone(final String phoneNumber) {
++    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
++  }
+ 
+-    //ارسال پیام به کارشناس
+-    private void sendTextToExpert() {
+-        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+-        sendIntent.setData(Uri.parse("sms:"));
+-        sendIntent.putExtra("sms_body", "this is a test message");
+-        startActivity(sendIntent);
+-    }
++  //ارسال پیام به کارشناس
++  private void sendTextToExpert() {
++    Intent sendIntent = new Intent(Intent.ACTION_VIEW);
++    sendIntent.setData(Uri.parse("sms:"));
++    sendIntent.putExtra("sms_body", "this is a test message");
++    startActivity(sendIntent);
++  }
+ 
+-    @Override
+-    public void onCarReceived(CarDetailModel model) {
+-
+-
+-        int resId = tblCarFavoriets.checkState(itemId) ? R.drawable.ic_baseline_favorite_24 : R.drawable.ic_baseline_favorite_border_24;
+-        favorite.setImageResource(resId);
++  @Override
++  public void onCarReceived(CarDetailModel model) {
++    int resId = tblCarFavoriets.checkState(itemId) ? R.drawable.ic_baseline_favorite_24 : R.drawable.ic_baseline_favorite_border_24;
++    favorite.setImageResource(resId);
+ 
++    carName.setText(model.getName());
++    productionYear.setText(model.getProductionYear());
++    mileage.setText(model.getMileage());
++    carBodyStatus.setText(model.getCarBodyStatus());
++    carBodyStatus2.setText(model.getCarBodyStatus());
++    brand.setText(model.getBrand());
++    chasisStatus.setText(model.getChassisStatus());
++    insuranceTime.setText(model.getInsuranceTime());
++    gearBox.setText(model.getGearBox());
++    ducument.setText(model.getDocument());
++    salesType.setText(model.getSalesType());
++    price.setText(model.getPrice());
++    description.setText(model.getDescription());
++    expertName.setText(model.getExpertName());
++
++    Glide.with(this)
++      .load(CarBaseApi.API_IMAGE + model.getExpertImage())
++      .placeholder(R.drawable.ic_baseline_sync_24)
++      .error(R.drawable.ic_baseline_running_with_errors_24)
++      .into(circleImageView);
+ 
+-    }
++  }
+ 
+-    @Override
+-    public void onPresenterStart() {
++  @Override
++  public void onPresenterStart() {
+ 
+-    }
++  }
+ 
+-    @Override
+-    public void onError() {
++  @Override
++  public void onError(String error) {
+ 
+-    }
++  }
+ 
+-    @Override
+-    public void onFinish() {
++  @Override
++  public void onFinish() {
+ 
+-    }
++  }
+ 
+-    @Override
+-    public void loadingState(boolean loading) {
++  @Override
++  public void loadingState(boolean load) {
++    if (load) {
++      loading.startShimmer();
++    } else {
++      loading.stopShimmer();
++    }
++  }
++
++  @Override
++  public void onLoadState(boolean successful) {
+ 
+-    }
++  }
+ }
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Activities/CarActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.View.Activities;\r\n\r\nimport androidx.annotation.AnimRes;\r\nimport androidx.annotation.AnimatorRes;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentManager;\r\nimport androidx.fragment.app.FragmentTransaction;\r\nimport ir.tdaapp.diako.shaar.Adapter.DBAdapter;\r\nimport ir.tdaapp.diako.shaar.Cars.View.Fragments.AddCarFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.View.Fragments.CarDeatailFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.View.Fragments.CarFavoriteItemsFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.View.Fragments.CarListFragment;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragmentCityGuide;\r\nimport ir.tdaapp.diako.shaar.R;\r\n\r\nimport android.os.Bundle;\r\n\r\npublic class CarActivity extends AppCompatActivity {\r\n\r\n  DBAdapter dbAdapter;\r\n\r\n  @Override\r\n  protected void onCreate(Bundle savedInstanceState) {\r\n    super.onCreate(savedInstanceState);\r\n    setContentView(R.layout.activity_car);\r\n\r\n    dbAdapter=new DBAdapter(this);\r\n\r\n    onAddFragment(new CarFavoriteItemsFragment(), 0,0,false, CarFavoriteItemsFragment.TAG);\r\n  }\r\n\r\n\r\n  public void onAddFragment(Fragment fragment,\r\n                            @AnimatorRes @AnimRes int animEnter,\r\n                            @AnimatorRes @AnimRes int animExit,\r\n                            boolean backStack, String fragmentTAG) {\r\n\r\n    FragmentManager fragmentManager = getSupportFragmentManager();\r\n    FragmentTransaction transaction = fragmentManager.beginTransaction();\r\n\r\n    //اگر ورودی های انیمیشن غیر صفر باشند انیمیشن ها را اضافه می کند\r\n    if (animEnter != 0 && animExit != 0) {\r\n      transaction.setCustomAnimations(animEnter, animExit, animEnter, animExit);\r\n    }\r\n\r\n    //در اینجا فرگمنت اضافه می شود\r\n    transaction.add(R.id.carFrameLayout, fragment, fragmentTAG);\r\n\r\n    //در اینجا فرگمنت را به پشته اضافه می کند\r\n    if (backStack) {\r\n      transaction.addToBackStack(null);\r\n    }\r\n\r\n    //در اینجا فرگمنت نمایش داده می شود\r\n    transaction.commit();\r\n  }\r\n\r\n  public DBAdapter getAdapter(){\r\n    return dbAdapter;\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Activities/CarActivity.java	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Activities/CarActivity.java	(date 1620041817646)
+@@ -27,7 +27,7 @@
+ 
+     dbAdapter=new DBAdapter(this);
+ 
+-    onAddFragment(new CarFavoriteItemsFragment(), 0,0,false, CarFavoriteItemsFragment.TAG);
++    onAddFragment(new CarDeatailFragment(), 0,0,false, CarDeatailFragment.TAG);
+   }
+ 
+ 
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/Presenter/CarDetailFragmentPresenter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.Presenter;\r\n\r\nimport android.content.Context;\r\n\r\nimport io.reactivex.rxjava3.disposables.Disposable;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;\r\n\r\npublic class CarDetailFragmentPresenter {\r\n\r\n    Context context;\r\n\r\n    CarDetailFragmentService service;\r\n\r\n    Disposable getCarDisposable;\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/Presenter/CarDetailFragmentPresenter.java	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/Presenter/CarDetailFragmentPresenter.java	(date 1620042274265)
+@@ -2,17 +2,50 @@
+ 
+ import android.content.Context;
+ 
+-import io.reactivex.rxjava3.disposables.Disposable;
++import io.reactivex.Single;
++import io.reactivex.disposables.Disposable;
++import io.reactivex.observers.DisposableSingleObserver;
++import ir.tdaapp.diako.shaar.Cars.Model.Repository.Server.CarDetailsApi;
+ import ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;
++import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;
++import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
+ 
+ public class CarDetailFragmentPresenter {
+ 
+-    Context context;
+-
+-    CarDetailFragmentService service;
+-
+-    Disposable getCarDisposable;
++  Context context;
++  CarDetailFragmentService service;
++  CarDetailsApi api;
++  Disposable getCarDisposable;
+ 
++  public CarDetailFragmentPresenter(Context context, CarDetailFragmentService service) {
++    this.context = context;
++    this.service = service;
++    api = new CarDetailsApi();
++  }
++
++  public void start(int itemId) {
++    service.onPresenterStart();
++    service.loadingState(true);
++    getDetails(itemId);
++  }
+ 
++  private void getDetails(int itemId) {
++    Single<CarDetailModel> data = api.getDetails(itemId);
++    service.loadingState(true);
+ 
++    getCarDisposable = data.subscribeWith(new DisposableSingleObserver<CarDetailModel>() {
++      @Override
++      public void onSuccess(CarDetailModel model) {
++        service.onCarReceived(model);
++        service.loadingState(false);
++        service.onFinish();
++      }
++
++      @Override
++      public void onError(Throwable e) {
++        service.loadingState(false);
++        service.onError(e.getMessage());
++      }
++    });
++  }
+ }
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarFavoriteItemsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.View.Fragments;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ProgressBar;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Services.CarFavoriteItemfragmentService;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;\r\nimport ir.tdaapp.diako.shaar.Cars.Presenter.CarFavoriteItemPresenter;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;\r\nimport ir.tdaapp.diako.shaar.R;\r\n\r\npublic class CarFavoriteItemsFragment extends CarBaseFragment implements View.OnClickListener, CarFavoriteItemfragmentService {\r\n\r\n    public static final String TAG = \"CarFavoriteItemsFragment\";\r\n\r\n private  CarFavoriteItemPresenter presenter;\r\n\r\n private  CarListAdapter carListAdapter;\r\n\r\n private  RecyclerView recyclerView;\r\n\r\n private  ProgressBar loading;\r\n\r\n private LinearLayoutManager layoutManager;\r\n\r\n private CarListAdapter adapter;\r\n\r\n\r\n\r\n    @Nullable\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\r\n        View view = inflater.inflate(R.layout.fragment_car_favorite_items, container, false);\r\n\r\n\r\n        findViews(view);\r\n\r\n        implement();\r\n\r\n        presenter.start();\r\n\r\n        return view;\r\n\r\n    }\r\n\r\n\r\n    private void findViews(View view) {\r\n\r\n\r\n        presenter = new CarFavoriteItemPresenter(getContext(),this);\r\n\r\n\r\n        recyclerView = view.findViewById(R.id.recyclear_favorite_car);\r\n\r\n\r\n        loading = view.findViewById(R.id.car_favorite_loading);\r\n\r\n        carListAdapter = new CarListAdapter(getContext());\r\n\r\n        layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);\r\n\r\n        adapter = new CarListAdapter(getContext());\r\n\r\n\r\n    }\r\n\r\n    private void implement() {\r\n\r\n        presenter.start();\r\n\r\n        recyclerView.setLayoutManager(layoutManager);\r\n\r\n\r\n\r\n\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onItemReceived(CarListModel model) {\r\n\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onPresenterStart() {\r\n\r\n        recyclerView.setAdapter(adapter);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void loadingState(boolean state) {\r\n        loading.setVisibility(state ? View.VISIBLE :View.GONE);\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onError(String message) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onFinish() {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarFavoriteItemsFragment.java	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarFavoriteItemsFragment.java	(date 1620042274270)
+@@ -4,6 +4,7 @@
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.ImageButton;
+ import android.widget.ProgressBar;
+ 
+ import androidx.annotation.NonNull;
+@@ -31,7 +32,8 @@
+ 
+  private  ProgressBar loading;
+ 
+- private LinearLayoutManager layoutManager;
++ private ImageButton brn_back;
++
+ 
+  private CarListAdapter adapter;
+ 
+@@ -59,6 +61,7 @@
+ 
+         presenter = new CarFavoriteItemPresenter(getContext(),this);
+ 
++        adapter = new CarListAdapter(getContext());
+ 
+         recyclerView = view.findViewById(R.id.recyclear_favorite_car);
+ 
+@@ -67,9 +70,8 @@
+ 
+         carListAdapter = new CarListAdapter(getContext());
+ 
+-        layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+ 
+-        adapter = new CarListAdapter(getContext());
++        brn_back = view.findViewById(R.id.imgBtn_favorite_car);
+ 
+ 
+     }
+@@ -78,11 +80,9 @@
+ 
+         presenter.start();
+ 
+-        recyclerView.setLayoutManager(layoutManager);
+-
++        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
+ 
+-
+-
++        brn_back.setOnClickListener(this);
+     }
+ 
+ 
+@@ -90,12 +90,23 @@
+     @Override
+     public void onClick(View v) {
+ 
++        switch (v.getId()){
++
++            case R.id.imgBtn_favorite_car:
++                getActivity().onBackPressed();
++                break;
++
++        }
++
++
+     }
+ 
+ 
+     @Override
+     public void onItemReceived(CarListModel model) {
+ 
++        adapter.add(model);
++
+ 
+     }
+ 
+@@ -110,6 +121,7 @@
+     @Override
+     public void loadingState(boolean state) {
+         loading.setVisibility(state ? View.VISIBLE :View.GONE);
++        recyclerView.setVisibility(state ? View.GONE : View.VISIBLE);
+ 
+     }
+ 
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ .idea/vcs.xml	(date 1620042274243)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++    <mapping directory="" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/ir/tdaapp/diako/shaar/CityGuide/Presenters/CategoryItemDetailsFragmentPresenter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.CityGuide.Presenters;\r\n\r\nimport android.Manifest;\r\nimport android.app.Activity;\r\nimport android.content.Context;\r\nimport android.net.Uri;\r\n\r\nimport com.karumi.dexter.Dexter;\r\nimport com.karumi.dexter.PermissionToken;\r\nimport com.karumi.dexter.listener.PermissionDeniedResponse;\r\nimport com.karumi.dexter.listener.PermissionGrantedResponse;\r\nimport com.karumi.dexter.listener.PermissionRequest;\r\nimport com.karumi.dexter.listener.single.PermissionListener;\r\n\r\nimport org.json.JSONArray;\r\nimport org.json.JSONException;\r\nimport org.json.JSONObject;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport androidx.fragment.app.FragmentActivity;\r\nimport gun0912.tedbottompicker.TedBottomPicker;\r\nimport io.reactivex.Single;\r\nimport io.reactivex.annotations.NonNull;\r\nimport io.reactivex.disposables.Disposable;\r\nimport io.reactivex.observers.DisposableSingleObserver;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryItemDetailsApiCityGuide;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemDetailsFragmentService;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Services.RateDialogService;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultRatingViewModel;\r\nimport ir.tdaapp.diako.shaar.ETC.FileManger;\r\nimport ir.tdaapp.diako.shaar.R;\r\n\r\npublic class CategoryItemDetailsFragmentPresenter {\r\n\r\n  Context context;\r\n  CategoryItemDetailsFragmentService service;\r\n  RateDialogService rateService;\r\n  CategoryItemDetailsApiCityGuide api;\r\n  Disposable getDetailsDisposable, sendRatingDisposable;\r\n\r\n  public CategoryItemDetailsFragmentPresenter(Context context, CategoryItemDetailsFragmentService service, RateDialogService rateService) {\r\n    this.context = context;\r\n    this.service = service;\r\n    this.rateService = rateService;\r\n    api = new CategoryItemDetailsApiCityGuide();\r\n  }\r\n\r\n  public void start(int userId, int itemId) {\r\n    service.onPresenterStart();\r\n    service.loadingState(true);\r\n    getDetails(userId, itemId);\r\n  }\r\n\r\n  public void requestStoragePermission(Activity activity) {\r\n    Dexter.withActivity(activity).withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new PermissionListener() {\r\n      @Override\r\n      public void onPermissionGranted(PermissionGrantedResponse response) {\r\n        service.onStoragePermissionGranted();\r\n      }\r\n\r\n      @Override\r\n      public void onPermissionDenied(PermissionDeniedResponse response) {\r\n        service.onStoragePermissionDenied();\r\n      }\r\n\r\n      @Override\r\n      public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {\r\n\r\n      }\r\n    }).check();\r\n  }\r\n\r\n  public void openImageSelector(FragmentActivity activity, int itemId) {\r\n    List<Uri> selectedUriList = new ArrayList<>();\r\n    JSONArray array = new JSONArray();\r\n    TedBottomPicker.with(activity)\r\n      .setPeekHeight(activity.getResources().getDisplayMetrics().heightPixels / 2)\r\n      .showTitle(false)\r\n      .setSelectMaxCount(3)\r\n      .setSelectMaxCountErrorText(activity.getString(R.string.maximumPhotoSelectionReached3))\r\n      .setCompleteButtonText(activity.getString(R.string.submit))\r\n      .setEmptySelectionText(activity.getString(R.string.noPhotoSelected))\r\n      .setSelectedUriList(selectedUriList)\r\n      .showMultiImage(uriList -> {\r\n        new Thread(() -> {\r\n          FileManger fileManger = new FileManger(CityGuideBaseApi.API_URL + \"CityGuide/PostUserImageCityGuide\");\r\n          for (Uri uri : uriList) {\r\n            try {\r\n              JSONObject object = new JSONObject();\r\n              object.put(\"CityGuideId\", itemId);\r\n              object.put(\"ImageUrl\", fileManger.uploadFile(uri.getPath()));\r\n              array.put(object);\r\n            } catch (JSONException e) {\r\n              e.printStackTrace();\r\n            }\r\n          }\r\n          service.onImagesUploaded(array);\r\n        }).start();\r\n      });\r\n  }\r\n  public void rate(int userId, int itemId, int rate) {\r\n    JSONObject object = createObject(userId, itemId, rate);\r\n    Single<CategoryResultRatingViewModel> data = api.sendRating(object);\r\n\r\n    sendRatingDisposable = data.subscribeWith(new DisposableSingleObserver<CategoryResultRatingViewModel>() {\r\n\r\n      @Override\r\n      public void onSuccess(@NonNull CategoryResultRatingViewModel categoryResultRatingViewModel) {\r\n        if (categoryResultRatingViewModel.getStatus()) {\r\n          rateService.onRateSendingState(true, categoryResultRatingViewModel.getMessage());\r\n        } else {\r\n          rateService.onRateSendingState(false, categoryResultRatingViewModel.getMessage());\r\n        }\r\n      }\r\n\r\n      @Override\r\n      public void onError(@NonNull Throwable e) {\r\n        rateService.onRateSendingState(false, \"خطا در ارتباط\");\r\n\r\n      }\r\n    });\r\n  }\r\n\r\n  private void getDetails(int userId, int itemId) {\r\n    Single<CategoryItemDetailsViewModel> data = api.getDetails(userId, itemId);\r\n    service.loadingState(true);\r\n\r\n    getDetailsDisposable = data.subscribeWith(new DisposableSingleObserver<CategoryItemDetailsViewModel>() {\r\n      @Override\r\n      public void onSuccess(CategoryItemDetailsViewModel models) {\r\n        service.onDetailsReceived(models);\r\n        service.loadingState(false);\r\n        service.onFinish();\r\n      }\r\n\r\n      @Override\r\n      public void onError(Throwable e) {\r\n        service.loadingState(false);\r\n        service.onError(e.getMessage());\r\n      }\r\n    });\r\n  }\r\n\r\n  private JSONObject createObject(int userId, int itemId, int rate) {\r\n    JSONObject object = new JSONObject();\r\n    try {\r\n      object.put(\"UserId\", userId);\r\n      object.put(\"CityguideId\", itemId);\r\n      object.put(\"CountStars\", rate);\r\n    } catch (JSONException e) {\r\n      e.printStackTrace();\r\n    }\r\n    return object;\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/CityGuide/Presenters/CategoryItemDetailsFragmentPresenter.java	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ app/src/main/java/ir/tdaapp/diako/shaar/CityGuide/Presenters/CategoryItemDetailsFragmentPresenter.java	(date 1620042274278)
+@@ -120,7 +120,6 @@
+       @Override
+       public void onError(@NonNull Throwable e) {
+         rateService.onRateSendingState(false, "خطا در ارتباط");
+-
+       }
+     });
+   }
+Index: .idea/caches/build_file_checksums.ser
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>��\u0000\u0005sr\u0000?com.android.tools.idea.gradle.project.ProjectBuildFileChecksumsDW4��\u0013g)\u0002\u0000\u0002J\u0000\u0019myLastGradleSyncTimestampL\u0000\u000FmyFileChecksumst\u0000\u000FLjava/util/Map;xp\u0000\u0000\u0001y+�U�sr\u0000\u0011java.util.HashMap\u0005\u0007���\u0016`�\u0003\u0000\u0002F\u0000\nloadFactorI\u0000\tthresholdxp?@\u0000\u0000\u0000\u0000\u0000\fw\b\u0000\u0000\u0000\u0010\u0000\u0000\u0000\u0006t\u0000\u0010app\\build.gradleur\u0000\u0002[B��\u0017�\u0006\bT�\u0002\u0000\u0000xp\u0000\u0000\u0000\u0010��\u0003f�\u0010\\�Q�~��6��t\u0000\u000Fsettings.gradleuq\u0000~\u0000\u0006\u0000\u0000\u0000\u0010��`�<�\u0007n-`.\u001AWBát\u0000(C:\\Users\\SoraN\\.gradle\\gradle.propertiesuq\u0000~\u0000\u0006\u0000\u0000\u0000\u0010�\u001D�ُ\u0000�\u0004�\t���B~t\u0000\fbuild.gradleuq\u0000~\u0000\u0006\u0000\u0000\u0000\u0010�gbڝ�<�\u0011{\r��\u0005�\u0001t\u0000\u0010local.propertiesuq\u0000~\u0000\u0006\u0000\u0000\u0000\u0010`\u0003����dA��\u0016!=�ֻt\u0000\u0011gradle.propertiesuq\u0000~\u0000\u0006\u0000\u0000\u0000\u0010���M��9P�\u0007�.`\u0000��x
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/caches/build_file_checksums.ser	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ .idea/caches/build_file_checksums.ser	(date 1620042274260)
+@@ -1,3 +1,3 @@
+-�� sr ?com.android.tools.idea.gradle.project.ProjectBuildFileChecksumsDW4��g) J myLastGradleSyncTimestampL myFileChecksumst Ljava/util/Map;xp  y+�U�sr java.util.HashMap���`� F 
+-loadFactorI 	thresholdxp?@     w      t app\build.gradleur [B���T�  xp   ��f�\�Q�~��6��t settings.gradleuq ~    ��`�<�n-`.WBát (C:\Users\SoraN\.gradle\gradle.propertiesuq ~    ��ُ ��	���B~t build.gradleuq ~    �gbڝ�<�{
+-���t local.propertiesuq ~    `����dA��!=�ֻt gradle.propertiesuq ~    ���M��9P��.` ��x
+\ No newline at end of file
++�� sr ?com.android.tools.idea.gradle.project.ProjectBuildFileChecksumsDW4��g) J myLastGradleSyncTimestampL myFileChecksumst Ljava/util/Map;xp  y1���sr java.util.HashMap���`� F 
++loadFactorI 	thresholdxp?@     w      t app\build.gradleur [B���T�  xp   ��f�\�Q�~��6��t settings.gradleuq ~    ��`�<�n-`.WBát build.gradleuq ~    �gbڝ�<�{
++���t &C:\Users\sam\.gradle\gradle.propertiesuq ~    ��ُ ��	���B~t local.propertiesuq ~    ��1����6�����6�t gradle.propertiesuq ~    ���M��9P��.` ��x
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/Shaar.iml\" filepath=\"$PROJECT_DIR$/.idea/Shaar.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml\" filepath=\"$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision f7f2858a8d177b6020052dc8964f85730d7acd96)
++++ .idea/modules.xml	(date 1620042274233)
+@@ -2,7 +2,7 @@
+ <project version="4">
+   <component name="ProjectModuleManager">
+     <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/Shaar.iml" filepath="$PROJECT_DIR$/.idea/Shaar.iml" />
++      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shaar.iml" filepath="$PROJECT_DIR$/.idea/modules/Shaar.iml" />
+       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml" />
+     </modules>
+   </component>

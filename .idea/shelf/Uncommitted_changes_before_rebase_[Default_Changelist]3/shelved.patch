@@ -1,0 +1,136 @@
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarDeatailFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.View.Fragments;\r\n\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.transition.TransitionManager;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.coordinatorlayout.widget.CoordinatorLayout;\r\nimport androidx.viewpager2.widget.ViewPager2;\r\n\r\nimport com.bumptech.glide.Glide;\r\nimport com.facebook.shimmer.ShimmerFrameLayout;\r\n\r\nimport de.hdodenhof.circleimageview.CircleImageView;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Repository.database.TblCarFavoriets;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;\r\nimport ir.tdaapp.diako.shaar.Cars.Presenter.CarDetailFragmentPresenter;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnGlideImageListener;\r\nimport ir.tdaapp.diako.shaar.R;\r\n\r\npublic class CarDeatailFragment extends CarBaseFragment implements OnGlideImageListener, CarDetailFragmentService, View.OnClickListener {\r\n\r\n  public static final String TAG = \"CarDeatailFragment\";\r\n\r\n  int itemId, userId;\r\n\r\n  TextView carName, productionYear, mileage, carBodyStatus, carBodyStatus2, brand, chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description, expertName;\r\n  CircleImageView circleImageView;\r\n  ImageButton favorite;\r\n  ImageView back, forward;\r\n  ShimmerFrameLayout loading;\r\n  Button textExpert, callExpert;\r\n  Button showMoreDescribe;\r\n  CoordinatorLayout root;\r\n  ViewPager2 viewPager;\r\n\r\n  String descriptionText;\r\n  TblCarFavoriets tblCarFavoriets;\r\n\r\n  CarDetailFragmentPresenter presenter;\r\n\r\n  @Nullable\r\n  @Override\r\n  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\r\n\r\n    View view = inflater.inflate(R.layout.car_details_fragment, container, false);\r\n\r\n    findView(view);\r\n    implement();\r\n\r\n    return view;\r\n  }\r\n\r\n  private void findView(View view) {\r\n    presenter = new CarDetailFragmentPresenter(getContext(), this);\r\n    //car main info\r\n    carName = view.findViewById(R.id.car_name_detail_fragment);\r\n    productionYear = view.findViewById(R.id.txt_production_yaer);\r\n    mileage = view.findViewById(R.id.txt_milage_detail);\r\n    carBodyStatus = view.findViewById(R.id.txt_car_body_status);\r\n    carBodyStatus2 = view.findViewById(R.id.txt_car_body_status2);\r\n    brand = view.findViewById(R.id.txt_car_brand);\r\n    chasisStatus = view.findViewById(R.id.tct_car_chasis_status);\r\n    insuranceTime = view.findViewById(R.id.txt_car_insurance_time);\r\n    gearBox = view.findViewById(R.id.txt_car_gearBox_type);\r\n    ducument = view.findViewById(R.id.txt_car_ducument_type);\r\n    salesType = view.findViewById(R.id.txt_car_sales_type);\r\n    price = view.findViewById(R.id.txt_car_price);\r\n\r\n    //other TextViews\r\n    description = view.findViewById(R.id.txt_car_description);\r\n    expertName = view.findViewById(R.id.txt_expert_name);\r\n\r\n    //ImageViews\r\n    circleImageView = view.findViewById(R.id.circle_imageview_expert);\r\n    favorite = view.findViewById(R.id.img_faverite_detail);\r\n    back = view.findViewById(R.id.img_back_viewPager);\r\n    forward = view.findViewById(R.id.img_forward_viewPager);\r\n\r\n    //Buttons\r\n    showMoreDescribe = view.findViewById(R.id.btn_show_more_describe);\r\n    callExpert = view.findViewById(R.id.btn_call_expert);\r\n    textExpert = view.findViewById(R.id.btn_text_expert);\r\n\r\n    loading = view.findViewById(R.id.viewPager_loading);\r\n\r\n    root = view.findViewById(R.id.car_detail_root_layout);\r\n\r\n    viewPager = view.findViewById(R.id.viewPager_car_detail);\r\n\r\n    tblCarFavoriets = new TblCarFavoriets(getContext());\r\n  }\r\n\r\n  private void implement() {\r\n    presenter.start(1);\r\n    callExpert.setOnClickListener(this);\r\n    textExpert.setOnClickListener(this);\r\n    showMoreDescribe.setOnClickListener(this);\r\n    favorite.setOnClickListener(this);\r\n  }\r\n\r\n\r\n  @Override\r\n  public void onClick(View v) {\r\n\r\n    switch (v.getId()) {\r\n\r\n      case R.id.btn_call_expert:\r\n        dialContactPhone(\"12312345\");\r\n        break;\r\n\r\n      case R.id.btn_text_expert:\r\n        sendTextToExpert();\r\n        break;\r\n\r\n      case R.id.btn_show_more_describe:\r\n\r\n        descriptionText = description.getText().toString();\r\n        if (description.length() > 150) {\r\n          showMoreDescribe.setVisibility(View.VISIBLE);\r\n          String subString = descriptionText.substring(0, 150);\r\n          description.setText(subString);\r\n        } else {\r\n          showMoreDescribe.setVisibility(View.GONE);\r\n        }\r\n\r\n        TransitionManager.beginDelayedTransition(root);\r\n        description.setText(descriptionText);\r\n        showMoreDescribe.setVisibility(View.GONE);\r\n\r\n\r\n        break;\r\n\r\n      case R.id.img_faverite_detail:\r\n        if (tblCarFavoriets.checkState(itemId)) {\r\n          tblCarFavoriets.deleteFavorite(itemId);\r\n          favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24);\r\n        } else {\r\n          tblCarFavoriets.addToFavorite(itemId);\r\n          favorite.setImageResource(R.drawable.ic_baseline_favorite_24);\r\n        }\r\n        break;\r\n\r\n    }\r\n\r\n\r\n  }\r\n\r\n  //تماس با کارشناس\r\n  private void dialContactPhone(final String phoneNumber) {\r\n    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts(\"tel\", phoneNumber, null)));\r\n  }\r\n\r\n  //ارسال پیام به کارشناس\r\n  private void sendTextToExpert() {\r\n    Intent sendIntent = new Intent(Intent.ACTION_VIEW);\r\n    sendIntent.setData(Uri.parse(\"sms:\"));\r\n    sendIntent.putExtra(\"sms_body\", \"this is a test message\");\r\n    startActivity(sendIntent);\r\n  }\r\n\r\n  @Override\r\n  public void onCarReceived(CarDetailModel model) {\r\n    int resId = tblCarFavoriets.checkState(itemId) ? R.drawable.ic_baseline_favorite_24 : R.drawable.ic_baseline_favorite_border_24;\r\n    favorite.setImageResource(resId);\r\n\r\n    carName.setText(model.getName());\r\n    productionYear.setText(model.getProductionYear());\r\n    mileage.setText(model.getMileage());\r\n    carBodyStatus.setText(model.getCarBodyStatus());\r\n    carBodyStatus2.setText(model.getCarBodyStatus());\r\n    brand.setText(model.getBrand());\r\n    chasisStatus.setText(model.getChassisStatus());\r\n    insuranceTime.setText(model.getInsuranceTime());\r\n    gearBox.setText(model.getGearBox());\r\n    ducument.setText(model.getDocument());\r\n    salesType.setText(model.getSalesType());\r\n    price.setText(model.getPrice());\r\n    description.setText(model.getDescription());\r\n    expertName.setText(model.getExpertName());\r\n\r\n    Glide.with(this)\r\n      .load(CarBaseApi.API_IMAGE + model.getExpertImage())\r\n      .placeholder(R.drawable.ic_baseline_sync_24)\r\n      .error(R.drawable.ic_baseline_running_with_errors_24)\r\n      .into(circleImageView);\r\n\r\n  }\r\n\r\n  @Override\r\n  public void onPresenterStart() {\r\n\r\n  }\r\n\r\n  @Override\r\n  public void onError(String error) {\r\n\r\n  }\r\n\r\n  @Override\r\n  public void onFinish() {\r\n\r\n  }\r\n\r\n  @Override\r\n  public void loadingState(boolean load) {\r\n    if (load) {\r\n      loading.startShimmer();\r\n    } else {\r\n      loading.stopShimmer();\r\n    }\r\n  }\r\n\r\n  @Override\r\n  public void onLoadState(boolean successful) {\r\n\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarDeatailFragment.java	(revision 0a9670cbfefe5ee5b045657409669591896864af)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarDeatailFragment.java	(date 1620042294115)
+@@ -111,6 +111,7 @@
+     favorite.setOnClickListener(this);
+   }
+ 
++  CarDetailFragmentPresenter presenter;
+ 
+   @Override
+   public void onClick(View v) {
+@@ -155,6 +156,26 @@
+ 
+     }
+ 
++    carName.setText(model.getName());
++    productionYear.setText(model.getProductionYear());
++    mileage.setText(model.getMileage());
++    carBodyStatus.setText(model.getCarBodyStatus());
++    carBodyStatus2.setText(model.getCarBodyStatus());
++    brand.setText(model.getBrand());
++    chasisStatus.setText(model.getChassisStatus());
++    insuranceTime.setText(model.getInsuranceTime());
++    gearBox.setText(model.getGearBox());
++    ducument.setText(model.getDocument());
++    salesType.setText(model.getSalesType());
++    price.setText(model.getPrice());
++    description.setText(model.getDescription());
++    expertName.setText(model.getExpertName());
++
++    Glide.with(this)
++      .load(CarBaseApi.API_IMAGE + model.getExpertImage())
++      .placeholder(R.drawable.ic_baseline_sync_24)
++      .error(R.drawable.ic_baseline_running_with_errors_24)
++      .into(circleImageView);
+ 
+   }
+ 
+Index: app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarFavoriteItemsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ir.tdaapp.diako.shaar.Cars.View.Fragments;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ProgressBar;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Services.CarFavoriteItemfragmentService;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;\r\nimport ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;\r\nimport ir.tdaapp.diako.shaar.Cars.Presenter.CarFavoriteItemPresenter;\r\nimport ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;\r\nimport ir.tdaapp.diako.shaar.R;\r\n\r\npublic class CarFavoriteItemsFragment extends CarBaseFragment implements View.OnClickListener, CarFavoriteItemfragmentService {\r\n\r\n    public static final String TAG = \"CarFavoriteItemsFragment\";\r\n\r\n private  CarFavoriteItemPresenter presenter;\r\n\r\n private  CarListAdapter carListAdapter;\r\n\r\n private  RecyclerView recyclerView;\r\n\r\n private  ProgressBar loading;\r\n\r\n private LinearLayoutManager layoutManager;\r\n\r\n private CarListAdapter adapter;\r\n\r\n\r\n\r\n    @Nullable\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\r\n        View view = inflater.inflate(R.layout.fragment_car_favorite_items, container, false);\r\n\r\n\r\n        findViews(view);\r\n\r\n        implement();\r\n\r\n        presenter.start();\r\n\r\n        return view;\r\n\r\n    }\r\n\r\n\r\n    private void findViews(View view) {\r\n\r\n\r\n        presenter = new CarFavoriteItemPresenter(getContext(),this);\r\n\r\n\r\n        recyclerView = view.findViewById(R.id.recyclear_favorite_car);\r\n\r\n\r\n        loading = view.findViewById(R.id.car_favorite_loading);\r\n\r\n        carListAdapter = new CarListAdapter(getContext());\r\n\r\n        layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);\r\n\r\n        adapter = new CarListAdapter(getContext());\r\n\r\n\r\n    }\r\n\r\n    private void implement() {\r\n\r\n        presenter.start();\r\n\r\n        recyclerView.setLayoutManager(layoutManager);\r\n\r\n\r\n\r\n\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onItemReceived(CarListModel model) {\r\n\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onPresenterStart() {\r\n\r\n        recyclerView.setAdapter(adapter);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void loadingState(boolean state) {\r\n        loading.setVisibility(state ? View.VISIBLE :View.GONE);\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onError(String message) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onFinish() {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarFavoriteItemsFragment.java	(revision 0a9670cbfefe5ee5b045657409669591896864af)
++++ app/src/main/java/ir/tdaapp/diako/shaar/Cars/View/Fragments/CarFavoriteItemsFragment.java	(date 1620042294130)
+@@ -4,6 +4,7 @@
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.ImageButton;
+ import android.widget.ProgressBar;
+ 
+ import androidx.annotation.NonNull;
+@@ -31,7 +32,8 @@
+ 
+  private  ProgressBar loading;
+ 
+- private LinearLayoutManager layoutManager;
++ private ImageButton brn_back;
++
+ 
+  private CarListAdapter adapter;
+ 
+@@ -59,6 +61,7 @@
+ 
+         presenter = new CarFavoriteItemPresenter(getContext(),this);
+ 
++        adapter = new CarListAdapter(getContext());
+ 
+         recyclerView = view.findViewById(R.id.recyclear_favorite_car);
+ 
+@@ -67,9 +70,8 @@
+ 
+         carListAdapter = new CarListAdapter(getContext());
+ 
+-        layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+ 
+-        adapter = new CarListAdapter(getContext());
++        brn_back = view.findViewById(R.id.imgBtn_favorite_car);
+ 
+ 
+     }
+@@ -78,11 +80,9 @@
+ 
+         presenter.start();
+ 
+-        recyclerView.setLayoutManager(layoutManager);
+-
++        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
+ 
+-
+-
++        brn_back.setOnClickListener(this);
+     }
+ 
+ 
+@@ -90,12 +90,23 @@
+     @Override
+     public void onClick(View v) {
+ 
++        switch (v.getId()){
++
++            case R.id.imgBtn_favorite_car:
++                getActivity().onBackPressed();
++                break;
++
++        }
++
++
+     }
+ 
+ 
+     @Override
+     public void onItemReceived(CarListModel model) {
+ 
++        adapter.add(model);
++
+ 
+     }
+ 
+@@ -110,6 +121,7 @@
+     @Override
+     public void loadingState(boolean state) {
+         loading.setVisibility(state ? View.VISIBLE :View.GONE);
++        recyclerView.setVisibility(state ? View.GONE : View.VISIBLE);
+ 
+     }
+ 
