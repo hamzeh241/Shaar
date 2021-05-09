@@ -21,6 +21,7 @@ import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.Cars.Presenter.CarListFragmentPresenter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
+import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
 import ir.tdaapp.diako.shaar.R;
 
 public class CarListFragment extends CarBaseFragment implements View.OnClickListener, CarListFragmentService {
@@ -81,6 +82,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
     back.setOnClickListener(this);
     filter.setOnClickListener(this);
+
   }
 
   @Override
@@ -90,6 +92,8 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
         getActivity().onBackPressed();
         break;
       case R.id.imgCarListFilter:
+        CarSearchFilterDialog dialog = new CarSearchFilterDialog();
+        dialog.show(getActivity().getSupportFragmentManager(),CarSearchFilterDialog.TAG);
         break;
     }
   }
