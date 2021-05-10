@@ -4,11 +4,12 @@ public class CarListModel {
 
   int id;
   String title, productionYear, price, gearbox, mileage, brand, color, imageUrl;
+  boolean isShow;
 
   public CarListModel() {
   }
 
-  public CarListModel(int id, String title, String productionYear, String price, String gearbox, String mileage, String brand, String color, String imageUrl) {
+  public CarListModel(int id, String title, String productionYear, String price, String gearbox, String mileage, String brand, String color, String imageUrl, boolean isShow) {
     this.id = id;
     this.title = title;
     this.productionYear = productionYear;
@@ -18,6 +19,7 @@ public class CarListModel {
     this.brand = brand;
     this.color = color;
     this.imageUrl = imageUrl;
+    this.isShow = isShow;
   }
 
   public int getId() {
@@ -90,5 +92,13 @@ public class CarListModel {
 
   public void setImageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
+  }
+
+  public boolean isShow() {
+    return isShow;
+  }
+
+  public void setShow(boolean show) {
+    isShow = show;
   }
 }

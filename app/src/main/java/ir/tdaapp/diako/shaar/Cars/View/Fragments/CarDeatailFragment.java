@@ -1,7 +1,6 @@
 package ir.tdaapp.diako.shaar.Cars.View.Fragments;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -19,16 +18,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.SliderCarItemDetails;
-import ir.tdaapp.diako.shaar.Cars.Model.Repository.database.TblCarFavoriets;
+import ir.tdaapp.diako.shaar.Cars.Model.Repository.Database.TblCarFavoriets;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
@@ -37,10 +33,7 @@ import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.Cars.Presenter.CarDetailFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnGlideImageListener;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.ZoomOutPageTransformer;
-import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
-
-import static ir.tdaapp.diako.shaar.Interface.IBase.ApiImage;
 
 public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageListener, CarDetailFragmentService, View.OnClickListener {
 
@@ -66,7 +59,6 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     CarDetailFragmentPresenter presenter;
 
     SliderCarItemDetails viewPagerAdapter;
-
 
     CarDetailModel model = new CarDetailModel();
 
@@ -132,10 +124,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     }
 
     private void implement() {
-        //id to item id
-        itemId = getArguments().getInt("ID");
-        presenter.start(itemId);
-
+        presenter.start(1);
         callExpert.setOnClickListener(this);
         textExpert.setOnClickListener(this);
         showMoreDescribe.setOnClickListener(this);
@@ -193,7 +182,6 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                break;
 
             case R.id.imageButton_details_car:
                 getActivity().onBackPressed();
@@ -209,7 +197,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     //ارسال پیام به کارشناس
     private void sendTextToExpert() {
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.setData(Uri.parse("sms:" + model.getPhone()));
+        sendIntent.setData(Uri.parse("sms: 9540644 "));
         sendIntent.putExtra("sms_body", "this is a test message");
         startActivity(sendIntent);
     }
@@ -242,8 +230,10 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         }
 
         //ست کردن عکس کارشناس
-        String ImageUrl = CarBaseApi.API_IMAGE_CAR_EXPERT + "ImageSave/" + model.getExpertImage();
-        Glide.with(getContext()).load(ImageUrl).into(circleImageView);
+        Glide.with(this)
+                .load(CarBaseApi.API_IMAGE + model.getExpertImage())
+                .into(circleImageView);
+
 
         descriptionText = model.getDescription();
         if (descriptionText.length() > 300) {

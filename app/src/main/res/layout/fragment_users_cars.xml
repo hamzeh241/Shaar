@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:orientation="vertical">
+
+
+  <androidx.appcompat.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:background="@color/colorRed"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="?attr/actionBarTheme"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <RelativeLayout
+      tools:layout_editor_absoluteX="16dp"
+      tools:layout_editor_absoluteY="18dp"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <ImageButton
+        android:id="@+id/imgUsersCarsBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+        app:tint="#FFF" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="آگهی های کاربر"
+        android:textColor="#FFF"
+        android:textSize="18sp" />
+    </RelativeLayout>
+  </androidx.appcompat.widget.Toolbar>
+
+  <ProgressBar
+    android:id="@+id/userCarsLoading"
+    style="?android:attr/progressBarStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/usersCarsList"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+</LinearLayout>

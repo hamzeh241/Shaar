@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -33,13 +32,8 @@ import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.AddItemPhotosAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.Validation;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.AddItemPhotosModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ItemStructureViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
-import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.MessageDialog;
-import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.AddItemFragmentCityGuide;
-import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragmentCityGuide;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
 
@@ -91,7 +85,7 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
     layoutManager.setOrientation(RecyclerView.HORIZONTAL);
 
     category = view.findViewById(R.id.spinnerCategory);
-    productionYear = view.findViewById(R.id.spinnerProductionYear);
+    productionYear = view.findViewById(R.id.spinnerFromProductionYear);
     brand = view.findViewById(R.id.spinnerBrand);
     model = view.findViewById(R.id.spinnerModel);
     engineStatus = view.findViewById(R.id.spinnerEngineStatus);

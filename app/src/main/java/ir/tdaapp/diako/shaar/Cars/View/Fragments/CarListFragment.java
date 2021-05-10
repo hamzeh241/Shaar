@@ -1,43 +1,64 @@
 package ir.tdaapp.diako.shaar.Cars.View.Fragments;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.ChipsListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.onCarListClickListener;
+import ir.tdaapp.diako.shaar.Cars.Model.Services.onSearchParametersReceived;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
+import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.FilterModel;
 import ir.tdaapp.diako.shaar.Cars.Presenter.CarListFragmentPresenter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
 import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
 import ir.tdaapp.diako.shaar.R;
 
-public class CarListFragment extends CarBaseFragment implements View.OnClickListener, CarListFragmentService {
+public class CarListFragment extends CarBaseFragment implements View.OnClickListener, CarListFragmentService, onSearchParametersReceived {
 
   public static final String TAG = "CarListFragment";
+
+  private int previousTotal = 0;
+  private int page = 0;
+  private boolean isLoading = true;
+  private int visibleThreshold = 5;
+  int firstVisibleItem, visibleItemCount, totalItemCount;
 
   private CarListFragmentPresenter presenter;
 
   private RecyclerView carList, chipsList;
-  private ImageButton back, filter;
+  private ImageButton back, filter,search;
   private ProgressBar loading;
+  private EditText searchBar;
+  private FloatingActionButton fab;
 
   private LinearLayoutManager chipsManager;
+  private LinearLayoutManager carManager;
 
   private CarListAdapter carAdapter;
   private ChipsListAdapter chipsAdapter;
+
+  private JSONObject searchObject;
 
   @Nullable
   @Override
@@ -53,7 +74,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
   private void findView(View view) {
     presenter = new CarListFragmentPresenter(getContext(), this);
 
-    carAdapter = new CarListAdapter(getContext());
+    carAdapter = new CarListAdapter(getContext(), CarListAdapter.CARS_LIST);
     chipsAdapter = new ChipsListAdapter(getContext());
 
     carList = view.findViewById(R.id.carList);
@@ -61,16 +82,24 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     back = view.findViewById(R.id.imgCarListBack);
     filter = view.findViewById(R.id.imgCarListFilter);
     loading = view.findViewById(R.id.carListLoading);
+    fab = view.findViewById(R.id.fabAddCar);
+    search = view.findViewById(R.id.btnCarListSearch);
+    searchBar = view.findViewById(R.id.edtCarListSearch);
 
     chipsManager = new LinearLayoutManager(getContext());
+    carManager = new LinearLayoutManager(getContext());
     chipsManager.setOrientation(RecyclerView.HORIZONTAL);
+    carManager.setOrientation(RecyclerView.VERTICAL);
   }
 
   private void implement() {
     presenter.start();
 
     chipsList.setLayoutManager(chipsManager);
-    carList.setLayoutManager(new LinearLayoutManager(getContext()));
+    carList.setLayoutManager(carManager);
+    chipsAdapter.setClickListener((model, position) -> {
+
+    });
     carAdapter.setClickListener((model, position) -> {
       CarDeatailFragment fragment = new CarDeatailFragment();
       Bundle bundle = new Bundle();
@@ -80,9 +109,50 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
       ((CarActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CarDeatailFragment.TAG);
     });
 
+    searchBar.setOnKeyListener((v, keyCode, event) -> {
+      // If the event is a key-down event on the "enter" button
+      if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+        // Perform action on key press
+        filter.performClick();
+        return true;
+      }
+      return false;
+    });
     back.setOnClickListener(this);
     filter.setOnClickListener(this);
+    fab.setOnClickListener(this);
+    search.setOnClickListener(this);
+  }
 
+  private void setPagination() {
+    carList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+        super.onScrolled(recyclerView, dx, dy);
+
+        visibleItemCount = carList.getChildCount();
+        totalItemCount = carManager.getItemCount();
+        firstVisibleItem = carManager.findFirstVisibleItemPosition();
+
+        if (isLoading) {
+          if (totalItemCount > previousTotal) {
+            isLoading = false;
+            previousTotal = totalItemCount;
+          }
+        }
+        if (!isLoading && (totalItemCount - visibleItemCount)
+          <= (firstVisibleItem + visibleThreshold)) {
+          // End has been reached
+          page++;
+
+//          presenter.getCars(searchObject, page);
+          // Do something
+
+          isLoading = true;
+        }
+      }
+    });
   }
 
   @Override
@@ -92,10 +162,21 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
         getActivity().onBackPressed();
         break;
       case R.id.imgCarListFilter:
-        CarSearchFilterDialog dialog = new CarSearchFilterDialog();
-        dialog.show(getActivity().getSupportFragmentManager(),CarSearchFilterDialog.TAG);
+        CarSearchFilterDialog dialog = new CarSearchFilterDialog(this);
+        dialog.show(getActivity().getSupportFragmentManager(), CarSearchFilterDialog.TAG);
+        break;
+      case R.id.fabAddCar:
+        ((CarActivity) getActivity()).onAddFragment(new AddCarFragment(), R.anim.fadein,
+          R.anim.fadeout, true, AddCarFragment.TAG);
+        break;
+      case R.id.btnCarListSearch:
+        //presenter.getCars();
         break;
     }
+  }
+
+  private void performSearch(JSONObject object, int page) {
+    //presenter.getCars(object, page);
   }
 
   @Override
@@ -112,6 +193,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
   public void onPresenterStart() {
     carList.setAdapter(carAdapter);
     chipsList.setAdapter(chipsAdapter);
+    setPagination();
   }
 
   @Override
@@ -129,5 +211,15 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     loading.setVisibility(state ? View.VISIBLE : View.GONE);
     carList.setVisibility(state ? View.GONE : View.VISIBLE);
     chipsList.setVisibility(state ? View.GONE : View.VISIBLE);
+  }
+
+  @Override
+  public void onResult(FilterModel object) {
+    //searchObject = object;
+  }
+
+  @Override
+  public void onCancel() {
+
   }
 }

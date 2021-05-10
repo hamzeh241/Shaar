@@ -108,7 +108,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public synchronized void close() {
         if (myDataBase != null) {
-
             myDataBase.close();
         }
 

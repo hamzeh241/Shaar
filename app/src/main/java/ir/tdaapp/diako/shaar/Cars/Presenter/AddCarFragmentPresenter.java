@@ -168,10 +168,10 @@ public class AddCarFragmentPresenter {
     List<Uri> selectedUriList = new ArrayList<>();
     ArrayList<String> images = new ArrayList<>();
     TedBottomPicker.with(activity)
-      .setPeekHeight(activity.getResources().getDisplayMetrics().heightPixels / 2)
+      .setPeekHeight(context.getResources().getDisplayMetrics().heightPixels / 2)
       .showTitle(false)
       .setSelectMaxCount(6)
-      .setSelectMaxCountErrorText(activity.getString(R.string.maximumPhotoSelectionReached6))
+      .setSelectMaxCountErrorText(context.getString(R.string.maximumPhotoSelectionReached3))
       .setCompleteButtonText(activity.getString(R.string.submit))
       .setEmptySelectionText(activity.getString(R.string.noPhotoSelected))
       .setSelectedUriList(selectedUriList)

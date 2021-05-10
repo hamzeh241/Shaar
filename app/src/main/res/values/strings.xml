@@ -8,7 +8,7 @@
     <string name="SearchSaved">جستجوی ذخیره شده</string>
     <string name="Like">لیست مورد علاقه</string>
     <string name="AdManagement">مدیریت آگهی</string>
-    <string name="AddHome"> املاک </string>
+    <string name="AddHome">افزودن ملک</string>
     <string name="Add_Property">ملک اضافه کنید</string>
     <string name="MyHome">املاک من</string>
     <string name="Telephone">تماس با ما</string>
@@ -16,9 +16,9 @@
     <string name="AboutMe">درباره ما</string>
     <string name="OpenNavigation">بازشدن منو</string>
     <string name="CloseNavigation">بسته شدن منو</string>
-    <string name="SamaneShaar">جامع‌ترین بانک اطلاعاتی سنندج</string>
-    <string name="SearchHome">خودرو</string>
-    <string name="NewsHome">بانک اطلاعاتی</string>
+    <string name="SamaneShaar">جامع‌ترین سامانه آگهی املاک سنندج</string>
+    <string name="SearchHome">جستجوی ملک</string>
+    <string name="NewsHome">جدید‌ترین املاک</string>
     <string name="Help">راهنما</string>
     <string name="Next">بعدی</string>
     <string name="NotAccount_AddAccount">حساب کاربری نداری؟ همین حالا ثبت‌نام کن</string>
@@ -252,6 +252,8 @@
     <string name="engineSituation">وضعیت موتور</string>
     <string name="Chassis">وضعیت شاسی</string>
     <string name="InsuranceTime">مهلت بیمه</string>
+    <string name="productionYear">سال تولید</string>
+    <string name="productionYearFrom">سال تولید از</string>
     <string name="gearBox">گیربکس</string>
     <string name="ducument">سند</string>
     <string name="sales">نحوه ی فروش</string>
@@ -263,7 +265,8 @@
     <string name="milage"> کارکرد</string>
     <string name="notExchange"> مایل به معاوضه نیستم</string>
     <string name="Exchange"> مایل به معاوضه هستم</string>
-    <string name="productYear">سال ساخت</string>
+    <string name="confirmed">تایید شده</string>
+    <string name="not_confirmed">تایید نشده</string>
 
 
     <string name="Law_And_Regulations">پذیرش قوانین \n

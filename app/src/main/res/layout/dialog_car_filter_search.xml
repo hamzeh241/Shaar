@@ -6,27 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/txt_filter_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="فیلتر ها"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        />
+      android:id="@+id/txt_filter_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_marginEnd="16dp"
+      android:layout_marginTop="16dp"
+      android:text="فیلتر ها"
+      android:textColor="@color/black"
+      android:textSize="18sp" />
 
     <View
-        android:id="@+id/vieww"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/txt_filter_title"
-        android:background="@drawable/gray_search_background"
-        android:layout_marginTop="8dp"/>
+      android:id="@+id/vieww"
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:layout_below="@id/txt_filter_title"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/gray_search_background" />
 
 
     <LinearLayout
+      android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -41,24 +41,26 @@
             >
 
             <ImageView
-                android:id="@+id/icon_brand"
-                android:layout_width="26dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp"
-                app:srcCompat="@drawable/ic_brand_dialog" />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="8dp"
+              android:layout_marginRight="16dp"
+              android:layout_marginTop="8dp"
+              app:srcCompat="@drawable/ic_brand_positioning"
+              app:tint="@color/colorGray" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/brand"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"
-                />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:layout_marginRight="16dp"
+              android:text="@string/brand"
+              android:textColor="@color/colorGray"
+              android:textSize="18sp" />
 
 
             <Spinner
+              android:id="@+id/spinnerBrand"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -70,6 +72,12 @@
                 />
 
         </LinearLayout>
+
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginRight="40dp"
+          android:background="@drawable/gray_search_background" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,35 +86,69 @@
             >
 
             <ImageView
-                android:id="@+id/icon_made_year"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp"
-                app:srcCompat = "@drawable/ic_brand_dialog"
-                />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="8dp"
+              android:layout_marginRight="16dp"
+              android:layout_marginTop="8dp"
+              app:srcCompat="@drawable/ic_money"
+              app:tint="@color/colorGray" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/brand"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"
-                />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:layout_marginRight="16dp"
+              android:text="@string/Price2"
+              android:textColor="@color/colorGray"
+              android:textSize="18sp" />
 
 
-            <Spinner
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+            <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_marginRight="8dp"
+              android:layout_weight="1"
+              android:gravity="center">
 
-                />
+                <EditText
+                  android:id="@+id/edtFromPrice"
+                  style="@style/Widget.AppCompat.AutoCompleteTextView"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:background="#00FFFFFF"
+                  android:ems="10"
+                  android:gravity="center"
+                  android:hint="از"
+                  android:inputType="number|numberDecimal"
+                  android:textSize="14sp" />
+
+                <TextView
+                  android:id="@+id/textView20"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="-" />
+
+                <EditText
+                  android:id="@+id/edtToPrice"
+                  style="@style/Widget.AppCompat.AutoCompleteTextView"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:background="#00FFFFFF"
+                  android:ems="10"
+                  android:gravity="center"
+                  android:hint="به"
+                  android:inputType="number|numberDecimal"
+                  android:textSize="14sp" />
+            </LinearLayout>
         </LinearLayout>
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginRight="40dp"
+          android:background="@drawable/gray_search_background" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,37 +157,56 @@
             >
 
             <ImageView
-                android:id="@+id/icon_gear_box"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp"
-                app:srcCompat = "@drawable/ic_brand_dialog"
-                />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="8dp"
+              android:layout_marginRight="16dp"
+              android:layout_marginTop="8dp"
+              app:srcCompat="@drawable/ic_baseline_access_time_filled_24"
+              app:tint="@color/colorGray" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/brand"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"
-                />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:layout_marginRight="16dp"
+              android:text="@string/productionYearFrom"
+              android:textColor="@color/colorGray"
+              android:textSize="18sp" />
 
+            <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:gravity="center">
 
-            <Spinner
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+                <Spinner
+                  android:id="@+id/spinnerFromProductionYear"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
 
-                />
+                  />
 
+                <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="به" />
+
+                <Spinner
+                  android:id="@+id/spinnerToProductionYear"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1" />
+
+            </LinearLayout>
 
         </LinearLayout>
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginRight="40dp"
+          android:background="@drawable/gray_search_background" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,25 +215,26 @@
             >
 
             <ImageView
-                android:id="@+id/icon_car_price"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="8dp"
-                app:srcCompat = "@drawable/ic_brand_dialog"
-                />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="8dp"
+              android:layout_marginRight="16dp"
+              android:layout_marginTop="8dp"
+              app:srcCompat="@drawable/ic_transmission"
+              app:tint="@color/colorGray" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/brand"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"
-                />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:layout_marginRight="16dp"
+              android:text="@string/gearBox"
+              android:textColor="@color/colorGray"
+              android:textSize="18sp" />
 
 
             <Spinner
+              android:id="@+id/spinnerGearbox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -186,22 +248,35 @@
 
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Search"
-            android:textSize="15sp"
-            android:textColor="@color/colorBlue"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="4dp"
-            />
 
 
     </LinearLayout>
 
+    <Button
+      android:id="@+id/btnSubmitSearch"
+      style="@style/Widget.AppCompat.Button.Borderless"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_below="@id/layout"
+      android:layout_gravity="bottom"
+      android:layout_marginBottom="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:text="@string/Search"
+      android:textColor="@color/colorBlue"
+      android:textSize="15sp" />
 
+    <Button
+      android:id="@+id/btnDialogDismiss"
+      style="@style/Widget.AppCompat.Button.Borderless"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/layout"
+      android:layout_marginTop="8dp"
+      android:layout_toEndOf="@+id/btnSubmitSearch"
+      android:text="لغو"
+      android:textColor="@color/colorBlue" />
 
 
 </RelativeLayout>

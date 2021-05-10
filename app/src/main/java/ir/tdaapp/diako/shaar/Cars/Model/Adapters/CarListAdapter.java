@@ -20,13 +20,19 @@ import ir.tdaapp.diako.shaar.R;
 
 public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHolder> {
 
+  public static final int USERS_LIST = 0;
+  public static final int CARS_LIST = 1;
+
   Context context;
   ArrayList<CarListModel> models;
   onCarListClickListener clickListener;
+  int type;
 
-  public CarListAdapter(Context context) {
+
+  public CarListAdapter(Context context, int type) {
     this.context = context;
     models = new ArrayList<>();
+    this.type = type;
   }
 
   @NonNull
@@ -45,6 +51,9 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
     holder.mileage.setText(model.getMileage());
     holder.color.setText(model.getColor());
     holder.productionYear.setText(model.getProductionYear());
+    holder.isShown.setVisibility(type == USERS_LIST ? View.VISIBLE : View.GONE);
+    holder.isShown.setText(model.isShow() ? R.string.confirmed : R.string.not_confirmed);
+    holder.isShown.setBackgroundResource(model.isShow() ? R.drawable.green_rounded_background : R.drawable.red_rounded_background);
     Glide.with(context)
       .load(CarBaseApi.API_IMAGE + model.getImageUrl())
       .placeholder(R.drawable.ic_baseline_sync_24)
@@ -73,7 +82,7 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
   class ViewHolder extends RecyclerView.ViewHolder {
 
     ViewGroup root;
-    TextView name, price, color, productionYear, mileage;
+    TextView name, price, color, productionYear, mileage, isShown;
     ImageView imageView;
 
     public ViewHolder(@NonNull View itemView) {
@@ -89,6 +98,7 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
       mileage = view.findViewById(R.id.txtCarListMileage);
       imageView = view.findViewById(R.id.imgCarList);
       root = view.findViewById(R.id.carListRoot);
+      isShown = view.findViewById(R.id.txtIsShown);
     }
   }
 }

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
+import ir.tdaapp.diako.shaar.Cars.View.Fragments.AddCarFragment;
 import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarDeatailFragment;
 import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarFavoriteItemsFragment;
 import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarListFragment;
