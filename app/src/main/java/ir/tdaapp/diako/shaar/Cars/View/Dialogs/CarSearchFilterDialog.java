@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import org.json.JSONException;
@@ -31,11 +32,12 @@ public class CarSearchFilterDialog extends DialogFragment implements View.OnClic
 
   CarSearchDialogPresenter presenter;
 
+
   private onSearchParametersReceived contract;
 
   Spinner brand, fromProductionYear, toProductionYear, gearbox;
   EditText fromPrice, toPrice;
-  Button submit;
+  Button submit,cancel;
 
   public CarSearchFilterDialog(onSearchParametersReceived contract) {
     this.contract = contract;
@@ -62,12 +64,17 @@ public class CarSearchFilterDialog extends DialogFragment implements View.OnClic
     fromPrice = view.findViewById(R.id.edtFromPrice);
     toPrice = view.findViewById(R.id.edtToPrice);
     submit = view.findViewById(R.id.btnSubmitSearch);
+    cancel = view.findViewById(R.id.btnDialogDismiss);
+
   }
 
   private void implement() {
     presenter.start();
 
     submit.setOnClickListener(this);
+
+    cancel.setOnClickListener(this);
+
   }
 
   @Override
@@ -84,11 +91,18 @@ public class CarSearchFilterDialog extends DialogFragment implements View.OnClic
         contract.onResult(model);
         dismiss();
         break;
+
+      case R.id.btnDialogDismiss:
+        dismiss();
+        break;
     }
+
+
   }
 
   @Override
   public void onPresenterStart() {
+
 
   }
 

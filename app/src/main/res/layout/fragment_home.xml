@@ -125,7 +125,7 @@
                             android:layout_below="@id/Home_AddHouse"
                             android:layout_centerHorizontal="true"
                             android:gravity="center"
-                            android:text="@string/AddHome"
+                            android:text="@string/AddHome2"
                             android:textColor="@color/colorWhite"
                             android:textSize="18dp" />
 
@@ -198,7 +198,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:text="@string/NewsHome"
+                                android:text="@string/B_information"
                                 android:textColor="@color/colorWhite"
                                 android:textSize="18dp" />
 

@@ -21,6 +21,7 @@ public class ChipsListAdapter extends RecyclerView.Adapter<ChipsListAdapter.View
   ArrayList<CarChipsListModel> models;
   onCarListClickListener clickListener;
 
+
   public ChipsListAdapter(Context context) {
     this.context = context;
     this.models = new ArrayList<>();

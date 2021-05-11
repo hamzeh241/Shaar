@@ -9,6 +9,7 @@
     <string name="Like">لیست مورد علاقه</string>
     <string name="AdManagement">مدیریت آگهی</string>
     <string name="AddHome">افزودن ملک</string>
+    <string name="AddHome2">املاک</string>
     <string name="Add_Property">ملک اضافه کنید</string>
     <string name="MyHome">املاک من</string>
     <string name="Telephone">تماس با ما</string>
@@ -74,6 +75,7 @@
     <string name="LikeHome">پسندیدن</string>
     <string name="Map">نقشه</string>
     <string name="More_Information">اطلاعات بیشتر</string>
+    <string name="B_information">بانک اطلاعاتی</string>
     <string name="Property">ویژگی ها</string>
     <string name="WritingBy">درج شده توسط</string>
     <string name="Call">تماس</string>

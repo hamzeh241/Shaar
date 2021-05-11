@@ -59,6 +59,8 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
   MessageDialog uploading;
   MessageDialog sending;
 
+  ImageButton back;
+
 
   @Nullable
   @Override
@@ -96,6 +98,7 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
     photoList = view.findViewById(R.id.addItemPhotoList);
     submit = view.findViewById(R.id.btnAddItemSendData);
     loading = view.findViewById(R.id.addItemLoading);
+    back = view.findViewById(R.id.imageButtonAddItem);
   }
 
   private void implement() {
@@ -117,6 +120,7 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
     photoList.setAdapter(adapter);
     submit.setOnClickListener(this);
     addPhoto.setOnClickListener(this);
+    back.setOnClickListener(this);
   }
 
   @Override
@@ -142,6 +146,10 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
         break;
       case R.id.btnAddItemInsertPhoto:
         presenter.requestStoragePermission(getActivity());
+        break;
+
+      case R.id.imageButtonAddItem:
+        getActivity().onBackPressed();
         break;
     }
   }

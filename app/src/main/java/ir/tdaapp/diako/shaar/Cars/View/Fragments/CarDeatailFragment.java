@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,9 +21,13 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.SliderCarItemDetails;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Database.TblCarFavoriets;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;
@@ -40,6 +45,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     public static final String TAG = "CarDeatailFragment";
 
     int itemId, userId;
+
 
     TextView carName, productionYear, mileage, carBodyStatus, carBodyStatus2, brand,
             chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description,
@@ -61,6 +67,9 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     SliderCarItemDetails viewPagerAdapter;
 
     CarDetailModel model = new CarDetailModel();
+
+
+
 
 
     @Nullable
@@ -124,7 +133,9 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     }
 
     private void implement() {
-        presenter.start(1);
+        Bundle bundle = new Bundle();
+        itemId = getArguments().getInt("ID");
+        presenter.start(itemId);
         callExpert.setOnClickListener(this);
         textExpert.setOnClickListener(this);
         showMoreDescribe.setOnClickListener(this);
@@ -144,7 +155,8 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         switch (v.getId()) {
 
             case R.id.btn_call_expert:
-                dialContactPhone(expertPhone + "");
+
+                dialContactPhone();
                 break;
 
             case R.id.btn_text_expert:
@@ -189,18 +201,18 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         }
     }
 
+
+
     //تماس با کارشناس
-    private void dialContactPhone(final String phoneNumber) {
-        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
+    private void dialContactPhone() {
+
     }
 
     //ارسال پیام به کارشناس
     private void sendTextToExpert() {
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.setData(Uri.parse("sms: 9540644 "));
-        sendIntent.putExtra("sms_body", "this is a test message");
-        startActivity(sendIntent);
+
     }
+
 
     @Override
     public void onCarReceived(CarDetailModel model) {
@@ -231,7 +243,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
         //ست کردن عکس کارشناس
         Glide.with(this)
-                .load(CarBaseApi.API_IMAGE_CAR_EXPERT  + model.getExpertImage())
+                .load(CarBaseApi.API_IMAGE_CAR_EXPERT + model.getExpertImage())
                 .into(circleImageView);
 
 
@@ -286,4 +298,5 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
 
     }
+
 }

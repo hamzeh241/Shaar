@@ -55,7 +55,7 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
     holder.isShown.setText(model.isShow() ? R.string.confirmed : R.string.not_confirmed);
     holder.isShown.setBackgroundResource(model.isShow() ? R.drawable.green_rounded_background : R.drawable.red_rounded_background);
     Glide.with(context)
-      .load(CarBaseApi.API_IMAGE + model.getImageUrl())
+      .load(CarBaseApi.API_IMAGE_CAR + model.getImageUrl())
       .placeholder(R.drawable.ic_baseline_sync_24)
       .error(R.drawable.ic_baseline_running_with_errors_24)
       .into(holder.imageView);

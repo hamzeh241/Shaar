@@ -32,12 +32,12 @@
     android:padding="16dp">
 
     <ImageButton
-      android:id="@+id/btnCarListSearch"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="?selectableItemBackgroundBorderless"
-      app:srcCompat="@drawable/ic_baseline_search_24"
-      app:tint="#1a1d24" />
+        android:id="@+id/btnCarListSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        app:srcCompat="@drawable/ic_baseline_search_24"
+        app:tint="#1a1d24" />
 
     <ImageButton
       android:id="@+id/imgCarListFilter"

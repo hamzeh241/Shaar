@@ -24,6 +24,7 @@ public class CategoryDetailsChipsAdapter extends RecyclerView.Adapter<CategoryDe
   ArrayList<CategoryDetailsChipModel> models;
   onCategoryChipClick clickListener;
 
+
   public CategoryDetailsChipsAdapter(Context context) {
     this.context = context;
     models = new ArrayList<>();

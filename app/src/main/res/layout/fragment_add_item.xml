@@ -25,15 +25,15 @@
       tools:layout_editor_absoluteY="18dp">
 
       <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButtonAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:background="?selectableItemBackgroundBorderless"
-        android:tint="#FFF"
-        app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+          app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+          app:tint="#FFF" />
 
       <TextView
         android:id="@+id/textView8"

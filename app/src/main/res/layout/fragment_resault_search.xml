@@ -176,6 +176,7 @@
         android:layout_marginRight="12dp"
         android:layout_marginBottom="12dp"
         android:src="@drawable/ic_add_home"
+        android:backgroundTint="@color/colorBlue"
         />
 
 </RelativeLayout>

@@ -116,14 +116,16 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             @Override
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+                SetNews();
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
             }
         });
         txt_AddHouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+                SetNews();
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
             }
         });
 
@@ -146,17 +148,17 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         b_information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Vibrate.ButtonClick(getActivity());
-//                SetNews();
-                startActivity(new Intent(getActivity(), GuideActivity.class));
-            }
-        });
+               Vibrate.ButtonClick(getActivity());
+               SetNews();
+             startActivity(new Intent(getActivity(), GuideActivity.class));
+         }
+     });
 
-        txt_NewHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Vibrate.ButtonClick(getActivity());
-//                SetNews();
+     txt_NewHome.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+               Vibrate.ButtonClick(getActivity());
+               SetNews();
                 startActivity(new Intent(getActivity(), GuideActivity.class));
             }
         });

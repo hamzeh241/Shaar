@@ -2,7 +2,6 @@ package ir.tdaapp.diako.shaar.Cars.Model.Repository.Database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -210,4 +209,5 @@ public class TblAddCar {
     q.close();
     return results;
   }
+
 }
