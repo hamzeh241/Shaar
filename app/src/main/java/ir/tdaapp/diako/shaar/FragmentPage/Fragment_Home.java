@@ -1,6 +1,7 @@
 package ir.tdaapp.diako.shaar.FragmentPage;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -28,6 +29,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
+import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryDetailsFragmentCityGuide;
 import ir.tdaapp.diako.shaar.ETC.LinkedList;
 import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.ETC.Vibrate;
@@ -42,8 +46,8 @@ import java.math.BigInteger;
 
 public class Fragment_Home extends Fragment implements NavigationView.OnNavigationItemSelectedListener  {
 
-    ImageView AddHouse, SearchHome, NewHome;
-    TextView txt_AddHouse, txt_SearchHome, txt_NewHome;
+    ImageView AddHouse, Car, b_information;
+    TextView txt_AddHouse, txt_car, txt_NewHome;
     Toolbar mtoolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -93,11 +97,11 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 
     void FindItem(View view) {
         AddHouse = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_AddHouse);
-        SearchHome = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHouse);
-        NewHome = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_NewsHome);
+        Car = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHouse);
+        b_information = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_NewsHome);
 
         txt_AddHouse = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_AddHomeText);
-        txt_SearchHome = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHometext);
+        txt_car = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHometext);
         txt_NewHome = view.findViewById(ir.tdaapp.diako.shaar.R.id.NewsHomeText);
         mtoolbar = view.findViewById(ir.tdaapp.diako.shaar.R.id.mtoolbar);
         navigationView = view.findViewById(ir.tdaapp.diako.shaar.R.id.nav_view);
@@ -112,46 +116,48 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             @Override
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
-                Stack_Back.MyStack_Back.Push("Fragment_Add_Home", getActivity());
+                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
             }
         });
         txt_AddHouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
-                Stack_Back.MyStack_Back.Push("Fragment_Add_Home", getActivity());
+                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
             }
         });
 
-        SearchHome.setOnClickListener(new View.OnClickListener() {
+        Car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Vibrate.ButtonClick(getActivity());
-                Stack_Back.MyStack_Back.Push("Fragment_Search_Home", getActivity());
+
+                startActivity(new Intent(getActivity(),CarActivity.class));
+
             }
         });
 
-        txt_SearchHome.setOnClickListener(new View.OnClickListener() {
+        txt_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Vibrate.ButtonClick(getActivity());
-                Stack_Back.MyStack_Back.Push("Fragment_Search_Home", getActivity());
+                startActivity(new Intent(getActivity(),CarActivity.class));
             }
         });
 
-        NewHome.setOnClickListener(new View.OnClickListener() {
+        b_information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Vibrate.ButtonClick(getActivity());
-                SetNews();
+//                Vibrate.ButtonClick(getActivity());
+//                SetNews();
+                startActivity(new Intent(getActivity(), GuideActivity.class));
             }
         });
 
         txt_NewHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Vibrate.ButtonClick(getActivity());
-                SetNews();
+//                Vibrate.ButtonClick(getActivity());
+//                SetNews();
+                startActivity(new Intent(getActivity(), GuideActivity.class));
             }
         });
     }

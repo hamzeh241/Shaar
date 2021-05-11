@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
 
   RecyclerView list;
   ProgressBar loading;
+  ImageButton back;
 
   LinearLayoutManager layoutManager;
   CategoryDetailsAdapter adapter;
@@ -45,6 +47,7 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
     presenter = new UserItemsFragmentPresenter(getContext(), this);
     layoutManager = new LinearLayoutManager(getContext());
     adapter = new CategoryDetailsAdapter(getContext());
+    back = view.findViewById(R.id.imageButton);
 
     list = view.findViewById(R.id.userItemList);
     loading = view.findViewById(R.id.userItemLoading);
@@ -55,6 +58,14 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
 
     list.setLayoutManager(layoutManager);
     list.setAdapter(adapter);
+
+    back.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        getActivity().onBackPressed();
+      }
+    });
+
   }
 
   @Override

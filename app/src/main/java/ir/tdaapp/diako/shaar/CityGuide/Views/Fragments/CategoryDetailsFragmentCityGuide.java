@@ -108,6 +108,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
 
     fab.setOnClickListener(this);
     filter.setOnClickListener(this);
+    back.setOnClickListener(this::onClick);
   }
 
   @Override
@@ -228,6 +229,10 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
       case R.id.imgCategoryDetailsFilter:
         presenter.start(searchBar.getText().toString(), selectedModel.getId(), 0);
         Log.i("LOGLOG", searchBar.getText().toString() + " - " + selectedModel.getId() + " - " + page);
+        break;
+
+      case R.id.imgCategoryDetailsBack:
+        getActivity().onBackPressed();
         break;
     }
   }

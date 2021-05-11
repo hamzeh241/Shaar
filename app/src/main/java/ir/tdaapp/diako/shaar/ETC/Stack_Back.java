@@ -57,6 +57,13 @@ public class Stack_Back {
                     LinkedList.My_Linked.AddLast(val);
 
                     ((AppCompatActivity) context).getSupportFragmentManager().
+                            beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Resault_Search()).commit();
+                    break;
+
+                    case "Fragment_Add_Home_fab":
+                    LinkedList.My_Linked.AddLast(val);
+
+                    ((AppCompatActivity) context).getSupportFragmentManager().
                             beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Add_Home()).commit();
                     break;
                 case "Fragment_Edit_Home":

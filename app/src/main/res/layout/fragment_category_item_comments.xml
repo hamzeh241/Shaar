@@ -68,15 +68,15 @@
       tools:layout_editor_absoluteY="18dp">
 
       <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:tint="#FFF"
-        app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+          android:id="@+id/imageButton"
+          android:layout_width="16dp"
+          android:layout_height="13dp"
+          android:layout_alignParentEnd="true"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="16dp"
+          android:background="?selectableItemBackgroundBorderless"
+          app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+          app:tint="#ffffff" />
 
       <TextView
         android:id="@+id/textView8"

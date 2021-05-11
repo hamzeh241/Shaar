@@ -231,7 +231,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
         //ست کردن عکس کارشناس
         Glide.with(this)
-                .load(CarBaseApi.API_IMAGE + model.getExpertImage())
+                .load(CarBaseApi.API_IMAGE_CAR_EXPERT  + model.getExpertImage())
                 .into(circleImageView);
 
 

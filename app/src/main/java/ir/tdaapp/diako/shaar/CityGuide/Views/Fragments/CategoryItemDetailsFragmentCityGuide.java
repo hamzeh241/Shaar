@@ -63,7 +63,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
   Button phoneCall, sendText, showDescription, addPhoto, showComments, btnAddComments;
   RecyclerView photoList, commentsList;
   ImageButton retry, favorite;
-  ImageView back, forward;
+  ImageView back, forward,goBack;
   RatingBar ratingBar;
   ProgressBar loading;
   ViewGroup addRating, addComment, addPhotoLayout;
@@ -110,6 +110,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     addRating = view.findViewById(R.id.categoryItemDetailsAddRating);
     addComment = view.findViewById(R.id.categoryItemDetailsAddComment);
     addPhotoLayout = view.findViewById(R.id.categoryItemDetailsAddPhoto);
+    goBack = view.findViewById(R.id.img_btn_back_detail);
 
     phoneCall = view.findViewById(R.id.btnCategoryItemCall);
     sendText = view.findViewById(R.id.btnCategoryItemMessage);
@@ -142,6 +143,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     retry.setOnClickListener(this);
     favorite.setOnClickListener(this);
     btnAddComments.setOnClickListener(this);
+    goBack.setOnClickListener(this::onClick);
 
     userPhotosLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
     userPhotosLayoutManager.setReverseLayout(true);
@@ -206,6 +208,10 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         break;
       case R.id.btnCategoryItemDetailsAddPhotos:
         addPhotoLayout.performClick();
+        break;
+
+      case R.id.img_btn_back_detail:
+        getActivity().onBackPressed();
         break;
     }
   }

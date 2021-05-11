@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,8 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
   RecyclerView list;
   ProgressBar loading;
 
+  ImageButton back;
+
 
   @Nullable
   @Override
@@ -49,6 +52,8 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
 
     list = view.findViewById(R.id.favoriteItemsList);
     loading = view.findViewById(R.id.favoritesLoading);
+
+    back = view.findViewById(R.id.imageButton);
   }
 
   private void implement() {
@@ -61,10 +66,22 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
       fragment.setArguments(bundle);
       ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryItemDetailsFragmentCityGuide.TAG);
     });
+
+    back.setOnClickListener(this);
   }
 
 
   public void onClick(View v) {
+
+    switch (v.getId()){
+
+      case R.id.imageButton:
+        getActivity().onBackPressed();
+        break;
+
+    }
+
+
 
   }
 

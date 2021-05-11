@@ -30,8 +30,8 @@
         android:background="?selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
-        android:tint="#1a1d24"
-        app:srcCompat="@drawable/ic_baseline_search_24" />
+          app:srcCompat="@drawable/ic_baseline_search_24"
+          app:tint="#1a1d24" />
 
       <ImageView
         android:id="@+id/imageView7"
@@ -54,13 +54,13 @@
         android:textColor="#1a1d24" />
 
       <ImageButton
-        android:id="@+id/imgCategoryDetailsBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?selectableItemBackgroundBorderless"
-        app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+          android:id="@+id/imgCategoryDetailsBack"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="?selectableItemBackgroundBorderless"
+          android:clickable="true"
+          android:focusable="true"
+          app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
     </LinearLayout>
 

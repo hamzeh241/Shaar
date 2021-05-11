@@ -47,7 +47,7 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
     bodyStatus, chassisStatus, insuranceDeadline, gearbox, document, sellType;
 
   EditText mileage, price, title, address, description, phone;
-  ImageButton addPhoto;
+  ImageButton addPhoto,back;
   CardView submit;
   RecyclerView photoList;
   ProgressBar loading;
@@ -109,6 +109,8 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
     exchange = view.findViewById(R.id.checkboxExchange);
 
     photoList = view.findViewById(R.id.addCarPhotoList);
+
+    back = view.findViewById(R.id.imageButton);
   }
 
   private void implement() {
@@ -118,6 +120,7 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
     photoList.setAdapter(adapter);
     submit.setOnClickListener(this);
     addPhoto.setOnClickListener(this);
+    back.setOnClickListener(this::onClick);
   }
 
   @Override
@@ -151,6 +154,9 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
           presenter.sendDetails(viewModel);
         }
         break;
+
+      case R.id.imageButton:
+        getActivity().onBackPressed();
     }
   }
 

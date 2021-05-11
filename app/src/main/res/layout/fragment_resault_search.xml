@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layoutDirection="rtl">
 
     <LinearLayout
@@ -12,25 +13,34 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
             android:background="@color/colorCenteral"
-            android:layoutDirection="ltr">
+            android:layoutDirection="ltr"
+            android:minHeight="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/img_btn_search_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat = "@drawable/ic_baseline_search_24"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                />
 
             <!--<ImageView-->
-                <!--android:id="@+id/search"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@drawable/sliders"-->
-                <!--android:layout_marginLeft="10dp"-->
-                <!--android:layout_centerVertical="true"/>-->
+            <!--android:id="@+id/search"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/sliders"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_centerVertical="true"/>-->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="@string/ResaultSearch"
                 android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                android:layout_centerInParent="true"/>
+                android:textSize="18sp" />
 
             <RelativeLayout
                 android:id="@+id/Back"
@@ -43,10 +53,9 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:src="@drawable/ic_back" />
 
             </RelativeLayout>
 
@@ -158,5 +167,15 @@
             android:paddingRight="10dp"
             android:paddingLeft="10dp"/>
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_home_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/ic_add_home"
+        />
 
 </RelativeLayout>

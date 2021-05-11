@@ -43,6 +43,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
   ProgressBar loading;
   ImageButton post;
   EditText commentText;
+  ImageButton back;
 
   MessageDialog dialog;
 
@@ -67,6 +68,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
     loading = view.findViewById(R.id.progressAllComments);
     post = view.findViewById(R.id.imgPostComment);
     commentText = view.findViewById(R.id.edtCommentText);
+    back = view.findViewById(R.id.imageButton);
 
     dialog = new MessageDialog(getString(R.string.postingComment), false);
 
@@ -78,6 +80,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
     presenter.start(itemId, userId);
 
     post.setOnClickListener(this);
+    back.setOnClickListener(this::onClick);
 
     list.setLayoutManager(new LinearLayoutManager(getContext()));
     dialog.setCancelable(false);
@@ -178,6 +181,10 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
             presenter.sendComment(commentText.getText().toString(), itemId, userId);
           }
         }
+        break;
+
+      case R.id.imageButton:
+        getActivity().onBackPressed();
         break;
     }
   }

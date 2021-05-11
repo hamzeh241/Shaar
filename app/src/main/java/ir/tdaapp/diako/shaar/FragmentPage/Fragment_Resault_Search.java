@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +39,7 @@ import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
 import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Interface.IBase;
 import ir.tdaapp.diako.shaar.Model.List_Home;
+import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.ViewModel.VM_Search;
 
 import org.json.JSONArray;
@@ -74,6 +76,8 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
     LinearLayout img_not_item;
     JsonArrayRequest jsonObjReq;
     RequestQueue requestQueue;
+    FloatingActionButton fab_add_home;
+
 
     @Nullable
     @Override
@@ -165,6 +169,8 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
 //        search = view.findViewById(ir.tdaapp.diako.shaar.R.id.search);
         img_not_item = view.findViewById(ir.tdaapp.diako.shaar.R.id.img_not_item);
         Save_Search=view.findViewById(ir.tdaapp.diako.shaar.R.id.Save_Search);
+        search = view.findViewById(R.id.img_btn_search_main);
+        fab_add_home = view.findViewById(R.id.fab_add_home_main);
     }
 
     void OnClick() {
@@ -187,6 +193,22 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
             @Override
             public void onClick(View view) {
                 Stack_Back.MyStack_Back.Push("Fragment_Save_Search",getActivity());
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Stack_Back.MyStack_Back.Push("Fragment_Search_Home",getActivity());
+            }
+        });
+
+        fab_add_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Stack_Back.MyStack_Back.Push("Fragment_Add_Home_fab",getActivity());
+
             }
         });
     }
