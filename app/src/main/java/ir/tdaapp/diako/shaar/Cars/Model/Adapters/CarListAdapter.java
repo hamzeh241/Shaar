@@ -70,6 +70,12 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
     notifyItemInserted(models.size());
   }
 
+  public void clear(){
+    models.clear();
+    notifyDataSetChanged();
+  }
+
+
   public void setClickListener(onCarListClickListener clickListener) {
     this.clickListener = clickListener;
   }

@@ -184,6 +184,7 @@ public class Stack_Back {
                     ((AppCompatActivity) context).getSupportFragmentManager().
                             beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Test()).commit();
                     break;
+
             }
         }
 

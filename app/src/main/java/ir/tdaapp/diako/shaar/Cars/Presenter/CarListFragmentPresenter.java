@@ -38,6 +38,7 @@ public class CarListFragmentPresenter {
     getCarChips();
   }
 
+
   private void getCarChips() {
     service.loadingState(true);
     Single<List<CarChipsListModel>> data = api.getChips();
@@ -68,6 +69,7 @@ public class CarListFragmentPresenter {
       });
   }
 
+
   public void getCars(SearchModel searchObject, int page) {
 
     JSONObject object = new JSONObject();
@@ -87,7 +89,7 @@ public class CarListFragmentPresenter {
 
     Single<List<CarListModel>> data = api.getCars(object);
 
-    getCarChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CarListModel>>() {
+    getCarsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CarListModel>>() {
       @Override
       public void onSuccess(List<CarListModel> cars) {
         setCars(cars);
@@ -100,9 +102,11 @@ public class CarListFragmentPresenter {
     });
   }
 
+
+
   private void setCars(List<CarListModel> categoryModels) {
     Observable<CarListModel> data = Observable.fromIterable(categoryModels);
-    setCarChipsDisposable = data.subscribe(car ->
+    setCarsDisposable = data.subscribe(car ->
         service.onCarReceived(car),
       throwable -> {
 

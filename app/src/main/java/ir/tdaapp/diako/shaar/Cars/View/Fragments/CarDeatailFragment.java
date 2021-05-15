@@ -46,6 +46,8 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
     int itemId, userId;
 
+    String number;
+
 
     TextView carName, productionYear, mileage, carBodyStatus, carBodyStatus2, brand,
             chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description,
@@ -65,11 +67,6 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     CarDetailFragmentPresenter presenter;
 
     SliderCarItemDetails viewPagerAdapter;
-
-    CarDetailModel model = new CarDetailModel();
-
-
-
 
 
     @Nullable
@@ -127,13 +124,11 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
 
         CarDetailModel model = new CarDetailModel();
-        expertPhone = model.getPhone();
 
 
     }
 
     private void implement() {
-        Bundle bundle = new Bundle();
         itemId = getArguments().getInt("ID");
         presenter.start(itemId);
         callExpert.setOnClickListener(this);
@@ -145,6 +140,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         forward.setOnClickListener(this);
         btnBack.setOnClickListener(this);
 
+
         viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
     }
@@ -154,17 +150,24 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
         switch (v.getId()) {
 
+            //تماس با کارشناس
             case R.id.btn_call_expert:
-
-                dialContactPhone();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + number));
+                startActivity(intent);
                 break;
 
+            //ارسال پیام به کارشناس
             case R.id.btn_text_expert:
-                sendTextToExpert();
+
+                String Message = getResources().getString(R.string.SMSMessage);
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setData(Uri.parse("sms: " + number));
+                sendIntent.putExtra("sms_body", Message);
+                startActivity(sendIntent);
                 break;
 
             case R.id.btn_show_more_describe:
-
                 TransitionManager.beginDelayedTransition(root);
                 description.setText(descriptionText);
                 showMoreDescribe.setVisibility(View.GONE);
@@ -199,18 +202,6 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
                 getActivity().onBackPressed();
                 break;
         }
-    }
-
-
-
-    //تماس با کارشناس
-    private void dialContactPhone() {
-
-    }
-
-    //ارسال پیام به کارشناس
-    private void sendTextToExpert() {
-
     }
 
 
@@ -260,6 +251,9 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         viewPagerAdapter = new SliderCarItemDetails(getContext(), model.getPhotos(), this);
 
         viewPager.setAdapter(viewPagerAdapter);
+
+
+        number = model.getPhone();
 
 
     }

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/mainGroup"
+        android:checkableBehavior="single"
 
-        <item
-            android:id="@+id/navigation_Exit"
-            android:icon="@drawable/exit"
-            android:title="@string/Exit" />
+        >
+
 
         <item
             android:id="@+id/navigation_LogIn"
@@ -18,38 +19,20 @@
         <item
             android:id="@+id/navigation_Home"
             android:icon="@drawable/ic_home"
-            android:title="@string/Home"/>
+            android:title="@string/Home" />
 
-        <item
-            android:id="@+id/navigation_NewSearch"
-            android:icon="@drawable/ic_search"
-            android:title="@string/NewSearch"/>
-
-        <item
-            android:id="@+id/navigation_LastSearch"
-            android:icon="@drawable/ic_last_search"
-            android:title="@string/LastSearch"/>
-
-        <item
-            android:id="@+id/navigation_SearchSaved"
-            android:icon="@drawable/ic_download"
-            android:title="@string/SearchSaved"/>
-
-
-        <item
-            android:id="@+id/navigation_Like"
-            android:icon="@drawable/ic_like"
-            android:title="@string/Like"/>
 
         <item
             android:id="@+id/navigation_GetById"
             android:icon="@drawable/search"
-            android:title="@string/SearchById"/>
+            android:title="@string/SearchById" />
 
 
     </group>
 
-    <item android:title="@string/AdManagement">
+    <item
+        android:id="@+id/group"
+        android:title="@string/AdManagement">
 
         <menu>
 
@@ -64,14 +47,76 @@
                 android:title="@string/MyHome" />
 
             <item
+                android:id="@+id/navigation_Like"
+                android:icon="@drawable/ic_like"
+                android:title="@string/Like" />
+
+            <item
+                android:id="@+id/navigation_NewSearch"
+                android:icon="@drawable/ic_search"
+                android:title="@string/NewSearch" />
+
+            <item
+                android:id="@+id/navigation_LastSearch"
+                android:icon="@drawable/ic_last_search"
+                android:title="@string/LastSearch" />
+
+            <item
+                android:id="@+id/navigation_SearchSaved"
+                android:icon="@drawable/ic_download"
+                android:title="@string/SearchSaved" />
+
+
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/group2"
+        android:title="@string/b_info_title">
+
+        <menu>
+
+
+            <item
+                android:id="@+id/city_guide_favorite"
+                android:icon="@drawable/ic_car_favorite_icon"
+                android:title="@string/bankFav" />
+
+
+        </menu>
+
+
+    </item>
+
+
+    <item
+        android:id="@+id/groupCar"
+        android:title="@string/CarTitleNav">
+
+
+        <menu>
+
+
+            <item
+                android:id="@+id/navigation_carFavorite"
+                android:icon="@drawable/ic_car_favorite_icon"
+                android:title="@string/CarFavorite" />
+
+            <item
+                android:id="@+id/navigation_myCar"
+                android:icon="@drawable/ic_navigation_mycar"
+                android:title="@string/myCar" />
+
+            <item
                 android:id="@+id/navigation_CallMe"
                 android:icon="@drawable/ic_call_me"
                 android:title="@string/Telephone" />
 
             <!--<item-->
-                <!--android:id="@+id/navigation_Setting"-->
-                <!--android:icon="@drawable/ic_setting"-->
-                <!--android:title="@string/Setting" />-->
+            <!--android:id="@+id/navigation_Setting"-->
+            <!--android:icon="@drawable/ic_setting"-->
+            <!--android:title="@string/Setting" />-->
 
             <item
                 android:id="@+id/navigation_AboutMe"
@@ -79,8 +124,16 @@
                 android:icon="@drawable/ic_about"
                 android:title="@string/AboutMe" />
 
+            <item
+                android:id="@+id/navigation_Exit"
+                android:icon="@drawable/exit"
+                android:title="@string/Exit" />
+
+
         </menu>
 
+
     </item>
+
 
 </menu>

@@ -8,5 +8,6 @@ public interface onCarListClickListener {
   void onClick(CarListModel model,int position);
 
 
+
 }
 

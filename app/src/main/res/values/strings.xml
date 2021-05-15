@@ -6,8 +6,13 @@
     <string name="NewSearch">جستجوی جدید</string>
     <string name="LastSearch">آخرین جستجو</string>
     <string name="SearchSaved">جستجوی ذخیره شده</string>
-    <string name="Like">لیست مورد علاقه</string>
-    <string name="AdManagement">مدیریت آگهی</string>
+    <string name="Like">لیست علاقه مندی املاک</string>
+    <string name="CarTitleNav">خودرو</string>
+    <string name="b_info_title">بانک اطلاعاتی</string>
+    <string name="CarFavorite">لیست علاقه مندی ماشین</string>
+    <string name="myCar">ماشین های من</string>
+    <string name="bankFav">لیست علاقه مندی بانک اطلاعاتی</string>
+    <string name="AdManagement">املاک</string>
     <string name="AddHome">افزودن ملک</string>
     <string name="AddHome2">املاک</string>
     <string name="Add_Property">ملک اضافه کنید</string>

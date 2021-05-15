@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -60,6 +61,8 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     private CarListAdapter carAdapter;
     private ChipsListAdapter chipsAdapter;
 
+    CarChipsListModel chipsListModel;
+
     private JSONObject searchObject;
     SearchModel searchModel;
 
@@ -104,9 +107,22 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
         chipsList.setLayoutManager(chipsManager);
         carList.setLayoutManager(carManager);
-        chipsAdapter.setClickListener((model, position) -> {
+
+
+
+        chipsAdapter.setChipListener((model, position) -> {
+
+            carAdapter.clear();
+            chipsListModel = model;
+
+            presenter.getCars(searchModel,page);
+
+
 
         });
+
+
+
         carAdapter.setClickListener((model, position) -> {
             CarDeatailFragment fragment = new CarDeatailFragment();
             Bundle bundle = new Bundle();
@@ -152,8 +168,9 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
                         <= (firstVisibleItem + visibleThreshold)) {
                     // End has been reached
                     page++;
+                 presenter.getCars(searchModel,page);
 
-//          presenter.getCars(searchObject, page);
+
                     // Do something
 
                     isLoading = true;
@@ -221,18 +238,21 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     }
 
     @Override
-    public void onResult(FilterModel object) {
-        //searchObject = object;
+    public void onResult(FilterModel object)  {
+    //searchObject = object;
 
-        searchModel.setBrandId(object.getBrandId());
-        searchModel.setText(searchBar.getText().toString());
-        searchModel.setPage(page);
-        searchModel.setFromDateId(object.getFromDateId());
-        searchModel.setToDateId(object.getToDateId());
-        searchModel.setFromPrice(object.getFromPrice());
-        searchModel.setToPrice(object.getToPrice());
-        searchModel.setGearboxId(object.getGearboxId());
-        presenter.getCars(searchModel,page);
+
+     searchModel.setBrandId(object.getBrandId());
+     searchModel.setText(searchBar.getText().toString());
+     searchModel.setPage(page);
+     searchModel.setFromDateId(object.getFromDateId());
+     searchModel.setToDateId(object.getToDateId());
+     searchModel.setFromPrice(object.getFromPrice());
+     searchModel.setToPrice(object.getToPrice());
+     searchModel.setGearboxId(object.getGearboxId());
+     presenter.getCars(searchModel,page);
+
+
 
 
     }

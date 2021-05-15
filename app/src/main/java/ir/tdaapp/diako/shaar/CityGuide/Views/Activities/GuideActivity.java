@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFavoriteItemsFragmentCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragmentCityGuide;
 import ir.tdaapp.diako.shaar.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class GuideActivity extends AppCompatActivity {
@@ -23,7 +25,20 @@ public class GuideActivity extends AppCompatActivity {
 
     dbAdapter=new DBAdapter(this);
 
-    onAddFragment(new CategoryFragmentCityGuide(), 0,0,false, CategoryFragmentCityGuide.TAG);
+  String intent = getIntent().getStringExtra("cityGyideFav");
+  Bundle extras = getIntent().getExtras();
+  int fragment = 0;
+
+  if (extras != null){
+    fragment = extras.getInt("cityGyideFav");
+  }
+
+  if (fragment == 0){
+    onAddFragment(new CategoryFragmentCityGuide(),0,0,false,CategoryFragmentCityGuide.TAG);
+  }else if (fragment == 1){
+    onAddFragment(new CategoryFavoriteItemsFragmentCityGuide(),0,0,false,CategoryFavoriteItemsFragmentCityGuide.TAG);
+  }
+
   }
 
 

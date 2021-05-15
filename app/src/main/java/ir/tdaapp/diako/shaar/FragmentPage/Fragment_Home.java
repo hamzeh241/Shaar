@@ -28,8 +28,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
+import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarFavoriteItemsFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryDetailsFragmentCityGuide;
 import ir.tdaapp.diako.shaar.ETC.LinkedList;
@@ -44,7 +46,7 @@ import java.math.BigInteger;
  * Created by Diako on 4/24/2019.
  */
 
-public class Fragment_Home extends Fragment implements NavigationView.OnNavigationItemSelectedListener  {
+public class Fragment_Home extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView AddHouse, Car, b_information;
     TextView txt_AddHouse, txt_car, txt_NewHome;
@@ -117,7 +119,7 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
                 SetNews();
-//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
             }
         });
         txt_AddHouse.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +127,7 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
                 SetNews();
-//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
             }
         });
 
@@ -133,7 +135,9 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getActivity(),CarActivity.class));
+                Intent intentCar = new Intent(getActivity(), CarActivity.class);
+                intentCar.putExtra("carList", "car");
+                startActivity(intentCar);
 
             }
         });
@@ -141,24 +145,24 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         txt_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(),CarActivity.class));
+                startActivity(new Intent(getActivity(), CarActivity.class));
             }
         });
 
         b_information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Vibrate.ButtonClick(getActivity());
-               SetNews();
-             startActivity(new Intent(getActivity(), GuideActivity.class));
-         }
-     });
+                //  Vibrate.ButtonClick(getActivity());
+                //  SetNews();
+                startActivity(new Intent(getActivity(), GuideActivity.class));
+            }
+        });
 
-     txt_NewHome.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
-               Vibrate.ButtonClick(getActivity());
-               SetNews();
+        txt_NewHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Vibrate.ButtonClick(getActivity());
+                // SetNews();
                 startActivity(new Intent(getActivity(), GuideActivity.class));
             }
         });
@@ -246,6 +250,28 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
                 Stack_Back.MyStack_Back.Push("Fragment_About_Me", getContext());
                 break;
 
+            case R.id.navigation_carFavorite:
+
+                Intent intentFavCar = new Intent(getActivity(),CarActivity.class);
+                intentFavCar.putExtra("FavCar",1);
+                startActivity(intentFavCar);
+
+                break;
+
+            case R.id.navigation_myCar:
+                Intent intentMyCar = new Intent(getActivity(),CarActivity.class);
+                intentMyCar.putExtra("FavCar",2);
+                startActivity(intentMyCar);
+                break;
+
+            case R.id.city_guide_favorite:
+                Intent intentBank = new Intent(getActivity(),GuideActivity.class);
+                intentBank.putExtra("cityGyideFav",1);
+                startActivity(intentBank);
+
+                break;
+
+
             case R.id.navigation_GetById:
                 drawerLayout.closeDrawers();
                 dialog_search_by_id.show(((AppCompatActivity) getActivity()).getSupportFragmentManager(), "Dialog_Search_By_Id");
@@ -289,7 +315,7 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         cursor.close();
     }
 
-//    در اینجا در اسکیولایت چک می شود که آیا کاربر حساب کاربری دارد یا خیر
+    //    در اینجا در اسکیولایت چک می شود که آیا کاربر حساب کاربری دارد یا خیر
     void CheckTheHaveAccount() {
 
         //در اینجا ما به navigation header دسترسی پیدا خواهیم کرد
@@ -323,5 +349,8 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
                 Stack_Back.MyStack_Back.Push("Fragment_Add_Account", getActivity());
             }
         });
+
+
     }
+
 }

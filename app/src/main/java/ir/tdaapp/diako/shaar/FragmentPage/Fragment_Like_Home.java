@@ -36,6 +36,7 @@ public class Fragment_Like_Home extends Fragment {
     LinearLayout img_not_item;
     RelativeLayout BackAll;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
