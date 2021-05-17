@@ -65,7 +65,7 @@ public class CarListFragmentPresenter {
       throwable -> {
 
       }, () -> {
-        getCars(null,0);
+        getCars(null, 0);
       });
   }
 
@@ -87,6 +87,7 @@ public class CarListFragmentPresenter {
       e.printStackTrace();
     }
 
+    service.loadingState(true);
     Single<List<CarListModel>> data = api.getCars(object);
 
     getCarsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CarListModel>>() {
@@ -103,7 +104,6 @@ public class CarListFragmentPresenter {
   }
 
 
-
   private void setCars(List<CarListModel> categoryModels) {
     Observable<CarListModel> data = Observable.fromIterable(categoryModels);
     setCarsDisposable = data.subscribe(car ->
@@ -111,7 +111,7 @@ public class CarListFragmentPresenter {
       throwable -> {
 
       }, () -> {
-
+        service.loadingState(false);
       });
 
   }

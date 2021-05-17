@@ -228,7 +228,6 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
         break;
       case R.id.imgCategoryDetailsFilter:
         presenter.start(searchBar.getText().toString(), selectedModel.getId(), 0);
-        Log.i("LOGLOG", searchBar.getText().toString() + " - " + selectedModel.getId() + " - " + page);
         break;
 
       case R.id.imgCategoryDetailsBack:
