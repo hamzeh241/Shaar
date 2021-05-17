@@ -106,17 +106,14 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     }
 
     private void implement() {
+
         presenter.start();
         chipsList.setLayoutManager(chipsManager);
         carList.setLayoutManager(carManager);
         chipsAdapter.setChipListener((model, position) -> {
-
             carAdapter.clear();
             chipsListModel = model;
             presenter.getCars(searchModel,page);
-
-
-
         });
 
 
