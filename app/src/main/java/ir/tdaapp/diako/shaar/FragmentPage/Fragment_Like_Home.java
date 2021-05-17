@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.ListHomeAdapter;
 import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.Model.List_Home;
 import ir.tdaapp.diako.shaar.R;
 
@@ -36,6 +37,10 @@ public class Fragment_Like_Home extends Fragment {
     LinearLayout img_not_item;
     RelativeLayout BackAll;
 
+    LinearLayout linearLayoutNotLogIn;
+
+    int userId;
+
 
     @Nullable
     @Override
@@ -54,6 +59,9 @@ public class Fragment_Like_Home extends Fragment {
         lbl_CountItem=view.findViewById(R.id.CountItem);
         img_not_item=view.findViewById(R.id.img_not_item);
         BackAll=view.findViewById(R.id.backall);
+        userId = new User(getContext()).GetUserId();
+        linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_home);
+
     }
 
     void OnClick(){
@@ -90,7 +98,10 @@ public class Fragment_Like_Home extends Fragment {
                 homes.add(home);
                 GetAll.moveToNext();
             }
-        }else{
+        }else if (userId == 0){
+            img_not_item.setVisibility(View.GONE);
+            linearLayoutNotLogIn.setVisibility(View.VISIBLE);
+        }else {
             img_not_item.setVisibility(View.VISIBLE);
         }
         GetAll.close();

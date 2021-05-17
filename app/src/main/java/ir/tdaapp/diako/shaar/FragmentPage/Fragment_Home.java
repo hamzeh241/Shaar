@@ -252,23 +252,28 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 
             case R.id.navigation_carFavorite:
 
-                Intent intentFavCar = new Intent(getActivity(),CarActivity.class);
-                intentFavCar.putExtra("FavCar",1);
+                Intent intentFavCar = new Intent(getActivity(), CarActivity.class);
+                intentFavCar.putExtra("FavCar", 1);
                 startActivity(intentFavCar);
 
                 break;
 
             case R.id.navigation_myCar:
-                Intent intentMyCar = new Intent(getActivity(),CarActivity.class);
-                intentMyCar.putExtra("FavCar",2);
+                Intent intentMyCar = new Intent(getActivity(), CarActivity.class);
+                intentMyCar.putExtra("FavCar", 2);
                 startActivity(intentMyCar);
                 break;
 
             case R.id.city_guide_favorite:
-                Intent intentBank = new Intent(getActivity(),GuideActivity.class);
-                intentBank.putExtra("cityGyideFav",1);
+                Intent intentBank = new Intent(getActivity(), GuideActivity.class);
+                intentBank.putExtra("cityGyideFav", 1);
                 startActivity(intentBank);
+                break;
 
+            case R.id.city_guide_user_item:
+                Intent intentUserItemCityGuide = new Intent(getActivity(), GuideActivity.class);
+                intentUserItemCityGuide.putExtra("cityGyideFav", 2);
+                startActivity(intentUserItemCityGuide);
                 break;
 
 

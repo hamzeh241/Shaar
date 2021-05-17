@@ -5,13 +5,13 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/colorBlue"
     android:fitsSystemWindows="true"
     android:layoutDirection="rtl">
 
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorCenteral2"
@@ -62,7 +62,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        app:srcCompat = "@drawable/useff_title"
+                        app:srcCompat = "@drawable/yusef_title_main"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
                         />
@@ -127,7 +127,7 @@
                             android:gravity="center"
                             android:text="@string/AddHome2"
                             android:textColor="@color/colorWhite"
-                            android:textSize="18dp" />
+                            android:textSize="28dp" />
 
 
                     </LinearLayout>
@@ -160,7 +160,7 @@
                             android:gravity="center"
                             android:text="@string/cartitle"
                             android:textColor="@color/colorWhite"
-                            android:textSize="18dp" />
+                            android:textSize="28dp" />
 
 
                     </LinearLayout>
@@ -200,7 +200,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:text="@string/B_information"
                                 android:textColor="@color/colorWhite"
-                                android:textSize="18dp" />
+                                android:textSize="28dp" />
 
                         </RelativeLayout>
 
@@ -238,5 +238,5 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_navigation"
         app:itemIconTint="@color/colorBlack"
-        android:theme="@style/AppTheme.NavigationView"/>
+      />
 </androidx.drawerlayout.widget.DrawerLayout>

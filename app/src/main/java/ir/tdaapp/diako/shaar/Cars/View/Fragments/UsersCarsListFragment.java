@@ -31,6 +31,11 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
     public static final String TAG = "UsersCarsList";
     UsersCarsFragmentPresenter presenter;
 
+    LinearLayout linearLayoutNotLogIn;
+    LinearLayout linearLayoutNoItemMessage;
+
+    int userId;
+
     private RecyclerView list;
     private ProgressBar loading;
 
@@ -52,6 +57,10 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
     private void findView(View view) {
         presenter = new UsersCarsFragmentPresenter(getContext(), this);
 
+        linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_layout);
+
+        userId = new User(getContext()).GetUserId();
+
         list = view.findViewById(R.id.usersCarsList);
         loading = view.findViewById(R.id.userCarsLoading);
         back = view.findViewById(R.id.imgUsersCarsBack);
@@ -59,6 +68,7 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
         adapter = new CarListAdapter(getContext(), CarListAdapter.USERS_LIST);
         manager = new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.VERTICAL);
+        linearLayoutNoItemMessage = view.findViewById(R.id.no_item_message_use_car);
     }
 
     private void implement() {
@@ -74,18 +84,38 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
                     true, CarDeatailFragment.TAG);
         });
         back.setOnClickListener(this);
+
+
+        if (adapter.getItemCount() == 0){
+            loading.setVisibility(View.GONE);
+        }
+
+        //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
+        if (userId == 0) {
+            loading.setVisibility(View.GONE);
+            list.setVisibility(View.GONE);
+            linearLayoutNotLogIn.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void onCarReceived(CarListModel model) {
-        adapter.add(model);
+        if (userId != 0){
+            adapter.add(model);
+            linearLayoutNoItemMessage.setVisibility(View.GONE);
+        }
+
+
 
     }
 
     @Override
     public void onPresenterStart() {
-        list.setLayoutManager(manager);
-        list.setAdapter(adapter);
+        if (userId != 0){
+            list.setLayoutManager(manager);
+            list.setAdapter(adapter);
+
+        }
 
 
     }

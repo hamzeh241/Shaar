@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layoutDirection="rtl">
 
     <LinearLayout
@@ -117,5 +118,34 @@
             android:paddingRight="10dp"
             android:paddingLeft="10dp"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/no_item_to_show_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_user_log_in_error" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/NotLogInMessage"
+            android:textColor="#37474F"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
 
 </RelativeLayout>

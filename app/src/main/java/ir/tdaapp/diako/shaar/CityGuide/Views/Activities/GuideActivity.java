@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFavoriteItemsFragmentCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragmentCityGuide;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.UserItemsFragmentCityGuide;
 import ir.tdaapp.diako.shaar.R;
 
 import android.content.Intent;
@@ -37,6 +38,8 @@ public class GuideActivity extends AppCompatActivity {
     onAddFragment(new CategoryFragmentCityGuide(),0,0,false,CategoryFragmentCityGuide.TAG);
   }else if (fragment == 1){
     onAddFragment(new CategoryFavoriteItemsFragmentCityGuide(),0,0,false,CategoryFavoriteItemsFragmentCityGuide.TAG);
+  }else if (fragment == 2){
+    onAddFragment(new UserItemsFragmentCityGuide(),0,0,false,UserItemsFragmentCityGuide.TAG);
   }
 
   }

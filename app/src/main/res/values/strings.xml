@@ -12,6 +12,7 @@
     <string name="CarFavorite">لیست علاقه مندی ماشین</string>
     <string name="myCar">ماشین های من</string>
     <string name="bankFav">لیست علاقه مندی بانک اطلاعاتی</string>
+    <string name="userItemBank">بانک اطلاعاتی کاربر</string>
     <string name="AdManagement">املاک</string>
     <string name="AddHome">افزودن ملک</string>
     <string name="AddHome2">املاک</string>
@@ -224,6 +225,7 @@
     <string name="YourUserPro">کارشناس شما</string>
     <string name="city_in_your_hand">شهر در دستان توست</string>
     <string name="NotFoundData">هیچ داده ای یافت نشد</string>
+    <string name="NotLogInMessage">لطفا ابتدا یک حساب کاربری ایجاد کنید</string>
     <string name="NotDataToDataBase">در پایگاه داده هیچ داده ای وجود ندارد</string>
     <string name="SaveSearch">ذخیره کن</string>
     <string name="NameToSave">یک نام برای ذخیره انتخاب کنید</string>

@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+
     <group
         android:id="@+id/mainGroup"
-        android:checkableBehavior="single"
-
-        >
+        android:checkableBehavior="single">
 
 
         <item
@@ -31,9 +30,7 @@
     </group>
 
     <item
-        android:id="@+id/group"
         android:title="@string/AdManagement">
-
         <menu>
 
             <item
@@ -66,74 +63,75 @@
                 android:icon="@drawable/ic_download"
                 android:title="@string/SearchSaved" />
 
-
         </menu>
 
     </item>
 
-    <item
-        android:id="@+id/group2"
-        android:title="@string/b_info_title">
 
+
+
+    <item
+        android:title="@string/b_info_title">
         <menu>
 
+                <item
+                    android:id="@+id/city_guide_favorite"
+                    android:icon="@drawable/ic_car_favorite_icon"
+                    android:title="@string/bankFav" />
 
-            <item
-                android:id="@+id/city_guide_favorite"
-                android:icon="@drawable/ic_car_favorite_icon"
-                android:title="@string/bankFav" />
-
+                <item
+                    android:id="@+id/city_guide_user_item"
+                    android:icon="@drawable/ic_user_item_bank"
+                    android:title="@string/userItemBank" />
 
         </menu>
-
-
     </item>
 
 
     <item
-        android:id="@+id/groupCar"
         android:title="@string/CarTitleNav">
 
-
         <menu>
 
-
-            <item
-                android:id="@+id/navigation_carFavorite"
-                android:icon="@drawable/ic_car_favorite_icon"
-                android:title="@string/CarFavorite" />
-
-            <item
-                android:id="@+id/navigation_myCar"
-                android:icon="@drawable/ic_navigation_mycar"
-                android:title="@string/myCar" />
-
-            <item
-                android:id="@+id/navigation_CallMe"
-                android:icon="@drawable/ic_call_me"
-                android:title="@string/Telephone" />
-
-            <!--<item-->
-            <!--android:id="@+id/navigation_Setting"-->
-            <!--android:icon="@drawable/ic_setting"-->
-            <!--android:title="@string/Setting" />-->
-
-            <item
-                android:id="@+id/navigation_AboutMe"
-                android:layout_width="wrap_content"
-                android:icon="@drawable/ic_about"
-                android:title="@string/AboutMe" />
-
-            <item
-                android:id="@+id/navigation_Exit"
-                android:icon="@drawable/exit"
-                android:title="@string/Exit" />
+            <group
+                android:id="@+id/carGroup"
+                android:checkableBehavior="single">
 
 
+                <item
+                    android:id="@+id/navigation_carFavorite"
+                    android:icon="@drawable/ic_car_favorite_icon"
+                    android:title="@string/CarFavorite" />
+
+                <item
+                    android:id="@+id/navigation_myCar"
+                    android:icon="@drawable/ic_navigation_mycar"
+                    android:title="@string/myCar" />
+
+                <item
+                    android:id="@+id/navigation_CallMe"
+                    android:icon="@drawable/ic_call_me"
+                    android:title="@string/Telephone" />
+
+                <!--<item-->
+                <!--android:id="@+id/navigation_Setting"-->
+                <!--android:icon="@drawable/ic_setting"-->
+                <!--android:title="@string/Setting" />-->
+
+                <item
+                    android:id="@+id/navigation_AboutMe"
+                    android:layout_width="wrap_content"
+                    android:icon="@drawable/ic_about"
+                    android:title="@string/AboutMe" />
+
+                <item
+                    android:id="@+id/navigation_Exit"
+                    android:icon="@drawable/exit"
+                    android:title="@string/Exit" />
+
+
+            </group>
         </menu>
-
-
     </item>
-
 
 </menu>

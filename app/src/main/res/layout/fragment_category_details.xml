@@ -41,17 +41,17 @@
         android:background="#1a1d24" />
 
       <EditText
-        android:id="@+id/edtCategoryDetailsSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="1"
-        android:background="#d6d6d6"
-        android:ems="10"
-        android:hint="@string/fastSearch"
-        android:inputType="textPersonName"
-        android:textColor="#1a1d24" />
+          android:id="@+id/edtCategoryDetailsSearch"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_weight="1"
+          android:background="#d6d6d6"
+          android:ems="10"
+          android:hint="@string/fastSearch"
+          android:inputType="textPersonName"
+          android:textColor="#1a1d24" />
 
       <ImageButton
           android:id="@+id/imgCategoryDetailsBack"

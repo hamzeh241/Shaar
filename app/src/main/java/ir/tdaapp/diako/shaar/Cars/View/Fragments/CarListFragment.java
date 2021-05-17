@@ -35,6 +35,7 @@ import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.SearchModel;
 import ir.tdaapp.diako.shaar.Cars.Presenter.CarListFragmentPresenter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
 import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
+import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
 
 public class CarListFragment extends CarBaseFragment implements View.OnClickListener, CarListFragmentService, onSearchParametersReceived {
@@ -62,6 +63,8 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     private ChipsListAdapter chipsAdapter;
 
     CarChipsListModel chipsListModel;
+
+    int userId;
 
     private JSONObject searchObject;
     SearchModel searchModel;
@@ -99,22 +102,17 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
         carManager.setOrientation(RecyclerView.VERTICAL);
 
         searchModel = new SearchModel();
-
+        userId = new User(getContext()).GetUserId();
     }
 
     private void implement() {
         presenter.start();
-
         chipsList.setLayoutManager(chipsManager);
         carList.setLayoutManager(carManager);
-
-
-
         chipsAdapter.setChipListener((model, position) -> {
 
             carAdapter.clear();
             chipsListModel = model;
-
             presenter.getCars(searchModel,page);
 
 
@@ -190,6 +188,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
                 dialog.show(getActivity().getSupportFragmentManager(), CarSearchFilterDialog.TAG);
                 break;
             case R.id.fabAddCar:
+
                 ((CarActivity) getActivity()).onAddFragment(new AddCarFragment(), R.anim.fadein,
                         R.anim.fadeout, true, AddCarFragment.TAG);
                 break;
@@ -241,7 +240,6 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     public void onResult(FilterModel object)  {
     //searchObject = object;
 
-
      searchModel.setBrandId(object.getBrandId());
      searchModel.setText(searchBar.getText().toString());
      searchModel.setPage(page);
@@ -251,10 +249,6 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
      searchModel.setToPrice(object.getToPrice());
      searchModel.setGearboxId(object.getGearboxId());
      presenter.getCars(searchModel,page);
-
-
-
-
     }
 
     @Override
