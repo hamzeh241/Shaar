@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,8 +26,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.SliderCarItemDetails;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Database.TblCarFavoriets;
@@ -123,7 +126,6 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         tblCarFavoriets = new TblCarFavoriets(getContext());
 
 
-        CarDetailModel model = new CarDetailModel();
 
 
     }
@@ -201,6 +203,11 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
             case R.id.imageButton_details_car:
                 getActivity().onBackPressed();
                 break;
+
+            case R.id.imgBtn_refresh_car:
+                presenter.start(itemId);
+                loading.setVisibility(View.VISIBLE);
+                break;
         }
     }
 
@@ -226,6 +233,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         expertName.setText(model.getExpertName());
         address.setText(model.getAddress());
 
+
         if (model.isExchange()) {
             txtExchange.setText(R.string.exchange);
         } else {
@@ -239,6 +247,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
 
         descriptionText = model.getDescription();
+
         if (descriptionText.length() > 300) {
             showMoreDescribe.setVisibility(View.VISIBLE);
             String subString = descriptionText.substring(0, 300);

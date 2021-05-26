@@ -90,14 +90,14 @@
     />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/categoryDetailsAddItemFab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentRight="true"
-    android:layout_marginBottom="16dp"
-    android:layout_marginRight="16dp"
-    android:clickable="true"
-    app:backgroundTint="@color/colorBlue"
-    app:srcCompat="@drawable/ic_baseline_add_24" />
+      android:id="@+id/categoryDetailsAddItemFab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginRight="16dp"
+      android:layout_marginBottom="16dp"
+      android:clickable="true"
+      app:backgroundTint="@color/colorBlue"
+      app:srcCompat="@drawable/ic_baseline_add_24" />
 </RelativeLayout>

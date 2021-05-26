@@ -2,6 +2,7 @@ package ir.tdaapp.diako.shaar.Cars.View.Fragments;
 
 import android.os.Bundle;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
 
         linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_layout);
 
-        userId = new User(getContext()).GetUserId();
+        userId = new User(getActivity()).GetUserId();
 
         list = view.findViewById(R.id.usersCarsList);
         loading = view.findViewById(R.id.userCarsLoading);
@@ -72,7 +73,7 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
     }
 
     private void implement() {
-        presenter.start(new User(getActivity()).GetUserId());
+        presenter.start(userId);
 
         adapter.setClickListener((model, position) -> {
             CarDeatailFragment fragment = new CarDeatailFragment();
@@ -86,8 +87,9 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
         back.setOnClickListener(this);
 
 
-        if (adapter.getItemCount() == 0){
+        if (adapter.getItemCount() == 0) {
             loading.setVisibility(View.GONE);
+            linearLayoutNoItemMessage.setVisibility(View.GONE);
         }
 
         //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
@@ -100,24 +102,14 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
 
     @Override
     public void onCarReceived(CarListModel model) {
-        if (userId != 0){
-            adapter.add(model);
-            linearLayoutNoItemMessage.setVisibility(View.GONE);
-        }
-
-
+        adapter.add(model);
 
     }
 
     @Override
     public void onPresenterStart() {
-        if (userId != 0){
-            list.setLayoutManager(manager);
-            list.setAdapter(adapter);
-
-        }
-
-
+        list.setLayoutManager(manager);
+        list.setAdapter(adapter);
     }
 
     @Override
@@ -127,7 +119,7 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
 
     @Override
     public void onFinish() {
-
+        linearLayoutNoItemMessage.setVisibility(View.GONE);
     }
 
     @Override

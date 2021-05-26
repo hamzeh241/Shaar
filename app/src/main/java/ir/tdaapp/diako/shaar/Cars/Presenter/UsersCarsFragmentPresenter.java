@@ -17,52 +17,53 @@ import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 
 public class UsersCarsFragmentPresenter {
 
-  Context context;
-  UsersCarsFragmentService service;
-  UsersCarsApi api;
-  Disposable setItemsDisposable, getItemsDisposable;
+    Context context;
+    UsersCarsFragmentService service;
+    UsersCarsApi api;
+    Disposable setItemsDisposable, getItemsDisposable;
 
 
-  public UsersCarsFragmentPresenter(Context context, UsersCarsFragmentService service) {
-    this.context = context;
-    this.service = service;
-    api = new UsersCarsApi();
-  }
+    public UsersCarsFragmentPresenter(Context context, UsersCarsFragmentService service) {
+        this.context = context;
+        this.service = service;
+        api = new UsersCarsApi();
+    }
 
-  public void start(int userId) {
-    service.onPresenterStart();
-    getCars(userId);
-  }
+    public void start(int userId) {
+        service.onPresenterStart();
+        getCars(userId);
+    }
 
-  private void getCars(int userId) {
-    service.loadingState(true);
-    Single<List<CarListModel>> data = api.getCars(userId);
+    private void getCars(int userId) {
+        service.loadingState(true);
+        Single<List<CarListModel>> data = api.getCars(userId);
 
-    getItemsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CarListModel>>() {
-      @Override
-      public void onSuccess(List<CarListModel> cars) {
-        setCars(cars);
-      }
+        getItemsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CarListModel>>() {
+            @Override
+            public void onSuccess(List<CarListModel> cars) {
+                setCars(cars);
+            }
 
-      @Override
-      public void onError(Throwable e) {
-        service.onError(e.getMessage());
-      }
-    });
-  }
+            @Override
+            public void onError(Throwable e) {
+                service.onError(e.getMessage());
+            }
+        });
+    }
 
-  private void setCars(List<CarListModel> categoryModels) {
-    Observable<CarListModel> data = Observable.fromIterable(categoryModels);
-    setItemsDisposable = data.subscribe(car -> {
-        service.loadingState(false);
-        service.onCarReceived(car);
-      },
-      throwable -> {
-        service.loadingState(false);
-        service.onError(throwable.getMessage());
-      }, () -> {
-        service.onFinish();
-      });
+    private void setCars(List<CarListModel> categoryModels) {
+        Observable<CarListModel> data = Observable.fromIterable(categoryModels);
+        setItemsDisposable = data.subscribe(car -> {
+                    service.loadingState(false);
+                    service.onCarReceived(car);
+                },
+                throwable -> {
+                    service.loadingState(false);
+                    service.onError(throwable.getMessage());
+                }, () -> {
+                    service.loadingState(false);
+                    service.onFinish();
+                });
 
-  }
+    }
 }

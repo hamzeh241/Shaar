@@ -18,6 +18,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Services.UserItemsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.UserItemsFragmentPresenter;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
 
@@ -70,6 +71,15 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
         list.setLayoutManager(layoutManager);
         list.setAdapter(adapter);
 
+        adapter.setOnItemClick(model -> {
+            CategoryItemDetailsFragmentCityGuide fragment = new CategoryItemDetailsFragmentCityGuide();
+            Bundle bundle = new Bundle();
+            bundle.putInt("ID", model.getId());
+            fragment.setArguments(bundle);
+            ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryItemDetailsFragmentCityGuide.TAG);
+        });
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +87,7 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
             }
         });
 
-        if (adapter.getItemCount() == 0 ){
+        if (adapter.getItemCount() == 0 && userId != 0) {
             loading.setVisibility(View.GONE);
         }
 

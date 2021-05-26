@@ -46,6 +46,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="vertical">
 
             <TextView
@@ -106,7 +107,7 @@
                     android:id="@+id/Fragment_Search_Home_lbl_TypeHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="25dp"
                     android:paddingRight="10dp"
                     android:text="@string/TypeHome"
                     android:textColor="@color/colorBlue"
@@ -117,7 +118,7 @@
                     android:id="@+id/Fragment_Add_Home_RadioGroup_KindOfHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -153,7 +154,7 @@
                     android:id="@+id/Recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"/>
 
@@ -162,25 +163,25 @@
                     android:id="@+id/Fragment_Search_Home_lbl_Area"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="35dp"
                     android:paddingRight="10dp"
                     android:text="@string/Location"
                     android:textColor="@color/colorBlue"
                     android:textSize="16sp" />
 
-<!--                <Spinner-->
-<!--                    android:id="@+id/cmb_Location"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginLeft="10dp"-->
-<!--                    android:layout_marginRight="10dp"-->
-<!--                    android:layout_marginTop="10dp" />-->
+                <!--                <Spinner-->
+                <!--                    android:id="@+id/cmb_Location"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginLeft="10dp"-->
+                <!--                    android:layout_marginRight="10dp"-->
+                <!--                    android:layout_marginTop="10dp" />-->
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/cmb_Location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:spinnerMode="dialog"
@@ -192,7 +193,7 @@
                     android:id="@+id/Fragment_Search_Home_lbl_Rent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="25dp"
                     android:paddingRight="10dp"
                     android:text="@string/Rent_Price"
                     android:textColor="@color/colorBlue"
@@ -204,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:buttonTint="@color/colorBlue"
                     android:text="@string/FullRent"
                     android:textDirection="rtl" />

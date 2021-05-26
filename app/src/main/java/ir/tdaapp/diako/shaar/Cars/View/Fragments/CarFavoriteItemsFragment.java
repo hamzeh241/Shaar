@@ -69,8 +69,9 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         brn_back.setOnClickListener(this);
 
 
-        if (adapter.getItemCount() == 0){
+        if (adapter.getItemCount() == 0 && userId != 0){
             loading.setVisibility(View.GONE);
+            linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
         }
 
 

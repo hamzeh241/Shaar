@@ -264,7 +264,7 @@ public class Fragment_Search_Home extends Fragment implements IBase {
                 }
 
                 //در اینجا تایپ منزل را به دست می اوریم
-                if (rdo_Residential.isChecked()) {
+                if (rdo_Residential.isChecked() ) {
                     vm_search.setTypeHome(typeHomeAdapter_Residential.GetId());
                 } else if (rdo_Commercial.isChecked()) {
                     vm_search.setTypeHome(typeHomeAdapter_Commercial.GetId());
@@ -423,10 +423,13 @@ public class Fragment_Search_Home extends Fragment implements IBase {
         /*
          * با انتخاب این گزینه آداپتر مسکونی نمایش داده می شود
          * */
+        RecyclerTypeHome.setAdapter(typeHomeAdapter_Residential);
+
         rdo_Residential.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RecyclerTypeHome.setAdapter(typeHomeAdapter_Residential);
+
 
                 typeHomeAdapter_Residential.SetId(1);
             }

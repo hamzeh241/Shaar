@@ -30,6 +30,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.ListHomeAdapter;
 import ir.tdaapp.diako.shaar.ETC.AppController;
@@ -37,6 +39,7 @@ import ir.tdaapp.diako.shaar.ETC.Internet;
 import ir.tdaapp.diako.shaar.ETC.LinkedList;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
 import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.Interface.IBase;
 import ir.tdaapp.diako.shaar.Model.List_Home;
 import ir.tdaapp.diako.shaar.R;
@@ -77,6 +80,7 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
     JsonArrayRequest jsonObjReq;
     RequestQueue requestQueue;
     FloatingActionButton fab_add_home;
+    int userId;
 
 
     @Nullable
@@ -171,6 +175,7 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
         Save_Search=view.findViewById(ir.tdaapp.diako.shaar.R.id.Save_Search);
         search = view.findViewById(R.id.img_btn_search_main);
         fab_add_home = view.findViewById(R.id.fab_add_home_main);
+        userId = new User(getContext()).GetUserId();
     }
 
     void OnClick() {
@@ -207,8 +212,11 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
             @Override
             public void onClick(View v) {
 
-                Stack_Back.MyStack_Back.Push("Fragment_Add_Home_fab",getActivity());
-
+                if (userId == 0){
+                    Toasty.info(getContext(),R.string.addAccuont,Toast.LENGTH_SHORT,false).show();
+                }else {
+                    Stack_Back.MyStack_Back.Push("Fragment_Add_Home_fab",getActivity());
+                }
             }
         });
     }

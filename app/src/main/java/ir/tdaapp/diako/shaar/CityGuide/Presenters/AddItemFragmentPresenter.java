@@ -121,6 +121,7 @@ public class AddItemFragmentPresenter {
       object.put("ImagesSlider", array);
       object.put("FilterId", model.getFilterId());
       object.put("UserId", model.getUserId());
+
     } catch (JSONException e) {
       e.printStackTrace();
     }

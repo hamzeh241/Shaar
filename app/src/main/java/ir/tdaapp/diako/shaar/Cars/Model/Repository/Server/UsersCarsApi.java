@@ -37,7 +37,7 @@ public class UsersCarsApi {
 
                   model.setId(object.getInt("Id"));
                   model.setTitle(object.getString("Title"));
-                  model.setBrand(object.getString("Brand"));
+//                  model.setBrand(object.getString("Brand"));
                   model.setMileage(object.getString("Function"));
                   model.setGearbox(object.getString("Gearbox"));
                   model.setPrice(object.getString("Price"));

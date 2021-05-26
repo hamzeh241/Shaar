@@ -1,36 +1,44 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels;
 
 public class CategoryDetailsChipModel {
+    public boolean isSelected() {
+        return isSelected;
+    }
 
-  int id;
-  String title;
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
-  public CategoryDetailsChipModel(int id, String title) {
-    this.id = id;
-    this.title = title;
-  }
+    int id;
+    String title;
+    boolean isSelected;
 
-  public CategoryDetailsChipModel() {
-  }
+    public CategoryDetailsChipModel(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 
-  public int getId() {
-    return id;
-  }
+    public CategoryDetailsChipModel() {
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  @Override
-  public String toString() {
-    return title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }

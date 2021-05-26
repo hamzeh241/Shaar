@@ -1,6 +1,7 @@
 package ir.tdaapp.diako.shaar.CityGuide.Presenters;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class CategoryDetailsFragmentPresenter {
 
     private void getItems(String search, int filterId, int page) {
         categoryDetailsFragmentService.loadingState(true);
+        Log.i("TAG", "getItems: " + search + " - " + filterId + " - " + page);
         Single<List<CategoryDetailsModel>> data = categoryDetailsApi.getItems(search, filterId, page);
 
         getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {
@@ -96,6 +98,7 @@ public class CategoryDetailsFragmentPresenter {
         }, throwable -> {
 
         }, () -> {
+            categoryDetailsFragmentService.onFinish();
             categoryDetailsFragmentService.onPageFinished(categoryModels);
             categoryDetailsFragmentService.loadingState(false);
         });

@@ -93,6 +93,7 @@ public class CarSearchFilterDialog extends DialogFragment implements View.OnClic
         break;
 
       case R.id.btnDialogDismiss:
+        contract.onCancel();
         dismiss();
         break;
     }

@@ -294,7 +294,7 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
       sending.show(getActivity().getSupportFragmentManager(), MessageDialog.TAG);
     } else {
       sending.dismiss();
-      ((CarActivity) getActivity()).onAddFragment(new CarListFragment(), 0, 0, true, CarListFragment.TAG);
+      ((CarActivity) getActivity()).onAddFragment(new CarListFragment(), 0, 0, false, CarListFragment.TAG);
     }
   }
 

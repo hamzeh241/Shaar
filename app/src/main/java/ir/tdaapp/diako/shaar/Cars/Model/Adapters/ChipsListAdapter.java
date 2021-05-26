@@ -42,9 +42,11 @@ public class ChipsListAdapter extends RecyclerView.Adapter<ChipsListAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CarChipsListModel model = models.get(position);
 
+        holder.root.setBackgroundResource(model.isSelected() ? R.drawable.red_chip_background_borderline : R.drawable.red_chip_background);
         holder.textView.setText(model.getTitle());
         holder.root.setOnClickListener(v -> {
-            chipListener.OnClick(model,position);
+            chipListener.OnClick(model, position);
+
 
         });
     }
@@ -54,9 +56,22 @@ public class ChipsListAdapter extends RecyclerView.Adapter<ChipsListAdapter.View
         return models.size();
     }
 
+    public void setSelected(int position) {
+        models.get(position).setSelected(true);
+        notifyItemChanged(position);
+    }
+
+    public void clearSelected() {
+        for (CarChipsListModel model : models) {
+            model.setSelected(false);
+        }
+        notifyDataSetChanged();
+    }
+
     public void setClickListener(onCarListClickListener clickListener) {
         this.clickListener = clickListener;
     }
+
     public void setChipListener(OnChipListener chipListener) {
         this.chipListener = chipListener;
     }

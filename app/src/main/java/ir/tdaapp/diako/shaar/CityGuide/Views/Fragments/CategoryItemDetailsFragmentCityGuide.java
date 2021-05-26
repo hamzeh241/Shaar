@@ -1,10 +1,10 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,11 +64,11 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
     CoordinatorLayout root;
     ViewPager2 slider;
-    TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader, instagram, telegram;
+    TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader, instagram, telegram,txtNumber1,txtNumber2,txtNumber3;
     Button phoneCall, sendText, showDescription, addPhoto, showComments, btnAddComments;
     RecyclerView photoList, commentsList;
-    ImageButton retry, favorite;
-    ImageView back, forward, goBack;
+    ImageButton retry, favorite,btnShowMore;
+    ImageView back, forward, goBack,imgCall;
     RatingBar ratingBar;
     ProgressBar loading;
     ViewGroup addRating, addComment, addPhotoLayout;
@@ -85,7 +84,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
     LinearLayout instagramLayout,telegramLayout;
 
-    String phoneCallBtn;
+    String phoneCallBtn,phoneCall2,phoneCall3;
 
     @Nullable
     @Override
@@ -112,7 +111,6 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         rateCount = view.findViewById(R.id.txtCategoryItemRateCount);
         commentsCount = view.findViewById(R.id.txtCategoryItemDetailsCommentCount);
         ratingBar = view.findViewById(R.id.categoryItemDetailsRatingBar);
-        phoneNumber = view.findViewById(R.id.txtCategoryItemPhone);
         address = view.findViewById(R.id.txtCategoryItemDetailsAddress);
         description = view.findViewById(R.id.txtCategoryItemDetailsDescription);
         descriptionHeader = view.findViewById(R.id.txtCategoryItemDetailsDescriptionTitle);
@@ -123,7 +121,11 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         goBack = view.findViewById(R.id.img_btn_back_detail);
         instagram = view.findViewById(R.id.txt_instagram);
         telegram = view.findViewById(R.id.txt_telegram);
+        imgCall = view.findViewById(R.id.img_call_detail_cityguide);
 
+        txtNumber1 = view.findViewById(R.id.txtNumberCityGyide);
+        txtNumber2 = view.findViewById(R.id.txtNumberCityGyide2);
+        txtNumber3 = view.findViewById(R.id.txtNumberCityGyide3);
 
         phoneCall = view.findViewById(R.id.btnCategoryItemCall);
         sendText = view.findViewById(R.id.btnCategoryItemMessage);
@@ -133,7 +135,6 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         btnAddComments = view.findViewById(R.id.btnCategoryItemDetailsAddComment);
 
         instagramLayout = view.findViewById(R.id.instagram_layout);
-        telegramLayout = view.findViewById(R.id.telegramLayout);
 
 
         photoList = view.findViewById(R.id.recyclerCategoryItemPhotos);
@@ -148,6 +149,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     private void implement() {
         itemId = getArguments().getInt("ID");
         userId = new User(getContext()).GetUserId();
+        Log.i("TAG", "implement: "+userId);
         presenter.start(new User(getContext()).GetUserId(), itemId);
         phoneCall.setOnClickListener(this);
         sendText.setOnClickListener(this);
@@ -167,6 +169,10 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         telegram.setOnClickListener(this);
         phoneCall.setOnClickListener(this);
         sendText.setOnClickListener(this);
+        txtNumber1.setOnClickListener(this);
+        txtNumber2.setOnClickListener(this);
+        txtNumber3.setOnClickListener(this);
+        imgCall.setOnClickListener(this);
 
         userPhotosLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         userPhotosLayoutManager.setReverseLayout(true);
@@ -279,6 +285,37 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
                 sendIntent.setData(Uri.parse("sms: " + phoneCallBtn));
                 sendIntent.putExtra("sms_body", "");
                 startActivity(sendIntent);
+                break;
+
+            case R.id.imgSliderRefresh:
+                presenter.start(userId,itemId);
+                break;
+
+            case R.id.txtNumberCityGyide:
+                Intent intentNum1 = new Intent(Intent.ACTION_DIAL);
+                intentNum1.setData(Uri.parse("tel:" + phoneCallBtn));
+                startActivity(intentNum1);
+                break;
+
+            case R.id.txtNumberCityGyide2:
+                Intent intentNum2 = new Intent(Intent.ACTION_DIAL);
+                intentNum2.setData(Uri.parse("tel:" + phoneCall2));
+                startActivity(intentNum2);
+                break;
+
+            case R.id.txtNumberCityGyide3:
+                Intent intentNum3 = new Intent(Intent.ACTION_DIAL);
+                intentNum3.setData(Uri.parse("tel:" + phoneCall3));
+                intentNum3.setData(Uri.parse("tel:" + phoneCall3));
+                startActivity(intentNum3);
+                break;
+
+            case R.id.img_call_detail_cityguide:
+                Intent intentNum4 = new Intent(Intent.ACTION_DIAL);
+                intentNum4.setData(Uri.parse("tel:" + phoneCallBtn));
+                startActivity(intentNum4);
+                break;
+
 
         }
     }
@@ -311,13 +348,16 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         if (model.getCommentsModels() != null) {
             commentsCount.setText(model.getCommentsModels().size() + " نظر");
         }
-        phoneNumber.setText(model.getCellPhone());
-        if (model.getTel1() != null) {
-            phoneNumber.append("\n" + model.getTel1());
-        }
-        if (model.getTel2() != null) {
-            phoneNumber.append("\n" + model.getTel2());
-        }
+        phoneCallBtn = model.getCellPhone();
+        phoneCall2 = model.getTel1();
+        phoneCall3 = model.getTel2();
+
+
+        txtNumber1.setText(phoneCallBtn);
+        txtNumber2.setText(phoneCall2);
+        txtNumber3.setText(phoneCall3);
+
+
         address.setText(model.getAddress());
         descriptionHeader.setText("درباره " + model.getTitle());
         descriptionString = model.getDescription();
@@ -353,7 +393,8 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         photoList.setAdapter(photosAdapter);
         slider.setAdapter(sliderPhotosAdapter);
 
-        phoneCallBtn = model.getCellPhone();
+
+        retry.setVisibility(View.GONE);
 
     }
 
@@ -392,7 +433,6 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
         });
     }
-
     @Override
     public void onCommentLiked(int position, CategoryItemDetailsCommentsModel model, boolean liked) {
         JSONObject object = new JSONObject();

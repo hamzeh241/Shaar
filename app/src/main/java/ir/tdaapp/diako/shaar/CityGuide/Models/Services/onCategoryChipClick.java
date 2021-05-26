@@ -5,5 +5,5 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 
 public interface onCategoryChipClick {
 
-  void onClick(CategoryDetailsChipModel model);
+  void onClick(CategoryDetailsChipModel model,int position);
 }

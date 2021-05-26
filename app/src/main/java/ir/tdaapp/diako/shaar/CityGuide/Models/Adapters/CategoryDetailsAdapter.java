@@ -66,6 +66,7 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
       .placeholder(R.drawable.ic_baseline_sync_24)
       .error(R.drawable.ic_baseline_running_with_errors_24)
       .into(holder.image);
+
     holder.rootLayout.setOnClickListener(v -> {
       clickListener.onClick(model);
     });
@@ -79,7 +80,7 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
   class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView title, address, rateCount;
-    ImageView favorite, image;
+    ImageView  image;
     LinearLayout rootLayout;
     RatingBar ratingBar;
 
@@ -92,7 +93,7 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
       title = itemView.findViewById(R.id.txtCategoryTitle);
       address = itemView.findViewById(R.id.txtCategoryAddress);
       rateCount = itemView.findViewById(R.id.txtCategoryDetailsRateCount);
-      rootLayout = itemView.findViewById(R.id.categoryItemRootLayout);
+      rootLayout = itemView.findViewById(R.id.categoryItemRootLayoutt);
       ratingBar = itemView.findViewById(R.id.categoryDetailsRatingBar);
       image = itemView.findViewById(R.id.imgCategoryDetail);
     }

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:layout_marginBottom="0dp"
     android:layoutDirection="rtl"
     android:paddingBottom="0dp"
@@ -115,7 +116,7 @@
                     android:id="@+id/Price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="24dp"
                     android:gravity="center"
                     android:singleLine="true"
                     android:textColor="@color/colorBlack"
@@ -126,7 +127,7 @@
                     android:id="@+id/lbl_Mortgage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:singleLine="true"
                     android:textColor="@color/colorBlack"
@@ -138,7 +139,7 @@
                     android:id="@+id/Address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="25dp"
                     android:gravity="center"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp" />
@@ -147,7 +148,7 @@
                     android:id="@+id/Id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:textSize="16sp"
                     android:textColor="@color/colorLowRed"
@@ -156,7 +157,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
+                    android:layout_marginTop="32dp"
                     android:orientation="horizontal"
                     android:weightSum="4">
 
@@ -210,7 +211,7 @@
                     android:id="@+id/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:singleLine="true"
                     android:textColor="@color/colorBlack"
@@ -221,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="35dp"
                     android:background="@drawable/stroke_relative_location"
                     android:padding="5dp"
                     android:visibility="gone">
@@ -254,7 +255,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="35dp"
                     android:gravity="center"
                     android:text="@string/DiscriptionHome"
                     android:textColor="@color/colorBlack"
@@ -267,7 +268,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="30dp"
                     android:lineSpacingExtra="6dp"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlack"
@@ -276,8 +277,8 @@
                 <TextView
                     android:id="@+id/more_information"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15sp"
                     android:gravity="center"
                     android:text="@string/More_Information"
                     android:textColor="@color/colorBlue"
@@ -287,12 +288,13 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="35dp"
                     android:gravity="center"
                     android:text="@string/Property"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
 
                 <LinearLayout
                     android:id="@+id/FeaturesLayout"
@@ -300,19 +302,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="20dp"
-                    android:paddingRight="20dp"></LinearLayout>
+                    android:paddingRight="20dp">
+
+                </LinearLayout>
                 <WebView
                     android:id="@+id/webView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:visibility="gone"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btn_FullDisplay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_gravity="center"
                     app:cardBackgroundColor="@color/colorBlue"
                     app:cardCornerRadius="5dp"
@@ -326,7 +330,7 @@
                         android:layout_gravity="center"
                         android:textColor="@color/colorWhite"
                         android:text="@string/FullDisplay"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
@@ -337,7 +341,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center"
                     android:text="@string/YourUserPro"
                     android:textColor="@color/colorBlack"
@@ -348,7 +352,7 @@
                     android:id="@+id/Expert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp" />
@@ -362,13 +366,13 @@
                     app:civ_border_width="1dp"
                     app:civ_border_color="@color/colorWhite"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="20dp"/>
 
                 <!--برای آدرس ملک می باشد که فعلا چیزی را نمایش نمی دهد-->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -377,7 +381,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="25dp"
                     android:layoutDirection="ltr"
                     android:orientation="horizontal"
                     android:weightSum="2">

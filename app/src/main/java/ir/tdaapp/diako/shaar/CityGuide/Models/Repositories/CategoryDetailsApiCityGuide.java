@@ -64,7 +64,6 @@ public class CategoryDetailsApiCityGuide extends CityGuideBaseApi {
 
       new Thread(() -> {
         try {
-          Log.i("LOGLOG", "CityGuide/GetCityGuideListsForSerch?TextSerch=\"" + search + "\"&Page=" + page + "&FilterId=" + filterId);
           getItemVolley = new GetJsonArrayVolley(API_URL + "CityGuide/GetCityGuideListsForSerch?TextSerch=\"" + search + "\"&Page=" + page + "&FilterId=" + filterId, resault -> {
             if (resault.getResault() == ResaultCode.Success) {
 

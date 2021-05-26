@@ -1,170 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
-
-  <RatingBar
-    android:id="@+id/categoryItemDetailsRatingBar"
-    style="@style/Widget.AppCompat.RatingBar.Small"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginRight="16dp"
-    android:layout_marginTop="8dp"
-    android:numStars="5"
-    android:orientation="horizontal"
-    android:stepSize="1" />
-
-  <androidx.cardview.widget.CardView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:layout_below="@id/txtCategoryItemDetailsCategoryTitle"
-    app:cardBackgroundColor="#D6D6D6"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp">
+    android:layout_height="match_parent">
 
-  <LinearLayout
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:background="@drawable/gray_search_background"
-    android:orientation="horizontal">
-
-    <LinearLayout
-      android:id="@+id/categoryItemDetailsAddPhoto"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:layout_weight="0.33"
-      android:gravity="center"
-      android:clickable="true"
-      android:focusable="true"
-      android:background="?selectableItemBackground"
-      android:orientation="vertical">
-
-      <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="match_parent"
+    <RatingBar
+        android:id="@+id/categoryItemDetailsRatingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_baseline_add_a_photo_24" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:numStars="5"
+        android:orientation="horizontal"
+        android:stepSize="1" />
 
-      <TextView
-        android:id="@+id/textView7"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
+        android:layout_below="@id/txtCategoryItemDetailsCategoryTitle"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/addPhoto"
-        android:textAlignment="center"
-        android:textColor="#1a1d24"
-        android:textSize="12sp" />
-    </LinearLayout>
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#D6D6D6">
 
-    <ImageView
-      android:id="@+id/imageView16"
-      android:layout_width="1dp"
-      android:layout_height="match_parent"
-      android:background="#878787" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gray_search_background"
+            android:orientation="horizontal">
 
-    <LinearLayout
-      android:id="@+id/categoryItemDetailsAddComment"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:layout_weight="0.33"
-      android:gravity="center"
-      android:clickable="true"
-      android:focusable="true"
-      android:background="?selectableItemBackground"
-      android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/categoryItemDetailsAddPhoto"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.33"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-      <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imageView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_baseline_add_a_photo_24" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/addPhoto"
+                    android:textAlignment="center"
+                    android:textColor="#1a1d24"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#878787" />
+
+            <LinearLayout
+                android:id="@+id/categoryItemDetailsAddComment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.33"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_baseline_message_24" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/addComment"
+                    android:textAlignment="center"
+                    android:textColor="#1a1d24"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#878787" />
+
+            <LinearLayout
+                android:id="@+id/categoryItemDetailsAddRating"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.33"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_baseline_star_border_24" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/addRating"
+                    android:textAlignment="center"
+                    android:textColor="#1a1d24"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txtCategoryItemDetailsTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_baseline_message_24" />
-
-      <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/addComment"
-        android:textAlignment="center"
+        android:text="سالن دیاکو حسنی"
         android:textColor="#1a1d24"
-        android:textSize="12sp" />
-    </LinearLayout>
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-    <ImageView
-      android:id="@+id/imageView18"
-      android:layout_width="1dp"
-      android:layout_height="match_parent"
-      android:background="#878787" />
-
-    <LinearLayout
-      android:id="@+id/categoryItemDetailsAddRating"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:layout_weight="0.33"
-      android:gravity="center"
-      android:clickable="true"
-      android:focusable="true"
-      android:background="?selectableItemBackground"
-      android:orientation="vertical">
-
-      <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txtCategoryItemDetailsCategoryTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_baseline_star_border_24" />
-
-      <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_below="@id/txtCategoryItemDetailsTitle"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="8dp"
-        android:text="@string/addRating"
-        android:textAlignment="center"
-        android:textColor="#1a1d24"
-        android:textSize="12sp" />
-    </LinearLayout>
-  </LinearLayout>
+        android:layout_marginRight="16dp"
+        android:text="پزشکی - زیبایی"
+        android:textColor="#1a1d24" />
 
-  </androidx.cardview.widget.CardView>
-
-  <TextView
-    android:id="@+id/txtCategoryItemDetailsTitle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentRight="true"
-    android:layout_below="@id/categoryItemDetailsRatingBar"
-    android:layout_marginRight="16dp"
-    android:layout_marginTop="16dp"
-    android:text="سالن دیاکو حسنی"
-    android:textColor="#1a1d24"
-    android:textSize="18sp"
-    android:textStyle="bold" />
-
-  <TextView
-    android:id="@+id/txtCategoryItemDetailsCategoryTitle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentRight="true"
-    android:layout_below="@id/txtCategoryItemDetailsTitle"
-    android:layout_marginRight="16dp"
-    android:layout_marginTop="8dp"
-    android:text="پزشکی - زیبایی"
-    android:textColor="#1a1d24" />
-
-  <TextView
-    android:id="@+id/txtCategoryItemRateCount"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBottom="@+id/categoryItemDetailsRatingBar"
-    android:layout_alignTop="@+id/categoryItemDetailsRatingBar"
-    android:layout_marginRight="8dp"
-    android:layout_toStartOf="@+id/categoryItemDetailsRatingBar"
-    android:text="TextView"
-    android:textSize="10sp" />
+    <TextView
+        android:id="@+id/txtCategoryItemRateCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/categoryItemDetailsRatingBar"
+        android:layout_alignBottom="@+id/categoryItemDetailsRatingBar"
+        android:layout_marginRight="8dp"
+        android:layout_toStartOf="@+id/categoryItemDetailsRatingBar"
+        android:text="TextView"
+        android:textSize="10sp" />
 
 </RelativeLayout>

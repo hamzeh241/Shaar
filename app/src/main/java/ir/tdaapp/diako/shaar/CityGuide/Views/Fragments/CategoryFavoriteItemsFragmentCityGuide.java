@@ -80,6 +80,11 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
 
         back.setOnClickListener(this);
 
+        if (adapter.getItemCount() == 0 && userId != 0){
+            linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
+            loading.setVisibility(View.GONE);
+        }
+
         //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
         if (userId == 0) {
             linearLayoutNotLogIn.setVisibility(View.VISIBLE);

@@ -3,6 +3,9 @@ package ir.tdaapp.diako.shaar.Cars.Model.ViewModels;
 public class CarChipsListModel {
   int id;
   String title;
+  boolean selected;
+
+
 
   public CarChipsListModel(int id, String title) {
     this.id = id;
@@ -20,6 +23,15 @@ public class CarChipsListModel {
     this.id = id;
   }
 
+  public boolean isSelected() {
+    return selected;
+  }
+
+  public void setSelected(boolean selected) {
+    this.selected = selected;
+  }
+
+
   public String getTitle() {
     return title;
   }
@@ -32,4 +44,7 @@ public class CarChipsListModel {
   public String toString() {
     return title;
   }
+
+
+
 }
