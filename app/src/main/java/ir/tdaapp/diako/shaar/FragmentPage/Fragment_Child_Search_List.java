@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.ListHomeAdapter;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Model.List_Home;
 
 import java.util.ArrayList;
@@ -27,6 +26,8 @@ import java.util.List;
  */
 
 public class Fragment_Child_Search_List extends Fragment {
+
+    public static final String TAG="Fragment_Child_Search_List";
 
     RelativeLayout backall;
     TextView CountItem;
@@ -65,7 +66,8 @@ public class Fragment_Child_Search_List extends Fragment {
         backall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getContext());
+//                Stack_Back.MyStack_Back.Pop(getContext());
+                getActivity().onBackPressed();
             }
         });
     }

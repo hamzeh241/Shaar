@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import ir.tdaapp.diako.shaar.Data.DA_Add_Home;
 import ir.tdaapp.diako.shaar.Model.Type_Home;

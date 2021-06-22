@@ -7,11 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -33,7 +29,7 @@ public class CarSearchFilterDialog extends DialogFragment implements View.OnClic
   CarSearchDialogPresenter presenter;
 
 
-  private onSearchParametersReceived contract;
+  private final onSearchParametersReceived contract;
 
   Spinner brand, fromProductionYear, toProductionYear, gearbox;
   EditText fromPrice, toPrice;

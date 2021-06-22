@@ -24,8 +24,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Internet;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Show_Details_Home;
 import ir.tdaapp.diako.shaar.Interface.IBase;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.Model.Published_Home;
 
 import java.util.List;
@@ -122,7 +123,10 @@ public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.MyVi
                 if (internet.HaveNetworkConnection()){
                     Bundle bundle=new Bundle();
                     bundle.putInt("Id",values.get(position).getId());
-                    Stack_Back.MyStack_Back.Push("Fragment_Show_Details_Home",context,bundle);
+                    Fragment_Show_Details_Home fragment_show_details_home=new Fragment_Show_Details_Home();
+                    fragment_show_details_home.setArguments(bundle);
+                    ((MainActivity)context).onAddFragment(fragment_show_details_home,0,0,true,Fragment_Show_Details_Home.TAG);
+//                    Stack_Back.MyStack_Back.Push("Fragment_Show_Details_Home",context,bundle);
                 }else{
                     Toast.makeText(context, "لطفا اتصال خود را به اینترنت چک نمایید", Toast.LENGTH_SHORT).show();
                 }

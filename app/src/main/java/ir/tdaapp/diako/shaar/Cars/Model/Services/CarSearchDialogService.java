@@ -1,13 +1,8 @@
 package ir.tdaapp.diako.shaar.Cars.Model.Services;
 
-import android.net.Uri;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.AddItemEntryModel;
-import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 
 public interface CarSearchDialogService {
 

@@ -2,24 +2,20 @@ package ir.tdaapp.diako.shaar.Cars.View.Fragments;
 
 import android.os.Bundle;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.UsersCarsFragmentService;
-import ir.tdaapp.diako.shaar.Cars.Model.Services.onCarListClickListener;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.Cars.Presenter.UsersCarsFragmentPresenter;
@@ -87,10 +83,6 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
         back.setOnClickListener(this);
 
 
-        if (adapter.getItemCount() == 0) {
-            loading.setVisibility(View.GONE);
-            linearLayoutNoItemMessage.setVisibility(View.GONE);
-        }
 
         //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
         if (userId == 0) {
@@ -119,7 +111,12 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
 
     @Override
     public void onFinish() {
-        linearLayoutNoItemMessage.setVisibility(View.GONE);
+        if (adapter.getItemCount() == 0 && userId != 0) {
+            loading.setVisibility(View.GONE);
+            list.setVisibility(View.GONE);
+            linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override

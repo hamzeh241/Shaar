@@ -2,9 +2,10 @@ package ir.tdaapp.diako.shaar.FragmentPage;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,19 +21,35 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
+import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Internet;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
 import ir.tdaapp.diako.shaar.ETC.ReplaceData;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Interface.IBase;
+import ir.tdaapp.diako.shaar.MainActivity;
 
 /**
  * Created by Diako on 5/3/2019.
  */
 
 public class Fragment_Login_Home extends Fragment implements IBase {
+
+
+    int activity = 0;
+
+    public Fragment_Login_Home(int activity) {
+        this.activity = activity;
+    }
+
+    public Fragment_Login_Home() {
+
+    }
+
+    public static final String TAG = "Fragment_Login_Home";
     EditText txt_phone;
     ImageView close;
     RelativeLayout AddAccount;
@@ -72,21 +89,34 @@ public class Fragment_Login_Home extends Fragment implements IBase {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
 
         AddAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Push("Fragment_Add_Account", getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_Add_Account", getActivity());
+                switch (activity) {
+                    case 0:
+                        ((MainActivity) getActivity()).onAddFragment(new Fragment_Add_Account(0), 0, 0, false, Fragment_Add_Account.TAG);
+                        break;
+                    case 1:
+                        ((GuideActivity) getActivity()).onAddFragment(new Fragment_Add_Account(1), 0, 0, false, Fragment_Add_Account.TAG);
+                        break;
+                    case 2:
+                        ((CarActivity) getActivity()).onAddFragment(new Fragment_Add_Account(2), 0, 0, false, Fragment_Add_Account.TAG);
+                        break;
+                }
             }
         });
 
         GoWithEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Push("Fragment_Login_Email", getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_Login_Email", getActivity());
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_Login_Email(), 0, 0, true, Fragment_Login_Email.TAG);
             }
         });
 
@@ -114,17 +144,32 @@ public class Fragment_Login_Home extends Fragment implements IBase {
                                         if (response.toString().equalsIgnoreCase("true")) {
                                             progress.dismiss();
 
-                                            Stack_Back.MyStack_Back.Push("Fragment_SMS_Panel", getActivity());
+//                                            Stack_Back.MyStack_Back.Push("Fragment_SMS_Panel", getActivity());
+
 
                                             // در اینجا اطلاعات کاربر به سمت اس ام اس پنل ارسال می شوند
                                             Bundle bundle = new Bundle();
                                             bundle.putString("CellPhone", txt_phone.getText().toString());
 
                                             //در اینجا صفحه اس ام اس پنل نمایش داه می شود
-                                            Fragment_SMS_Panel fragment_sms_panel = new Fragment_SMS_Panel();
+                                            Fragment_SMS_Panel fragment_sms_panel = new Fragment_SMS_Panel(activity);
                                             fragment_sms_panel.setArguments(bundle);
-                                            ((AppCompatActivity) getActivity()).getSupportFragmentManager().
-                                                    beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, fragment_sms_panel).commit();
+                                            switch (activity){
+                                                case 0:
+                                                    ((MainActivity) getActivity()).onAddFragment(fragment_sms_panel, 0, 0, true, Fragment_SMS_Panel.TAG);
+                                                    break;
+
+                                                case 1:
+                                                    ((GuideActivity) getActivity()).onAddFragment(fragment_sms_panel, 0, 0, true, Fragment_SMS_Panel.TAG);
+                                                    break;
+
+                                                case 2:
+                                                    ((CarActivity) getActivity()).onAddFragment(fragment_sms_panel, 0, 0, true, Fragment_SMS_Panel.TAG);
+                                                    break;
+
+                                            }
+
+
 
                                         } else {
                                             progress.dismiss();
@@ -139,11 +184,11 @@ public class Fragment_Login_Home extends Fragment implements IBase {
                                         new androidx.appcompat.app.AlertDialog.Builder(getActivity()).setTitle((Html.fromHtml("<font color='#FF7F27'>خطا</font>"))).setMessage((Html.fromHtml("<font color='#FF7F27'>خطای در سرور رخ داده است لطفا مجددا امتحان کنید</font>"))).setPositiveButton((Html.fromHtml("<font color='#FF7F27'>باشه</font>")), null).show();
                                     }
                                 });
-                        AppController.getInstance().addToRequestQueue(Policy_Volley.SetTimeOut(TimeOutVolley,stringRequest));
+                        AppController.getInstance().addToRequestQueue(Policy_Volley.SetTimeOut(TimeOutVolley, stringRequest));
                     } else {
                         new androidx.appcompat.app.AlertDialog.Builder(getActivity()).setTitle((Html.fromHtml("<font color='#FF7F27'>خطا</font>"))).setMessage((Html.fromHtml("<font color='#FF7F27'>لطفا شماره م.بایل خود را وارد نمایید</font>"))).setPositiveButton((Html.fromHtml("<font color='#FF7F27'>باشه</font>")), null).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(getActivity(), "لطفا اتصال خود را به اینترنت چک نمایید", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -158,7 +203,7 @@ public class Fragment_Login_Home extends Fragment implements IBase {
         btn_Register = view.findViewById(ir.tdaapp.diako.shaar.R.id.btn_Register);
         txt_phone = view.findViewById(ir.tdaapp.diako.shaar.R.id.Fragment_Home_txt_Mob);
         dbAdapter = new DBAdapter(getActivity());
-        internet=new Internet(getContext());
-        replaceData=new ReplaceData();
+        internet = new Internet(getContext());
+        replaceData = new ReplaceData();
     }
 }

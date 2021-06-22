@@ -5,8 +5,10 @@ import android.app.ProgressDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +26,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
+import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
 import ir.tdaapp.diako.shaar.ETC.ReplaceData;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Interface.IBase;
+import ir.tdaapp.diako.shaar.MainActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +42,27 @@ import org.json.JSONObject;
  */
 
 public class Fragment_SMS_Panel extends Fragment implements IBase {
+    public static final String TAG = "Fragment_SMS_Panel";
     String CellPhone;
+
+    int activity = 0;
+
+    public Fragment_SMS_Panel(int activity) {
+        this.activity = activity;
+    }
+
+    public Fragment_SMS_Panel() {
+
+    }
+
+    //    int activity = 0;
+//
+//    public Fragment_SMS_Panel(int activity) {
+//        this.activity = activity;
+//    }
+//    public Fragment_SMS_Panel() {
+//        this.activity = activity;
+//    }
 
     TextView txt_Discription, txt_Timer;
     Button btn_Done, btn_Resend;
@@ -83,7 +107,8 @@ public class Fragment_SMS_Panel extends Fragment implements IBase {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getContext());
+//                Stack_Back.MyStack_Back.Pop(getContext());
+                getActivity().onBackPressed();
             }
         });
 
@@ -136,7 +161,7 @@ public class Fragment_SMS_Panel extends Fragment implements IBase {
                                 }
                             });
 
-                    AppController.getInstance().addToRequestQueue(Policy_Volley.SetTimeOut(TimeOutVolley,stringRequest));
+                    AppController.getInstance().addToRequestQueue(Policy_Volley.SetTimeOut(TimeOutVolley, stringRequest));
                 }
             }
         });
@@ -237,7 +262,22 @@ public class Fragment_SMS_Panel extends Fragment implements IBase {
                             timer.cancel();
                             progress.dismiss();
 
-                            Stack_Back.MyStack_Back.Push("Succefull_Register", getActivity());
+//                            Stack_Back.MyStack_Back.Push("Succefull_Register", getActivity());
+
+                            switch (activity) {
+
+                                case 0:
+                                    ((MainActivity) getActivity()).onAddFragment(new Succefull_Register(), 0, 0, true, Succefull_Register.TAG);
+                                    break;
+
+                                case 1:
+                                    ((GuideActivity) getActivity()).onAddFragment(new Succefull_Register(), 0, 0, true, Succefull_Register.TAG);
+                                    break;
+
+                                case 2:
+                                    ((CarActivity) getActivity()).onAddFragment(new Succefull_Register(), 0, 0, true, Succefull_Register.TAG);
+                                    break;
+                            }
 
 
                         } catch (JSONException e) {
@@ -256,6 +296,6 @@ public class Fragment_SMS_Panel extends Fragment implements IBase {
             }
         });
 
-        AppController.getInstance().addToRequestQueue(Policy_Volley.SetTimeOut(TimeOutVolley,req));
+        AppController.getInstance().addToRequestQueue(Policy_Volley.SetTimeOut(TimeOutVolley, req));
     }
 }

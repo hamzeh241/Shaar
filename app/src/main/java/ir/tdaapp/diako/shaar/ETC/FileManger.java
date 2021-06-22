@@ -22,7 +22,7 @@ public class FileManger {
        }
     }).start();*/
 
-    private String SERVER_URL ;
+    private final String SERVER_URL ;
     public FileManger(String SERVER_URL){
         this.SERVER_URL=SERVER_URL;
 

@@ -1,5 +1,6 @@
 package ir.tdaapp.diako.shaar.FragmentPage;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -25,10 +26,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,6 +46,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import androidx.viewpager.widget.ViewPager;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.ViewPager_DetailsAdapter;
@@ -55,7 +54,6 @@ import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Font;
 import ir.tdaapp.diako.shaar.ETC.Internet;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Interface.IBase;
 import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
@@ -104,7 +102,7 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_show_details_home, container, false);
 
-        ((MainActivity) getActivity()).frameLayout1.setVisibility(View.GONE);
+//        ((MainActivity) getActivity()).frameLayout1.setVisibility(View.GONE);
 
         FindItem(view);
 
@@ -163,7 +161,10 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
         btn_FullDisplay.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
             bundle.putString("Id", TourId);
-            Stack_Back.MyStack_Back.Push("Fragment_Login_Email", getContext(), bundle);
+            Fragment_Login_Email fragment_login_email = new Fragment_Login_Email();
+            fragment_login_email.setArguments(bundle);
+//            Stack_Back.MyStack_Back.Push("Fragment_Login_Email", getContext(), bundle);
+            ((MainActivity) getActivity()).onAddFragment(fragment_login_email, 0, 0, true, Fragment_Login_Email.TAG);
         });
 
         img_Right.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +184,8 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
 
@@ -197,19 +199,21 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
         });
 
         btn_SMS.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("IntentReset")
             @Override
             public void onClick(View view) {
 
-                String Message = getResources().getString(R.string.SMSMessage) + Id + ": \n";
+                String Message = getResources().getString(R.string.SMSMessage);
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setData(Uri.parse("sms: " + PhoneNumber));
+                sendIntent.putExtra("sms_body", Message);
+                startActivity(sendIntent);
 
-                Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
-                smsIntent.setType("vnd.android-dir/mms-sms");
-                smsIntent.putExtra("address", PhoneNumber);
-                smsIntent.putExtra("sms_body", Message);
-                startActivity(smsIntent);
             }
         });
     }
+
+
 
     @Override
     public void onDestroy() {
@@ -235,12 +239,12 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
     //در اینجا تور مجازی ست می شود
     void GetTour() {
 
-        if (!TourId.equalsIgnoreCase("")){
+        if (!TourId.equalsIgnoreCase("")) {
             webView.setVisibility(View.VISIBLE);
             btn_FullDisplay.setVisibility(View.VISIBLE);
             webView.getSettings().setJavaScriptEnabled(true);
             webView.loadUrl(TourId);
-        }else{
+        } else {
             webView.setVisibility(View.GONE);
             btn_FullDisplay.setVisibility(View.GONE);
         }
@@ -352,21 +356,21 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
                         if (!response.getString("TblUserProFullName").equalsIgnoreCase("null"))
                             lbl_Expert.setText("کارشناس: " + response.getString("TblUserProFullName"));
 
-                        if (!response.getString("TblUserProTel").toString().equalsIgnoreCase("null"))
+                        if (!response.getString("TblUserProTel").equalsIgnoreCase("null"))
                             PhoneNumber = response.getString("TblUserProTel");
 
-                        if (!response.getString("DateInsert").toString().equalsIgnoreCase("null"))
+                        if (!response.getString("DateInsert").equalsIgnoreCase("null"))
                             DateInsert = response.getString("DateInsert");
 
                         JSONArray images = response.getJSONArray("TblItemImages");
 
                         JSONArray array = response.getJSONArray("TblItemFeatuers");
 
-                        if (!response.getString("Area").toString().equalsIgnoreCase("null"))
+                        if (!response.getString("Area").equalsIgnoreCase("null"))
                             Area = Integer.parseInt(response.getString("Area"));
 
                         if (!response.getString("TourId").equalsIgnoreCase("null")) {
-                            TourId=response.getString("TourId");
+                            TourId = response.getString("TourId");
                         }
 
                         GetImages(images);
@@ -379,15 +383,14 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
 
                         Glide.with(getActivity()).asBitmap().load(ImageUrl)
                                 .into(new SimpleTarget<Bitmap>() {
-                                  @Override
-                                  public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                                    try {
-                                      profile_image.setImageBitmap(resource);
-                                    } catch (Exception e) {
+                                    @Override
+                                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                        try {
+                                            profile_image.setImageBitmap(resource);
+                                        } catch (Exception e) {
+                                        }
                                     }
-                                  }
                                 });
-
 
 
                     } catch (JSONException e) {
@@ -406,9 +409,9 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
                                 .setPositiveButton((Html.fromHtml("<font color='#FF7F27'>بارگیری مجدد</font>")), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         if (internet.HaveNetworkConnection()) {
-                                            Bundle bundle = new Bundle();
-                                            bundle.putInt("Id", Integer.parseInt(Id));
-                                            Stack_Back.MyStack_Back.Push("Fragment_Show_Details_Home2", getContext(), bundle);
+//                                            Bundle bundle = new Bundle();
+//                                            bundle.putInt("Id", Integer.parseInt(Id));
+//                                            Stack_Back.MyStack_Back.Push("Fragment_Show_Details_Home2", getContext(), bundle);
                                         } else {
                                             Toast.makeText(getContext(), "لطفا اتصال خود را به اینترنت چک نمایید", Toast.LENGTH_SHORT).show();
                                         }
@@ -600,9 +603,7 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
         int c = Integer.parseInt(cursor.getString(0));
         cursor.close();
         dbAdapter.close();
-        if (c > 0)
-            return true;
-        return false;
+        return c > 0;
     }
 
     //در اینجا لیستی از عکس ها که در سرور دریافت می شود را در Images قرار داده می شود

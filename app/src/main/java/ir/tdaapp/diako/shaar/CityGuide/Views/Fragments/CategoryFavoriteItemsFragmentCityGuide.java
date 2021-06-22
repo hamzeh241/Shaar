@@ -80,10 +80,6 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
 
         back.setOnClickListener(this);
 
-        if (adapter.getItemCount() == 0 && userId != 0){
-            linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
-            loading.setVisibility(View.GONE);
-        }
 
         //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
         if (userId == 0) {
@@ -122,6 +118,8 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
             linearLayoutNoItemMessage.setVisibility(View.GONE);
         }
 
+
+
     }
 
     @Override
@@ -135,6 +133,14 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
 
     @Override
     public void onFinish() {
+
+        if (adapter.getItemCount() == 0 && userId != 0){
+            loading.setVisibility(View.GONE);
+            list.setVisibility(View.GONE);
+            linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
+
+        }
+
 
     }
 }

@@ -3,6 +3,7 @@ package ir.tdaapp.diako.shaar.Cars.Presenter;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 
@@ -32,7 +33,10 @@ import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarStructureViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
+import ir.tdaapp.diako.shaar.ETC.CompressImage;
 import ir.tdaapp.diako.shaar.ETC.FileManger;
+import ir.tdaapp.diako.shaar.ETC.GetRandom;
+import ir.tdaapp.diako.shaar.ETC.SaveImageToMob;
 import ir.tdaapp.diako.shaar.R;
 
 public class AddCarFragmentPresenter {
@@ -85,6 +89,7 @@ public class AddCarFragmentPresenter {
       object.put("Phone", model.getPhone());
       object.put("Address", model.getAddress());
       object.put("YearOfConstructionId", model.getProductionYearId());
+      object.put("ColorId",model.getColor());
 
       for (String image : images) {
         array.put(image);
@@ -141,6 +146,7 @@ public class AddCarFragmentPresenter {
     service.onGearBoxReceived(addCar.getGearboxes());
     service.onInsuranceDeadlineReceived(addCar.getInsuranceDeadlines());
     service.onSellTypeReceived(addCar.getSellType());
+    service.onColorReceived(addCar.getColorCar());
   }
 
   public void requestStoragePermission(Activity activity) {
@@ -178,9 +184,13 @@ public class AddCarFragmentPresenter {
       .showMultiImage(uriList -> {
         new Thread(() -> {
           service.onImageUploading(true);
-          FileManger fileManger = new FileManger(CarBaseApi.API_IMAGE);
+          FileManger fileManger = new FileManger(CarBaseApi.API_IMAGE_ADD_CAR);
+          CompressImage compressImage = new CompressImage(320, 450, 75, activity);
           for (Uri uri : uriList) {
-            images.add(fileManger.uploadFile(uri.getPath()));
+            String imagePath = uri.getPath();
+            Bitmap b = compressImage.Compress(imagePath);
+            String name = GetRandom.GetLong() + ".jpg";
+            images.add(fileManger.uploadFile(SaveImageToMob.SaveImageToSdCard(name, b)));
           }
           service.onImageUploading(false);
           handler.post(() -> service.onImagesUploaded(images, uriList));

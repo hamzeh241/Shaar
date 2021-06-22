@@ -21,9 +21,8 @@ import ir.tdaapp.diako.shaar.Data.DA_TypeHome_Boolean;
 import ir.tdaapp.diako.shaar.Data.DA_TypeHome_Number;
 import ir.tdaapp.diako.shaar.Data.DA_TypeHome_Select;
 import ir.tdaapp.diako.shaar.Data.DA_TypeHome_Text;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Add_Home;
 import ir.tdaapp.diako.shaar.Model.Draft_Home;
-import ir.tdaapp.diako.shaar.Model.Location;
 import ir.tdaapp.diako.shaar.Model.Type_Home;
 import ir.tdaapp.diako.shaar.*;
 
@@ -244,7 +243,8 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.MyViewHolder
         ItemFeatures.close();
         dbAdapter.close();
         progress.setVisibility(View.GONE);
-        Stack_Back.MyStack_Back.Push("Fragment_Add_Home", context);
+//        Stack_Back.MyStack_Back.Push("Fragment_Add_Home", context);
+        ((MainActivity)context).onAddFragment(new Fragment_Add_Home(),0,0,true,Fragment_Add_Home.TAG);
     }
 
     @Override

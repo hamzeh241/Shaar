@@ -481,8 +481,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
     @Override
     public void onLoadState(boolean successful) {
-        retry.setVisibility(successful ? View.GONE : View.VISIBLE);
-        slider.setVisibility(successful ? View.VISIBLE : View.GONE);
+
     }
 
     @Override

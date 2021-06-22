@@ -2,9 +2,6 @@ package ir.tdaapp.diako.shaar.Cars.Presenter;
 
 import android.content.Context;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.List;
 
 import io.reactivex.Observable;

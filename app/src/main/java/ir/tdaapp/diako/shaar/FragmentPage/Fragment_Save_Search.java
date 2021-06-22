@@ -15,9 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.ETC.Validation;
-import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.Model.List_Home;
 
 import java.util.ArrayList;
@@ -31,6 +29,8 @@ import java.util.List;
 
 public class Fragment_Save_Search extends Fragment {
 
+    public static final String TAG="Fragment_Save_Search";
+
     Button btn_Done;
     Validation validation;
 
@@ -43,7 +43,7 @@ public class Fragment_Save_Search extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(ir.tdaapp.diako.shaar.R.layout.fragment_save_search, container, false);
 
-        ((MainActivity) getActivity()).frameLayout1.setVisibility(View.GONE);
+//        ((MainActivity) getActivity()).frameLayout1.setVisibility(View.GONE);
         FindItem(view);
 
         OnClick();
@@ -63,7 +63,8 @@ public class Fragment_Save_Search extends Fragment {
         backall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
 

@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.List_SearchAdapter;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.ViewModel.VM_List_Search;
 
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ import java.util.List;
  */
 
 public class Fragment_List_Search extends Fragment {
+    public static final String TAG="Fragment_List_Search";
 
     RelativeLayout backall;
     DBAdapter dbAdapter;
@@ -62,7 +62,8 @@ public class Fragment_List_Search extends Fragment {
         backall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
     }

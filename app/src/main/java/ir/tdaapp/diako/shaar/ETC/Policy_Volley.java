@@ -6,8 +6,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONObject;
-
 import static com.android.volley.DefaultRetryPolicy.DEFAULT_MAX_RETRIES;
 
 /**

@@ -12,12 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
-
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     String DB_PATH;// = "/data/data/" + this.getClass().getPackage().getName() + "/databases/";
-    private static String DB_NAME = "shar.db";
+    private static final String DB_NAME = "shar.db";
     private SQLiteDatabase myDataBase;
     private final Context myContext;
 

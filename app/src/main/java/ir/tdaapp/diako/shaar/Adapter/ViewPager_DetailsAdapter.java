@@ -13,7 +13,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.List;
 
 import androidx.viewpager.widget.PagerAdapter;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Show_Images;
+import ir.tdaapp.diako.shaar.MainActivity;
 
 /**
  * Created by Diako on 5/18/2019.
@@ -53,7 +55,10 @@ public class ViewPager_DetailsAdapter extends PagerAdapter {
             public void onClick(View view) {
                 Bundle bundle=new Bundle();
                 bundle.putInt("Id",Id);
-                Stack_Back.MyStack_Back.Push("Fragment_Show_Images",context,bundle);
+                Fragment_Show_Images fragment_show_images=new Fragment_Show_Images();
+                fragment_show_images.setArguments(bundle);
+                ((MainActivity)context).onAddFragment(fragment_show_images,0,0,true,Fragment_Show_Images.TAG);
+//                Stack_Back.MyStack_Back.Push("Fragment_Show_Images",context,bundle);
             }
         });
 

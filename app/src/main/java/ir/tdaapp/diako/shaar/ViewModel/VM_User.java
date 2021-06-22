@@ -1,4 +1,4 @@
-package ir.tdaapp.diako.shaar.ViewModel;
+package ir.tdaapp.diako.sharrNew.ViewModel;
 
 /**
  * Created by Diako on 6/23/2019.

@@ -1,21 +1,16 @@
 package ir.tdaapp.diako.shaar.FragmentPage;
 
-import android.app.ActivityManager;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -24,40 +19,27 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
 
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Internet;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Enum.ForcedUpdate;
 import ir.tdaapp.diako.shaar.Interface.IBase;
 import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
-
-import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
  * Created by Diako on 7/25/2019.
@@ -285,7 +267,8 @@ public class Fragment_Splash extends Fragment implements IBase {
 
                                         GoToUpdate(TypeToUpdate, Url2);
 
-                                        Stack_Back.MyStack_Back.Push("Fragment_Home", getContext());
+//                                        Stack_Back.MyStack_Back.Push("Fragment_Home", getContext());
+                                        ((MainActivity)getActivity()).onAddFragment(new Fragment_Home(),0,0,false,Fragment_Home.TAG);
                                     }
                                 })
                                 .setNegativeButton(R.string.NotNo, (dialogInterface, i) -> SetVersionSql(VersionSqls, MyVersionSql))
@@ -442,7 +425,8 @@ public class Fragment_Splash extends Fragment implements IBase {
 
             ProgressBar.setVisibility(View.INVISIBLE);
 
-            Stack_Back.MyStack_Back.Push("Fragment_Home", getContext());
+//            Stack_Back.MyStack_Back.Push("Fragment_Home", getContext());
+            ((MainActivity)getActivity()).onAddFragment(new Fragment_Home(),0,0,false,Fragment_Home.TAG);
         }
     }
 }

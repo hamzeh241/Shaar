@@ -12,7 +12,6 @@ import io.reactivex.Single;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
-import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObject_And_GetJsonArrayVolley;
 
 import static ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi.API_URL;
 

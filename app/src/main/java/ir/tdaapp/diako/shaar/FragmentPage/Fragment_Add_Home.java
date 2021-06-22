@@ -44,7 +44,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,10 +60,10 @@ import ir.tdaapp.diako.shaar.ETC.Font;
 import ir.tdaapp.diako.shaar.ETC.GetRandom;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
 import ir.tdaapp.diako.shaar.ETC.SaveImageToMob;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.ETC.Validation;
 import ir.tdaapp.diako.shaar.Interface.IBase;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.Model.Location;
 import ir.tdaapp.diako.shaar.Model.Type_Home;
 import ir.tdaapp.diako.shaar.R;
@@ -153,9 +152,10 @@ public class Fragment_Add_Home extends Fragment implements IBase {
     int HaveAccount = new User(getActivity()).GetUserId();
 
     if (HaveAccount == 0) {
-      Toast.makeText(getContext(), "ابتدا یک حساب کاربری ایجاد کنید", Toast.LENGTH_SHORT).show();
-      ((AppCompatActivity) getActivity()).getSupportFragmentManager().
-        beginTransaction().replace(R.id.Fragment_Main, new Fragment_Login_Home()).commit();
+      ((MainActivity)getActivity()).onAddFragment(new Fragment_Login_Home(),0,0,true,Fragment_Login_Home.TAG);
+//      Toast.makeText(getContext(), "ابتدا یک حساب کاربری ایجاد کنید", Toast.LENGTH_SHORT).show();
+//      ((AppCompatActivity) getActivity()).getSupportFragmentManager().
+//        beginTransaction().replace(R.id.Fragment_Main, new Fragment_Login_Home()).commit();
     }
 
     gridLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -359,20 +359,23 @@ public class Fragment_Add_Home extends Fragment implements IBase {
     backall.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Stack_Back.MyStack_Back.Pop(getContext());
+//        Stack_Back.MyStack_Back.Pop(getContext());
+        getActivity().onBackPressed();
       }
     });
     AfterToSave.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Stack_Back.MyStack_Back.Pop(getActivity());
+//        Stack_Back.MyStack_Back.Pop(getActivity());
+        getActivity().onBackPressed();
       }
     });
 
     Property_Home.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Stack_Back.MyStack_Back.Push("Fragment_Property_Home", getActivity());
+//        Stack_Back.MyStack_Back.Push("Fragment_Property_Home", getActivity());
+        ((MainActivity)getActivity()).onAddFragment(new Fragment_Property_Home(),0,0,true,Fragment_Property_Home.TAG);
       }
     });
 
@@ -532,7 +535,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
                     for (int i = 0; i < uriList.size(); i++) {
                       String imagePath = uriList.get(i).getPath();
                       Bitmap b = compressImage.Compress(imagePath);
-                      String Name = String.valueOf(GetRandom.GetLong()) + ".jpg";
+                      String Name = GetRandom.GetLong() + ".jpg";
                       img_homes.Add(b);
                       SetImageHomes();
                       DA_Add_Home.Images.add(SaveImageToMob.SaveImageToSdCard(Name, b));
@@ -586,7 +589,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
           if (DA_Add_Home.Images == null)
             DA_Add_Home.Images = new ArrayList<>();
 
-          String Name = String.valueOf(GetRandom.GetLong()) + ".jpg";
+          String Name = GetRandom.GetLong() + ".jpg";
           DA_Add_Home.Images.add(SaveImageToMob.SaveImageToSdCard(Name, b));
 
         } catch (Exception e) {
@@ -1118,7 +1121,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
     if (DA_Add_Home.selects != null) {
       for (int i = 0; i < DA_Add_Home.selects.size(); i++) {
-        String Val = DA_Add_Home.selects.get(i).getVal().toString();
+        String Val = DA_Add_Home.selects.get(i).getVal();
         int Id = DA_Add_Home.selects.get(i).getId();
         itemFeatures.add(new VM_ItemFeature(Val, Id, 4));
       }
@@ -1239,7 +1242,8 @@ public class Fragment_Add_Home extends Fragment implements IBase {
               Toast.makeText(getActivity(), "عملیات با موفقیت انجام شد", Toast.LENGTH_SHORT).show();
               DA_Add_Home.ClearDA_AddHome();
 
-              Stack_Back.MyStack_Back.Pop(getActivity());
+//              Stack_Back.MyStack_Back.Pop(getActivity());
+              getActivity().onBackPressed();
 
             } else {
               try {
@@ -1370,7 +1374,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
           if (DA_Add_Home.selects != null) {
             for (int i = 0; i < DA_Add_Home.selects.size(); i++) {
-              String Val = DA_Add_Home.selects.get(i).getVal().toString();
+              String Val = DA_Add_Home.selects.get(i).getVal();
               int Id = DA_Add_Home.selects.get(i).getId();
               itemFeatures.add(new VM_ItemFeature(Val, Id, 4));
             }
@@ -1397,7 +1401,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
           //در اینجا عکس ها در کارت حافظه ذخیره می شوند
 
           for (int i = 0; i < img_homes.GetValues().size(); i++) {
-            String Name = String.valueOf(GetRandom.GetLong()) + ".jpg";
+            String Name = GetRandom.GetLong() + ".jpg";
 
             if (SaveImageToMob.SaveImageToSdCard(img_homes.GetValues().get(i), Name))
               Images.add(Name);
@@ -1465,7 +1469,8 @@ public class Fragment_Add_Home extends Fragment implements IBase {
           progress.dismiss();
           DA_Add_Home.ClearDA_AddHome();
           Toast.makeText(getActivity(), "عملیات با موفقیت انجام شد", Toast.LENGTH_SHORT).show();
-          Stack_Back.MyStack_Back.Pop(getActivity());
+//          Stack_Back.MyStack_Back.Pop(getActivity());
+          getActivity().onBackPressed();
 
         } else {
           progress.dismiss();

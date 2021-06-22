@@ -8,7 +8,8 @@
     android:layout_marginBottom="0dp"
     android:layoutDirection="rtl"
     android:paddingBottom="0dp"
-    android:background="@color/colorWhite">
+    android:background="@color/colorWhite"
+    android:clickable="true">
 
     <com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout
         android:id="@+id/main_content"

@@ -6,17 +6,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 
 import android.text.Html;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -31,12 +28,9 @@ import androidx.fragment.app.Fragment;
 
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
-import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarFavoriteItemsFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
-import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryDetailsFragmentCityGuide;
-import ir.tdaapp.diako.shaar.ETC.LinkedList;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.ETC.Vibrate;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.ViewModel.VM_Search;
 
@@ -47,6 +41,8 @@ import java.math.BigInteger;
  */
 
 public class Fragment_Home extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String TAG="Fragment_Home";
 
     ImageView AddHouse, Car, b_information;
     TextView txt_AddHouse, txt_car, txt_NewHome;
@@ -62,13 +58,13 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         View view = inflater.inflate(ir.tdaapp.diako.shaar.R.layout.fragment_home, container, false);
 
         //در اینجا لیست پشته صفحات را خالی می کند
-        Stack_Back.MyStack_Back.RemoveAll();
+//        Stack_Back.MyStack_Back.RemoveAll();
 
-        LinkedList.My_Linked.SetExit(2);
+//        LinkedList.My_Linked.SetExit(2);
 
         FindItem(view);
 
-        CheckTheHaveAccount();
+
 
         mtoolbar.setTitle("");
 
@@ -119,7 +115,8 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
                 SetNews();
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+//                ((MainActivity)getActivity()).onAddFragment(new Fragment_Resault_Search(),0,0,true,Fragment_Resault_Search.TAG);
             }
         });
         txt_AddHouse.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +124,8 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
                 SetNews();
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+//                ((MainActivity)getActivity()).onAddFragment(new Fragment_Resault_Search(),0,0,true,Fragment_Resault_Search.TAG);
             }
         });
 
@@ -188,7 +186,10 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 
         Bundle bundle = new Bundle();
         bundle.putInt("Type", 1);
-        Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getContext(), bundle);
+//        Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getContext(), bundle);
+        Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+        fragment_resault_search.setArguments(bundle);
+        ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,true,Fragment_Resault_Search.TAG);
     }
 
     //در اینجا داده های که کاربر وارد کرده در دیتابیس ذخیره می شوند
@@ -222,32 +223,40 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case ir.tdaapp.diako.shaar.R.id.navigation_LogIn:
-                Stack_Back.MyStack_Back.Push("Fragment_Login_Home", getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_Login_Home", getActivity());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_Login_Home(),0,0,true,Fragment_Login_Home.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_MyHome:
-                Stack_Back.MyStack_Back.Push("Fragment_MyHome", getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_MyHome", getActivity());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_MyHome(),0,0,true,Fragment_MyHome.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_LastSearch:
-                Stack_Back.MyStack_Back.Push("Fragment_LastSearch", getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_LastSearch", getActivity());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_LastSearch(),0,0,true,Fragment_LastSearch.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_Home:
                 drawerLayout.closeDrawers();
                 break;
-            case ir.tdaapp.diako.shaar.R.id.navigation_NewSearch:
-                Stack_Back.MyStack_Back.Push("Fragment_Search_Home", getContext());
-                break;
+//            case ir.tdaapp.diako.shaar.R.id.navigation_NewSearch:
+////                Stack_Back.MyStack_Back.Push("Fragment_Search_Home", getContext());
+//                ((MainActivity)getActivity()).onAddFragment(new Fragment_Search_Home(),0,0,true,Fragment_Search_Home.TAG);
+//                break;
             case ir.tdaapp.diako.shaar.R.id.navigation_AddHome:
-                Stack_Back.MyStack_Back.Push("Fragment_Add_Home", getContext());
+//                Stack_Back.MyStack_Back.Push("Fragment_Add_Home", getContext());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_Add_Home(),0,0,true,Fragment_Add_Home.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_Like:
-                Stack_Back.MyStack_Back.Push("Fragment_Like_Home", getContext());
+//                Stack_Back.MyStack_Back.Push("Fragment_Like_Home", getContext());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_Like_Home(),0,0,true,Fragment_Like_Home.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_SearchSaved:
-                Stack_Back.MyStack_Back.Push("Fragment_List_Search", getContext());
+//                Stack_Back.MyStack_Back.Push("Fragment_List_Search", getContext());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_List_Search(),0,0,true,Fragment_List_Search.TAG);
                 break;
 
             case ir.tdaapp.diako.shaar.R.id.navigation_AboutMe:
-                Stack_Back.MyStack_Back.Push("Fragment_About_Me", getContext());
+//                Stack_Back.MyStack_Back.Push("Fragment_About_Me", getContext());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_About_Me(),0,0,true,Fragment_About_Me.TAG);
                 break;
 
             case R.id.navigation_carFavorite:
@@ -301,13 +310,14 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
                 break;
 
             case ir.tdaapp.diako.shaar.R.id.navigation_CallMe:
-                Stack_Back.MyStack_Back.Push("Fragment_Call_Me", getContext());
+//                Stack_Back.MyStack_Back.Push("Fragment_Call_Me", getContext());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_Call_Me(),0,0,true,Fragment_Call_Me.TAG);
                 break;
         }
         return true;
     }
 
-    void HidenItemNavigation() {
+    public void HidenItemNavigation() {
         Cursor cursor = dbAdapter.ExecuteQ("select * from TblUser");
         if (cursor != null && cursor.moveToFirst()) {
             int a = cursor.getCount();
@@ -318,6 +328,7 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         }
 
         cursor.close();
+        CheckTheHaveAccount();
     }
 
     //    در اینجا در اسکیولایت چک می شود که آیا کاربر حساب کاربری دارد یا خیر
@@ -351,11 +362,13 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             @Override
             public void onClick(View view) {
                 btn_NewAccount.setBackground(getResources().getDrawable(ir.tdaapp.diako.shaar.R.drawable.stroke_new_account_nav2));
-                Stack_Back.MyStack_Back.Push("Fragment_Add_Account", getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_Add_Account", getActivity());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_Add_Account(),0,0,true,Fragment_Add_Account.TAG);
             }
         });
 
 
     }
+
 
 }

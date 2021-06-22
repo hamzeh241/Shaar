@@ -12,7 +12,6 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Server.CarFavoriteitemsApi;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Database.TblCarFavoriets;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarFavoriteItemfragmentService;
-import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 
 public class CarFavoriteItemPresenter {

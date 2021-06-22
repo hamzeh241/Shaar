@@ -87,9 +87,6 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
             }
         });
 
-        if (adapter.getItemCount() == 0 && userId != 0) {
-            loading.setVisibility(View.GONE);
-        }
 
 
         //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
@@ -124,6 +121,13 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
 
     @Override
     public void onFinished() {
+
+        if (adapter.getItemCount() == 0 & userId != 0) {
+            loading.setVisibility(View.GONE);
+            list.setVisibility(View.GONE);
+            linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
+        }
+
 
     }
 }

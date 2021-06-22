@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Child_Search_List;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.ViewModel.VM_List_Search;
 
 import java.util.List;
@@ -63,7 +65,10 @@ public class List_SearchAdapter extends RecyclerView.Adapter<List_SearchAdapter.
             public void onClick(View view) {
                 Bundle bundle=new Bundle();
                 bundle.putInt("Id",searches.get(position).getId());
-                Stack_Back.MyStack_Back.Push("Fragment_Child_Search_List",context,bundle);
+                Fragment_Child_Search_List fragment_child_search_list=new Fragment_Child_Search_List();
+                fragment_child_search_list.setArguments(bundle);
+//                Stack_Back.MyStack_Back.Push("Fragment_Child_Search_List",context,bundle);
+                ((MainActivity)context).onAddFragment(fragment_child_search_list,0,0,true,Fragment_Child_Search_List.TAG);
             }
         });
     }

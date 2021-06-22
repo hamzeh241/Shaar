@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.ListHomeAdapter;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.Model.List_Home;
 import ir.tdaapp.diako.shaar.R;
@@ -28,6 +27,8 @@ import java.util.List;
  */
 
 public class Fragment_Like_Home extends Fragment {
+
+    public static final String TAG="Fragment_Like_Home";
 
     RecyclerView recycler;
     DBAdapter dbAdapter;
@@ -68,7 +69,8 @@ public class Fragment_Like_Home extends Fragment {
         BackAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
     }
@@ -77,7 +79,7 @@ public class Fragment_Like_Home extends Fragment {
 
         Cursor GetAll=dbAdapter.ExecuteQ("select * from TblSearch where IsFavorit=1");
 
-        lbl_CountItem.setText("تعداد اگهی: "+String.valueOf(GetAll.getCount()));
+        lbl_CountItem.setText("تعداد اگهی: "+ GetAll.getCount());
 
         List<List_Home> homes=new ArrayList<>();
 

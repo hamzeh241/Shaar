@@ -110,11 +110,7 @@ public class CategoryItemDetailsFragmentPresenter {
 
       @Override
       public void onSuccess(@NonNull CategoryResultRatingViewModel categoryResultRatingViewModel) {
-        if (categoryResultRatingViewModel.getStatus()) {
-          rateService.onRateSendingState(true, categoryResultRatingViewModel.getMessage());
-        } else {
-          rateService.onRateSendingState(false, categoryResultRatingViewModel.getMessage());
-        }
+          rateService.onRateSendingState(categoryResultRatingViewModel.getStatus(), categoryResultRatingViewModel.getMessage());
       }
 
       @Override

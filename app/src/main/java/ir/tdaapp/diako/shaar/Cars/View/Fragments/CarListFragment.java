@@ -13,12 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +22,6 @@ import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.ChipsListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;
-import ir.tdaapp.diako.shaar.Cars.Model.Services.onCarListClickListener;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.onSearchParametersReceived;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
@@ -37,6 +32,7 @@ import ir.tdaapp.diako.shaar.Cars.Presenter.CarListFragmentPresenter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
 import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Login_Home;
 import ir.tdaapp.diako.shaar.R;
 
 public class CarListFragment extends CarBaseFragment implements View.OnClickListener, CarListFragmentService, onSearchParametersReceived {
@@ -46,7 +42,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     private int previousTotal = 0;
     private int page = 0;
     private boolean isLoading = true;
-    private int visibleThreshold = 5;
+    private final int visibleThreshold = 5;
     int firstVisibleItem, visibleItemCount, totalItemCount;
 
     private CarListFragmentPresenter presenter;
@@ -103,7 +99,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
         searchModel = new SearchModel();
         userId = new User(getContext()).GetUserId();
-        Log.i(TAG, "findView: "+ userId);
+        Log.i(TAG, "findView: " + userId);
     }
 
     private void implement() {
@@ -206,9 +202,9 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
                 if (userId == 0) {
                     Toasty.info(getContext(), R.string.addAccuont, Toast.LENGTH_SHORT, false).show();
+                    ((CarActivity) getActivity()).onAddFragment(new Fragment_Login_Home(2), R.anim.fadein, R.anim.fadeout, true, Fragment_Login_Home.TAG);
                 } else {
-                    ((CarActivity) getActivity()).onAddFragment(new AddCarFragment(), R.anim.fadein,
-                            R.anim.fadeout, true, AddCarFragment.TAG);
+                    ((CarActivity) getActivity()).onAddFragment(new AddCarFragment(), R.anim.fadein, R.anim.fadeout, true, AddCarFragment.TAG);
                 }
                 break;
             case R.id.btnCarListSearch:

@@ -6,7 +6,7 @@ public class CarDetailModel {
   int id;
   String name, productionYear, mileage, carBodyStatus, brand,
     chassisStatus, engineStatus, insuranceTime, gearBox, document,
-    salesType, price, description, expertName, expertImage, phone, address;
+    salesType, price, description, expertName, expertImage, phone, address ,color;
   boolean exchange;
   ArrayList<CarDetailsPhotoModel> photos;
 
@@ -14,7 +14,7 @@ public class CarDetailModel {
 
   }
 
-  public CarDetailModel(int id, String name, String productionYear, String mileage, String carBodyStatus, String brand, String chassisStatus, String engineStatus, String insuranceTime, String gearBox, String document, String salesType, String price, String description, String expertName, String expertImage, String phone, String address, boolean exchange, ArrayList<CarDetailsPhotoModel> photos) {
+  public CarDetailModel(int id,String color, String name, String productionYear, String mileage, String carBodyStatus, String brand, String chassisStatus, String engineStatus, String insuranceTime, String gearBox, String document, String salesType, String price, String description, String expertName, String expertImage, String phone, String address, boolean exchange, ArrayList<CarDetailsPhotoModel> photos) {
     this.id = id;
     this.name = name;
     this.productionYear = productionYear;
@@ -35,6 +35,15 @@ public class CarDetailModel {
     this.address = address;
     this.exchange = exchange;
     this.photos = photos;
+    this.color = color;
+  }
+
+  public String getColor() {
+    return color;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
   }
 
   public int getId() {

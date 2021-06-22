@@ -27,15 +27,15 @@
       android:orientation="horizontal">
 
       <TextView
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="?selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="@string/Search" />
+          android:id="@+id/btn_search_cityguidde"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="?selectableItemBackground"
+          android:clickable="true"
+          android:focusable="true"
+          android:gravity="center"
+          android:padding="8dp"
+          android:text="@string/Search" />
 
       <ImageView
         android:id="@+id/imageView5"

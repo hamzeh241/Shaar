@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,11 +12,8 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryChipClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.R;
 
 public class CategoryDetailsChipsAdapter extends RecyclerView.Adapter<CategoryDetailsChipsAdapter.ViewHolder> {

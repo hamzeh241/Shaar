@@ -137,9 +137,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:text="سالن دیاکو حسنی"
+        android:layout_marginRight="16dp"
         android:textColor="#1a1d24"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -152,7 +151,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
-        android:text="پزشکی - زیبایی"
         android:textColor="#1a1d24" />
 
     <TextView

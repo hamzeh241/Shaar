@@ -1,7 +1,5 @@
 package ir.tdaapp.diako.shaar.Cars.Model.Repository.Server;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +12,6 @@ import io.reactivex.Single;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObject_And_GetJsonArrayVolley;

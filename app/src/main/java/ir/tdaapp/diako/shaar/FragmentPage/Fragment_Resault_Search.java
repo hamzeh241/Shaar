@@ -36,11 +36,10 @@ import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.ListHomeAdapter;
 import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Internet;
-import ir.tdaapp.diako.shaar.ETC.LinkedList;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.Interface.IBase;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.Model.List_Home;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.ViewModel.VM_Search;
@@ -183,7 +182,8 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
 
@@ -197,14 +197,19 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
         Save_Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Push("Fragment_Save_Search",getActivity());
+//                Stack_Back.MyStack_Back.Push("Fragment_Save_Search",getActivity());
+                ((MainActivity)getActivity()).onAddFragment(new Fragment_Save_Search(),0,0,true,Fragment_Save_Search.TAG);
             }
         });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Stack_Back.MyStack_Back.Push("Fragment_Search_Home",getActivity());
+//               Stack_Back.MyStack_Back.Push("Fragment_Search_Home",getActivity());
+                Fragment_Search_Home fragment_search_home=new Fragment_Search_Home(() -> {
+                    SetNews();
+                });
+                ((MainActivity)getActivity()).onAddFragment(fragment_search_home,0,0,true,Fragment_Search_Home.TAG);
             }
         });
 
@@ -214,8 +219,10 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
 
                 if (userId == 0){
                     Toasty.info(getContext(),R.string.addAccuont,Toast.LENGTH_SHORT,false).show();
+                    ((MainActivity)getActivity()).onAddFragment(new Fragment_Login_Home(),R.anim.fadein,R.anim.fadeout,true,Fragment_Login_Home.TAG);
                 }else {
-                    Stack_Back.MyStack_Back.Push("Fragment_Add_Home_fab",getActivity());
+//                    Stack_Back.MyStack_Back.Push("Fragment_Add_Home_fab",getActivity());
+                    ((MainActivity)getActivity()).onAddFragment(new Fragment_Add_Home(),0,0,true,Fragment_Add_Home.TAG);
                 }
             }
         });
@@ -313,9 +320,9 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
                 }
 
                 if (CountItem != -1) {
-                    txt_CountItem.setText(String.valueOf(CountItem) + " آگهی");
+                    txt_CountItem.setText(CountItem + " آگهی");
                 } else {
-                    txt_CountItem.setText(String.valueOf(0) + " آگهی");
+                    txt_CountItem.setText(0 + " آگهی");
                 }
 
                 if (vm_search.getPage() == 0) {
@@ -326,6 +333,12 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
                 } else {
                     listHomeAdapter.Add(resault_searches);
                     loading = true;
+                }
+
+                if (listHomeAdapter.getItemCount() == 0){
+                    img_not_item.setVisibility(View.VISIBLE);
+                }else {
+                    img_not_item.setVisibility(View.GONE);
                 }
                 progressbar.setVisibility(View.GONE);
                 Save_Search.setVisibility(View.VISIBLE);
@@ -359,6 +372,8 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
             }
         });
         AppController.getInstance().addToRequestQueue(Policy_Volley.SetTimeOut(TimeOutVolley,jsonObjReq));
+
+
     }
 
     void Scroll() {

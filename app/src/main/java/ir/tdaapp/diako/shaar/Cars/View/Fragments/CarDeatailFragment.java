@@ -5,14 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,22 +20,13 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Objects;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-import es.dmoral.toasty.Toasty;
-import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.SliderCarItemDetails;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Database.TblCarFavoriets;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;
-import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.Cars.Presenter.CarDetailFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnGlideImageListener;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.ZoomOutPageTransformer;
@@ -54,7 +43,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
     TextView carName, productionYear, mileage, carBodyStatus, carBodyStatus2, brand,
             chasisStatus, insuranceTime, gearBox, ducument, salesType, price, description,
-            expertName, txtExchange, address;
+            expertName, txtExchange, address ,color;
 
     CircleImageView circleImageView;
     ImageButton favorite, refresh, btnBack;
@@ -102,6 +91,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         price = view.findViewById(R.id.txt_car_price);
         txtExchange = view.findViewById(R.id.txt_car_exchange);
         address = view.findViewById(R.id.txt_car_address);
+        color = view.findViewById(R.id.txt_car_color);
 
         //other TextViews
         description = view.findViewById(R.id.txt_car_description);
@@ -145,6 +135,10 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
 
         viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
+
+
+
+
     }
 
     @Override
@@ -232,6 +226,8 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         description.setText(model.getDescription());
         expertName.setText(model.getExpertName());
         address.setText(model.getAddress());
+        color.setText(model.getColor());
+
 
 
         if (model.isExchange()) {
@@ -246,6 +242,8 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
                 .into(circleImageView);
 
 
+
+
         descriptionText = model.getDescription();
 
         if (descriptionText.length() > 300) {
@@ -256,13 +254,13 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
             showMoreDescribe.setVisibility(View.GONE);
         }
 
-
         viewPagerAdapter = new SliderCarItemDetails(getContext(), model.getPhotos(), this);
 
         viewPager.setAdapter(viewPagerAdapter);
 
-
         number = model.getPhone();
+
+
 
 
     }
@@ -292,6 +290,7 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
             loading.setVisibility(View.GONE);
             refresh.setVisibility(View.GONE);
         }
+
     }
 
     @Override

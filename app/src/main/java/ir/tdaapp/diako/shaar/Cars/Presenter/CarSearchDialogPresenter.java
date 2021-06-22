@@ -2,10 +2,7 @@ package ir.tdaapp.diako.shaar.Cars.Presenter;
 
 import android.content.Context;
 
-import io.reactivex.disposables.Disposable;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Database.TblAddCar;
-import ir.tdaapp.diako.shaar.Cars.Model.Repository.Server.AddCarApi;
-import ir.tdaapp.diako.shaar.Cars.Model.Services.AddCarFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarSearchDialogService;
 
 public class CarSearchDialogPresenter {

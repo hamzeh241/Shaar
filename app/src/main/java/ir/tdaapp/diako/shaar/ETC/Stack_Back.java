@@ -25,7 +25,6 @@ import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Property_Home;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Resault_Search;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_SMS_Panel;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Save_Search;
-import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Search_Home;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Seting_Moshaverin;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Show_Details_Home;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Show_Images;
@@ -105,21 +104,21 @@ public class Stack_Back {
 
 
                     break;
-                case "Fragment_Resault_Search":
-                    LinkedList.My_Linked.AddLast(val);
-                    ((AppCompatActivity) context).getSupportFragmentManager().
-                            beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Resault_Search()).commit();
-                    break;
-                case "Fragment_Search_Home":
-                    LinkedList.My_Linked.AddLast(val);
-                    ((AppCompatActivity) context).getSupportFragmentManager().
-                            beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Search_Home()).commit();
-                    break;
-                case "Fragment_Seting_Moshaverin":
-                    LinkedList.My_Linked.AddLast(val);
-                    ((AppCompatActivity) context).getSupportFragmentManager().
-                            beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Seting_Moshaverin()).commit();
-                    break;
+//                case "Fragment_Resault_Search":
+//                    LinkedList.My_Linked.AddLast(val);
+//                    ((AppCompatActivity) context).getSupportFragmentManager().
+//                            beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Resault_Search()).commit();
+//                    break;
+//                case "Fragment_Search_Home":
+//                    LinkedList.My_Linked.AddLast(val);
+//                    ((AppCompatActivity) context).getSupportFragmentManager().
+//                            beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Search_Home()).commit();
+//                    break;
+//                case "Fragment_Seting_Moshaverin":
+//                    LinkedList.My_Linked.AddLast(val);
+//                    ((AppCompatActivity) context).getSupportFragmentManager().
+//                            beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Seting_Moshaverin()).commit();
+//                    break;
                 case "Fragment_Show_Details_Home":
                     LinkedList.My_Linked.AddLast(val);
                     ((AppCompatActivity) context).getSupportFragmentManager().
@@ -375,10 +374,10 @@ public class Stack_Back {
                         ((MainActivity) context).frameLayout1.setVisibility(View.VISIBLE);
                         break;
 
-                    case "Fragment_Search_Home":
-                        ((AppCompatActivity) context).getSupportFragmentManager().
-                                beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Search_Home()).commit();
-                        break;
+//                    case "Fragment_Search_Home":
+//                        ((AppCompatActivity) context).getSupportFragmentManager().
+//                                beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Search_Home()).commit();
+//                        break;
                     case "Fragment_Seting_Moshaverin":
                         ((AppCompatActivity) context).getSupportFragmentManager().
                                 beginTransaction().replace(ir.tdaapp.diako.shaar.R.id.Fragment_Main, new Fragment_Seting_Moshaverin()).commit();

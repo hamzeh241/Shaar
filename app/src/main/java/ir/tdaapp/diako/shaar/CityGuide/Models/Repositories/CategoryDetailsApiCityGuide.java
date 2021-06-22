@@ -1,7 +1,5 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Repositories;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

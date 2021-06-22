@@ -13,7 +13,8 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+
+import ir.tdaapp.diako.shaar.MainActivity;
 
 /**
  * Created by Diako on 7/23/2019.
@@ -63,7 +64,10 @@ public class Fragment_Dialog_Filter_Search extends DialogFragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Type", 2);
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+                Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+                fragment_resault_search.setArguments(bundle);
+                ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,true,Fragment_Resault_Search.TAG);
                 getDialog().dismiss();
             }
         });
@@ -73,7 +77,10 @@ public class Fragment_Dialog_Filter_Search extends DialogFragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Type", 3);
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+                Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+                fragment_resault_search.setArguments(bundle);
+                ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,false,Fragment_Resault_Search.TAG);
                 getDialog().dismiss();
             }
         });
@@ -83,7 +90,10 @@ public class Fragment_Dialog_Filter_Search extends DialogFragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Type", 4);
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+                Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+                fragment_resault_search.setArguments(bundle);
+                ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,false,Fragment_Resault_Search.TAG);
                 getDialog().dismiss();
             }
         });
@@ -93,7 +103,10 @@ public class Fragment_Dialog_Filter_Search extends DialogFragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Type", 5);
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+                Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+                fragment_resault_search.setArguments(bundle);
+                ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,false,Fragment_Resault_Search.TAG);
                 getDialog().dismiss();
             }
         });
@@ -103,7 +116,10 @@ public class Fragment_Dialog_Filter_Search extends DialogFragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Type", 6);
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+                Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+                fragment_resault_search.setArguments(bundle);
+                ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,false,Fragment_Resault_Search.TAG);
                 getDialog().dismiss();
             }
         });
@@ -113,7 +129,10 @@ public class Fragment_Dialog_Filter_Search extends DialogFragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Type", 7);
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search2", getContext(), bundle);
+                Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+                fragment_resault_search.setArguments(bundle);
+                ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,false,Fragment_Resault_Search.TAG);
                 getDialog().dismiss();
             }
         });

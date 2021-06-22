@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    android:background="@color/colorWhite"
+    android:clickable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +25,7 @@
                 android:layout_height="wrap_content"
                 app:srcCompat = "@drawable/ic_baseline_search_24"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="12dp"
                 />
 
             <!--<ImageView-->
@@ -81,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible">
 
                 <ImageView
                     android:layout_width="wrap_content"

@@ -18,8 +18,8 @@ import ir.tdaapp.diako.shaar.R;
 
 public class CategoryItemDetailsPhotosAdapter extends RecyclerView.Adapter<CategoryItemDetailsPhotosAdapter.ViewHolder> {
 
-  private ArrayList<CategoryItemDetailsPhotoModel> photos;
-  private OnItemClick clickListener;
+  private final ArrayList<CategoryItemDetailsPhotoModel> photos;
+  private final OnItemClick clickListener;
 
   public CategoryItemDetailsPhotosAdapter(ArrayList<CategoryItemDetailsPhotoModel> photos, OnItemClick clickListener) {
     this.photos = photos;

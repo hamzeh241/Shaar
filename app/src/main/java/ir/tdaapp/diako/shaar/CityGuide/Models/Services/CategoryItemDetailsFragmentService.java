@@ -1,10 +1,6 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Services;
 
-import android.net.Uri;
-
 import org.json.JSONArray;
-
-import java.util.List;
 
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;

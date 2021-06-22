@@ -24,9 +24,7 @@ import androidx.viewpager.widget.ViewPager;
 import ir.tdaapp.diako.shaar.Adapter.ImagePagerAdapter;
 import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Interface.IBase;
-import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
 
 /**
@@ -47,7 +45,7 @@ public class Fragment_Show_Images extends Fragment implements IBase {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_show_images, container, false);
 
-        ((MainActivity) getActivity()).frameLayout2.setVisibility(View.GONE);
+//        ((MainActivity) getActivity()).frameLayout2.setVisibility(View.GONE);
 
         FindItem(view);
 
@@ -68,7 +66,8 @@ public class Fragment_Show_Images extends Fragment implements IBase {
         Close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
     }

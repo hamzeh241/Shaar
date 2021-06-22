@@ -1,6 +1,5 @@
 package ir.tdaapp.diako.shaar.ETC;
 
-import android.app.Application;
 import android.text.TextUtils;
 
 import com.android.volley.Request;

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.ListHomeAdapter;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Interface.IBase;
 import ir.tdaapp.diako.shaar.Model.List_Home;
 
@@ -28,6 +27,8 @@ import java.util.List;
  */
 
 public class Fragment_LastSearch extends Fragment implements IBase {
+
+    public static final String TAG="Fragment_LastSearch";
 
     RecyclerView recycler;
     DBAdapter dbAdapter;
@@ -64,7 +65,7 @@ public class Fragment_LastSearch extends Fragment implements IBase {
 
         Cursor GetAll=dbAdapter.ExecuteQ("select * from TblLastSearchSave");
 
-        lbl_CountItem.setText("تعداد اگهی: "+String.valueOf(GetAll.getCount()));
+        lbl_CountItem.setText("تعداد اگهی: "+ GetAll.getCount());
 
         List<List_Home> homes=new ArrayList<>();
 
@@ -101,7 +102,8 @@ public class Fragment_LastSearch extends Fragment implements IBase {
         backall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
     }

@@ -6,7 +6,8 @@
     android:weightSum="6"
     android:layoutDirection="rtl"
     android:paddingRight="10dp"
-    android:paddingLeft="10dp">
+    android:paddingLeft="10dp"
+    android:clickable="true">
 
     <EditText
         android:id="@+id/txt_Id"

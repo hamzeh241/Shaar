@@ -21,8 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnGlideImageListener;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.R;
 
 public class SliderCarItemDetails extends RecyclerView.Adapter<SliderCarItemDetails.ViewHolder> {

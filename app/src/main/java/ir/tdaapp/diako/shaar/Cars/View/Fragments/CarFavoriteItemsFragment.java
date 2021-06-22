@@ -1,6 +1,5 @@
 package ir.tdaapp.diako.shaar.Cars.View.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.Cars.Presenter.CarFavoriteItemPresenter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
 
@@ -69,10 +67,6 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         brn_back.setOnClickListener(this);
 
 
-        if (adapter.getItemCount() == 0 && userId != 0){
-            loading.setVisibility(View.GONE);
-            linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
-        }
 
 
         //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
@@ -131,6 +125,12 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
 
     @Override
     public void onFinish() {
+        if (adapter.getItemCount() == 0 && userId != 0){
+            loading.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
+            linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
+        }
+
 
     }
 }

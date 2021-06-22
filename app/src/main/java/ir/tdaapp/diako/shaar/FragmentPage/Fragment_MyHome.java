@@ -13,7 +13,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import ir.tdaapp.diako.shaar.Adapter.ViewPager_Tab_Moshaverin;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 
 /**
  * Created by Diako on 7/7/2019.
@@ -60,7 +59,8 @@ public class Fragment_MyHome extends Fragment{
         backall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
     }

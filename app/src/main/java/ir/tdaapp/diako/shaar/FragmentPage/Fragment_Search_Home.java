@@ -19,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
@@ -31,8 +30,8 @@ import ir.tdaapp.diako.shaar.Adapter.CountRoom;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Adapter.TypeHome_Search_Adapter;
 import ir.tdaapp.diako.shaar.Data.DA_Add_Home;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
 import ir.tdaapp.diako.shaar.Interface.IBase;
+import ir.tdaapp.diako.shaar.Interface.SearchHome;
 import ir.tdaapp.diako.shaar.Model.Location;
 import ir.tdaapp.diako.shaar.Model.Type_Home;
 import ir.tdaapp.diako.shaar.R;
@@ -47,6 +46,8 @@ import java.util.List;
  */
 
 public class Fragment_Search_Home extends Fragment implements IBase {
+
+    public static final String TAG="Fragment_Search_Home";
 
     TextView lbl_Location, lbl_Price, lbl_Area, lbl_Rent, lbl_Mortgage;
     EditText txt_LowestPrice, txt_MaximumPrice, txt_LowestArea, txt_MaximumArea, txt_LowestRent, txt_MaximumRent;
@@ -67,6 +68,11 @@ public class Fragment_Search_Home extends Fragment implements IBase {
     CheckBox chk_FullRent, chk_FullMortgage;
 
     int locationId = 0, Turn = 0;
+    SearchHome searchHome;
+
+    public Fragment_Search_Home(SearchHome searchHome) {
+        this.searchHome = searchHome;
+    }
 
     @Nullable
     @Override
@@ -243,7 +249,8 @@ public class Fragment_Search_Home extends Fragment implements IBase {
         Close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
 
@@ -355,9 +362,16 @@ public class Fragment_Search_Home extends Fragment implements IBase {
 
                 SaveToLastSearch(vm_search);
 
-                Bundle bundle = new Bundle();
-                bundle.putInt("Type", 1);
-                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getContext(), bundle);
+                if (searchHome!=null){
+                    searchHome.search();
+                }
+                getActivity().onBackPressed();
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("Type", 1);
+//                Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+//                fragment_resault_search.setArguments(bundle);
+//                ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,true,Fragment_Resault_Search.TAG);
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getContext(), bundle);
 
             }
         });

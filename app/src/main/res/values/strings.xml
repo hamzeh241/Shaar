@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Amlake Yousef</string>
+    <string name="app_name">Amlake Yousef New</string>
     <string name="app_namePersian">املاک یوسف</string>
     <string name="LogIn">ورود</string>
     <string name="Home">خانه</string>
@@ -23,7 +23,7 @@
     <string name="AboutMe">درباره ما</string>
     <string name="OpenNavigation">بازشدن منو</string>
     <string name="CloseNavigation">بسته شدن منو</string>
-    <string name="SamaneShaar">جامع‌ترین سامانه آگهی املاک سنندج</string>
+    <string name="SamaneShaar">جامع‌ترین سامانه آگهی سنندج</string>
     <string name="SearchHome">جستجوی ملک</string>
     <string name="cartitle">خودرو</string>
     <string name="NewsHome">جدید‌ترین املاک</string>
@@ -257,6 +257,7 @@
     <string name="PleaseAddedImageYourHome">حتما یک عکس وارد کنید</string>
     <string name="CarBodySituation">وضعیت بدنه</string>
     <string name="CarMadeYaer">تعیین</string>
+    <string name="CarColor">رنگ</string>
     <string name="SpeedMeter">کارکرد</string>
     <string name="brand">برند</string>
     <string name="engineSituation">وضعیت موتور</string>

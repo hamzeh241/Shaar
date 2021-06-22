@@ -15,7 +15,7 @@ public class DBAdapter {
     protected static final String TAG = "DataAdapter";
     private final Context mContext;
     private SQLiteDatabase mDb;
-    private DataBaseHelper mDbHelper;
+    private final DataBaseHelper mDbHelper;
 
     public DBAdapter(Context context) {
         this.mContext = context;

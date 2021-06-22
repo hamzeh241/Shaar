@@ -1,4 +1,4 @@
-package ir.tdaapp.diako.shaar;
+package ir.tdaapp.diako.sharrNew;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

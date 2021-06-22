@@ -1,6 +1,5 @@
 package ir.tdaapp.diako.shaar.FragmentPage;
 
-import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,14 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import ir.tdaapp.diako.shaar.ETC.Internet;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
 
 /**
@@ -49,7 +47,10 @@ public class Dialog_Search_By_Id extends DialogFragment {
                     if (internet.HaveNetworkConnection()){
                         Bundle bundle=new Bundle();
                         bundle.putInt("Id",Integer.parseInt(txt_Id.getText().toString()));
-                        Stack_Back.MyStack_Back.Push("Fragment_Show_Details_Home",getActivity(),bundle);
+//                        Stack_Back.MyStack_Back.Push("Fragment_Show_Details_Home",getActivity(),bundle);
+                        Fragment_Show_Details_Home fragment_show_details_home=new Fragment_Show_Details_Home();
+                        fragment_show_details_home.setArguments(bundle);
+                        ((MainActivity)getActivity()).onAddFragment(fragment_show_details_home,0,0,true,Fragment_Show_Details_Home.TAG);
 
                         getDialog().dismiss();
 

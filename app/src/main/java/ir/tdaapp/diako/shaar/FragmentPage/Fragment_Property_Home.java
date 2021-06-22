@@ -1,16 +1,12 @@
 package ir.tdaapp.diako.shaar.FragmentPage;
 
-import android.content.Context;
 import android.database.Cursor;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,8 +23,6 @@ import ir.tdaapp.diako.shaar.Data.DA_TypeHome_Boolean;
 import ir.tdaapp.diako.shaar.Data.DA_TypeHome_Number;
 import ir.tdaapp.diako.shaar.Data.DA_TypeHome_Select;
 import ir.tdaapp.diako.shaar.Data.DA_TypeHome_Text;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
-import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.Model.Id_FeaturesGroup;
 
 import java.util.ArrayList;
@@ -39,6 +33,7 @@ import java.util.List;
  */
 
 public class Fragment_Property_Home extends Fragment {
+    public static final String TAG="Fragment_Property_Home";
 
     RelativeLayout Header_Possibilities, Header_Rooms, Header_Commerce, Header_Health, Header_Nearby, Header_Other, Header_Security, Header_Amazing;
 
@@ -64,7 +59,7 @@ public class Fragment_Property_Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(ir.tdaapp.diako.shaar.R.layout.fragment_property_home, container, false);
 
-        ((MainActivity)getActivity()).frameLayout1.setVisibility(View.GONE);
+//        ((MainActivity)getActivity()).frameLayout1.setVisibility(View.GONE);
 
 
         Find(view);
@@ -195,7 +190,7 @@ public class Fragment_Property_Home extends Fragment {
         Header_Rooms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Child_Rooms.getVisibility() == view.VISIBLE) {
+                if (Child_Rooms.getVisibility() == View.VISIBLE) {
                     Child_Rooms.setVisibility(View.GONE);
                     img_Icon_Rooms.setImageResource(ir.tdaapp.diako.shaar.R.drawable.top);
                 } else {
@@ -207,7 +202,7 @@ public class Fragment_Property_Home extends Fragment {
         Header_Commerce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Child_Commerce.getVisibility() == view.VISIBLE) {
+                if (Child_Commerce.getVisibility() == View.VISIBLE) {
                     Child_Commerce.setVisibility(View.GONE);
                     img_Icon_Comprece.setImageResource(ir.tdaapp.diako.shaar.R.drawable.top);
                 } else {
@@ -220,7 +215,7 @@ public class Fragment_Property_Home extends Fragment {
         Header_Health.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Child_Health.getVisibility() == view.VISIBLE) {
+                if (Child_Health.getVisibility() == View.VISIBLE) {
                     Child_Health.setVisibility(View.GONE);
                     img_Icon_Health.setImageResource(ir.tdaapp.diako.shaar.R.drawable.top);
                 } else {
@@ -233,7 +228,7 @@ public class Fragment_Property_Home extends Fragment {
         Header_Nearby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Child_Nearby.getVisibility() == view.VISIBLE) {
+                if (Child_Nearby.getVisibility() == View.VISIBLE) {
                     Child_Nearby.setVisibility(View.GONE);
                     img_Icon_Nearby.setImageResource(ir.tdaapp.diako.shaar.R.drawable.top);
                 } else {
@@ -246,7 +241,7 @@ public class Fragment_Property_Home extends Fragment {
         Header_Other.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Child_Other.getVisibility() == view.VISIBLE) {
+                if (Child_Other.getVisibility() == View.VISIBLE) {
                     Child_Other.setVisibility(View.GONE);
                     img_Icon_Other.setImageResource(ir.tdaapp.diako.shaar.R.drawable.top);
                 } else {
@@ -259,7 +254,7 @@ public class Fragment_Property_Home extends Fragment {
         Header_Security.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Child_Security.getVisibility() == view.VISIBLE) {
+                if (Child_Security.getVisibility() == View.VISIBLE) {
                     Child_Security.setVisibility(View.GONE);
                     img_Icon_Security.setImageResource(ir.tdaapp.diako.shaar.R.drawable.top);
                 } else {
@@ -272,7 +267,7 @@ public class Fragment_Property_Home extends Fragment {
         Header_Amazing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Child_Amazing.getVisibility() == view.VISIBLE) {
+                if (Child_Amazing.getVisibility() == View.VISIBLE) {
                     Child_Amazing.setVisibility(View.GONE);
                     img_Icon_Amazing.setImageResource(ir.tdaapp.diako.shaar.R.drawable.top);
                 } else {
@@ -285,7 +280,8 @@ public class Fragment_Property_Home extends Fragment {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
 
@@ -294,7 +290,8 @@ public class Fragment_Property_Home extends Fragment {
             public void onClick(View view) {
 
                 GetData();
-                Stack_Back.MyStack_Back.Pop(getActivity());
+//                Stack_Back.MyStack_Back.Pop(getActivity());
+                getActivity().onBackPressed();
             }
         });
 

@@ -1,10 +1,13 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +32,8 @@ public class CategoryFragmentCityGuide extends CityGuideBaseFragment implements 
   private CategoryFragmentPresenter presenter;
   private ProgressBar loading;
   private ViewGroup searchBar;
-
+  private TextView btnSearch;
+  private EditText editText;
 
   @Nullable
   @Override
@@ -48,6 +52,9 @@ public class CategoryFragmentCityGuide extends CityGuideBaseFragment implements 
     searchBar = itemView.findViewById(R.id.categorySearchBar);
     layoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);
     presenter = new CategoryFragmentPresenter(getContext(), this);
+    btnSearch = itemView.findViewById(R.id.btn_search_cityguidde);
+    editText = itemView.findViewById(R.id.editTextTextPersonName2);
+
   }
 
   private void implement() {
@@ -56,20 +63,42 @@ public class CategoryFragmentCityGuide extends CityGuideBaseFragment implements 
     loading.setVisibility(View.VISIBLE);
 
     searchBar.setOnClickListener(this);
+
+    btnSearch.setOnClickListener(this);
+
+    editText.setOnKeyListener((v, keyCode, event) -> {
+      // If the event is a key-down event on the "enter" button
+      if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+              (keyCode == KeyEvent.KEYCODE_ENTER)) {
+        // Perform action on key press
+        btnSearch.performClick();
+        return true;
+      }
+      return false;
+    });
+
   }
 
   @Override
   public void onClick(View v) {
     switch (v.getId()){
       case R.id.categorySearchBar:
-        CategoryDetailsFragmentCityGuide fragment = new CategoryDetailsFragmentCityGuide();
-        Bundle bundle = new Bundle();
-        bundle.putInt("ID", 0);
-        fragment.setArguments(bundle);
-
-        ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryDetailsFragmentCityGuide.TAG);
+//        CategoryDetailsFragmentCityGuide fragment = new CategoryDetailsFragmentCityGuide();
+//        Bundle bundle = new Bundle();
+//        bundle.putInt("ID", 0);
+//        fragment.setArguments(bundle);
+//        ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryDetailsFragmentCityGuide.TAG);
 
         break;
+
+      case R.id.btn_search_cityguidde:
+        SearchResultFragment resultFragment = new SearchResultFragment();
+        Bundle bundle1 = new Bundle();
+        bundle1.putString("title",editText.getText().toString());
+        resultFragment.setArguments(bundle1);
+        ((GuideActivity) getActivity()).onAddFragment(resultFragment, 0, 0, true, SearchResultFragment.TAG);
+        break;
+
     }
   }
 
@@ -85,7 +114,6 @@ public class CategoryFragmentCityGuide extends CityGuideBaseFragment implements 
       Bundle bundle = new Bundle();
       bundle.putInt("ID", model.getId());
       fragment.setArguments(bundle);
-
       ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryDetailsFragmentCityGuide.TAG);
     });
   }

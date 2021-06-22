@@ -8,21 +8,38 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
-import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
-import ir.tdaapp.diako.shaar.Cars.View.Fragments.AddCarFragment;
-import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarDeatailFragment;
 import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarFavoriteItemsFragment;
 import ir.tdaapp.diako.shaar.Cars.View.Fragments.CarListFragment;
 import ir.tdaapp.diako.shaar.Cars.View.Fragments.UsersCarsListFragment;
-import ir.tdaapp.diako.shaar.ETC.User;
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Add_Account;
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Login_Home;
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_SMS_Panel;
+import ir.tdaapp.diako.shaar.FragmentPage.Succefull_Register;
 import ir.tdaapp.diako.shaar.R;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import java.util.List;
 
 public class CarActivity extends AppCompatActivity {
 
     DBAdapter dbAdapter;
+
+    public void removeStack() {
+
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+        FragmentManager manager = getSupportFragmentManager();
+
+
+        for (Fragment i : fragmentList) {
+            if (i instanceof Fragment_Login_Home || i instanceof Fragment_Add_Account || i instanceof Fragment_SMS_Panel ||
+                    i instanceof Succefull_Register) {
+                manager.popBackStack();
+            }
+
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +47,6 @@ public class CarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_car);
 
         dbAdapter = new DBAdapter(this);
-
 
         String intent = getIntent().getStringExtra("FavCar");
 
@@ -77,7 +93,15 @@ public class CarActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+
     public DBAdapter getAdapter() {
         return dbAdapter;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+        super.onBackPressed();
     }
 }

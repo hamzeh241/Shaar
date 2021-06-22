@@ -3,15 +3,11 @@ package ir.tdaapp.diako.shaar.Adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import android.transition.Transition;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.List;

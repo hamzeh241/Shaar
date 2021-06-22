@@ -63,9 +63,8 @@
                 android:id="@+id/txtNumberCityGyide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginRight="16dp"
-                android:text="989218092161"
+                android:layout_weight="1"
                 android:textAlignment="textEnd"
                 android:textColor="#1a1d24" />
 
@@ -73,9 +72,8 @@
                 android:id="@+id/txtNumberCityGyide2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginRight="16dp"
-                android:text="989218092161"
+                android:layout_weight="1"
                 android:textAlignment="textEnd"
                 android:textColor="#1a1d24" />
 
@@ -83,9 +81,8 @@
                 android:id="@+id/txtNumberCityGyide3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginRight="16dp"
-                android:text="989218092161"
+                android:layout_weight="1"
                 android:textAlignment="textEnd"
                 android:textColor="#1a1d24" />
 
@@ -190,7 +187,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
                 android:layout_weight="1"
-                android:text="بهاران، روبروی رستوران پاچنار"
                 android:textColor="#1a1d24" />
 
             <ImageView

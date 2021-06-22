@@ -58,10 +58,7 @@ public class LinkedList {
             return n.getVal();
         }
         public static boolean IsEmpty(){
-            if (Count==0){
-                return true;
-            }
-            return false;
+            return Count == 0;
         }
     }
 

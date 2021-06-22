@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.OnChipListener;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.onCarListClickListener;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.R;
 
 public class ChipsListAdapter extends RecyclerView.Adapter<ChipsListAdapter.ViewHolder> {

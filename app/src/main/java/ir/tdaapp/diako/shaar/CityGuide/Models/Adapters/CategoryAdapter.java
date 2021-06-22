@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
+
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.R;

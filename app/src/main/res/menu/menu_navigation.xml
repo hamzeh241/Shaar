@@ -51,7 +51,8 @@
             <item
                 android:id="@+id/navigation_NewSearch"
                 android:icon="@drawable/ic_search"
-                android:title="@string/NewSearch" />
+                android:title="@string/NewSearch"
+                android:visible="false"/>
 
             <item
                 android:id="@+id/navigation_LastSearch"

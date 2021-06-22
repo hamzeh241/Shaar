@@ -34,8 +34,8 @@
                     android:background="?selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
-                    app:srcCompat="@drawable/ic_baseline_refresh_24"
-                    />
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_baseline_refresh_24" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/sliderCategoryItemDetails"
@@ -82,10 +82,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        app:srcCompat = "@drawable/ic_back"
-                        android:layout_marginRight="10dp"
                         android:layout_centerVertical="true"
-                        />
+                        android:layout_marginRight="10dp"
+                        app:srcCompat="@drawable/ic_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_toLeftOf="@id/img_btn_back_detail"
+                        android:text="جزئیات اگهی"
+                        android:textColor="@color/colorWhite" />
 
 
                     <ImageButton

@@ -54,6 +54,7 @@
                         android:background="?selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
+                        android:visibility="gone"
                         />
 
 

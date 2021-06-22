@@ -2,21 +2,30 @@ package ir.tdaapp.diako.shaar.FragmentPage;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+import java.util.List;
+
+import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
+import ir.tdaapp.diako.shaar.MainActivity;
 
 /**
  * Created by Diako on 6/27/2019.
  */
 
 public class Succefull_Register extends Fragment {
+    public static final String TAG = "Succefull_Register";
+
 
     Button btn_Down;
 
@@ -30,12 +39,40 @@ public class Succefull_Register extends Fragment {
         btn_Down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stack_Back.MyStack_Back.Push("Fragment_Home", getActivity());
+
+                MainActivity.getInstance().HiddenLogin();
+
+                switch (getActivity().getClass().getSimpleName()) {
+                    case "MainActivity":
+
+//
+
+                        FragmentManager manager = getActivity().getSupportFragmentManager();
+                        List<Fragment> fragmentList = manager.getFragments();
+
+                        for(Fragment fragment : fragmentList){
+                            if (fragment instanceof Fragment_Login_Home || fragment instanceof Fragment_Add_Account || fragment instanceof Fragment_SMS_Panel ||
+                                    fragment instanceof Succefull_Register){
+                                manager.popBackStack();
+                            }
+                        }
+
+                        break;
+                    case "GuideActivity":
+                        ((GuideActivity) getActivity()).removeStack();
+                        break;
+
+                    case "CarActivity":
+                        ((CarActivity) getActivity()).removeStack();
+                        break;
+                }
+
             }
         });
         hideKeyboard(getActivity());
         return view;
     }
+
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         //Find the currently focused view, so we can grab the correct window token from it.

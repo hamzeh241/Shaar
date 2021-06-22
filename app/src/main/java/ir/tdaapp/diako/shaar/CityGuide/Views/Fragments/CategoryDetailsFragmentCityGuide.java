@@ -26,13 +26,13 @@ import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsChipsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onCategoryChipClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryDetailsFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.ETC.User;
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Login_Home;
 import ir.tdaapp.diako.shaar.R;
 
 
@@ -40,10 +40,13 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
 
     public static final String TAG = "CategoryDetailsFragment";
 
+
+
+
     private int previousTotal = 0;
     private int page = 0;
     private boolean isLoading = true;
-    private int visibleThreshold = 5;
+    private final int visibleThreshold = 5;
     int firstVisibleItem, visibleItemCount, totalItemCount;
 
     int userId;
@@ -242,6 +245,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
             case R.id.categoryDetailsAddItemFab:
                 if (userId == 0 ){
                     Toasty.info(getContext(),R.string.addAccuont, Toast.LENGTH_SHORT,false).show();
+                    ((GuideActivity)getActivity()).onAddFragment(new Fragment_Login_Home(1),R.anim.fadein,R.anim.fadeout,true,Fragment_Login_Home.TAG);
                 }else {
                     ((GuideActivity) getActivity()).onAddFragment(new AddItemFragmentCityGuide(), 0, 0, true, AddItemFragmentCityGuide.TAG);
                 }
@@ -251,7 +255,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
                 break;
 
             case R.id.imgCategoryDetailsBack:
-                getActivity().onBackPressed();
+              getActivity().onBackPressed();
                 break;
         }
     }

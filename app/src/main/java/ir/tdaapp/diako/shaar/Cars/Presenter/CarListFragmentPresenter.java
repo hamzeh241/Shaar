@@ -1,7 +1,6 @@
 package ir.tdaapp.diako.shaar.Cars.Presenter;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,9 +16,6 @@ import ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.SearchModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryApiCityGuide;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 
 public class CarListFragmentPresenter {
 

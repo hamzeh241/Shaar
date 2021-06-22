@@ -18,7 +18,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.ETC.Font;
 import ir.tdaapp.diako.shaar.ETC.Internet;
-import ir.tdaapp.diako.shaar.ETC.Stack_Back;
+import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Show_Details_Home;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.Model.Like;
 import ir.tdaapp.diako.shaar.Model.List_Home;
 import ir.tdaapp.diako.shaar.R;
@@ -98,7 +99,10 @@ public class ListHomeAdapter extends RecyclerView.Adapter<ListHomeAdapter.MyView
                 if (internet.HaveNetworkConnection()){
                     Bundle bundle=new Bundle();
                     bundle.putInt("Id",list_homes.get(position).getId());
-                    Stack_Back.MyStack_Back.Push("Fragment_Show_Details_Home",context,bundle);
+                    Fragment_Show_Details_Home fragment_show_details_home=new Fragment_Show_Details_Home();
+                    fragment_show_details_home.setArguments(bundle);
+                    ((MainActivity)context).onAddFragment(fragment_show_details_home,0,0,true,Fragment_Show_Details_Home.TAG);
+//                    Stack_Back.MyStack_Back.Push("Fragment_Show_Details_Home",context,bundle);
                 }else{
                     Toast.makeText(context, "لطفا اتصال خود را به اینترنت چک نمایید", Toast.LENGTH_SHORT).show();
                 }

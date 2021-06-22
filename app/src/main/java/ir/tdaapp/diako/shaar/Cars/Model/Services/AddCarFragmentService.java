@@ -52,4 +52,6 @@ public interface AddCarFragmentService {
   void onImageUploading(boolean loading);
 
   void onDataSendingState(boolean loading);
+
+  void onColorReceived(List<AddItemEntryModel> models);
 }

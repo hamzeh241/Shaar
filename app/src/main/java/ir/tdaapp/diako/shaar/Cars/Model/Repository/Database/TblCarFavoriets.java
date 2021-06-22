@@ -9,7 +9,6 @@ import java.util.List;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.Database.Common;
-import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 
 public class TblCarFavoriets {
 

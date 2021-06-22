@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:clickable="true">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recycler"
@@ -23,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/not_item" />
+            app:srcCompat="@drawable/ic_no_data_icon" />
 
         <TextView
             android:layout_width="match_parent"
@@ -31,7 +34,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="@string/NotFoundData"
-            android:textColor="@color/colorBlue"
+            android:textColor="@color/colorDark"
             android:textSize="22sp"
             android:paddingRight="10dp"
             android:paddingLeft="10dp" />
@@ -42,7 +45,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="@string/NotDataToDataBase"
-            android:textColor="@color/colorBlue"
+            android:textColor="@color/colorDark"
             android:textSize="20sp"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"/>

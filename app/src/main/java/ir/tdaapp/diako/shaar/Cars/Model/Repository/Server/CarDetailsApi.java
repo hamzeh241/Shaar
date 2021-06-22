@@ -8,16 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import io.reactivex.Single;
-import io.reactivex.SingleEmitter;
-import io.reactivex.SingleOnSubscribe;
-import io.reactivex.annotations.NonNull;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailsPhotoModel;
-import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
-import ir.tdaapp.diako.shaar.Volley.Services.IGetJsonObject;
-import ir.tdaapp.diako.shaar.Volley.ViewModel.ResaultGetJsonObjectVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonObjectVolley;
 
 public class CarDetailsApi extends CarBaseApi {
@@ -64,6 +58,7 @@ public class CarDetailsApi extends CarBaseApi {
                 model.setPrice(object.getString("Price"));
                 model.setProductionYear(object.getString("YearOfConstruction"));
                 model.setSalesType(object.getString("HowToSell"));
+                model.setColor(object.getString("Color"));
                 model.setPhotos(photoModels);
               } catch (JSONException e) {
                 e.printStackTrace();

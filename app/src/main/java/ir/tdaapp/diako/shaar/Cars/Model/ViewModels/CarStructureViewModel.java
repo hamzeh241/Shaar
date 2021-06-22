@@ -4,186 +4,195 @@ import java.util.ArrayList;
 
 public class CarStructureViewModel {
 
-  int function, price, brandId, engineStatusId, chassisStatusId, bodyStatusId,
-    insuranceDeadlineId, gearboxId, documentId, categoryId, sellTypeId, productionYearId, userId;
-  boolean exchange;
-  String title, description, address, phone;
-  ArrayList<String> images;
+    int function, price, brandId, engineStatusId, chassisStatusId, bodyStatusId,
+            insuranceDeadlineId, gearboxId, documentId, categoryId, sellTypeId, productionYearId, userId, color;
+    boolean exchange;
+    String title, description, address, phone;
+    ArrayList<String> images;
 
-  public CarStructureViewModel() {
-  }
+    public CarStructureViewModel() {
+    }
 
-  public CarStructureViewModel(int function, int price, int brandId, int engineStatusId, int chassisStatusId, int bodyStatusId, int insuranceDeadlineId, int gearboxId, int documentId, int categoryId, int sellTypeId, int productionYearId, int userId, boolean exchange, String title, String description, String address, String phone, ArrayList<String> images) {
-    this.function = function;
-    this.price = price;
-    this.brandId = brandId;
-    this.engineStatusId = engineStatusId;
-    this.chassisStatusId = chassisStatusId;
-    this.bodyStatusId = bodyStatusId;
-    this.insuranceDeadlineId = insuranceDeadlineId;
-    this.gearboxId = gearboxId;
-    this.documentId = documentId;
-    this.categoryId = categoryId;
-    this.sellTypeId = sellTypeId;
-    this.productionYearId = productionYearId;
-    this.userId = userId;
-    this.exchange = exchange;
-    this.title = title;
-    this.description = description;
-    this.address = address;
-    this.phone = phone;
-    this.images = images;
-  }
+    public CarStructureViewModel(int function, int color, int price, int brandId, int engineStatusId, int chassisStatusId, int bodyStatusId, int insuranceDeadlineId, int gearboxId, int documentId, int categoryId, int sellTypeId, int productionYearId, int userId, boolean exchange, String title, String description, String address, String phone, ArrayList<String> images) {
+        this.function = function;
+        this.price = price;
+        this.brandId = brandId;
+        this.engineStatusId = engineStatusId;
+        this.chassisStatusId = chassisStatusId;
+        this.bodyStatusId = bodyStatusId;
+        this.insuranceDeadlineId = insuranceDeadlineId;
+        this.gearboxId = gearboxId;
+        this.documentId = documentId;
+        this.categoryId = categoryId;
+        this.sellTypeId = sellTypeId;
+        this.productionYearId = productionYearId;
+        this.userId = userId;
+        this.exchange = exchange;
+        this.title = title;
+        this.description = description;
+        this.address = address;
+        this.phone = phone;
+        this.images = images;
+        this.color = color;
+    }
 
-  public int getFunction() {
-    return function;
-  }
+    public int getColor() {
+        return color;
+    }
 
-  public void setFunction(int function) {
-    this.function = function;
-  }
+    public void setColor(int color) {
+        this.color = color;
+    }
 
-  public int getPrice() {
-    return price;
-  }
+    public int getFunction() {
+        return function;
+    }
 
-  public void setPrice(int price) {
-    this.price = price;
-  }
+    public void setFunction(int function) {
+        this.function = function;
+    }
 
-  public int getBrandId() {
-    return brandId;
-  }
+    public int getPrice() {
+        return price;
+    }
 
-  public void setBrandId(int brandId) {
-    this.brandId = brandId;
-  }
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
-  public int getEngineStatusId() {
-    return engineStatusId;
-  }
+    public int getBrandId() {
+        return brandId;
+    }
 
-  public void setEngineStatusId(int engineStatusId) {
-    this.engineStatusId = engineStatusId;
-  }
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
 
-  public int getChassisStatusId() {
-    return chassisStatusId;
-  }
+    public int getEngineStatusId() {
+        return engineStatusId;
+    }
 
-  public void setChassisStatusId(int chassisStatusId) {
-    this.chassisStatusId = chassisStatusId;
-  }
+    public void setEngineStatusId(int engineStatusId) {
+        this.engineStatusId = engineStatusId;
+    }
 
-  public int getBodyStatusId() {
-    return bodyStatusId;
-  }
+    public int getChassisStatusId() {
+        return chassisStatusId;
+    }
 
-  public void setBodyStatusId(int bodyStatusId) {
-    this.bodyStatusId = bodyStatusId;
-  }
+    public void setChassisStatusId(int chassisStatusId) {
+        this.chassisStatusId = chassisStatusId;
+    }
 
-  public int getInsuranceDeadlineId() {
-    return insuranceDeadlineId;
-  }
+    public int getBodyStatusId() {
+        return bodyStatusId;
+    }
 
-  public void setInsuranceDeadlineId(int insuranceDeadlineId) {
-    this.insuranceDeadlineId = insuranceDeadlineId;
-  }
+    public void setBodyStatusId(int bodyStatusId) {
+        this.bodyStatusId = bodyStatusId;
+    }
 
-  public int getGearboxId() {
-    return gearboxId;
-  }
+    public int getInsuranceDeadlineId() {
+        return insuranceDeadlineId;
+    }
 
-  public void setGearboxId(int gearboxIs) {
-    this.gearboxId = gearboxIs;
-  }
+    public void setInsuranceDeadlineId(int insuranceDeadlineId) {
+        this.insuranceDeadlineId = insuranceDeadlineId;
+    }
 
-  public int getDocumentId() {
-    return documentId;
-  }
+    public int getGearboxId() {
+        return gearboxId;
+    }
 
-  public void setDocumentId(int documentId) {
-    this.documentId = documentId;
-  }
+    public void setGearboxId(int gearboxIs) {
+        this.gearboxId = gearboxIs;
+    }
 
-  public int getCategoryId() {
-    return categoryId;
-  }
+    public int getDocumentId() {
+        return documentId;
+    }
 
-  public void setCategoryId(int categoryId) {
-    this.categoryId = categoryId;
-  }
+    public void setDocumentId(int documentId) {
+        this.documentId = documentId;
+    }
 
-  public int getSellTypeId() {
-    return sellTypeId;
-  }
+    public int getCategoryId() {
+        return categoryId;
+    }
 
-  public void setSellTypeId(int sellTypeId) {
-    this.sellTypeId = sellTypeId;
-  }
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
 
-  public int getProductionYearId() {
-    return productionYearId;
-  }
+    public int getSellTypeId() {
+        return sellTypeId;
+    }
 
-  public void setProductionYearId(int productionYearId) {
-    this.productionYearId = productionYearId;
-  }
+    public void setSellTypeId(int sellTypeId) {
+        this.sellTypeId = sellTypeId;
+    }
 
-  public int getUserId() {
-    return userId;
-  }
+    public int getProductionYearId() {
+        return productionYearId;
+    }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
-  }
+    public void setProductionYearId(int productionYearId) {
+        this.productionYearId = productionYearId;
+    }
 
-  public boolean isExchange() {
-    return exchange;
-  }
+    public int getUserId() {
+        return userId;
+    }
 
-  public void setExchange(boolean exchange) {
-    this.exchange = exchange;
-  }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-  public ArrayList<String> getImages() {
-    return images;
-  }
+    public boolean isExchange() {
+        return exchange;
+    }
 
-  public void setImages(ArrayList<String> images) {
-    this.images = images;
-  }
+    public void setExchange(boolean exchange) {
+        this.exchange = exchange;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public ArrayList<String> getImages() {
+        return images;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public String getAddress() {
-    return address;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public void setAddress(String address) {
-    this.address = address;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public String getPhone() {
-    return phone;
-  }
+    public String getAddress() {
+        return address;
+    }
 
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }
