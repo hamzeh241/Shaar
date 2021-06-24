@@ -1,6 +1,7 @@
 package ir.tdaapp.diako.shaar.Cars.Model.Services;
 
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public interface CarDetailFragmentService {
 
@@ -8,7 +9,7 @@ public interface CarDetailFragmentService {
 
     void onPresenterStart();
 
-    void onError(String error);
+    void onError(ResaultCode resaultCode);
 
     void onFinish();
 

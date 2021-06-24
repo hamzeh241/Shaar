@@ -15,12 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.UserItemsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.UserItemsFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements UserItemsFragmentService {
 
@@ -61,13 +61,10 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
         linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_city_guide);
         userId = new User(getContext()).GetUserId();
         linearLayoutNoItemMessage = view.findViewById(R.id.no_item_messag_layout);
-
-
     }
 
     private void implement() {
         presenter.start(new User(getContext()).GetUserId());
-
         list.setLayoutManager(layoutManager);
         list.setAdapter(adapter);
 
@@ -79,15 +76,12 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
             ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryItemDetailsFragmentCityGuide.TAG);
         });
 
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().onBackPressed();
             }
         });
-
-
 
         //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
         if (userId == 0) {
@@ -110,13 +104,36 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
             list.setAdapter(adapter);
             linearLayoutNoItemMessage.setVisibility(View.GONE);
         }
-
-
     }
 
     @Override
-    public void onError(String s) {
+    public void onError(ResaultCode resaultCode) {
 
+        String error = "";
+        String title = "";
+
+        switch (resaultCode) {
+            case TimeoutError:
+                error = getString(R.string.timeout_error);
+                title = getString(R.string.timeout_error_title);
+                break;
+            case NetworkError:
+                error = getString(R.string.network_error);
+                title = getString(R.string.network_error_title);
+                break;
+            case ServerError:
+                error = getString(R.string.server_error);
+                title = getString(R.string.server_error_title);
+                break;
+            case ParseError:
+            case Error:
+                title = getString(R.string.unknown_error_title);
+                error = getString(R.string.unknown_error);
+                break;
+        }
+        showErrorDialog(title, error, () -> {
+            presenter.start(userId);
+        });
     }
 
     @Override
@@ -127,7 +144,5 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
             list.setVisibility(View.GONE);
             linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
         }
-
-
     }
 }

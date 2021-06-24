@@ -1,6 +1,7 @@
 package ir.tdaapp.diako.shaar.CityGuide.Models.Services;
 
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public interface CategoryFragmentService {
 
@@ -10,5 +11,5 @@ public interface CategoryFragmentService {
 
   void onFinish();
 
-  void onError(String result);
+  void onError(ResaultCode resaultCode);
 }

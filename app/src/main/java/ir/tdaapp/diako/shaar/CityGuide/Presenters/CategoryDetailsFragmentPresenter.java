@@ -13,6 +13,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryDetailsApiCit
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
+import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
 
 public class CategoryDetailsFragmentPresenter {
 
@@ -55,7 +56,7 @@ public class CategoryDetailsFragmentPresenter {
 
             @Override
             public void onError(Throwable e) {
-                categoryDetailsFragmentService.onError(e.getMessage());
+                categoryDetailsFragmentService.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }
@@ -85,7 +86,7 @@ public class CategoryDetailsFragmentPresenter {
 
             @Override
             public void onError(Throwable e) {
-                categoryDetailsFragmentService.onError(e.getMessage());
+                categoryDetailsFragmentService.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }

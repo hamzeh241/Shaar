@@ -279,6 +279,19 @@
     <string name="confirmed">تایید شده</string>
     <string name="not_confirmed">تایید نشده</string>
 
+    <string name="unknown_error">در برنامه خطای رخ داده است</string>
+    <string name="error_occured">خطای رخ داده است</string>
+    <string name="server_error">در سرور خطای رخ داده است</string>
+    <string name="network_error">لطفا اتصال اینترنت خود را چک نمایید</string>
+    <string name="timeout_error">اینترنت شما بسیار کند است</string>
+
+
+    <string name="unknown_error_title">خطای نامشخص</string>
+    <string name="error_occured_title">خطا</string>
+    <string name="server_error_title">خطای سرور</string>
+    <string name="network_error_title">خطای اینترنت</string>
+    <string name="timeout_error_title">خطای اینترنت</string>
+
 
     <string name="Law_And_Regulations">پذیرش قوانین \n
 ۱) شما متعهد می‌گردید که شماره تلفن و مشخصات، متعلق به مالک یا وکیل ایشان است و به صورت صحیح درج شده است.\n

@@ -4,6 +4,7 @@ import org.json.JSONArray;
 
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public interface CategoryItemDetailsFragmentService {
 
@@ -21,7 +22,7 @@ public interface CategoryItemDetailsFragmentService {
 
   void onCommentLiked(int position, CategoryItemDetailsCommentsModel model, boolean liked);
 
-  void onError(String error);
+  void onError(ResaultCode resaultCode);
 
   void onFinish();
 }

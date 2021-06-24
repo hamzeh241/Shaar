@@ -11,6 +11,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.SearchResultApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnSearchResultService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
+import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
 
 public class SearchResultFragmentPresenter {
     Context context;
@@ -54,7 +55,7 @@ public class SearchResultFragmentPresenter {
 
             @Override
             public void onError(Throwable e) {
-                service.onError(e.getMessage());
+                service.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }

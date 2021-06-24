@@ -16,6 +16,7 @@ import ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.SearchModel;
+import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
 
 public class CarListFragmentPresenter {
 
@@ -48,7 +49,7 @@ public class CarListFragmentPresenter {
 
             @Override
             public void onError(Throwable e) {
-                service.onError(e.getMessage());
+                service.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }
@@ -96,7 +97,7 @@ public class CarListFragmentPresenter {
 
             @Override
             public void onError(Throwable e) {
-                service.onError(e.getMessage());
+                service.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }

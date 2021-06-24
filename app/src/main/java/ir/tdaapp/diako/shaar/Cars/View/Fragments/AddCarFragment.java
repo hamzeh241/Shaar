@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.AddCarFragmentService;
-import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.AddItemEntryModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarStructureViewModel;
@@ -37,7 +36,9 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.AddItemPhotosModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.MessageDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public class AddCarFragment extends CarBaseFragment implements View.OnClickListener, AddCarFragmentService {
     public static final String TAG = "AddCarFragment";
@@ -67,13 +68,10 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_car, container, false);
-
         findView(view);
         implement();
-
         return view;
     }
-
     private void findView(View view) {
         presenter = new AddCarFragmentPresenter(getContext(), this);
         adapter = new AddItemPhotosAdapter(getContext());
@@ -84,7 +82,6 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
         sending.setCancelable(false);
         layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
-
         category = view.findViewById(R.id.spinnerCategory);
         productionYear = view.findViewById(R.id.spinnerFromProductionYear);
         brand = view.findViewById(R.id.spinnerBrand);
@@ -117,7 +114,6 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
 
     private void implement() {
         presenter.start();
-
         photoList.setLayoutManager(layoutManager);
         photoList.setAdapter(adapter);
         submit.setOnClickListener(this);
@@ -168,7 +164,33 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
     }
 
     @Override
-    public void onError(String result) {
+    public void onError(ResaultCode resaultCode) {
+
+        String error = "";
+        String title = "";
+
+        switch (resaultCode) {
+            case TimeoutError:
+                error = getString(R.string.timeout_error);
+                title = getString(R.string.timeout_error_title);
+                break;
+            case NetworkError:
+                error = getString(R.string.network_error);
+                title = getString(R.string.network_error_title);
+                break;
+            case ServerError:
+                error = getString(R.string.server_error);
+                title = getString(R.string.server_error_title);
+                break;
+            case ParseError:
+            case Error:
+                title = getString(R.string.unknown_error_title);
+                error = getString(R.string.unknown_error);
+                break;
+        }
+        showErrorDialog(title, error, () -> {
+            presenter.start();
+        });
 
     }
 
@@ -273,6 +295,7 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
     public void onResultReceived(ResultViewModel model) {
         if (model.getStatus()) {
             Toasty.success(getContext(), model.getTitle()).show();
+            ((MainActivity)getActivity()).onBackPressed();
         } else {
             Toasty.error(getContext(), model.getTitle()).show();
         }
@@ -315,7 +338,6 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
             sending.show(getActivity().getSupportFragmentManager(), MessageDialog.TAG);
         } else {
             sending.dismiss();
-            ((CarActivity) getActivity()).onAddFragment(new CarListFragment(), 0, 0, false, CarListFragment.TAG);
         }
     }
 
