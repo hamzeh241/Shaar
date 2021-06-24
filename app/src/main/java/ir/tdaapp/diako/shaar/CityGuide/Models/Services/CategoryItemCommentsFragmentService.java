@@ -2,6 +2,7 @@ package ir.tdaapp.diako.shaar.CityGuide.Models.Services;
 
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public interface CategoryItemCommentsFragmentService {
 
@@ -17,7 +18,7 @@ public interface CategoryItemCommentsFragmentService {
 
   void onLikeState(int position, CategoryItemDetailsCommentsModel model, boolean liked);
 
-  void onError(String result);
+  void onError(ResaultCode resaultCode);
 
   void onFinish();
 }

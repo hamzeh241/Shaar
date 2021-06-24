@@ -8,6 +8,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Server.CarDetailsApi;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;
+import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
 
 public class CarDetailFragmentPresenter {
 
@@ -43,7 +44,7 @@ public class CarDetailFragmentPresenter {
       @Override
       public void onError(Throwable e) {
         service.loadingState(false);
-        service.onError(e.getMessage());
+        service.onError(Error.getErrorVolley(e.toString()));
       }
     });
   }

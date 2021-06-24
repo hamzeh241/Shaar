@@ -12,6 +12,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryFavoriteItems
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.Database.TblFavorites;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFavoriteItemsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
+import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
 
 public class CategoryFavoriteItemsFragmentPresenter {
 
@@ -46,7 +47,7 @@ public class CategoryFavoriteItemsFragmentPresenter {
 
       @Override
       public void onError(Throwable e) {
-        service.onError(e.getMessage());
+        service.onError(Error.getErrorVolley(e.toString()));
       }
     });
   }

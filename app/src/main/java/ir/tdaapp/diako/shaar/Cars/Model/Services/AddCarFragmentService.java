@@ -8,12 +8,13 @@ import java.util.List;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.AddItemEntryModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public interface AddCarFragmentService {
 
   void onPresenterStart();
 
-  void onError(String result);
+  void onError(ResaultCode resaultCode);
 
   void onFinish();
 

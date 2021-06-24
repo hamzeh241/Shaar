@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.AddItemPhotosAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.AddItemFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.Validation;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.AddItemPhotosModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
@@ -36,6 +35,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.MessageDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.R;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements View.OnClickListener, AddItemFragmentService {
 
@@ -113,10 +113,8 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
-
         photoList.setLayoutManager(layoutManager);
         photoList.setAdapter(adapter);
         submit.setOnClickListener(this);
@@ -141,9 +139,7 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
                     viewModel.setImages(images);
                     viewModel.setFilterId(((CategoryDetailsChipModel) filter.getSelectedItem()).getId());
                     viewModel.setUserId(new User(getContext()).GetUserId());
-
                     presenter.sendDetails(viewModel);
-
                 }
                 break;
             case R.id.btnAddItemInsertPhoto:
@@ -162,7 +158,34 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
     }
 
     @Override
-    public void onError(String result) {
+    public void onError(ResaultCode resaultCode) {
+
+        String error = "";
+        String title = "";
+
+        switch (resaultCode) {
+            case TimeoutError:
+                error = getString(R.string.timeout_error);
+                title = getString(R.string.timeout_error_title);
+                break;
+            case NetworkError:
+                error = getString(R.string.network_error);
+                title = getString(R.string.network_error_title);
+                break;
+            case ServerError:
+                error = getString(R.string.server_error);
+                title = getString(R.string.server_error_title);
+                break;
+            case ParseError:
+            case Error:
+                title = getString(R.string.unknown_error_title);
+                error = getString(R.string.unknown_error);
+                break;
+        }
+        showErrorDialog(title, error, () -> {
+            presenter.start();
+        });
+
 
     }
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public interface CategoryDetailsFragmentService {
 
@@ -21,5 +22,5 @@ public interface CategoryDetailsFragmentService {
 
   void onFinish();
 
-  void onError(String result);
+  void onError(ResaultCode resaultCode);
 }

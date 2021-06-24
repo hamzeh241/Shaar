@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.R;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public class CategoryFragmentCityGuide extends CityGuideBaseFragment implements CategoryFragmentService, View.OnClickListener {
 
@@ -131,7 +131,33 @@ public class CategoryFragmentCityGuide extends CityGuideBaseFragment implements 
   }
 
   @Override
-  public void onError(String result) {
+  public void onError(ResaultCode resaultCode) {
+
+    String error = "";
+    String title = "";
+
+    switch (resaultCode) {
+      case TimeoutError:
+        error = getString(R.string.timeout_error);
+        title = getString(R.string.timeout_error_title);
+        break;
+      case NetworkError:
+        error = getString(R.string.network_error);
+        title = getString(R.string.network_error_title);
+        break;
+      case ServerError:
+        error = getString(R.string.server_error);
+        title = getString(R.string.server_error_title);
+        break;
+      case ParseError:
+      case Error:
+        title = getString(R.string.unknown_error_title);
+        error = getString(R.string.unknown_error);
+        break;
+    }
+    showErrorDialog(title, error, () -> {
+      presenter.start();
+    });
 
   }
 

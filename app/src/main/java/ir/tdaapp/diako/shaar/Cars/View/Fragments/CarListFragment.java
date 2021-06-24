@@ -25,7 +25,6 @@ import ir.tdaapp.diako.shaar.Cars.Model.Adapters.CarListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Adapters.ChipsListAdapter;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarListFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.onSearchParametersReceived;
-import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseFragment;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarChipsListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.FilterModel;
@@ -36,6 +35,7 @@ import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Login_Home;
 import ir.tdaapp.diako.shaar.R;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public class CarListFragment extends CarBaseFragment implements View.OnClickListener, CarListFragmentService, onSearchParametersReceived {
 
@@ -54,18 +54,12 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     private ProgressBar loading;
     private EditText searchBar;
     private FloatingActionButton fab;
-
     private LinearLayoutManager chipsManager;
     private LinearLayoutManager carManager;
-
     private CarListAdapter carAdapter;
     private ChipsListAdapter chipsAdapter;
-
-
     int userId;
-
     SearchModel searchModel;
-
 
     @Nullable
     @Override
@@ -109,26 +103,20 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
         chipsList.setLayoutManager(chipsManager);
         carList.setLayoutManager(carManager);
         chipsAdapter.setChipListener((model, position) -> {
-
             carAdapter.clear();
             chipsAdapter.clearSelected();
             chipsAdapter.setSelected(position);
             searchModel.setCategoryId(model.getId());
             presenter.getCars(searchModel, page);
-
-
         });
-
 
         carAdapter.setClickListener((model, position) -> {
             CarDeatailFragment fragment = new CarDeatailFragment();
             Bundle bundle = new Bundle();
             bundle.putInt("ID", model.getId());
             fragment.setArguments(bundle);
-
             ((CarActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CarDeatailFragment.TAG);
         });
-
 
         searchBar.setOnKeyListener((v, keyCode, event) -> {
             // If the event is a key-down event on the "enter" button
@@ -168,10 +156,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
                         // End has been reached
                         page++;
                         presenter.getCars(searchModel, page);
-
-
                         // Do something
-
                         isLoading = true;
                     }
                 }
@@ -239,13 +224,38 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     }
 
     @Override
-    public void onError(String s) {
+    public void onError(ResaultCode resaultCode) {
+        String error = "";
+        String title = "";
 
+        switch (resaultCode) {
+            case TimeoutError:
+                error = getString(R.string.timeout_error);
+                title = getString(R.string.timeout_error_title);
+                break;
+            case NetworkError:
+                error = getString(R.string.network_error);
+                title = getString(R.string.network_error_title);
+                break;
+            case ServerError:
+                error = getString(R.string.server_error);
+                title = getString(R.string.server_error_title);
+                break;
+            case ParseError:
+            case Error:
+                title = getString(R.string.unknown_error_title);
+                error = getString(R.string.unknown_error);
+                break;
+        }
+        showErrorDialog(title, error, () -> {
+            presenter.start();
+            chipsAdapter.clearSelected();
+            chipsAdapter.setSelected(0);
+        });
     }
 
     @Override
     public void onFinish() {
-
     }
 
     @Override
@@ -259,9 +269,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     public void onResult(FilterModel object) {
         //searchObject = object;
         filter.setImageResource(R.drawable.ic_baseline_filter_alt_24);
-
         carAdapter.clear();
-
         searchModel.setBrandId(object.getBrandId());
         searchModel.setText(searchBar.getText().toString());
         searchModel.setPage(page);

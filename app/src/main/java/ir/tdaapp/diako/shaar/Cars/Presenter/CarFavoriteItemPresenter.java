@@ -13,6 +13,7 @@ import ir.tdaapp.diako.shaar.Cars.Model.Repository.Server.CarFavoriteitemsApi;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Database.TblCarFavoriets;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarFavoriteItemfragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
+import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
 
 public class CarFavoriteItemPresenter {
 
@@ -45,7 +46,7 @@ public class CarFavoriteItemPresenter {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                service.onError(e.getMessage());
+                service.onError(Error.getErrorVolley(e.toString()));
             }
         });
 

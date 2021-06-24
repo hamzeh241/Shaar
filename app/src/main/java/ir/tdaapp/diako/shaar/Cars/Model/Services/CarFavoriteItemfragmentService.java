@@ -1,6 +1,7 @@
 package ir.tdaapp.diako.shaar.Cars.Model.Services;
 
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 public interface CarFavoriteItemfragmentService {
 
@@ -10,7 +11,7 @@ public interface CarFavoriteItemfragmentService {
 
     void onPresenterStart();
 
-    void onError(String message);
+    void onError(ResaultCode resaultCode);
 
     void onFinish();
 }

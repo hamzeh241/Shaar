@@ -38,6 +38,7 @@ import ir.tdaapp.diako.shaar.ETC.CompressImage;
 import ir.tdaapp.diako.shaar.ETC.FileManger;
 import ir.tdaapp.diako.shaar.ETC.GetRandom;
 import ir.tdaapp.diako.shaar.ETC.SaveImageToMob;
+import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
 import ir.tdaapp.diako.shaar.R;
 
 public class AddItemFragmentPresenter {
@@ -148,7 +149,7 @@ public class AddItemFragmentPresenter {
             @Override
             public void onError(@NonNull Throwable e) {
                 service.onDataSendingState(false);
-                service.onError(e.getMessage());
+                service.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }
@@ -166,7 +167,7 @@ public class AddItemFragmentPresenter {
 
             @Override
             public void onError(Throwable e) {
-                service.onError(e.getMessage());
+                service.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }
@@ -184,7 +185,7 @@ public class AddItemFragmentPresenter {
 
             @Override
             public void onError(Throwable e) {
-                service.onError(e.getMessage());
+                service.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }

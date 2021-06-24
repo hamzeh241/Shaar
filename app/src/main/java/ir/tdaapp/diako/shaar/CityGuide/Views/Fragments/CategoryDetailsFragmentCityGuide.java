@@ -26,7 +26,6 @@ import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryDetailsChipsAdapter;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryDetailsFragmentPresenter;
@@ -34,13 +33,12 @@ import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Login_Home;
 import ir.tdaapp.diako.shaar.R;
+import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
 
 public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment implements CategoryDetailsFragmentService, View.OnClickListener {
 
     public static final String TAG = "CategoryDetailsFragment";
-
-
 
 
     private int previousTotal = 0;
@@ -230,23 +228,52 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
             selectedModel = chipsAdapter.getItemAt(0);
         }
         detailsList.setVisibility(View.VISIBLE);
-
-        
     }
 
     @Override
-    public void onError(String result) {
+    public void onError(ResaultCode resaultCode) {
 
+        String error = "";
+        String title = "";
+
+        switch (resaultCode) {
+            case TimeoutError:
+                error = getString(R.string.timeout_error);
+                title = getString(R.string.timeout_error_title);
+                break;
+            case NetworkError:
+                error = getString(R.string.network_error);
+                title = getString(R.string.network_error_title);
+                break;
+            case ServerError:
+                error = getString(R.string.server_error);
+                title = getString(R.string.server_error_title);
+                break;
+            case ParseError:
+            case Error:
+                title = getString(R.string.unknown_error_title);
+                error = getString(R.string.unknown_error);
+                break;
+        }
+        showErrorDialog(title, error, () -> {
+            presenter.start(getArguments().getInt("ID"));
+            try {
+                chipsAdapter.clearSelected();
+                chipsAdapter.setSelected(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.categoryDetailsAddItemFab:
-                if (userId == 0 ){
-                    Toasty.info(getContext(),R.string.addAccuont, Toast.LENGTH_SHORT,false).show();
-                    ((GuideActivity)getActivity()).onAddFragment(new Fragment_Login_Home(1),R.anim.fadein,R.anim.fadeout,true,Fragment_Login_Home.TAG);
-                }else {
+                if (userId == 0) {
+                    Toasty.info(getContext(), R.string.addAccuont, Toast.LENGTH_SHORT, false).show();
+                    ((GuideActivity) getActivity()).onAddFragment(new Fragment_Login_Home(1), R.anim.fadein, R.anim.fadeout, true, Fragment_Login_Home.TAG);
+                } else {
                     ((GuideActivity) getActivity()).onAddFragment(new AddItemFragmentCityGuide(), 0, 0, true, AddItemFragmentCityGuide.TAG);
                 }
                 break;
@@ -255,7 +282,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
                 break;
 
             case R.id.imgCategoryDetailsBack:
-              getActivity().onBackPressed();
+                getActivity().onBackPressed();
                 break;
         }
     }

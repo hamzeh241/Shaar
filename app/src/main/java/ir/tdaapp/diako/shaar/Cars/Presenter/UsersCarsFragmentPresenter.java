@@ -11,6 +11,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Server.UsersCarsApi;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.UsersCarsFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
+import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
 
 public class UsersCarsFragmentPresenter {
 
@@ -43,7 +44,7 @@ public class UsersCarsFragmentPresenter {
 
             @Override
             public void onError(Throwable e) {
-                service.onError(e.getMessage());
+                service.onError(Error.getErrorVolley(e.toString()));
             }
         });
     }
@@ -56,7 +57,7 @@ public class UsersCarsFragmentPresenter {
                 },
                 throwable -> {
                     service.loadingState(false);
-                    service.onError(throwable.getMessage());
+                    service.onError(Error.getErrorVolley(throwable.toString()));
                 }, () -> {
                     service.loadingState(false);
                     service.onFinish();

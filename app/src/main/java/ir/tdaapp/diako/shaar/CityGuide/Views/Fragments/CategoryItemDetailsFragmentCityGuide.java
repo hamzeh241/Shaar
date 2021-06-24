@@ -37,7 +37,6 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnGlideImageListener;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.RateDialogService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
-import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseFragment;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.ZoomOutPageTransformer;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
@@ -64,11 +63,11 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
     CoordinatorLayout root;
     ViewPager2 slider;
-    TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader, instagram, telegram,txtNumber1,txtNumber2,txtNumber3;
+    TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader, instagram, telegram, txtNumber1, txtNumber2, txtNumber3;
     Button phoneCall, sendText, showDescription, addPhoto, showComments, btnAddComments;
     RecyclerView photoList, commentsList;
-    ImageButton retry, favorite,btnShowMore;
-    ImageView back, forward, goBack,imgCall;
+    ImageButton retry, favorite, btnShowMore;
+    ImageView back, forward, goBack, imgCall;
     RatingBar ratingBar;
     ProgressBar loading;
     ViewGroup addRating, addComment, addPhotoLayout;
@@ -82,9 +81,9 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     SliderCategoryItemDetailsAdapter sliderPhotosAdapter;
     CategoryItemDetailsCommentsAdapter commentsAdapter;
 
-    LinearLayout instagramLayout,telegramLayout;
+    LinearLayout instagramLayout, telegramLayout;
 
-    String phoneCallBtn,phoneCall2,phoneCall3;
+    String phoneCallBtn, phoneCall2, phoneCall3;
 
     @Nullable
     @Override
@@ -149,7 +148,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     private void implement() {
         itemId = getArguments().getInt("ID");
         userId = new User(getContext()).GetUserId();
-        Log.i("TAG", "implement: "+userId);
+        Log.i("TAG", "implement: " + userId);
         presenter.start(new User(getContext()).GetUserId(), itemId);
         phoneCall.setOnClickListener(this);
         sendText.setOnClickListener(this);
@@ -245,13 +244,13 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
             case R.id.txt_instagram:
 
-                if (selectedModel.getInstagramId().isEmpty()){
+                if (selectedModel.getInstagramId().isEmpty()) {
                     instagramLayout.setVisibility(View.GONE);
 
-                }else {
+                } else {
                     try {
                         Intent instagramIntent = new Intent(Intent.ACTION_VIEW);
-                        instagramIntent.setData(Uri.parse("https://www.instagram.com/"+selectedModel.getInstagramId()));
+                        instagramIntent.setData(Uri.parse("https://www.instagram.com/" + selectedModel.getInstagramId()));
                         startActivity(instagramIntent);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -261,12 +260,12 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
             case R.id.txt_telegram:
 
-                if (selectedModel.getTelegramId().isEmpty()){
+                if (selectedModel.getTelegramId().isEmpty()) {
                     telegramLayout.setVisibility(View.GONE);
-                }else{
+                } else {
                     try {
                         Intent telegramIntent = new Intent(Intent.ACTION_VIEW);
-                        telegramIntent.setData(Uri.parse("https://telegram.me/"+selectedModel.getTelegramId()));
+                        telegramIntent.setData(Uri.parse("https://telegram.me/" + selectedModel.getTelegramId()));
                         startActivity(telegramIntent);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -288,7 +287,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
                 break;
 
             case R.id.imgSliderRefresh:
-                presenter.start(userId,itemId);
+                presenter.start(userId, itemId);
                 break;
 
             case R.id.txtNumberCityGyide:
@@ -433,6 +432,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
         });
     }
+
     @Override
     public void onCommentLiked(int position, CategoryItemDetailsCommentsModel model, boolean liked) {
         JSONObject object = new JSONObject();
@@ -470,7 +470,33 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     }
 
     @Override
-    public void onError(String error) {
+    public void onError(ResaultCode resaultCode) {
+
+        String error = "";
+        String title = "";
+
+        switch (resaultCode) {
+            case TimeoutError:
+                error = getString(R.string.timeout_error);
+                title = getString(R.string.timeout_error_title);
+                break;
+            case NetworkError:
+                error = getString(R.string.network_error);
+                title = getString(R.string.network_error_title);
+                break;
+            case ServerError:
+                error = getString(R.string.server_error);
+                title = getString(R.string.server_error_title);
+                break;
+            case ParseError:
+            case Error:
+                title = getString(R.string.unknown_error_title);
+                error = getString(R.string.unknown_error);
+                break;
+        }
+        showErrorDialog(title, error, () -> {
+            presenter.start(userId,itemId);
+        });
 
     }
 

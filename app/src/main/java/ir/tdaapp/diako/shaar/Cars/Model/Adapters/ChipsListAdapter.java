@@ -45,8 +45,6 @@ public class ChipsListAdapter extends RecyclerView.Adapter<ChipsListAdapter.View
         holder.textView.setText(model.getTitle());
         holder.root.setOnClickListener(v -> {
             chipListener.OnClick(model, position);
-
-
         });
     }
 
