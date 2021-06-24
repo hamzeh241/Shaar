@@ -78,7 +78,7 @@ public class CarSearchFilterDialog extends DialogFragment implements View.OnClic
     switch (v.getId()) {
       case R.id.btnSubmitSearch:
         FilterModel model = new FilterModel();
-        model.setBrandId(((AddItemEntryModel) fromProductionYear.getSelectedItem()).getId());
+        model.setBrandId(((AddItemEntryModel) brand.getSelectedItem()).getId());
         model.setToDateId(((AddItemEntryModel) toProductionYear.getSelectedItem()).getId());
         model.setFromDateId(((AddItemEntryModel) fromProductionYear.getSelectedItem()).getId());
         model.setGearboxId(((AddItemEntryModel) gearbox.getSelectedItem()).getId());

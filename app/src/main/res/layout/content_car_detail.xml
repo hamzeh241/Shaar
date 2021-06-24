@@ -34,12 +34,6 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/relative1"
-        android:background="@color/line" />
-
 
     <ImageView
         android:layout_width="match_parent"
@@ -77,6 +71,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@id/relative4"
+        android:background="@color/line" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_below="@id/relative3"
         android:background="@color/line" />
 
@@ -106,6 +105,12 @@
             android:text="@string/CarMadeYaer" />
 
     </RelativeLayout>
+
+    <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:layout_below="@id/relative5"
+      android:background="@color/line" />
 
     <RelativeLayout
         android:id="@+id/relativecolor"
@@ -137,7 +142,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/relative4"
+        android:layout_below="@id/relativecolor"
         android:background="@color/line" />
 
     <RelativeLayout
@@ -305,37 +310,32 @@
 
 
     <RelativeLayout
-        android:id="@+id/relative11"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relative10"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="4dp">
+      android:id="@+id/relative11"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/relative10"
+      android:layout_marginBottom="8dp"
+      android:layout_marginTop="4dp"
+      android:visibility="gone">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/address" />
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="8dp"
+          android:layout_marginTop="4dp"
+          android:text="@string/address" />
 
         <TextView
-            android:id="@+id/txt_car_address"
-            style="@style/carDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/CarMadeYaer" />
+          android:id="@+id/txt_car_address"
+          style="@style/carDetails"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="8dp"
+          android:layout_marginTop="4dp"
+          android:text="@string/CarMadeYaer" />
 
     </RelativeLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/relative11"
-        android:background="@color/line" />
 
 
     <ImageView
@@ -345,29 +345,29 @@
         android:background="@color/line" />
 
     <RelativeLayout
-        android:id="@+id/relative9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relative11"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="4dp">
+      android:id="@+id/relative9"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/relative10"
+      android:layout_marginBottom="8dp"
+      android:layout_marginTop="4dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/carPrice" />
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="8dp"
+          android:layout_marginTop="4dp"
+          android:text="@string/carPrice" />
 
         <TextView
-            android:id="@+id/txt_car_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/carDetails"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/CarMadeYaer" />
+          android:id="@+id/txt_car_price"
+          style="@style/carDetails"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="8dp"
+          android:layout_marginTop="4dp"
+          android:text="@string/CarMadeYaer" />
 
     </RelativeLayout>
 

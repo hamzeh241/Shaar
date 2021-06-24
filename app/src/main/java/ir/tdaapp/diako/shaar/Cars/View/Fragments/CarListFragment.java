@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -165,7 +167,6 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
                             <= (firstVisibleItem + visibleThreshold)) {
                         // End has been reached
                         page++;
-                        Toasty.info(getContext(), "End is reached").show();
                         presenter.getCars(searchModel, page);
 
 
@@ -218,6 +219,11 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     public void onCarReceived(CarListModel model) {
         carAdapter.add(model);
         Log.i(TAG, "onCarReceived: " + model.getTitle());
+    }
+
+    @Override
+    public void onCarsReceived(List<CarListModel> model) {
+        carAdapter.clear();
     }
 
     @Override

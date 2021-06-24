@@ -46,8 +46,9 @@ public class SliderCarItemDetails extends RecyclerView.Adapter<SliderCarItemDeta
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     CarDetailsPhotoModel item = models.get(position);
+    String imageUrl = CarBaseApi.API_IMAGE_CAR + item.getImageName().replace("\"", "");
     Glide.with(context)
-      .load(CarBaseApi.API_IMAGE_CAR+ item.getImageName())
+      .load(imageUrl)
       .listener(new RequestListener<Drawable>() {
         @Override
         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
