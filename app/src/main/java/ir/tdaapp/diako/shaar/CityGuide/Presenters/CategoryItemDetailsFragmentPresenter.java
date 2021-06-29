@@ -32,7 +32,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultRatingViewModel;
 import ir.tdaapp.diako.shaar.ETC.FileManger;
-import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
+import ir.tdaapp.diako.shaar.ErrorHandling.Error;
 import ir.tdaapp.diako.shaar.R;
 
 public class CategoryItemDetailsFragmentPresenter {

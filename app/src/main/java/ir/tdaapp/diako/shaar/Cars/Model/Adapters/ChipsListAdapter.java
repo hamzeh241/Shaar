@@ -65,6 +65,11 @@ public class ChipsListAdapter extends RecyclerView.Adapter<ChipsListAdapter.View
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        models.clear();
+        notifyDataSetChanged();
+    }
+
     public void setClickListener(onCarListClickListener clickListener) {
         this.clickListener = clickListener;
     }

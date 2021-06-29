@@ -270,7 +270,7 @@
     <string name="sales">نحوه ی فروش</string>
     <string name="exchange">معاوضه</string>
     <string name="address">آدرس</string>
-    <string name="carPrice">قیمت</string>
+    <string name="carPrice">قیمت (تومان)</string>
     <string name="carDescription">توضیحات وارد شده توسط کاربر</string>
     <string name="yourExpert">کارشناس شما</string>
     <string name="milage"> کارکرد</string>
@@ -350,7 +350,9 @@
     <string name="allow_storage_permission">لطفا اجازه دسترسی به حافظه را صادر کنید</string>
     <string name="imageUploadingFailed">بارگذاری عکس با مشکل مواجه شد</string>
     <string name="storage_permisison_needed">برای انتخاب عکس مجوز دسترسی به حافظه گوشی و دوربین نیاز است</string>
-    <string-array name="ListVideoApp">
+  <string name="try_again">تلاش مجدد</string>
+  <string name="no_data_to_show">داده ای برای نمایش وجود ندارد</string>
+  <string-array name="ListVideoApp">
         <item>آپارات</item>
         <item>تماشا</item>
     </string-array>

@@ -32,11 +32,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/light_gray_background"
-        android:ems="10"
         android:gravity="right|top"
         android:hint="توضیحات مربوط به آگهی را بنویسید"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine|textPersonName"
         android:padding="8dp"
+        android:scrollbars="vertical"
         android:textSize="14sp" />
     </LinearLayout>
   </androidx.cardview.widget.CardView>

@@ -119,6 +119,7 @@
           android:gravity="center"
           android:inputType="number"
           android:lines="1"
+          android:maxLength="9"
           android:padding="4dp"
           android:textColor="#1a1d24"
           android:textSize="14sp" />
@@ -151,6 +152,7 @@
           android:gravity="center"
           android:inputType="number"
           android:lines="1"
+          android:maxLength="14"
           android:padding="4dp"
           android:textColor="#1a1d24"
           android:textSize="14sp" />

@@ -7,6 +7,7 @@ public class SearchModel {
   double fromPrice, toPrice;
 
   public SearchModel() {
+    text = "";
   }
 
   public SearchModel(String text, int categoryId, int page, int brandId, int gearboxId, int fromDateId, int toDateId, double fromPrice, double toPrice) {

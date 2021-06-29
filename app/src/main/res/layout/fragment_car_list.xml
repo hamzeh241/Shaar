@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/carListRoot"
   android:background="@color/colorWhite"
   android:clickable="true"
   android:orientation="vertical" android:layout_width="match_parent"
@@ -68,10 +69,10 @@
       android:layout_weight="1"
       android:background="#d6d6d6"
       android:ems="10"
-        android:textSize="14sp"
       android:hint="@string/fastSearch"
       android:inputType="textPersonName"
-      android:textColor="#1a1d24" />
+      android:textColor="#1a1d24"
+      android:textSize="14sp" />
 
     <ImageButton
       android:id="@+id/imgCarListBack"
@@ -83,12 +84,6 @@
       app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
   </LinearLayout>
-
-  <ProgressBar
-    android:id="@+id/carListLoading"
-    style="?android:attr/progressBarStyle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/carChipsList"
@@ -108,4 +103,42 @@
     android:layout_height="match_parent" />
 
 </LinearLayout>
+
+  <com.tuyenmonkey.mkloader.MKLoader
+    android:id="@+id/carListLoading"
+    android:elevation="4dp"
+    android:background="@drawable/circle_background"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="48dp"
+    app:mk_type="FourPulse"
+    app:mk_color="@color/black"/>
+
+  <RelativeLayout
+    android:id="@+id/no_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone">
+
+    <ImageView
+      android:id="@+id/imageView4"
+      android:layout_width="64dp"
+      android:layout_height="64dp"
+      android:layout_centerInParent="true"
+      app:srcCompat="@drawable/ic_no_data"
+      app:tint="@color/colorGray" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/imageView4"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="16dp"
+      android:text="@string/no_data_to_show"
+      android:textSize="18sp"
+      android:textColor="@color/colorGray"
+      android:textStyle="bold" />
+  </RelativeLayout>
+
 </RelativeLayout>

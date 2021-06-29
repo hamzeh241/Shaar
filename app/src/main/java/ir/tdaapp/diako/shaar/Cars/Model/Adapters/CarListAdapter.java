@@ -17,6 +17,7 @@ import ir.tdaapp.diako.shaar.Cars.Model.Services.onCarListClickListener;
 import ir.tdaapp.diako.shaar.Cars.Model.Utilities.CarBaseApi;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarListModel;
 import ir.tdaapp.diako.shaar.R;
+import ir.tdaapp.li_utility.Codes.ShowPriceTextView;
 
 public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHolder> {
 
@@ -47,8 +48,10 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     CarListModel model = models.get(position);
     holder.name.setText(model.getTitle());
-    holder.price.setText(model.getPrice());
-    holder.mileage.setText(model.getMileage());
+    new ShowPriceTextView(model.getPrice(), holder.price);
+    new ShowPriceTextView(model.getMileage(), holder.mileage);
+//    holder.price.setText(model.getPrice());
+//    holder.mileage.setText(model.getMileage());
     holder.color.setText(model.getColor());
     holder.productionYear.setText(model.getProductionYear());
     holder.isShown.setVisibility(type == USERS_LIST ? View.VISIBLE : View.GONE);
@@ -70,7 +73,7 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
     notifyItemInserted(models.size());
   }
 
-  public void clear(){
+  public void clear() {
     models.clear();
     notifyDataSetChanged();
   }

@@ -36,8 +36,10 @@
         android:ems="10"
         android:gravity="center"
         android:hint="آدرس"
-        android:inputType="text"
+        android:inputType="textPersonName"
         android:padding="8dp"
+        android:scrollbars="horizontal"
+        android:singleLine="true"
         android:textSize="14sp" />
 
       <EditText
@@ -47,8 +49,9 @@
         android:layout_margin="8dp"
         android:background="@drawable/light_gray_background"
         android:ems="10"
+        android:maxLength="11"
         android:gravity="center"
-        android:hint="شماره همراه"
+        android:hint="شماره تلفن"
         android:inputType="phone"
         android:padding="8dp"
         android:textSize="14sp" />
@@ -68,10 +71,11 @@
           android:layout_weight="1"
           android:background="@drawable/light_gray_background"
           android:ems="10"
+          android:maxLength="8"
           android:gravity="center"
-          android:hint="تلفن 2"
           android:inputType="phone"
           android:padding="8dp"
+          android:hint="تلفن 2"
           android:textSize="14sp" />
 
         <EditText
@@ -84,10 +88,11 @@
           android:layout_weight="1"
           android:background="@drawable/light_gray_background"
           android:ems="10"
+          android:maxLength="8"
           android:gravity="center"
-          android:hint="تلفن 1"
           android:inputType="phone"
           android:padding="8dp"
+          android:hint="تلفن 1"
           android:textSize="14sp" />
       </LinearLayout>
 

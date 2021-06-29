@@ -35,6 +35,8 @@
         android:hint="آدرس"
         android:inputType="textPersonName"
         android:padding="8dp"
+        android:scrollbars="horizontal"
+        android:singleLine="true"
         android:textSize="14sp" />
 
       <EditText
@@ -46,6 +48,7 @@
         android:layout_marginRight="8dp"
         android:background="@drawable/light_gray_background"
         android:ems="10"
+        android:maxLength="11"
         android:gravity="center"
         android:hint="شماره تلفن"
         android:inputType="phone"

@@ -11,7 +11,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
-import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
+import ir.tdaapp.diako.shaar.ErrorHandling.Error;
 
 public class CategoryFragmentPresenter {
 

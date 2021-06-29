@@ -1,5 +1,7 @@
 package ir.tdaapp.diako.shaar.ETC;
 
+import android.app.Application;
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -7,9 +9,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 import androidx.multidex.MultiDexApplication;
-import io.github.inflationx.calligraphy3.CalligraphyConfig;
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
-import io.github.inflationx.viewpump.ViewPump;
 import ir.tdaapp.diako.shaar.R;
 
 /**
@@ -28,13 +27,11 @@ public class AppController extends MultiDexApplication {
   public void onCreate() {
     super.onCreate();
     mInstance = this;
-    ViewPump.init(ViewPump.builder()
-      .addInterceptor(new CalligraphyInterceptor(
-        new CalligraphyConfig.Builder()
-          .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
-          .setFontAttrId(R.attr.fontPath)
-          .build()))
-      .build());
+  }
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
   }
 
   public static synchronized AppController getInstance() {

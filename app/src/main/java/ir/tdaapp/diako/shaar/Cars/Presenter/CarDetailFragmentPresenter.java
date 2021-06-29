@@ -8,7 +8,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.Cars.Model.Repository.Server.CarDetailsApi;
 import ir.tdaapp.diako.shaar.Cars.Model.Services.CarDetailFragmentService;
 import ir.tdaapp.diako.shaar.Cars.Model.ViewModels.CarDetailModel;
-import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
+import ir.tdaapp.diako.shaar.ErrorHandling.Error;
 
 public class CarDetailFragmentPresenter {
 

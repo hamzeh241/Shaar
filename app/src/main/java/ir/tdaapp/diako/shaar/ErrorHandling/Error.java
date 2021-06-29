@@ -1,4 +1,4 @@
-package ir.tdaapp.diako.shaar.ErrorHandeling;
+package ir.tdaapp.diako.shaar.ErrorHandling;
 
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 

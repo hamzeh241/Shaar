@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.tdaapp.diako.shaar.ETC.SizeScreen;
 import ir.tdaapp.diako.shaar.FragmentPage.Dialog_Search_By_Id;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Home;
@@ -96,11 +95,6 @@ public class MainActivity extends AppCompatActivity {
 //        frameLayout3 = findViewById(R.id.Fragment_Main3);
 //        frameLayout4 = findViewById(R.id.Fragment_Main4);
         dialog_search_by_id = new Dialog_Search_By_Id();
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     public void onAddFragment(Fragment fragment,

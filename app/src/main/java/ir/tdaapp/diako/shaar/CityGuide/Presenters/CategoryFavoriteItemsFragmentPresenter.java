@@ -12,7 +12,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryFavoriteItems
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.Database.TblFavorites;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFavoriteItemsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
-import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
+import ir.tdaapp.diako.shaar.ErrorHandling.Error;
 
 public class CategoryFavoriteItemsFragmentPresenter {
 

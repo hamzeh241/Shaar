@@ -11,7 +11,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.UserItemsApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.UserItemsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
-import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
+import ir.tdaapp.diako.shaar.ErrorHandling.Error;
 
 public class UserItemsFragmentPresenter {
 

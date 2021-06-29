@@ -146,8 +146,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "INSERT into TblLocation (Id, Title, FkCity) VALUES (60, '4/19', 1)",
                 "INSERT into TblLocation (Id, Title, FkCity) VALUES (61, '1/17', 1)",
                 "insert into TblLocation (Id,Title,FkCity) values (62, 'حومه شهر',1)"
-
-
         };
         String[] AllUpdateLocationV3 = {
                 "INSERT into TblLocation ([Id], [Title],  [FkCity]) VALUES (63, 'شهرک نخشین', 1)",

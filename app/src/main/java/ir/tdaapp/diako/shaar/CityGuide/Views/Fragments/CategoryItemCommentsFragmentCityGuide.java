@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.ResultViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Presenters.CategoryItemCommentsFragmentPresenter;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Dialogs.MessageDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
+import ir.tdaapp.diako.shaar.ErrorHandling.ErrorDialog;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
@@ -143,7 +145,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
           if (viewModel.getStatus()) {
             if (liked) {
               adapter.increaseLike(position, liked);
-            }else {
+            } else {
               adapter.increaseLike(position, liked);
             }
             Toasty.success(getContext(), viewModel.getTitle()).show();
@@ -159,33 +161,41 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
 
   @Override
   public void onError(ResaultCode resaultCode) {
-
     String error = "";
     String title = "";
+    @DrawableRes int imageRes = R.drawable.ic_warning;
 
     switch (resaultCode) {
       case TimeoutError:
         error = getString(R.string.timeout_error);
         title = getString(R.string.timeout_error_title);
+        imageRes = R.drawable.ic_router_device;
         break;
       case NetworkError:
         error = getString(R.string.network_error);
         title = getString(R.string.network_error_title);
+        imageRes = R.drawable.ic_router_device;
         break;
       case ServerError:
         error = getString(R.string.server_error);
         title = getString(R.string.server_error_title);
+        imageRes = R.drawable.ic_server_error;
         break;
       case ParseError:
       case Error:
         title = getString(R.string.unknown_error_title);
         error = getString(R.string.unknown_error);
+        imageRes = R.drawable.ic_warning;
         break;
     }
-    showErrorDialog(title, error, () -> {
-      presenter.start(userId,itemId);
 
-    });
+    showErrorDialog(new ErrorDialog.Builder(getContext())
+      .setErrorTitle(title)
+      .setErrorSubtitle(error)
+      .setImageUrl(imageRes)
+      .setButtonText(R.string.try_again)
+      .setClickListener(() ->
+        presenter.start(itemId, userId)));
 
   }
 

@@ -37,7 +37,7 @@ import ir.tdaapp.diako.shaar.ETC.CompressImage;
 import ir.tdaapp.diako.shaar.ETC.FileManger;
 import ir.tdaapp.diako.shaar.ETC.GetRandom;
 import ir.tdaapp.diako.shaar.ETC.SaveImageToMob;
-import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
+import ir.tdaapp.diako.shaar.ErrorHandling.Error;
 import ir.tdaapp.diako.shaar.R;
 
 public class AddCarFragmentPresenter {

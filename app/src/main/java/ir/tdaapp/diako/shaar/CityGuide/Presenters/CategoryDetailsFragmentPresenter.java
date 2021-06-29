@@ -13,7 +13,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryDetailsApiCit
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryDetailsFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsChipModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryDetailsModel;
-import ir.tdaapp.diako.shaar.ErrorHandeling.Error;
+import ir.tdaapp.diako.shaar.ErrorHandling.Error;
 
 public class CategoryDetailsFragmentPresenter {
 
