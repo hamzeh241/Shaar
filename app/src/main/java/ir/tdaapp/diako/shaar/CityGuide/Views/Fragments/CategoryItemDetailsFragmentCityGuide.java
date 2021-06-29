@@ -1,6 +1,7 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -20,13 +21,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Adapters.CategoryItemDetailsCommentsAdapter;
@@ -37,6 +42,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryItemDetailsFragme
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnGlideImageListener;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.OnItemClick;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.RateDialogService;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.AppBarStateChangeListener;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.ZoomOutPageTransformer;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
@@ -65,7 +71,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
     CoordinatorLayout root;
     ViewPager2 slider;
-    TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader, instagram, telegram, txtNumber1, txtNumber2, txtNumber3;
+    TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader, instagram, telegram, txtNumber1, txtNumber2, txtNumber3,toolbarTitle;
     Button phoneCall, sendText, showDescription, addPhoto, showComments, btnAddComments;
     RecyclerView photoList, commentsList;
     ImageButton retry, favorite, btnShowMore;
@@ -84,6 +90,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     CategoryItemDetailsCommentsAdapter commentsAdapter;
 
     LinearLayout instagramLayout, telegramLayout;
+    AppBarLayout appBarLayout;
 
     String phoneCallBtn, phoneCall2, phoneCall3;
 
@@ -123,6 +130,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         instagram = view.findViewById(R.id.txt_instagram);
         telegram = view.findViewById(R.id.txt_telegram);
         imgCall = view.findViewById(R.id.img_call_detail_cityguide);
+        toolbarTitle = view.findViewById(R.id.toolbar_text_view);
 
         txtNumber1 = view.findViewById(R.id.txtNumberCityGyide);
         txtNumber2 = view.findViewById(R.id.txtNumberCityGyide2);
@@ -134,19 +142,13 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         addPhoto = view.findViewById(R.id.btnCategoryItemDetailsAddPhotos);
         showComments = view.findViewById(R.id.btnCategoryDetailsShowComments);
         btnAddComments = view.findViewById(R.id.btnCategoryItemDetailsAddComment);
-
         instagramLayout = view.findViewById(R.id.instagram_layout);
-
-
         photoList = view.findViewById(R.id.recyclerCategoryItemPhotos);
         commentsList = view.findViewById(R.id.recyclerItemDetailsComments);
-
         commentsLayoutManager = new LinearLayoutManager(getContext());
         userPhotosLayoutManager = new LinearLayoutManager(getContext());
-
-
+        appBarLayout = view.findViewById(R.id.appBarLayout);
     }
-
     private void implement() {
         itemId = getArguments().getInt("ID");
         userId = new User(getContext()).GetUserId();
@@ -177,12 +179,34 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
         userPhotosLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         userPhotosLayoutManager.setReverseLayout(true);
-
         commentsList.setLayoutManager(commentsLayoutManager);
         photoList.setLayoutManager(userPhotosLayoutManager);
-
         slider.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         slider.setPageTransformer(new ZoomOutPageTransformer());
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                switch (state) {
+                    case IDLE:
+                        changeToolbarItems(R.color.black);
+                        break;
+                    case EXPANDED:
+                        changeToolbarItems(R.color.black);
+                        break;
+                    case COLLAPSED:
+                        changeToolbarItems(R.color.colorWhite);
+                        break;
+                }
+
+            }
+        });
+    }
+
+    private void changeToolbarItems(@ColorRes int color){
+        ImageViewCompat.setImageTintList(favorite, ColorStateList.valueOf(getResources().getColor(color)));
+        ImageViewCompat.setImageTintList(goBack, ColorStateList.valueOf(getResources().getColor(color)));
+        toolbarTitle.setTextColor(getResources().getColor(color));
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -71,7 +72,7 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
 
     private void implement() {
         list.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        hideSoftKeyBoard();
         adapter.setOnItemClick(model -> {
             CategoryItemDetailsFragmentCityGuide fragment = new CategoryItemDetailsFragmentCityGuide();
             Bundle bundle = new Bundle();
@@ -89,9 +90,11 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
             loading.setVisibility(View.GONE);
             list.setVisibility(View.GONE);
         }
-
     }
 
+    public void hideSoftKeyBoard() {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
 
     public void onClick(View v) {
 
@@ -100,10 +103,7 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
             case R.id.imageButton:
                 getActivity().onBackPressed();
                 break;
-
         }
-
-
     }
 
     @Override
@@ -119,9 +119,6 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
             list.setAdapter(adapter);
             linearLayoutNoItemMessage.setVisibility(View.GONE);
         }
-
-
-
     }
 
     @Override
@@ -159,24 +156,22 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
         }
 
         showErrorDialog(new ErrorDialog.Builder(getContext())
-          .setErrorTitle(title)
-          .setErrorSubtitle(error)
-          .setImageUrl(imageRes)
-          .setButtonText(R.string.try_again)
-          .setClickListener(() ->
-            presenter.start()));
+                .setErrorTitle(title)
+                .setErrorSubtitle(error)
+                .setImageUrl(imageRes)
+                .setButtonText(R.string.try_again)
+                .setClickListener(() ->
+                        presenter.start()));
     }
 
     @Override
     public void onFinish() {
 
-        if (adapter.getItemCount() == 0 && userId != 0){
+        if (adapter.getItemCount() == 0 && userId != 0) {
             loading.setVisibility(View.GONE);
             list.setVisibility(View.GONE);
             linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
 
         }
-
-
     }
 }

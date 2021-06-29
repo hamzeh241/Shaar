@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -48,7 +49,6 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
     }
 
     private void findViews(View view) {
-
         presenter = new CarFavoriteItemPresenter(getContext(), this);
         adapter = new CarListAdapter(getContext(), CarListAdapter.CARS_LIST);
         recyclerView = view.findViewById(R.id.recyclear_favorite_car);
@@ -57,22 +57,19 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         userId = new User(getContext()).GetUserId();
         linearLayoutNoItemMessage = view.findViewById(R.id.no_item_messag_car_fav);
         linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_car_fav);
-
-
     }
 
     private void implement() {
         presenter.start();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         brn_back.setOnClickListener(this);
-
+        hideSoftKeyBoard();
         //اگر کاربر لاگین نکرده باشد پیام خطا نشان داده میشود
-        if (userId == 0){
+        if (userId == 0) {
             linearLayoutNotLogIn.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
             loading.setVisibility(View.GONE);
         }
-
         adapter.setClickListener((model, position) -> {
             CarDeatailFragment fragment = new CarDeatailFragment();
             Bundle bundle = new Bundle();
@@ -93,13 +90,11 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
 
     @Override
     public void onItemReceived(CarListModel model) {
-        if (userId != 0){
+        if (userId != 0) {
             adapter.add(model);
             recyclerView.setAdapter(adapter);
             linearLayoutNoItemMessage.setVisibility(View.GONE);
         }
-
-
     }
 
     @Override
@@ -112,6 +107,11 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         loading.setVisibility(state ? View.VISIBLE : View.GONE);
         recyclerView.setVisibility(state ? View.GONE : View.VISIBLE);
     }
+
+    public void hideSoftKeyBoard() {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
 
     @Override
     public void onError(ResaultCode resaultCode) {
@@ -144,17 +144,17 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         }
 
         showErrorDialog(new ErrorDialog.Builder(getContext())
-          .setErrorTitle(title)
-          .setErrorSubtitle(error)
-          .setImageUrl(imageRes)
-          .setButtonText(R.string.try_again)
-          .setClickListener(() ->
-            presenter.start()));
+                .setErrorTitle(title)
+                .setErrorSubtitle(error)
+                .setImageUrl(imageRes)
+                .setButtonText(R.string.try_again)
+                .setClickListener(() ->
+                        presenter.start()));
     }
 
     @Override
     public void onFinish() {
-        if (adapter.getItemCount() == 0 && userId != 0){
+        if (adapter.getItemCount() == 0 && userId != 0) {
             loading.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
             linearLayoutNoItemMessage.setVisibility(View.VISIBLE);

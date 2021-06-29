@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -69,7 +70,7 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
         presenter.start(new User(getContext()).GetUserId());
         list.setLayoutManager(layoutManager);
         list.setAdapter(adapter);
-
+        hideSoftKeyBoard();
         adapter.setOnItemClick(model -> {
             CategoryItemDetailsFragmentCityGuide fragment = new CategoryItemDetailsFragmentCityGuide();
             Bundle bundle = new Bundle();
@@ -155,5 +156,8 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
             list.setVisibility(View.GONE);
             linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
         }
+    }
+    public void hideSoftKeyBoard() {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 }

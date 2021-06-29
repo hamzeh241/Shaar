@@ -18,12 +18,11 @@
             android:id="@+id/btn_back_result_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat = "@drawable/ic_back"
-            android:background="@color/colorRed"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="8dp"
-            />
+            android:layout_marginRight="16dp"
+            android:background="@color/colorRed"
+            app:srcCompat="@drawable/ic_back" />
 
         <TextView
             android:layout_width="wrap_content"

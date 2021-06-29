@@ -5,6 +5,7 @@ import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -72,7 +73,7 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
 
     private void implement() {
         presenter.start(userId);
-
+        hideSoftKeyBoard();
         adapter.setClickListener((model, position) -> {
             CarDeatailFragment fragment = new CarDeatailFragment();
             Bundle bundle = new Bundle();
@@ -92,6 +93,9 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
             list.setVisibility(View.GONE);
             linearLayoutNotLogIn.setVisibility(View.VISIBLE);
         }
+    }
+    public void hideSoftKeyBoard() {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override

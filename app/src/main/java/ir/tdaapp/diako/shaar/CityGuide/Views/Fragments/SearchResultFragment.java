@@ -1,9 +1,13 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
@@ -53,11 +57,11 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
 
         findViews(view);
         implement();
-
         return view;
     }
 
     private void findViews(View view) {
+        hideSoftKeyBoard();
         presenter = new SearchResultFragmentPresenter(getContext(), this);
         loading = view.findViewById(R.id.loading_result);
         recyclerView = view.findViewById(R.id.recyclear_result_cityguide);
@@ -73,34 +77,27 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
     }
 
     private void implement() {
-
-
         presenter.start(title, page);
-
         back.setOnClickListener(this::onClick);
-
     }
 
-
+    public void hideSoftKeyBoard() {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
-
             case R.id.btn_back_result_search:
-
                 getActivity().onBackPressed();
-
                 break;
         }
-
     }
 
     @Override
     public void onPresenterStart() {
         setAdapter();
         setPagination();
-
     }
 
     @Override
@@ -112,29 +109,23 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
         adapter = new CategoryDetailsAdapter(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
         adapter.setOnItemClick(model -> {
-
             Bundle bundle = new Bundle();
             bundle.putInt("ID", model.getId());
             CategoryItemDetailsFragmentCityGuide fragment = new CategoryItemDetailsFragmentCityGuide();
             fragment.setArguments(bundle);
             ((GuideActivity) getActivity()).onAddFragment(fragment, 0, 0, true, CategoryItemDetailsFragmentCityGuide.TAG);
         });
-
     }
 
     private void setPagination() {
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
                 visibleItemCount = recyclerView.getChildCount();
                 totalItemCount = layoutManager.getItemCount();
                 firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
-
                 if (isLoading) {
                     if (totalItemCount > previousTotal) {
                         isLoading = false;
@@ -148,14 +139,12 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
                         page++;
                         presenter.getItemByPage(title, page);
                         // Do something
-
                         isLoading = true;
                     }
                 }
             }
         });
     }
-
 
     @Override
     public void onResultRecived(CategoryDetailsModel model) {
@@ -196,24 +185,19 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
                 imageRes = R.drawable.ic_warning;
                 break;
         }
-
         showErrorDialog(new ErrorDialog.Builder(getContext())
-          .setErrorTitle(title)
-          .setErrorSubtitle(error)
-          .setImageUrl(imageRes)
-          .setButtonText(R.string.try_again)
-          .setClickListener(() ->
-            presenter.start()));
+                .setErrorTitle(title)
+                .setErrorSubtitle(error)
+                .setImageUrl(imageRes)
+                .setButtonText(R.string.try_again)
+                .setClickListener(() ->
+                        presenter.start()));
     }
-
     @Override
     public void onPageFinished(List<CategoryDetailsModel> models) {
-
     }
 
     @Override
     public void onfinish() {
-
     }
-
 }

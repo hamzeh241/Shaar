@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -83,6 +84,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
     findView(view);
     implement();
+    hideSoftKeyBoard();
 
     return view;
   }
@@ -90,7 +92,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
   @Override
   public void onResume() {
     super.onResume();
-    hideKeyboard(getActivity());
+//    hideKeyboard(getActivity());
   }
 
   private void findView(View view) {
@@ -212,6 +214,10 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
   }
 
+  public void hideSoftKeyBoard() {
+    getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+  }
+
   private void clearSearchParams() {
     searchModel.setFromPrice(0);
     searchModel.setToPrice(0);
@@ -322,7 +328,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
 
   @Override
   public void loadingState(boolean state) {
-    TransitionManager.beginDelayedTransition(root);
+//    TransitionManager.beginDelayedTransition(root);
     loading.setVisibility(state ? View.VISIBLE : View.GONE);
     carList.setVisibility(state ? View.GONE : View.VISIBLE);
     chipsList.setVisibility(state ? View.INVISIBLE : View.VISIBLE);
