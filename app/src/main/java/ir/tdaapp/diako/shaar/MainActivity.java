@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -130,26 +131,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onBackPressed() {
-
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
-
-        if (fragmentList instanceof Fragment_Home && singleBack){
-            if (singleBack){
+        if (fragmentList instanceof Fragment_Home && singleBack) {
+            if (singleBack) {
                 super.onBackPressed();
-                return;
             }
             this.singleBack = true;
-
             Toast.makeText(this, "برای خروج دکمه ی بازگشت را دوباره فشار دهید", Toast.LENGTH_SHORT).show();
-
-        }else {
+        } else {
             super.onBackPressed();
         }
-
-
-
     }
 }

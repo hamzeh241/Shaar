@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -71,7 +72,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
     CoordinatorLayout root;
     ViewPager2 slider;
-    TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader, instagram, telegram, txtNumber1, txtNumber2, txtNumber3,toolbarTitle;
+    TextView title, categoryTitle, rateCount, commentsCount, phoneNumber, address, description, descriptionHeader, instagram, telegram, txtNumber1, txtNumber2, txtNumber3, toolbarTitle;
     Button phoneCall, sendText, showDescription, addPhoto, showComments, btnAddComments;
     RecyclerView photoList, commentsList;
     ImageButton retry, favorite, btnShowMore;
@@ -149,11 +150,13 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         userPhotosLayoutManager = new LinearLayoutManager(getContext());
         appBarLayout = view.findViewById(R.id.appBarLayout);
     }
+
     private void implement() {
         itemId = getArguments().getInt("ID");
         userId = new User(getContext()).GetUserId();
         Log.i("TAG", "implement: " + userId);
         presenter.start(new User(getContext()).GetUserId(), itemId);
+        hideSoftKeyBoard();
         phoneCall.setOnClickListener(this);
         sendText.setOnClickListener(this);
         showDescription.setOnClickListener(this);
@@ -198,12 +201,15 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
                         changeToolbarItems(R.color.colorWhite);
                         break;
                 }
-
             }
         });
     }
 
-    private void changeToolbarItems(@ColorRes int color){
+    public void hideSoftKeyBoard() {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    private void changeToolbarItems(@ColorRes int color) {
         ImageViewCompat.setImageTintList(favorite, ColorStateList.valueOf(getResources().getColor(color)));
         ImageViewCompat.setImageTintList(goBack, ColorStateList.valueOf(getResources().getColor(color)));
         toolbarTitle.setTextColor(getResources().getColor(color));
@@ -272,7 +278,6 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
 
                 if (selectedModel.getInstagramId().isEmpty()) {
                     instagramLayout.setVisibility(View.GONE);
-
                 } else {
                     try {
                         Intent instagramIntent = new Intent(Intent.ACTION_VIEW);
@@ -526,12 +531,12 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         }
 
         showErrorDialog(new ErrorDialog.Builder(getContext())
-          .setErrorTitle(title)
-          .setErrorSubtitle(error)
-          .setImageUrl(imageRes)
-          .setButtonText(R.string.try_again)
-          .setClickListener(() ->
-            presenter.start(userId,itemId)));
+                .setErrorTitle(title)
+                .setErrorSubtitle(error)
+                .setImageUrl(imageRes)
+                .setButtonText(R.string.try_again)
+                .setClickListener(() ->
+                        presenter.start(userId, itemId)));
     }
 
     @Override

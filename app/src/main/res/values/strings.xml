@@ -350,9 +350,10 @@
     <string name="allow_storage_permission">لطفا اجازه دسترسی به حافظه را صادر کنید</string>
     <string name="imageUploadingFailed">بارگذاری عکس با مشکل مواجه شد</string>
     <string name="storage_permisison_needed">برای انتخاب عکس مجوز دسترسی به حافظه گوشی و دوربین نیاز است</string>
-  <string name="try_again">تلاش مجدد</string>
-  <string name="no_data_to_show">داده ای برای نمایش وجود ندارد</string>
-  <string-array name="ListVideoApp">
+    <string name="try_again">تلاش مجدد</string>
+    <string name="no_data_to_show">داده ای برای نمایش وجود ندارد</string>
+    <string name="exit">برای خروج دوباره دکمه ی بازگشت را فشار دهید</string>
+    <string-array name="ListVideoApp">
         <item>آپارات</item>
         <item>تماشا</item>
     </string-array>

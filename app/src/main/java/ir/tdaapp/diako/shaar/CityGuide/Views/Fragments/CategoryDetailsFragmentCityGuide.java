@@ -89,12 +89,9 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
         chipsLayoutManager = new LinearLayoutManager(getContext());
         chipsLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         chipsLayoutManager.setReverseLayout(true);
-
         detailModels = new ArrayList<>();
         chipModels = new ArrayList<>();
-
         userId = new User(getContext()).GetUserId();
-
         root = view.findViewById(R.id.categoryDetailsRootLayout);
         filter = view.findViewById(R.id.imgCategoryDetailsFilter);
         back = view.findViewById(R.id.imgCategoryDetailsBack);
@@ -109,9 +106,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
         detailsList.setLayoutManager(detailsLayoutManager);
         chipsList.setLayoutManager(chipsLayoutManager);
         presenter.start(getArguments().getInt("ID"));
-
         hideKeyBoard();
-
         root.setOnClickListener(this);
         searchBar.setOnKeyListener((v, keyCode, event) -> {
             // If the event is a key-down event on the "enter" button
@@ -130,7 +125,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
         back.setOnClickListener(this::onClick);
     }
 
-    public void hideKeyBoard(){
+    public void hideKeyBoard() {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
@@ -183,7 +178,6 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
                 visibleItemCount = detailsList.getChildCount();
                 totalItemCount = detailsLayoutManager.getItemCount();
                 firstVisibleItem = detailsLayoutManager.findFirstVisibleItemPosition();

@@ -25,11 +25,8 @@ public class GuideActivity extends AppCompatActivity {
 
     DBAdapter dbAdapter;
 
-
     public void removeStack() {
-
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
-
         for (Fragment i : fragmentList) {
             if (i instanceof Fragment_Login_Home || i instanceof Fragment_Add_Account || i instanceof Fragment_SMS_Panel ||
                     i instanceof Succefull_Register) {
@@ -37,23 +34,18 @@ public class GuideActivity extends AppCompatActivity {
             }
         }
 
-
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
-
-
         Bundle extras = getIntent().getExtras();
         int fragment = 0;
 
         if (extras != null) {
             fragment = extras.getInt("cityGyideFav");
         }
-
         if (fragment == 0) {
             onAddFragment(new CategoryFragmentCityGuide(), 0, 0, false, CategoryFragmentCityGuide.TAG);
         } else if (fragment == 1) {
@@ -62,35 +54,26 @@ public class GuideActivity extends AppCompatActivity {
             onAddFragment(new UserItemsFragmentCityGuide(), 0, 0, false, UserItemsFragmentCityGuide.TAG);
         }
 
-
         dbAdapter = new DBAdapter(this);
-
 //        onAddFragment(new CategoryFragmentCityGuide(), 0, 0, false, CategoryFragmentCityGuide.TAG);
-
     }
-
 
     public void onAddFragment(Fragment fragment,
                               @AnimatorRes @AnimRes int animEnter,
                               @AnimatorRes @AnimRes int animExit,
                               boolean backStack, String fragmentTAG) {
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-
         //اگر ورودی های انیمیشن غیر صفر باشند انیمیشن ها را اضافه می کند
         if (animEnter != 0 && animExit != 0) {
             transaction.setCustomAnimations(animEnter, animExit, animEnter, animExit);
         }
-
         //در اینجا فرگمنت اضافه می شود
         transaction.add(R.id.guideFrame, fragment, fragmentTAG);
-
         //در اینجا فرگمنت را به پشته اضافه می کند
         if (backStack) {
             transaction.addToBackStack(null);
         }
-
         //در اینجا فرگمنت نمایش داده می شود
         transaction.commit();
     }
@@ -98,7 +81,6 @@ public class GuideActivity extends AppCompatActivity {
     public DBAdapter getAdapter() {
         return dbAdapter;
     }
-
 //  @Override
 //  public void onBackPressed() {
 //

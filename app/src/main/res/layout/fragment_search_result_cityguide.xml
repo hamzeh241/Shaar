@@ -21,9 +21,9 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:background="@color/colorRed"
-            app:srcCompat="@drawable/ic_back" />
-
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+            app:tint="#FFF" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -112,7 +112,6 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-
     @Override
     public void onError(ResaultCode resaultCode) {
         String error = "";
@@ -159,7 +158,5 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
             recyclerView.setVisibility(View.GONE);
             linearLayoutNoItemMessage.setVisibility(View.VISIBLE);
         }
-
-
     }
 }

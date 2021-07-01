@@ -108,12 +108,10 @@ public class CategoryItemDetailsFragmentPresenter {
     Single<CategoryResultRatingViewModel> data = api.sendRating(object);
 
     sendRatingDisposable = data.subscribeWith(new DisposableSingleObserver<CategoryResultRatingViewModel>() {
-
       @Override
       public void onSuccess(@NonNull CategoryResultRatingViewModel categoryResultRatingViewModel) {
           rateService.onRateSendingState(categoryResultRatingViewModel.getStatus(), categoryResultRatingViewModel.getMessage());
       }
-
       @Override
       public void onError(@NonNull Throwable e) {
         rateService.onRateSendingState(false, "خطا در ارتباط");

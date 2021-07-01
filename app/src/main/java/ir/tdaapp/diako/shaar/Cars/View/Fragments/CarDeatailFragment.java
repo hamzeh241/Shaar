@@ -191,14 +191,12 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     public void onClick(View v) {
 
         switch (v.getId()) {
-
             //تماس با کارشناس
             case R.id.btn_call_expert:
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + number));
                 startActivity(intent);
                 break;
-
             //ارسال پیام به کارشناس
             case R.id.btn_text_expert:
                 String Message = getResources().getString(R.string.SMSMessage);
@@ -207,13 +205,11 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
                 sendIntent.putExtra("sms_body", Message);
                 startActivity(sendIntent);
                 break;
-
             case R.id.btn_show_more_describe:
                 TransitionManager.beginDelayedTransition(root);
                 description.setText(descriptionText);
                 showMoreDescribe.setVisibility(View.GONE);
                 break;
-
             case R.id.img_faverite_detail:
                 if (tblCarFavoriets.checkState(itemId)) {
                     tblCarFavoriets.deleteFavorite(itemId);
@@ -223,7 +219,6 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
                     favorite.setImageResource(R.drawable.ic_baseline_favorite_24);
                 }
                 break;
-
             case R.id.img_forward_viewPager:
                 try {
                     viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
@@ -231,7 +226,6 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
                     e.printStackTrace();
                 }
                 break;
-
             case R.id.img_back_viewPager:
                 try {
                     viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
@@ -242,7 +236,6 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
             case R.id.imageButton_details_car:
                 getActivity().onBackPressed();
                 break;
-
             case R.id.imgBtn_refresh_car:
                 presenter.start(itemId);
                 loading.setVisibility(View.VISIBLE);
@@ -255,11 +248,10 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
     public void onCarReceived(CarDetailModel model) {
         int resId = tblCarFavoriets.checkState(itemId) ? R.drawable.ic_baseline_favorite_24 : R.drawable.ic_baseline_favorite_border_24;
         favorite.setImageResource(resId);
-
         carName.setText(model.getName());
         productionYear.setText(model.getProductionYear());
         new ShowPriceTextView(model.getMileage(), mileage);
-//    mileage.setText(model.getMileage());
+//      mileage.setText(model.getMileage());
         carBodyStatus.setText(model.getCarBodyStatus());
         carBodyStatus2.setText(model.getCarBodyStatus());
         brand.setText(model.getBrand());
@@ -274,20 +266,17 @@ public class CarDeatailFragment extends CarBaseFragment implements OnGlideImageL
         address.setText(model.getAddress());
         color.setText(model.getColor());
 
-
         if (model.isExchange()) {
             txtExchange.setText(R.string.exchange);
         } else {
             txtExchange.setText(R.string.notExchange);
         }
-
         //ست کردن عکس کارشناس
         Glide.with(this)
                 .load(CarBaseApi.API_IMAGE_CAR_EXPERT + model.getExpertImage())
                 .into(circleImageView);
 
         descriptionText = model.getDescription();
-
         if (descriptionText.length() > 300) {
             showMoreDescribe.setVisibility(View.VISIBLE);
             String subString = descriptionText.substring(0, 300);

@@ -366,9 +366,5 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
                 ((MainActivity)getActivity()).onAddFragment(new Fragment_Add_Account(),0,0,true,Fragment_Add_Account.TAG);
             }
         });
-
-
     }
-
-
 }

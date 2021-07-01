@@ -15,14 +15,14 @@
     android:paddingTop="8dp">
 
     <Button
-      android:id="@+id/btnCategoryItemDetailsAddPhotos"
-      android:layout_width="wrap_content"
-      android:layout_height="30dp"
-      android:background="@drawable/blue_border_background"
-      android:paddingLeft="24dp"
-      android:paddingRight="24dp"
-      android:text="@string/addPhoto"
-      android:textColor="@color/colorBlue" />
+        android:id="@+id/btnCategoryItemDetailsAddPhotos"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/blue_border_background"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="@string/addPhoto"
+        android:textColor="@color/colorBlue" />
 
     <TextView
       android:id="@+id/textView13"
