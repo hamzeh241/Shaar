@@ -196,7 +196,6 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
     @Override
     public void onPageFinished(List<CategoryDetailsModel> models) {
     }
-
     @Override
     public void onfinish() {
     }

@@ -305,7 +305,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.categoryDetailsAddItemFab:
-                if (userId == 0) {
+                if (new User(getContext()).GetUserId() == 0) {
                     Toasty.info(getContext(), R.string.addAccuont, Toast.LENGTH_SHORT, false).show();
                     ((GuideActivity) getActivity()).onAddFragment(new Fragment_Login_Home(1), R.anim.fadein, R.anim.fadeout, true, Fragment_Login_Home.TAG);
                 } else {

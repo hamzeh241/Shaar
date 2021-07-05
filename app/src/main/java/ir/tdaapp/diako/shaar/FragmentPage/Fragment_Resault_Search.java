@@ -217,7 +217,7 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
             @Override
             public void onClick(View v) {
 
-                if (userId == 0){
+                if (new User(getContext()).GetUserId() == 0){
                     Toasty.info(getContext(),R.string.addAccuont,Toast.LENGTH_SHORT,false).show();
                     ((MainActivity)getActivity()).onAddFragment(new Fragment_Login_Home(),R.anim.fadein,R.anim.fadeout,true,Fragment_Login_Home.TAG);
                 }else {

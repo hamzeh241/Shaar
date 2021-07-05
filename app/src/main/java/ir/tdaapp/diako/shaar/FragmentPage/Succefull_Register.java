@@ -44,12 +44,8 @@ public class Succefull_Register extends Fragment {
 
                 switch (getActivity().getClass().getSimpleName()) {
                     case "MainActivity":
-
-//
-
                         FragmentManager manager = getActivity().getSupportFragmentManager();
                         List<Fragment> fragmentList = manager.getFragments();
-
                         for(Fragment fragment : fragmentList){
                             if (fragment instanceof Fragment_Login_Home || fragment instanceof Fragment_Add_Account || fragment instanceof Fragment_SMS_Panel ||
                                     fragment instanceof Succefull_Register){

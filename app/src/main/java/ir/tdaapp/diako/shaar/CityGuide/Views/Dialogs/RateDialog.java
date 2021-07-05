@@ -20,7 +20,6 @@ public class RateDialog extends DialogFragment implements View.OnClickListener {
 
   RatingBar ratingBar;
   Button button;
-
   RateDialogService service;
 
   public RateDialog(RateDialogService service) {
