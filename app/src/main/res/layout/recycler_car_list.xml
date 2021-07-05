@@ -52,6 +52,7 @@
                       android:id="@+id/imageView10"
                       android:layout_width="24dp"
                       android:layout_height="24dp"
+                      android:tint="#636363"
                       app:srcCompat="@drawable/ic_baseline_access_time_filled_24" />
 
                 </LinearLayout>
@@ -75,6 +76,7 @@
                       android:id="@+id/imageView11"
                       android:layout_width="24dp"
                       android:layout_height="24dp"
+                      android:tint="#636363"
                       app:srcCompat="@drawable/ic_baseline_speed_24" />
 
                 </LinearLayout>
@@ -95,7 +97,7 @@
                   android:layout_weight="1"
                   android:gravity="right|center_vertical"
                   android:text="TextView"
-                  android:textColor="#1a1d24" />
+                  android:textColor="#636363" />
 
                 <TextView
                   android:id="@+id/txtCarListPrice"
@@ -104,7 +106,7 @@
                   android:layout_weight="1"
                   android:gravity="right|center_vertical"
                   android:text="TextView"
-                  android:textColor="#1a1d24"
+                  android:textColor="#939393"
                   android:textSize="12sp" />
 
                 <TextView
@@ -114,7 +116,7 @@
                   android:layout_weight="1"
                   android:gravity="right|center_vertical"
                   android:text="TextView"
-                  android:textColor="#1a1d24"
+                  android:textColor="#939393"
                   android:textSize="12sp" />
             </LinearLayout>
 
@@ -139,7 +141,7 @@
           android:layout_width="match_parent"
           android:layout_height="1dp"
           android:layout_marginTop="8dp"
-          android:background="#696969" />
+          android:background="#9F9F9F" />
 
     </LinearLayout>
 

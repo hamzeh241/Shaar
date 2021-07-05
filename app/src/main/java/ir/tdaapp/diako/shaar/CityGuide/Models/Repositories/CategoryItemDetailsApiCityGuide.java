@@ -7,20 +7,25 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
 import io.reactivex.Single;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsCommentsModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsPhotoModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryItemDetailsViewModel;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryResultRatingViewModel;
+import ir.tdaapp.diako.shaar.ErrorHandling.Error;
+import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonObjectVolley;
+import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
 
 public class CategoryItemDetailsApiCityGuide extends CityGuideBaseApi {
 
   GetJsonObjectVolley getDetailsObjectVolley;
   PostJsonObjectVolley postJsonObjectVolley;
+  PostJsonArrayVolley postJsonArrayVolley;
 
   public Single<CategoryItemDetailsViewModel> getDetails(int userId, int itemId) {
     return Single.create(emitter -> {
@@ -107,6 +112,35 @@ public class CategoryItemDetailsApiCityGuide extends CityGuideBaseApi {
     });
   }
 
+  public Single<CategoryResultRatingViewModel> sendUserPhotos(int userId, JSONArray array) {
+    return Single.create(emitter -> {
+      new Thread(() -> {
+        try {
+          postJsonArrayVolley = new PostJsonArrayVolley(CityGuideBaseApi.API_URL +
+            "CityGuide/AddUserImageCityGuide?UserId=" + userId, array, resault -> {
+            if (resault.getResault() == ResaultCode.Success) {
+              CategoryResultRatingViewModel resultModel = new CategoryResultRatingViewModel();
+              try {
+                JSONObject object = resault.getJsonArray().getJSONObject(0);
+                resultModel.setStatus(object.getBoolean("Status"));
+                resultModel.setMessage(object.getString("Titel"));
+                resultModel.setCode(object.getInt("Code"));
+              } catch (JSONException e) {
+                e.printStackTrace();
+                emitter.onError(e);
+              }
+              emitter.onSuccess(resultModel);
+            } else {
+              emitter.onError(new IOException(resault.getMessage()));
+            }
+          });
+        } catch (Exception e) {
+          emitter.onError(e);
+        }
+      }).start();
+    });
+  }
+
   public Single<CategoryResultRatingViewModel> sendRating(JSONObject object) {
     return Single.create(emitter -> {
       new Thread(() -> {
@@ -126,7 +160,7 @@ public class CategoryItemDetailsApiCityGuide extends CityGuideBaseApi {
                 e.printStackTrace();
               }
               emitter.onSuccess(model);
-            }else {
+            } else {
               emitter.onError(new IOException(resault.getResault().toString()));
             }
           });

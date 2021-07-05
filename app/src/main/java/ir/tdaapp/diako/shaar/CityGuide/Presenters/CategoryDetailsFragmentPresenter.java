@@ -81,6 +81,7 @@ public class CategoryDetailsFragmentPresenter {
         getChipsDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {
             @Override
             public void onSuccess(List<CategoryDetailsModel> categoryModels) {
+                categoryDetailsFragmentService.onItemsReceived(categoryModels);
                 setItems(categoryModels);
             }
 
@@ -95,7 +96,7 @@ public class CategoryDetailsFragmentPresenter {
         Observable<CategoryDetailsModel> data = Observable.fromIterable(categoryModels);
         setChipsDisposable = data.subscribe(item -> {
             categoryDetailsFragmentService.loadingState(false);
-            categoryDetailsFragmentService.onItemsReceived(item);
+            categoryDetailsFragmentService.onItemReceived(item);
         }, throwable -> {
 
         }, () -> {

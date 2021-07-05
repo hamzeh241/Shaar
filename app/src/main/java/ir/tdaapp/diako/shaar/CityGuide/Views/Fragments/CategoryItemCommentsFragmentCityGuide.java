@@ -2,6 +2,7 @@ package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,17 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
     post.setOnClickListener(this);
     back.setOnClickListener(this::onClick);
 
+    commentText.setOnKeyListener((v, keyCode, event) -> {
+      // If the event is a key-down event on the "enter" button
+      if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+        // Perform action on key press
+        post.performClick();
+        return true;
+      }
+      return false;
+    });
+
     list.setLayoutManager(new LinearLayoutManager(getContext()));
     dialog.setCancelable(false);
   }
@@ -94,7 +106,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
 
   @Override
   public void onCommentsReceived(CategoryItemDetailsCommentsModel model) {
-    Log.i("LOG", model.getMessage());
+    commentText.setText("");
     adapter.add(model);
   }
 

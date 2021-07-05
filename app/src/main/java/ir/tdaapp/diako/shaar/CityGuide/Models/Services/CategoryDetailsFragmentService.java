@@ -12,7 +12,9 @@ public interface CategoryDetailsFragmentService {
 
   void onPresenterRestart();
 
-  void onItemsReceived(CategoryDetailsModel model);
+  void onItemsReceived(List<CategoryDetailsModel> model);
+
+  void onItemReceived(CategoryDetailsModel model);
 
   void onChipsReceived(CategoryDetailsChipModel model);
 

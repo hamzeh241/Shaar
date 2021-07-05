@@ -353,7 +353,8 @@
     <string name="try_again">تلاش مجدد</string>
     <string name="no_data_to_show">داده ای برای نمایش وجود ندارد</string>
     <string name="exit">برای خروج دوباره دکمه ی بازگشت را فشار دهید</string>
-    <string-array name="ListVideoApp">
+  <string name="uploading_photos">در حال آپلود عکس ها...</string>
+  <string-array name="ListVideoApp">
         <item>آپارات</item>
         <item>تماشا</item>
     </string-array>

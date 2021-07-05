@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.onAddItemPhotosAdapterListener;
+import ir.tdaapp.diako.shaar.CityGuide.Models.Utilities.CityGuideBaseApi;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.AddItemPhotosModel;
 import ir.tdaapp.diako.shaar.R;
 
@@ -43,9 +44,17 @@ public class AddItemPhotosAdapter extends RecyclerView.Adapter<AddItemPhotosAdap
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     AddItemPhotosModel pictureUri = models.get(position);
-    Glide.with(context)
-      .load(pictureUri.getUri().getPath())
-      .into(holder.imageView);
+    if (pictureUri.getUri() != null)
+      Glide.with(context)
+        .load(pictureUri.getUri().getPath())
+        .into(holder.imageView);
+    else {
+      String imageName = CityGuideBaseApi.API_IMAGE + (pictureUri.getFilePath().replace("\"", ""));
+      Glide.with(context)
+        .load(imageName)
+        .placeholder(R.drawable.ic_baseline_sync_24)
+        .into(holder.imageView);
+    }
 
     holder.remove.setOnClickListener(v -> {
       listener.remove(pictureUri, position);

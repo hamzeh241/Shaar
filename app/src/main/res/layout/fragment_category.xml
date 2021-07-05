@@ -27,15 +27,16 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/btn_search_cityguidde"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="@string/Search" />
+              android:id="@+id/btn_search_cityguidde"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="?selectableItemBackground"
+              android:clickable="true"
+              android:focusable="true"
+              android:gravity="center"
+              android:padding="8dp"
+              android:text="@string/Search"
+              android:textColor="@color/colorGray" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -58,11 +59,12 @@
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                app:srcCompat="@drawable/ic_baseline_search_24" />
+              android:id="@+id/imageView6"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="4dp"
+              android:tint="@color/colorGray"
+              app:srcCompat="@drawable/ic_baseline_search_24" />
 
         </LinearLayout>
 

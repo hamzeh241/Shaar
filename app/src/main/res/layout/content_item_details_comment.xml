@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:gravity="right"
   android:orientation="vertical">
 
@@ -56,10 +57,42 @@
 
   </LinearLayout>
 
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerItemDetailsComments"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
+
+    <LinearLayout
+      android:id="@+id/no_comments"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:visibility="gone">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="نظری درج نشده"
+        android:textStyle="bold" />
+
+      <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/ic_no_data"
+        app:tint="@color/colorGray" />
+    </LinearLayout>
+
+  </RelativeLayout>
 
   <LinearLayout
     android:layout_width="match_parent"
