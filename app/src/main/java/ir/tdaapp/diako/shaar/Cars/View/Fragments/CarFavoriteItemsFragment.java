@@ -150,7 +150,6 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
                 .setClickListener(() ->
                         presenter.start()));
     }
-
     @Override
     public void onFinish() {
         if (adapter.getItemCount() == 0 && userId != 0) {

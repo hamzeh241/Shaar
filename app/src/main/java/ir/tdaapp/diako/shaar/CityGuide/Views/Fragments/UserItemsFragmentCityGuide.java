@@ -92,7 +92,6 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
             list.setVisibility(View.GONE);
             linearLayoutNotLogIn.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override
@@ -138,7 +137,6 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
                 imageRes = R.drawable.ic_warning;
                 break;
         }
-
         showErrorDialog(new ErrorDialog.Builder(getContext())
           .setErrorTitle(title)
           .setErrorSubtitle(error)

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
+import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryDetailsFragmentCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFavoriteItemsFragmentCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.CategoryFragmentCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Fragments.UserItemsFragmentCityGuide;
@@ -15,6 +16,7 @@ import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Add_Account;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Login_Home;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_SMS_Panel;
 import ir.tdaapp.diako.shaar.FragmentPage.Succefull_Register;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
 
 import android.os.Bundle;
@@ -26,14 +28,14 @@ public class GuideActivity extends AppCompatActivity {
     DBAdapter dbAdapter;
 
     public void removeStack() {
+        FragmentManager manager = getSupportFragmentManager();
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
         for (Fragment i : fragmentList) {
             if (i instanceof Fragment_Login_Home || i instanceof Fragment_Add_Account || i instanceof Fragment_SMS_Panel ||
                     i instanceof Succefull_Register) {
-                onBackPressed();
+                manager.popBackStack();
             }
         }
-
     }
 
     @Override

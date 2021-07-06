@@ -10,19 +10,21 @@ import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
  */
 
 public class User {
+
+
     DBAdapter dbAdapter;
 
-    public User(Context context){
-        dbAdapter=new DBAdapter(context);
+    public User(Context context) {
+        dbAdapter = new DBAdapter(context);
     }
 
     //در این تابع Id کاربر را به دست می آوریم
-    public int GetUserId(){
-        Cursor cursor=dbAdapter.ExecuteQ("select * from TblUser");
-        int Id=0;
+    public int GetUserId() {
+        Cursor cursor = dbAdapter.ExecuteQ("select * from TblUser");
+        int Id = 0;
         if (cursor != null && cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Id=Integer.parseInt(cursor.getString(0));
+                Id = Integer.parseInt(cursor.getString(0));
                 cursor.moveToNext();
             }
         }

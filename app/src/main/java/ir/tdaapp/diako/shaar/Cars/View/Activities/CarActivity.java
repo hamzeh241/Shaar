@@ -26,17 +26,13 @@ public class CarActivity extends AppCompatActivity {
     DBAdapter dbAdapter;
 
     public void removeStack() {
-
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
         FragmentManager manager = getSupportFragmentManager();
-
-
         for (Fragment i : fragmentList) {
             if (i instanceof Fragment_Login_Home || i instanceof Fragment_Add_Account || i instanceof Fragment_SMS_Panel ||
                     i instanceof Succefull_Register) {
                 manager.popBackStack();
             }
-
         }
     }
 

@@ -47,6 +47,7 @@ import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.ErrorHandling.ErrorDialog;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Login_Home;
+import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
@@ -120,7 +121,6 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     carManager.setOrientation(RecyclerView.VERTICAL);
 
     searchModel = new SearchModel();
-    userId = new User(getContext()).GetUserId();
 
     fade = new Fade(Fade.OUT);
     fade.setInterpolator(new LinearOutSlowInInterpolator());
@@ -239,7 +239,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
         dialog.show(getActivity().getSupportFragmentManager(), CarSearchFilterDialog.TAG);
         break;
       case R.id.fabAddCar:
-        if (userId == 0) {
+        if (new User(getContext()).GetUserId() == 0) {
           Toasty.info(getContext(), R.string.addAccuont, Toast.LENGTH_SHORT, false).show();
           ((CarActivity) getActivity()).onAddFragment(new Fragment_Login_Home(2), R.anim.fadein, R.anim.fadeout, true, Fragment_Login_Home.TAG);
         } else {
@@ -273,6 +273,10 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     carList.setAdapter(carAdapter);
     chipsList.setAdapter(chipsAdapter);
     setPagination();
+
+//     userId= new User(getContext()).GetUserId();
+    userId = new User(getContext()).GetUserId();
+    Log.i(TAG, "onPresenterStart: "+ userId);
   }
 
   @Override
