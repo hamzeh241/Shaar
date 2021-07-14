@@ -5,7 +5,6 @@ import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +60,6 @@ import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.ErrorHandling.ErrorDialog;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
-import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonArrayVolley;
 import ir.tdaapp.diako.shaar.Volley.Volleys.PostJsonObjectVolley;
 
 public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment implements OnGlideImageListener, CategoryItemDetailsFragmentService, RateDialogService, View.OnClickListener {
@@ -159,11 +157,11 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     uploading = new MessageDialog(getString(R.string.uploading_photos), false);
 
     itemId = getArguments().getInt("ID");
-    userId = new User(getContext()).GetUserId();
+    userId = new User(getContext()).getUserId();
   }
 
   private void implement() {
-    presenter.start(new User(getContext()).GetUserId(), itemId);
+    presenter.start(new User(getContext()).getUserId(), itemId);
 
     hideSoftKeyBoard();
 
@@ -238,7 +236,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
         goToComments();
         break;
       case R.id.categoryItemDetailsAddPhoto:
-        if (new User(getContext()).GetUserId() == 0) {
+        if (new User(getContext()).getUserId() == 0) {
           Toasty.error(getContext(), getString(R.string.createAccountFirst)).show();
         } else {
           presenter.requestStoragePermission(getActivity());
@@ -479,7 +477,7 @@ public class CategoryItemDetailsFragmentCityGuide extends CityGuideBaseFragment 
     JSONObject object = new JSONObject();
     PostJsonObjectVolley volley;
     try {
-      object.put("UserId", new User(getContext()).GetUserId());
+      object.put("UserId", new User(getContext()).getUserId());
       object.put("CommentId", model.getId());
       object.put("IsLiked", liked);
     } catch (JSONException e) {

@@ -87,7 +87,7 @@ public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.MyVi
                                             public void onResponse(Object response) {
                                                 if (response.toString().equalsIgnoreCase("true")) {
 
-                                                    Cursor removeLike=dbAdapter.ExecuteQ("delete from TblSearch where IsFavorit=1 and Id="+values.get(position).getId());
+                                                    Cursor removeLike=dbAdapter.executeQuery("delete from TblSearch where IsFavorit=1 and Id="+values.get(position).getId());
                                                     removeLike.close();
                                                     values.remove(position);
                                                     notifyDataSetChanged();

@@ -164,7 +164,7 @@ public class AddCarFragment extends CarBaseFragment implements View.OnClickListe
           viewModel.setAddress(address.getText().toString());
           viewModel.setProductionYearId(((AddItemEntryModel) productionYear.getSelectedItem()).getId());
           viewModel.setImages(images);
-          viewModel.setUserId(new User(getContext()).GetUserId());
+          viewModel.setUserId(new User(getContext()).getUserId());
           viewModel.setColor(((AddItemEntryModel) spinereColor.getSelectedItem()).getId());
           presenter.sendDetails(viewModel);
         }

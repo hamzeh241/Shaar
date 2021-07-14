@@ -72,6 +72,7 @@ public class CarListFragmentPresenter {
 
   public void getCars(@Nullable SearchModel searchObject, int page) {
     JSONObject object = new JSONObject();
+
     try {
       object.put("CategoryId", searchObject == null ? 0 : searchObject.getCategoryId());
       object.put("BrandId", searchObject == null ? 0 : searchObject.getBrandId());
@@ -86,7 +87,6 @@ public class CarListFragmentPresenter {
       e.printStackTrace();
     }
 
-    Log.i("TAG", "getCars: "+object.toString());
     service.loadingState(true);
     Single<List<CarListModel>> data = api.getCars(object);
 

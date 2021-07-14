@@ -493,7 +493,7 @@ public class Fragment_Search_Home extends Fragment implements IBase {
     //در اینجا مقادیر اسپینر موقعیت set می شوند
     void SetDataSpinner() {
 
-        Cursor cursor = dbAdapter.ExecuteQ("select * from TblLocation order by Title asc");
+        Cursor cursor = dbAdapter.executeQuery("select * from TblLocation order by Title asc");
         if (cursor != null && cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 locations.add(new Location(Integer.parseInt(cursor.getString(0)), cursor.getString(1)));
@@ -573,7 +573,7 @@ public class Fragment_Search_Home extends Fragment implements IBase {
         List<Type_Home> lst = new ArrayList<>();
         int Id;
         if (type == 1) {
-            Cursor cursor = dbAdapter.ExecuteQ("select * from TblType where ParentId=1");
+            Cursor cursor = dbAdapter.executeQuery("select * from TblType where ParentId=1");
             if (cursor != null && cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
                     Id = Integer.parseInt(cursor.getString(0));
@@ -586,7 +586,7 @@ public class Fragment_Search_Home extends Fragment implements IBase {
             dbAdapter.close();
             return lst;
         } else if (type == 2) {
-            Cursor cursor = dbAdapter.ExecuteQ("select * from TblType where ParentId=2");
+            Cursor cursor = dbAdapter.executeQuery("select * from TblType where ParentId=2");
             if (cursor != null && cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
                     Id = Integer.parseInt(cursor.getString(0));
@@ -599,7 +599,7 @@ public class Fragment_Search_Home extends Fragment implements IBase {
             dbAdapter.close();
             return lst;
         } else {
-            Cursor cursor = dbAdapter.ExecuteQ("select * from TblType where ParentId=32");
+            Cursor cursor = dbAdapter.executeQuery("select * from TblType where ParentId=32");
             if (cursor != null && cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
                     Id = Integer.parseInt(cursor.getString(0));
@@ -635,18 +635,18 @@ public class Fragment_Search_Home extends Fragment implements IBase {
         String MinArea = String.valueOf(vm_search.getMinArea());
         String MaxArea = String.valueOf(vm_search.getMaxArea());
 
-        Cursor RemoveFromLastSearch = dbAdapter.ExecuteQ("delete from TblLastSearch");
+        Cursor RemoveFromLastSearch = dbAdapter.executeQuery("delete from TblLastSearch");
         RemoveFromLastSearch.close();
 
         //در اینجا بزرگترین Id را به دست می اوریم
-        Cursor GetId = dbAdapter.ExecuteQ("select Max(Id) from TblLastSearch");
+        Cursor GetId = dbAdapter.executeQuery("select Max(Id) from TblLastSearch");
         int Id;
         if (GetId.getString(0) != null)
             Id = Integer.parseInt(GetId.getString(0)) + 1;
         else
             Id = 1;
 
-        Cursor Insert = dbAdapter.ExecuteQ("insert into TblLastSearch (Id,EnumTarget,FullMortgage,FullPrice,LocationId,MaxArea,MaxMortgage,MaxPrice,MinArea,MinMortgage,MinPrice,Room,TypeHomeId) values (" + Id + "," + vm_search.getTarget() + ",'" + vm_search.isFullMortgage() + "','" + vm_search.isFullRent() + "'," + vm_search.getLocationId() + "," + MaxArea + "," + MaxMortgage + "," + MaxPrice + "," + MinArea + "," + MinMortgage + "," + MinPrice + "," + vm_search.getCountRoom() + "," + vm_search.getTypeHome() + ")");
+        Cursor Insert = dbAdapter.executeQuery("insert into TblLastSearch (Id,EnumTarget,FullMortgage,FullPrice,LocationId,MaxArea,MaxMortgage,MaxPrice,MinArea,MinMortgage,MinPrice,Room,TypeHomeId) values (" + Id + "," + vm_search.getTarget() + ",'" + vm_search.isFullMortgage() + "','" + vm_search.isFullRent() + "'," + vm_search.getLocationId() + "," + MaxArea + "," + MaxMortgage + "," + MaxPrice + "," + MinArea + "," + MinMortgage + "," + MinPrice + "," + vm_search.getCountRoom() + "," + vm_search.getTypeHome() + ")");
         Insert.close();
         GetId.close();
         dbAdapter.close();

@@ -1,9 +1,7 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,7 +89,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
         chipsLayoutManager.setReverseLayout(true);
         detailModels = new ArrayList<>();
         chipModels = new ArrayList<>();
-        userId = new User(getContext()).GetUserId();
+        userId = new User(getContext()).getUserId();
         root = view.findViewById(R.id.categoryDetailsRootLayout);
         filter = view.findViewById(R.id.imgCategoryDetailsFilter);
         back = view.findViewById(R.id.imgCategoryDetailsBack);
@@ -141,6 +139,16 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
         initializeDetailsAdapter();
     }
 
+    @Override
+    public void onItemsReceived(List<CategoryDetailsModel> model) {
+
+    }
+
+    @Override
+    public void onItemReceived(CategoryDetailsModel model) {
+        detailsAdapter.add(model);
+    }
+
     private void initializeChipsAdapter() {
         chipsAdapter = new CategoryDetailsChipsAdapter(getContext());
         chipsList.setAdapter(chipsAdapter);
@@ -169,7 +177,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
             CategoryItemDetailsFragmentCityGuide fragment = new CategoryItemDetailsFragmentCityGuide();
             fragment.setArguments(bundle);
             ((GuideActivity) getActivity()).onAddFragment(fragment,
-                    0, 0, true, CategoryItemDetailsFragmentCityGuide.TAG);
+                    R.anim.fadein, R.anim.fadeout, true, CategoryItemDetailsFragmentCityGuide.TAG);
         });
     }
 
@@ -201,12 +209,6 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
                 }
             }
         });
-    }
-
-    @Override
-    public void onItemsReceived(CategoryDetailsModel model) {
-        detailsAdapter.add(model);
-        Log.i(TAG, "onItemsReceived: " + model.getTitle());
     }
 
     @Override
@@ -305,7 +307,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.categoryDetailsAddItemFab:
-                if (new User(getContext()).GetUserId() == 0) {
+                if (new User(getContext()).getUserId() == 0) {
                     Toasty.info(getContext(), R.string.addAccuont, Toast.LENGTH_SHORT, false).show();
                     ((GuideActivity) getActivity()).onAddFragment(new Fragment_Login_Home(1), R.anim.fadein, R.anim.fadeout, true, Fragment_Login_Home.TAG);
                 } else {

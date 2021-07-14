@@ -289,12 +289,12 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
 
 
                 if (!IsLike()) {
-                    Cursor cursor = dbAdapter.ExecuteQ("insert into TblSearch (Id,Title,Price,Area,Room,DateInsert,Address,IsFavorit,FkListSearch,Age,FkLocation) values (" + Integer.parseInt(Id) + ",'" + lbl_Title.getText().toString() + "',200," + Area + "," + Integer.parseInt(lbl_CountRoom.getText().toString()) + ",'" + DateInsert + "','" + lbl_Address.getText().toString() + "',1,0,0,0)");
+                    Cursor cursor = dbAdapter.executeQuery("insert into TblSearch (Id,Title,Price,Area,Room,DateInsert,Address,IsFavorit,FkListSearch,Age,FkLocation) values (" + Integer.parseInt(Id) + ",'" + lbl_Title.getText().toString() + "',200," + Area + "," + Integer.parseInt(lbl_CountRoom.getText().toString()) + ",'" + DateInsert + "','" + lbl_Address.getText().toString() + "',1,0,0,0)");
                     item.setIcon(R.drawable.is_like_home);
                     cursor.close();
                     dbAdapter.close();
                 } else {
-                    Cursor cursor = dbAdapter.ExecuteQ("delete from TblSearch where Id=" + Integer.parseInt(Id));
+                    Cursor cursor = dbAdapter.executeQuery("delete from TblSearch where Id=" + Integer.parseInt(Id));
                     item.setIcon(R.drawable.like_home);
                     cursor.close();
                     dbAdapter.close();
@@ -599,7 +599,7 @@ public class Fragment_Show_Details_Home extends Fragment implements IBase {
 
     //در اینجا چک می شود که آیتم لایک شده است
     boolean IsLike() {
-        Cursor cursor = dbAdapter.ExecuteQ("select count(Id) from TblSearch where IsFavorit=1 and Id=" + Integer.parseInt(Id));
+        Cursor cursor = dbAdapter.executeQuery("select count(Id) from TblSearch where IsFavorit=1 and Id=" + Integer.parseInt(Id));
         int c = Integer.parseInt(cursor.getString(0));
         cursor.close();
         dbAdapter.close();

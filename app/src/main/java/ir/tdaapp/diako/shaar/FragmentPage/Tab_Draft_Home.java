@@ -62,14 +62,14 @@ public class Tab_Draft_Home extends Fragment {
         List<Draft_Home> homes = new ArrayList<>();
 
         //در اینجا تمامی خانه های ثبت شده در sqlite دریافت می شوند
-        Cursor cursor=dbAdapter.ExecuteQ("select * from TblItem order by Id Desc");
+        Cursor cursor=dbAdapter.executeQuery("select * from TblItem order by Id Desc");
 
 
         if (cursor != null && cursor.moveToFirst()) {
 
             while (!cursor.isAfterLast()) {
 
-                Cursor GetFirstImage=dbAdapter.ExecuteQ("select * from TblItemImages where FkItem="+cursor.getString(0));
+                Cursor GetFirstImage=dbAdapter.executeQuery("select * from TblItemImages where FkItem="+cursor.getString(0));
 
                 Bitmap bmp;
                 if (GetFirstImage.moveToFirst()) {

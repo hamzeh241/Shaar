@@ -59,7 +59,7 @@ public class UsersCarsListFragment extends CarBaseFragment implements View.OnCli
 
         linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_layout);
 
-        userId = new User(getActivity()).GetUserId();
+        userId = new User(getActivity()).getUserId();
 
         list = view.findViewById(R.id.usersCarsList);
         loading = view.findViewById(R.id.userCarsLoading);

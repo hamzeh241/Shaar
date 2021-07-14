@@ -48,10 +48,10 @@ public class List_SearchAdapter extends RecyclerView.Adapter<List_SearchAdapter.
         holder.Remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor Child=dbAdapter.ExecuteQ("delete from TblSearch where FkListSearch="+searches.get(position).getId());
+                Cursor Child=dbAdapter.executeQuery("delete from TblSearch where FkListSearch="+searches.get(position).getId());
                 Child.close();
 
-                Cursor Item=dbAdapter.ExecuteQ("delete from TblListSearch where Id="+searches.get(position).getId());
+                Cursor Item=dbAdapter.executeQuery("delete from TblListSearch where Id="+searches.get(position).getId());
                 Item.close();
                 dbAdapter.close();
 

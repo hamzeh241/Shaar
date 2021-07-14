@@ -70,7 +70,7 @@ public class Fragment_List_Search extends Fragment {
 
     void SetData(){
 
-        Cursor cursor=dbAdapter.ExecuteQ("select * from TblListSearch");
+        Cursor cursor=dbAdapter.executeQuery("select * from TblListSearch");
 
         CountItem.setText("تعداد آگهی: "+cursor.getCount());
         if (cursor!=null && cursor.moveToFirst()){

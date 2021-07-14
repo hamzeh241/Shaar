@@ -123,7 +123,7 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
 
         if (internet.HaveNetworkConnection()) {
 
-            Cursor GetSearch = dbAdapter.ExecuteQ("select * from TblLastSearch");
+            Cursor GetSearch = dbAdapter.executeQuery("select * from TblLastSearch");
 
             if (GetSearch != null && GetSearch.moveToLast()) {
 
@@ -174,7 +174,7 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
         Save_Search=view.findViewById(ir.tdaapp.diako.shaar.R.id.Save_Search);
         search = view.findViewById(R.id.img_btn_search_main);
         fab_add_home = view.findViewById(R.id.fab_add_home_main);
-        userId = new User(getContext()).GetUserId();
+        userId = new User(getContext()).getUserId();
     }
 
     void OnClick() {
@@ -217,7 +217,7 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
             @Override
             public void onClick(View v) {
 
-                if (new User(getContext()).GetUserId() == 0){
+                if (new User(getContext()).getUserId() == 0){
                     Toasty.info(getContext(),R.string.addAccuont,Toast.LENGTH_SHORT,false).show();
                     ((MainActivity)getActivity()).onAddFragment(new Fragment_Login_Home(),R.anim.fadein,R.anim.fadeout,true,Fragment_Login_Home.TAG);
                 }else {
@@ -265,7 +265,7 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
 
         if (vm_search.getPage() == 0) {
             //در اینجا تمامی آیتم ها در TblLastSearch حذف می شوند
-            Cursor RemoveAllItemInLastSearch = dbAdapter.ExecuteQ("delete from TblLastSearchSave");
+            Cursor RemoveAllItemInLastSearch = dbAdapter.executeQuery("delete from TblLastSearchSave");
             RemoveAllItemInLastSearch.close();
         }
 
@@ -302,7 +302,7 @@ public class Fragment_Resault_Search extends Fragment implements IBase {
                                 Special = 1;
 
                             //در اینجا آیتم ها در TblLastSearchSave ذخیره می شوند
-                            Cursor AddToLastSearch = dbAdapter.ExecuteQ("insert into TblLastSearchSave (Id,Title,Price,Area,Room,Age,Code,Address,Description,DateInsert,Special,Image,CountImage) values (" + res.getId() + ",'"+res.getDiscription()+"','" + res.getPrice() + "'," + res.getArea() + "," + res.getCountRoom() + ",1398,'Code','" + res.getAddress() + "','" + res.getDiscription() + "','" + res.getTime() + "'," + Special + ",'" + j.getString("Image") + "',"+res.getCountImage()+")");
+                            Cursor AddToLastSearch = dbAdapter.executeQuery("insert into TblLastSearchSave (Id,Title,Price,Area,Room,Age,Code,Address,Description,DateInsert,Special,Image,CountImage) values (" + res.getId() + ",'"+res.getDiscription()+"','" + res.getPrice() + "'," + res.getArea() + "," + res.getCountRoom() + ",1398,'Code','" + res.getAddress() + "','" + res.getDiscription() + "','" + res.getTime() + "'," + Special + ",'" + j.getString("Image") + "',"+res.getCountImage()+")");
                             AddToLastSearch.close();
 
                             if (CountItem == -1) {

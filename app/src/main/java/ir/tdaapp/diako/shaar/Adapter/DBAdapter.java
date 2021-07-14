@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import ir.tdaapp.diako.shaar.DataBase.DataBaseHelper;
+import ir.tdaapp.diako.shaar.ETC.User;
 
+import java.io.File;
 import java.io.IOException;
 
 public class DBAdapter {
@@ -17,30 +19,64 @@ public class DBAdapter {
     private SQLiteDatabase mDb;
     private final DataBaseHelper mDbHelper;
 
+    private OnDatabaseUpdate onDatabaseUpdate;
+
     public DBAdapter(Context context) {
         this.mContext = context;
         mDbHelper = new DataBaseHelper(mContext);
     }
 
-    public DBAdapter createDatabase() throws SQLException {
+    public DBAdapter(Context context, OnDatabaseUpdate onDatabaseUpdate) {
+        this.mContext = context;
+        mDbHelper = new DataBaseHelper(mContext);
+        this.onDatabaseUpdate = onDatabaseUpdate;
+    }
+
+    private DBAdapter createDatabase() throws SQLException {
         try {
             mDbHelper.createDataBase();
-        }
-        catch (IOException mIOException) {
+        } catch (IOException mIOException) {
             Log.e(TAG, mIOException.toString() + "  UnableToCreateDatabase");
             throw new Error("UnableToCreateDatabase");
         }
         return this;
     }
 
+    private boolean removeDatabase() {
+        boolean isRemoved;
+        File file = new File(mDbHelper.getDB_PATH());
+
+        if (!file.exists())
+            return true;
+
+        isRemoved = file.delete();
+
+        if (file.exists()) {
+            removeDatabase();
+        }
+
+        return isRemoved;
+    }
+
+    public void updateDatabase() {
+        User.UserModel model = new User(mContext).getUserInfo();
+        onDatabaseUpdate.onUserInfoSaved(model);
+
+        removeDatabase();
+        onDatabaseUpdate.onDatabaseDeleted();
+
+        createDatabase();
+        onDatabaseUpdate.onDatabaseCreated();
+    }
+
     public DBAdapter open() throws SQLException {
         try {
+
             mDbHelper.openDataBase();
-            mDbHelper.close();
+//            mDbHelper.close();
             mDb = mDbHelper.getReadableDatabase();
 
-        }
-        catch (SQLException mSQLException) {
+        } catch (SQLException mSQLException) {
             Log.e(TAG, "open >>" + mSQLException.toString());
             throw mSQLException;
         }
@@ -56,20 +92,19 @@ public class DBAdapter {
 
     public Cursor getData(String Query) {
         try {
-            Cursor mCur = mDb.rawQuery(Query,null);
-            if (mCur!=null) {
+            Cursor mCur = mDb.rawQuery(Query, null);
+            if (mCur != null) {
                 mCur.moveToNext();
             }
             return mCur;
-        }
-        catch (SQLException mSQLException) {
-            Log.e(TAG, "getTestData >>"+ mSQLException.toString());
-           // throw mSQLException;
+        } catch (SQLException mSQLException) {
+            Log.e(TAG, "getTestData >>" + mSQLException.toString());
+            // throw mSQLException;
             return null;
         }
     }
 
-    public Cursor ExecuteQ(String Q) {
+    public Cursor executeQuery(String Q) {
         final DBAdapter mDbHelper = new DBAdapter(mContext);
         mDbHelper.createDatabase();
 
@@ -79,8 +114,16 @@ public class DBAdapter {
         return _Cursor;
     }
 
-    public int gerVersion(){
-      return  mDbHelper.getVer();
+    public int getVersion() {
+        return mDbHelper.getVer();
+    }
+
+    public interface OnDatabaseUpdate {
+        void onUserInfoSaved(User.UserModel model);
+
+        void onDatabaseDeleted();
+
+        void onDatabaseCreated();
     }
 
 }

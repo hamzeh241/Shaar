@@ -83,7 +83,7 @@ public class Fragment_Save_Search extends Fragment {
                     progress.show();
 
                     //در اینجا بزرگترین id رو به دست می آوریم
-                    Cursor GetIdItem = dbAdapter.ExecuteQ("select MAX(Id) from TblListSearch");
+                    Cursor GetIdItem = dbAdapter.executeQuery("select MAX(Id) from TblListSearch");
                     int Id;
                     if (GetIdItem.getString(0) != null)
                         Id = Integer.parseInt(GetIdItem.getString(0)) + 1;
@@ -93,9 +93,9 @@ public class Fragment_Save_Search extends Fragment {
 
                     //در اینجا سردسته در دیتابیس ذخیره می شود
                     Date currentTime = Calendar.getInstance().getTime();
-                    Cursor cursor = dbAdapter.ExecuteQ("insert into TblListSearch (Id,Title,DateCreate) values (" + Id + ",'" + txt_TitleSave.getText().toString() + "','" + currentTime.toString() + "')");
+                    Cursor cursor = dbAdapter.executeQuery("insert into TblListSearch (Id,Title,DateCreate) values (" + Id + ",'" + txt_TitleSave.getText().toString() + "','" + currentTime.toString() + "')");
 
-                    Cursor GetListSearch = dbAdapter.ExecuteQ("select * from TblLastSearchSave");
+                    Cursor GetListSearch = dbAdapter.executeQuery("select * from TblLastSearchSave");
 
                     List<List_Home> homes = new ArrayList<>();
                     if (GetListSearch != null && GetListSearch.moveToFirst()) {
@@ -123,7 +123,7 @@ public class Fragment_Save_Search extends Fragment {
                         int Special = 0;
                         if (Boolean.valueOf(homes.get(i).isSpecial()))
                             Special = 1;
-                        Cursor AddToTblSave = dbAdapter.ExecuteQ("insert into TblSearch (Id,Title,Price,Area,Room,Age,Address,IsFavorit,FkLocation,DateInsert,Image,Special,FkListSearch) values (" + homes.get(i).getId() + ",'" + homes.get(i).getDiscription() + "','" + homes.get(i).getPrice() + "'," + Integer.parseInt(homes.get(i).getArea()) + "," + Integer.parseInt(homes.get(i).getCountRoom()) + ",0,'" + homes.get(i).getAddress() + "',0,0,'" + homes.get(i).getTime() + "','" + homes.get(i).getImage() + "'," + Special + "," + Id + ")");
+                        Cursor AddToTblSave = dbAdapter.executeQuery("insert into TblSearch (Id,Title,Price,Area,Room,Age,Address,IsFavorit,FkLocation,DateInsert,Image,Special,FkListSearch) values (" + homes.get(i).getId() + ",'" + homes.get(i).getDiscription() + "','" + homes.get(i).getPrice() + "'," + Integer.parseInt(homes.get(i).getArea()) + "," + Integer.parseInt(homes.get(i).getCountRoom()) + ",0,'" + homes.get(i).getAddress() + "',0,0,'" + homes.get(i).getTime() + "','" + homes.get(i).getImage() + "'," + Special + "," + Id + ")");
                         AddToTblSave.close();
                     }
 

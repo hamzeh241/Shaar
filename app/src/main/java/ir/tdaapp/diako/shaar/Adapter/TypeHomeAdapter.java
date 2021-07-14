@@ -122,7 +122,7 @@ public class TypeHomeAdapter extends RecyclerView.Adapter<TypeHomeAdapter.MyView
                 }
 
                 if (DA_Add_Home.TypeHome==31){
-                    Cursor locations=dbAdapter.ExecuteQ("select * from TblLocation ORDER BY Title");
+                    Cursor locations=dbAdapter.executeQuery("select * from TblLocation ORDER BY Title");
                     int positionSpiner=0;
 
                     locations.moveToFirst();

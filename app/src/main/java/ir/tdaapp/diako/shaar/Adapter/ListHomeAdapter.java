@@ -122,13 +122,13 @@ public class ListHomeAdapter extends RecyclerView.Adapter<ListHomeAdapter.MyView
                         Special=1;
 
                     String Query="insert into TblSearch (Id,Title,Price,Area,Room,Age,Address,IsFavorit,FkLocation,DateInsert,Image,Special) values ("+list_homes.get(position).getId()+",'"+list_homes.get(position).getDiscription()+"','"+list_homes.get(position).getPrice()+"',"+list_homes.get(position).getArea()+","+list_homes.get(position).getCountRoom()+",0,'"+list_homes.get(position).getAddress()+"',1,0,'"+list_homes.get(position).getTime()+"','"+list_homes.get(position).getImage()+"',"+Special+")";
-                    Cursor cursor=dbAdapter.ExecuteQ(Query);
+                    Cursor cursor=dbAdapter.executeQuery(Query);
                     holder.like.setImageResource(ir.tdaapp.diako.shaar.R.drawable.is_like);
                     cursor.close();
                     dbAdapter.close();
                     likes.add(new Like(list_homes.get(position).getId()));
                 }else{
-                    Cursor cursor=dbAdapter.ExecuteQ("delete from TblSearch where Id="+list_homes.get(position).getId());
+                    Cursor cursor=dbAdapter.executeQuery("delete from TblSearch where Id="+list_homes.get(position).getId());
                     holder.like.setImageResource(ir.tdaapp.diako.shaar.R.drawable.like);
                     cursor.close();
                     dbAdapter.close();
@@ -146,7 +146,7 @@ public class ListHomeAdapter extends RecyclerView.Adapter<ListHomeAdapter.MyView
 
     //در اینجا لیست آیتم های لایک شده در دیتابیس گرفته می شود
     void GetLikes(){
-        Cursor cursor=dbAdapter.ExecuteQ("select Id from TblSearch where IsFavorit=1");
+        Cursor cursor=dbAdapter.executeQuery("select Id from TblSearch where IsFavorit=1");
 
         if (cursor!=null && cursor.moveToFirst()){
             while (!cursor.isAfterLast()){

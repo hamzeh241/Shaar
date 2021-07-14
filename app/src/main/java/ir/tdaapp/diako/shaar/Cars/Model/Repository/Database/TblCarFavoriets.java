@@ -25,7 +25,7 @@ public class TblCarFavoriets {
     public List<Integer> getIds() {
         List<Integer> result = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ("select * from TblCarFavorites");
+        Cursor q = db.executeQuery("select * from TblCarFavorites");
 
         for (int i = 0; i < q.getCount(); i++) {
             try {
@@ -42,20 +42,20 @@ public class TblCarFavoriets {
     public void addFavorite(int itemId) {
         try {
             int id = Common.getId(db, "TblCarFavorites");
-            db.ExecuteQ("insert into TblCarFavorites (Id,ItemId) values (" + id + "," + itemId + ")");
+            db.executeQuery("insert into TblCarFavorites (Id,ItemId) values (" + id + "," + itemId + ")");
         } catch (Exception e) {
         }
     }
 
     public void deleteFavorite(int itemId){
         try {
-            db.ExecuteQ("delete from TblCarFavorites where ItemId="+itemId);
+            db.executeQuery("delete from TblCarFavorites where ItemId="+itemId);
         }catch (Exception e){}
     }
 
     public boolean checkState(int itemId){
         try {
-            Cursor q=db.ExecuteQ("select count(ItemId) from TblCarFavorites where ItemId="+itemId);
+            Cursor q=db.executeQuery("select count(ItemId) from TblCarFavorites where ItemId="+itemId);
             if (q.getString(0) != null) {
                 return q.getInt(0) > 0;
             } else {

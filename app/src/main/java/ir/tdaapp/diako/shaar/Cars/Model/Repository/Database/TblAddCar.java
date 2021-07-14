@@ -23,7 +23,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getBrands() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" select * from TblBrand where ParentId IS NULL");
+        Cursor q = db.executeQuery(" select * from TblBrand where ParentId IS NULL");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -42,7 +42,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getModels(int parentId) {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" select * from TblBrand where ParentId=" + parentId);
+        Cursor q = db.executeQuery(" select * from TblBrand where ParentId=" + parentId);
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -61,7 +61,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getEngineStatus() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" Select * from TblEngineStatus");
+        Cursor q = db.executeQuery(" Select * from TblEngineStatus");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -80,7 +80,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getChassisStatus() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" Select * from TblChassisCondition");
+        Cursor q = db.executeQuery(" Select * from TblChassisCondition");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -99,7 +99,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getBodyConditions() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" Select * from TblBodyCondition");
+        Cursor q = db.executeQuery(" Select * from TblBodyCondition");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -118,7 +118,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getInsuranceDeadlines() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" Select * from TblInsuranceDeadline");
+        Cursor q = db.executeQuery(" Select * from TblInsuranceDeadline");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -137,7 +137,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getGearboxes() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" Select * from TblGearbox");
+        Cursor q = db.executeQuery(" Select * from TblGearbox");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -156,7 +156,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getDocuments() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" Select * from TblDocument");
+        Cursor q = db.executeQuery(" Select * from TblDocument");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -175,7 +175,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getSellType() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" Select * from TblHowToSell");
+        Cursor q = db.executeQuery(" Select * from TblHowToSell");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -194,7 +194,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getConstructionYears() {
         List<AddItemEntryModel> results = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ(" Select * from TblYearOfConstruction");
+        Cursor q = db.executeQuery(" Select * from TblYearOfConstruction");
 
         for (int i = 0; i < q.getCount(); i++) {
 
@@ -213,7 +213,7 @@ public class TblAddCar {
     public List<AddItemEntryModel> getColorCar() {
         List<AddItemEntryModel> result = new ArrayList<>();
 
-        Cursor q = db.ExecuteQ("Select * from TblColorCar");
+        Cursor q = db.executeQuery("Select * from TblColorCar");
 
         for (int i = 0; i < q.getCount(); i++) {
 

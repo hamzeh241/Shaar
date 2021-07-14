@@ -93,7 +93,7 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.MyViewHolder
         holder.remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor del = dbAdapter.ExecuteQ("delete from TblItem where Id=" + values.get(position).getId());
+                Cursor del = dbAdapter.executeQuery("delete from TblItem where Id=" + values.get(position).getId());
                 values.remove(position);
                 notifyDataSetChanged();
             }
@@ -122,7 +122,7 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.MyViewHolder
         //در اینجا progressbar لودینگ نمایش داده می شود
         progress.setVisibility(View.VISIBLE);
 
-        Cursor cursor = dbAdapter.ExecuteQ("select * from TblItem where Id=" + values.get(position).getId());
+        Cursor cursor = dbAdapter.executeQuery("select * from TblItem where Id=" + values.get(position).getId());
 
         MyType myType = GetTypeHomeName(Integer.parseInt(cursor.getString(0)));
 
@@ -176,7 +176,7 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.MyViewHolder
 
 
         int PositionLocation = 0;
-        Cursor cursor2 = dbAdapter.ExecuteQ("select * from TblLocation ORDER BY Title");
+        Cursor cursor2 = dbAdapter.executeQuery("select * from TblLocation ORDER BY Title");
         if (cursor2 != null && cursor2.moveToFirst()) {
             while (!cursor2.isAfterLast()) {
 
@@ -193,7 +193,7 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.MyViewHolder
 
         DA_Add_Home.cmb_Year_of_construction = 1405 - Integer.parseInt(cursor.getString(8));
 
-        Cursor ItemFeatures = dbAdapter.ExecuteQ("select * from TblItemFeatuers where FkItem=" + cursor.getString(0));
+        Cursor ItemFeatures = dbAdapter.executeQuery("select * from TblItemFeatuers where FkItem=" + cursor.getString(0));
 
         DA_Add_Home.booleans = new ArrayList<>();
         DA_Add_Home.selects = new ArrayList<>();
@@ -221,7 +221,7 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.MyViewHolder
                     int Id = Integer.parseInt(ItemFeatures.getString(2));
                     String Val = ItemFeatures.getString(5);
                     int Position = 0;
-                    Cursor GetPosition = dbAdapter.ExecuteQ("select [Option] from TblFeatures where Id=" + Id);
+                    Cursor GetPosition = dbAdapter.executeQuery("select [Option] from TblFeatures where Id=" + Id);
                     if (GetPosition != null && GetPosition.moveToFirst()) {
                         String c = GetPosition.getString(0);
                         String[] DataArray = c.split(",");
@@ -256,7 +256,7 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.MyViewHolder
     MyType GetTypeHomeName(int id) {
         List<Type_Home> lst = new ArrayList<>();
         MyType myType = new MyType();
-        Cursor cursor = dbAdapter.ExecuteQ("select TblType.Id,TblType.Titel,TblType.ParentId from TblType inner join TblItem on TblType.Id=TblItem.FkType where TblItem.Id=" + id);
+        Cursor cursor = dbAdapter.executeQuery("select TblType.Id,TblType.Titel,TblType.ParentId from TblType inner join TblItem on TblType.Id=TblItem.FkType where TblItem.Id=" + id);
         if (cursor != null && cursor.moveToFirst()) {
             myType.Id = Integer.parseInt(cursor.getString(0));
             myType.Title = cursor.getString(1);
@@ -265,7 +265,7 @@ public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.MyViewHolder
         cursor.close();
 
         if (myType.ParentId != 0) {
-            Cursor c = dbAdapter.ExecuteQ("SELECT Id from TblType where Id=" + myType.ParentId);
+            Cursor c = dbAdapter.executeQuery("SELECT Id from TblType where Id=" + myType.ParentId);
             if (c != null && c.moveToFirst()) {
                 myType.GetParentId = Integer.parseInt(c.getString(0));
             }

@@ -138,10 +138,10 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
           viewModel.setInstagramId(instaId.getText().toString());
           viewModel.setTel1(tel1.getText().toString());
           viewModel.setTel2(tel2.getText().toString());
-          viewModel.setUserId(new User(getActivity()).GetUserId());
+          viewModel.setUserId(new User(getActivity()).getUserId());
           viewModel.setImages(images);
           viewModel.setFilterId(((CategoryDetailsChipModel) filter.getSelectedItem()).getId());
-          viewModel.setUserId(new User(getContext()).GetUserId());
+          viewModel.setUserId(new User(getContext()).getUserId());
           presenter.sendDetails(viewModel);
         }
         break;

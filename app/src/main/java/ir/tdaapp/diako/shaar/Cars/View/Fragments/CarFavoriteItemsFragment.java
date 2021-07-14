@@ -54,7 +54,7 @@ public class CarFavoriteItemsFragment extends CarBaseFragment implements View.On
         recyclerView = view.findViewById(R.id.recyclear_favorite_car);
         loading = view.findViewById(R.id.car_favorite_loading);
         brn_back = view.findViewById(R.id.imageButton_favorite_car);
-        userId = new User(getContext()).GetUserId();
+        userId = new User(getContext()).getUserId();
         linearLayoutNoItemMessage = view.findViewById(R.id.no_item_messag_car_fav);
         linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_car_fav);
     }

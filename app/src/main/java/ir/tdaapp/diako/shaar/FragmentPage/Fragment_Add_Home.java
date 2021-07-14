@@ -149,7 +149,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
     FindItem(view);
     dbAdapter = new DBAdapter(getActivity());
 
-    int HaveAccount = new User(getActivity()).GetUserId();
+    int HaveAccount = new User(getActivity()).getUserId();
 
     if (HaveAccount == 0) {
       ((MainActivity)getActivity()).onAddFragment(new Fragment_Login_Home(),0,0,true,Fragment_Login_Home.TAG);
@@ -311,7 +311,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
     List<Type_Home> lst = new ArrayList<>();
     int Id;
     if (type == 1) {
-      Cursor cursor = dbAdapter.ExecuteQ("select * from TblType where ParentId=1");
+      Cursor cursor = dbAdapter.executeQuery("select * from TblType where ParentId=1");
       if (cursor != null && cursor.moveToFirst()) {
         while (!cursor.isAfterLast()) {
           Id = Integer.parseInt(cursor.getString(0));
@@ -325,7 +325,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
       dbAdapter.close();
       return lst;
     } else if (type == 2) {
-      Cursor cursor = dbAdapter.ExecuteQ("select * from TblType where ParentId=2");
+      Cursor cursor = dbAdapter.executeQuery("select * from TblType where ParentId=2");
       if (cursor != null && cursor.moveToFirst()) {
         while (!cursor.isAfterLast()) {
           Id = Integer.parseInt(cursor.getString(0));
@@ -339,7 +339,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
       dbAdapter.close();
       return lst;
     } else {
-      Cursor cursor = dbAdapter.ExecuteQ("select * from TblType where ParentId=32");
+      Cursor cursor = dbAdapter.executeQuery("select * from TblType where ParentId=32");
       if (cursor != null && cursor.moveToFirst()) {
         while (!cursor.isAfterLast()) {
           Id = Integer.parseInt(cursor.getString(0));
@@ -981,7 +981,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
     //در اینجا مقادیر اسپینر موقعیت set می شوند
 
 
-    Cursor cursor = dbAdapter.ExecuteQ("select * from TblLocation ORDER BY Title");
+    Cursor cursor = dbAdapter.executeQuery("select * from TblLocation ORDER BY Title");
     if (cursor != null && cursor.moveToFirst()) {
       while (!cursor.isAfterLast()) {
         locations.add(new Location(Integer.parseInt(cursor.getString(0)), cursor.getString(1)));
@@ -1105,7 +1105,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
     final int FkLocation = locationId;
 
-    final int FkUser = new User(getActivity()).GetUserId();
+    final int FkUser = new User(getActivity()).getUserId();
 
     final List<VM_ItemFeature> itemFeatures = new ArrayList<>();
 
@@ -1229,9 +1229,9 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
               //در اینجا اگر کاربر از صفحه املاک من دکمه ویرایش را فشار داده باشد و وارد این صفحه شده باشد آن آیتم در sqlite حذف خواهد شد
               if (DA_Add_Home.ItemId != 0) {
-                Cursor Remove_ItemFeatures = dbAdapter.ExecuteQ("delete from TblItemFeatuers where FkItem=" + DA_Add_Home.ItemId);
-                Cursor Remove_Images = dbAdapter.ExecuteQ("delete from TblItemImages where FkItem=" + DA_Add_Home.ItemId);
-                Cursor Remove_Item = dbAdapter.ExecuteQ("delete from TblItem where Id=" + DA_Add_Home.ItemId);
+                Cursor Remove_ItemFeatures = dbAdapter.executeQuery("delete from TblItemFeatuers where FkItem=" + DA_Add_Home.ItemId);
+                Cursor Remove_Images = dbAdapter.executeQuery("delete from TblItemImages where FkItem=" + DA_Add_Home.ItemId);
+                Cursor Remove_Item = dbAdapter.executeQuery("delete from TblItem where Id=" + DA_Add_Home.ItemId);
                 Remove_Images.close();
                 Remove_Item.close();
                 Remove_ItemFeatures.close();
@@ -1292,7 +1292,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show();
 
-        int FkUser = new User(getActivity()).GetUserId();
+        int FkUser = new User(getActivity()).getUserId();
 
         if (FkUser != 0) {
 
@@ -1409,9 +1409,9 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
           //در اینجا در صفحه املاک من دکمه ویرایش را فشار می دهد در اینجا آیتم مورد نظر کاربر حذف می شود
           if (DA_Add_Home.ItemId != 0) {
-            Cursor Remove_ItemFeatures = dbAdapter.ExecuteQ("delete from TblItemFeatuers where FkItem=" + DA_Add_Home.ItemId);
-            Cursor Remove_Images = dbAdapter.ExecuteQ("delete from TblItemImages where FkItem=" + DA_Add_Home.ItemId);
-            Cursor Remove_Item = dbAdapter.ExecuteQ("delete from TblItem where Id=" + DA_Add_Home.ItemId);
+            Cursor Remove_ItemFeatures = dbAdapter.executeQuery("delete from TblItemFeatuers where FkItem=" + DA_Add_Home.ItemId);
+            Cursor Remove_Images = dbAdapter.executeQuery("delete from TblItemImages where FkItem=" + DA_Add_Home.ItemId);
+            Cursor Remove_Item = dbAdapter.executeQuery("delete from TblItem where Id=" + DA_Add_Home.ItemId);
             Remove_Images.close();
             Remove_Item.close();
             Remove_ItemFeatures.close();
@@ -1419,7 +1419,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
           }
 
           //در اینجا بزرگترین id رو به دست می آوریم
-          Cursor GetIdItem = dbAdapter.ExecuteQ("select MAX(Id) from TblItem");
+          Cursor GetIdItem = dbAdapter.executeQuery("select MAX(Id) from TblItem");
 
           int IdItem;
           if (GetIdItem.getString(0) != null)
@@ -1427,13 +1427,13 @@ public class Fragment_Add_Home extends Fragment implements IBase {
           else
             IdItem = 1;
 
-          Cursor AddItem = dbAdapter.ExecuteQ("insert into TblItem('Id','Title','Price','Area','CellPhone','Tel','VideoUrl','Room','Age','Code','Address','enumTarget','enumKind','FkType','FkLocation','FkUser','FkUserPro','MapLocation','Description','Mortgage') values (" + IdItem + ",'" + Title + "','" + Price + "'," + Area + ",'" + CellPhone + "','" + Tel + "','" + VideoUrl + "'," + Room + "," + Age + ",'" + Code + "','" + Address + "'," + enumTarget + "," + enumKind + "," + FkType + "," + FkLocation + "," + FkUser + ",null,null,'" + Discription + "','" + Mortgage + "')");
+          Cursor AddItem = dbAdapter.executeQuery("insert into TblItem('Id','Title','Price','Area','CellPhone','Tel','VideoUrl','Room','Age','Code','Address','enumTarget','enumKind','FkType','FkLocation','FkUser','FkUserPro','MapLocation','Description','Mortgage') values (" + IdItem + ",'" + Title + "','" + Price + "'," + Area + ",'" + CellPhone + "','" + Tel + "','" + VideoUrl + "'," + Room + "," + Age + ",'" + Code + "','" + Address + "'," + enumTarget + "," + enumKind + "," + FkType + "," + FkLocation + "," + FkUser + ",null,null,'" + Discription + "','" + Mortgage + "')");
           AddItem.close();
 
           //در اینجا آدرس عکس هارا در دیتابیس ذخیره می کنیم
           //در اینجا بزرگترین id رو به دست می آوریم
 
-          Cursor GetIdImage = dbAdapter.ExecuteQ("select Max(Id) from TblItemImages");
+          Cursor GetIdImage = dbAdapter.executeQuery("select Max(Id) from TblItemImages");
           int IdImage;
 
           if (GetIdImage.getString(0) != null)
@@ -1443,7 +1443,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
           for (int i = 0; i < Images.size(); i++) {
 
-            Cursor AddImage = dbAdapter.ExecuteQ("insert into TblItemImages ('Id','ImageUrl','FkItem') values (" + IdImage + ",'" + Images.get(i) + "'," + IdItem + ")");
+            Cursor AddImage = dbAdapter.executeQuery("insert into TblItemImages ('Id','ImageUrl','FkItem') values (" + IdImage + ",'" + Images.get(i) + "'," + IdItem + ")");
             AddImage.close();
             IdImage++;
           }
@@ -1452,7 +1452,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
           //در اینجا بزرگترین id رو به دست می آوریم
 
-          Cursor GetIdFeature = dbAdapter.ExecuteQ("select Max(Id) from TblItemFeatuers");
+          Cursor GetIdFeature = dbAdapter.executeQuery("select Max(Id) from TblItemFeatuers");
           int IdFeature;
           if (GetIdFeature.getString(0) != null)
             IdFeature = Integer.parseInt(GetIdFeature.getString(0)) + 1;
@@ -1461,7 +1461,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
           for (int i = 0; i < itemFeatures.size(); i++) {
 
-            Cursor AddFeature = dbAdapter.ExecuteQ("insert into TblItemFeatuers ('Id','FkItem','FkFeatures','FkFormat','Titel','Value') values (" + IdFeature + "," + IdItem + "," + itemFeatures.get(i).getFkFeatures() + "," + itemFeatures.get(i).getFkFormat() + ",'','" + itemFeatures.get(i).getValue() + "')");
+            Cursor AddFeature = dbAdapter.executeQuery("insert into TblItemFeatuers ('Id','FkItem','FkFeatures','FkFormat','Titel','Value') values (" + IdFeature + "," + IdItem + "," + itemFeatures.get(i).getFkFeatures() + "," + itemFeatures.get(i).getFkFormat() + ",'','" + itemFeatures.get(i).getValue() + "')");
             AddFeature.close();
             IdFeature++;
           }
@@ -1489,7 +1489,7 @@ public class Fragment_Add_Home extends Fragment implements IBase {
 
   //این متد برای زمانی که کاربر می خواهد منزل خودر ویرایش کند عکس های رو که قبلا ذخیره کرده در recycler مربوط به عکس ها نمایش داده می شود
   void SetImage() {
-    Cursor ImageList = dbAdapter.ExecuteQ("select * from TblItemImages where FkItem=" + DA_Add_Home.ItemId);
+    Cursor ImageList = dbAdapter.executeQuery("select * from TblItemImages where FkItem=" + DA_Add_Home.ItemId);
     if (ImageList != null && ImageList.moveToFirst()) {
       while (!ImageList.isAfterLast()) {
         File sdCardDirectory = Environment.getExternalStorageDirectory();

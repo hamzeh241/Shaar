@@ -82,7 +82,7 @@ public class Fragment_Child_Search_List extends Fragment {
 
         if (Type!=0){
 
-            Cursor cursor=dbAdapter.ExecuteQ("select * from TblSearch where FkListSearch="+Type);
+            Cursor cursor=dbAdapter.executeQuery("select * from TblSearch where FkListSearch="+Type);
 
             CountItem.setText("تعداد آگهی: "+cursor.getCount());
 

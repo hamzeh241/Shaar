@@ -63,7 +63,7 @@ public class CategoryFavoriteItemsFragmentCityGuide extends CityGuideBaseFragmen
 
         list = view.findViewById(R.id.favoriteItemsList);
         loading = view.findViewById(R.id.favoritesLoading);
-        userId = new User(getContext()).GetUserId();
+        userId = new User(getContext()).getUserId();
 
         back = view.findViewById(R.id.imageButton);
         linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_guide_fav);

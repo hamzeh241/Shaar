@@ -247,17 +247,17 @@ public class Fragment_SMS_Panel extends Fragment implements IBase {
                     public void onResponse(JSONObject response) {
                         try {
 
-                            Cursor cursor = dbAdapter.ExecuteQ("select * from TblUser");
+                            Cursor cursor = dbAdapter.executeQuery("select * from TblUser");
                             if (cursor != null && cursor.moveToFirst()) {
                                 int a = cursor.getCount();
                                 if (a > 0) {
-                                    dbAdapter.ExecuteQ("delete from TblUser");
+                                    dbAdapter.executeQuery("delete from TblUser");
                                     dbAdapter.close();
                                 }
                             }
                             cursor.close();
                             String AddUser = "insert into TblUser ('Id','FullName','Email','CellPhone') values ('" + response.getString("Id") + "','" + response.getString("FullName") + "','" + response.getString("Email") + "','" + CellPhone + "')";
-                            dbAdapter.ExecuteQ(AddUser);
+                            dbAdapter.executeQuery(AddUser);
                             dbAdapter.close();
                             timer.cancel();
                             progress.dismiss();

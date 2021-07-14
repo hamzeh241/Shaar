@@ -42,7 +42,7 @@ import java.math.BigInteger;
 
 public class Fragment_Home extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String TAG="Fragment_Home";
+    public static final String TAG = "Fragment_Home";
 
     ImageView AddHouse, Car, b_information;
     TextView txt_AddHouse, txt_car, txt_NewHome;
@@ -63,8 +63,6 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 //        LinkedList.My_Linked.SetExit(2);
 
         FindItem(view);
-
-
 
         mtoolbar.setTitle("");
 
@@ -187,9 +185,9 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         Bundle bundle = new Bundle();
         bundle.putInt("Type", 1);
 //        Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getContext(), bundle);
-        Fragment_Resault_Search fragment_resault_search=new Fragment_Resault_Search();
+        Fragment_Resault_Search fragment_resault_search = new Fragment_Resault_Search();
         fragment_resault_search.setArguments(bundle);
-        ((MainActivity)getActivity()).onAddFragment(fragment_resault_search,0,0,true,Fragment_Resault_Search.TAG);
+        ((MainActivity) getActivity()).onAddFragment(fragment_resault_search, 0, 0, true, Fragment_Resault_Search.TAG);
     }
 
     //در اینجا داده های که کاربر وارد کرده در دیتابیس ذخیره می شوند
@@ -202,18 +200,18 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         String MinArea = String.valueOf(vm_search.getMinArea());
         String MaxArea = String.valueOf(vm_search.getMaxArea());
 
-        Cursor RemoveFromLastSearch = dbAdapter.ExecuteQ("delete from TblLastSearch");
+        Cursor RemoveFromLastSearch = dbAdapter.executeQuery("delete from TblLastSearch");
         RemoveFromLastSearch.close();
 
         //در اینجا بزرگترین Id را به دست می اوریم
-        Cursor GetId = dbAdapter.ExecuteQ("select Max(Id) from TblLastSearch");
+        Cursor GetId = dbAdapter.executeQuery("select Max(Id) from TblLastSearch");
         int Id;
         if (GetId.getString(0) != null)
             Id = Integer.parseInt(GetId.getString(0)) + 1;
         else
             Id = 1;
 
-        Cursor Insert = dbAdapter.ExecuteQ("insert into TblLastSearch (Id,EnumTarget,FullMortgage,FullPrice,LocationId,MaxArea,MaxMortgage,MaxPrice,MinArea,MinMortgage,MinPrice,Room,TypeHomeId) values (" + Id + "," + vm_search.getTarget() + ",'" + vm_search.isFullMortgage() + "','" + vm_search.isFullRent() + "'," + vm_search.getLocationId() + "," + MaxArea + "," + MaxMortgage + "," + MaxPrice + "," + MinArea + "," + MinMortgage + "," + MinPrice + "," + vm_search.getCountRoom() + "," + vm_search.getTypeHome() + ")");
+        Cursor Insert = dbAdapter.executeQuery("insert into TblLastSearch (Id,EnumTarget,FullMortgage,FullPrice,LocationId,MaxArea,MaxMortgage,MaxPrice,MinArea,MinMortgage,MinPrice,Room,TypeHomeId) values (" + Id + "," + vm_search.getTarget() + ",'" + vm_search.isFullMortgage() + "','" + vm_search.isFullRent() + "'," + vm_search.getLocationId() + "," + MaxArea + "," + MaxMortgage + "," + MaxPrice + "," + MinArea + "," + MinMortgage + "," + MinPrice + "," + vm_search.getCountRoom() + "," + vm_search.getTypeHome() + ")");
         Insert.close();
         GetId.close();
         dbAdapter.close();
@@ -224,15 +222,15 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         switch (item.getItemId()) {
             case ir.tdaapp.diako.shaar.R.id.navigation_LogIn:
 //                Stack_Back.MyStack_Back.Push("Fragment_Login_Home", getActivity());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_Login_Home(),0,0,true,Fragment_Login_Home.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_Login_Home(), 0, 0, true, Fragment_Login_Home.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_MyHome:
 //                Stack_Back.MyStack_Back.Push("Fragment_MyHome", getActivity());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_MyHome(),0,0,true,Fragment_MyHome.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_MyHome(), 0, 0, true, Fragment_MyHome.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_LastSearch:
 //                Stack_Back.MyStack_Back.Push("Fragment_LastSearch", getActivity());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_LastSearch(),0,0,true,Fragment_LastSearch.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_LastSearch(), 0, 0, true, Fragment_LastSearch.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_Home:
                 drawerLayout.closeDrawers();
@@ -243,20 +241,20 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 //                break;
             case ir.tdaapp.diako.shaar.R.id.navigation_AddHome:
 //                Stack_Back.MyStack_Back.Push("Fragment_Add_Home", getContext());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_Add_Home(),0,0,true,Fragment_Add_Home.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_Add_Home(), 0, 0, true, Fragment_Add_Home.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_Like:
 //                Stack_Back.MyStack_Back.Push("Fragment_Like_Home", getContext());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_Like_Home(),0,0,true,Fragment_Like_Home.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_Like_Home(), 0, 0, true, Fragment_Like_Home.TAG);
                 break;
             case ir.tdaapp.diako.shaar.R.id.navigation_SearchSaved:
 //                Stack_Back.MyStack_Back.Push("Fragment_List_Search", getContext());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_List_Search(),0,0,true,Fragment_List_Search.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_List_Search(), 0, 0, true, Fragment_List_Search.TAG);
                 break;
 
             case ir.tdaapp.diako.shaar.R.id.navigation_AboutMe:
 //                Stack_Back.MyStack_Back.Push("Fragment_About_Me", getContext());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_About_Me(),0,0,true,Fragment_About_Me.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_About_Me(), 0, 0, true, Fragment_About_Me.TAG);
                 break;
 
             case R.id.navigation_carFavorite:
@@ -311,14 +309,14 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 
             case ir.tdaapp.diako.shaar.R.id.navigation_CallMe:
 //                Stack_Back.MyStack_Back.Push("Fragment_Call_Me", getContext());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_Call_Me(),0,0,true,Fragment_Call_Me.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_Call_Me(), 0, 0, true, Fragment_Call_Me.TAG);
                 break;
         }
         return true;
     }
 
     public void HidenItemNavigation() {
-        Cursor cursor = dbAdapter.ExecuteQ("select * from TblUser");
+        Cursor cursor = dbAdapter.executeQuery("select * from TblUser");
         if (cursor != null && cursor.moveToFirst()) {
             int a = cursor.getCount();
             if (a > 0) {
@@ -339,7 +337,7 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         TextView txt_Name = view.findViewById(ir.tdaapp.diako.shaar.R.id.lblName_NavigationMenu);
         final RelativeLayout btn_NewAccount = view.findViewById(ir.tdaapp.diako.shaar.R.id.BtnNewAccount_NavigationMenu);
 
-        Cursor cursor = dbAdapter.ExecuteQ("select * from TblUser");
+        Cursor cursor = dbAdapter.executeQuery("select * from TblUser");
 
         if (cursor != null && cursor.moveToFirst()) {
             int a = cursor.getCount();
@@ -363,7 +361,7 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             public void onClick(View view) {
                 btn_NewAccount.setBackground(getResources().getDrawable(ir.tdaapp.diako.shaar.R.drawable.stroke_new_account_nav2));
 //                Stack_Back.MyStack_Back.Push("Fragment_Add_Account", getActivity());
-                ((MainActivity)getActivity()).onAddFragment(new Fragment_Add_Account(),0,0,true,Fragment_Add_Account.TAG);
+                ((MainActivity) getActivity()).onAddFragment(new Fragment_Add_Account(), 0, 0, true, Fragment_Add_Account.TAG);
             }
         });
     }

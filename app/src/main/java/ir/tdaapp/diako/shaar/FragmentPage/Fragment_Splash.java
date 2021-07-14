@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AlertDialog;
 
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,11 +32,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 
+import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Internet;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
+import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.Enum.ForcedUpdate;
 import ir.tdaapp.diako.shaar.Interface.IBase;
 import ir.tdaapp.diako.shaar.MainActivity;
@@ -45,9 +49,9 @@ import ir.tdaapp.diako.shaar.R;
  * Created by Diako on 7/25/2019.
  */
 
-public class Fragment_Splash extends Fragment implements IBase {
+public class Fragment_Splash extends Fragment implements IBase, DBAdapter.OnDatabaseUpdate {
 
-    public static final String TAG="Fragment_Splash";
+    public static final String TAG = "Fragment_Splash";
     ImageView logo_Shaar, shaar, CityInYourHand;
     TextView lbl_Text;
     ProgressBar ProgressBar;
@@ -55,9 +59,10 @@ public class Fragment_Splash extends Fragment implements IBase {
     ForcedUpdate forcedUpdate = ForcedUpdate.ItIsNotNecessary;
     DBAdapter dbAdapter;
     Internet internet;
-    Handler handler_logo_Shaar,handler_Shaar,handler_CityInYourHand,handler_lbl_Text,handler;
+    Handler handler_logo_Shaar, handler_Shaar, handler_CityInYourHand, handler_lbl_Text, handler;
     RequestQueue requestQueue;
 
+    User.UserModel tempModel;
 
     @Nullable
     @Override
@@ -66,11 +71,59 @@ public class Fragment_Splash extends Fragment implements IBase {
 
         FindItem(view);
 
-        ShowItem();
+        User.UserModel model = new User(getContext()).getUserInfo();
+
+        if (getDatabaseVersion() < 7) {
+            clearApplicationData();
+
+            if (model.getId() != 0)
+                AppController.handler().postDelayed(() -> {
+                    new User(getActivity()).addUser(model);
+                    ((MainActivity) getActivity()).onAddFragment(new Fragment_Home(), 0, 0, false, Fragment_Home.TAG);
+                }, 500);
+
+        }
+        showItem();
+
 
         return view;
     }
 
+    private void updateDatabase() {
+        new Thread(() ->
+                dbAdapter.updateDatabase()).start();
+    }
+
+    private int getDatabaseVersion() {
+        Cursor cursor = dbAdapter.executeQuery("PRAGMA user_version");
+        int version = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                version = Integer.parseInt(cursor.getString(0));
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        dbAdapter.close();
+        return (version - 1);
+    }
+
+    @Override
+    public void onUserInfoSaved(User.UserModel model) {
+        tempModel = model;
+    }
+
+    @Override
+    public void onDatabaseDeleted() {
+        Log.i(TAG, "database removed");
+    }
+
+    @Override
+    public void onDatabaseCreated() {
+        new User(getActivity()).addUser(tempModel);
+
+
+    }
 
 //    @Override
 //    public void onPause() {
@@ -100,11 +153,12 @@ public class Fragment_Splash extends Fragment implements IBase {
         CityInYourHand = view.findViewById(R.id.CityInYourHand);
         lbl_Text = view.findViewById(R.id.lbl_Text);
         ProgressBar = view.findViewById(R.id.ProgressBar);
-        dbAdapter = new DBAdapter(getActivity());
+        dbAdapter = new DBAdapter(getContext(), this);
         internet = new Internet(getContext());
+
     }
 
-    void ShowItem() {
+    void showItem() {
         try {
 
             handler_logo_Shaar = new Handler();
@@ -170,7 +224,7 @@ public class Fragment_Splash extends Fragment implements IBase {
         //در اینجا آی دی کاربر خوانده می شود
         int IdUser = 0;
         try {
-            Cursor User = dbAdapter.ExecuteQ("SELECT Id FROM TblUser LIMIT 1");
+            Cursor User = dbAdapter.executeQuery("SELECT Id FROM TblUser LIMIT 1");
             if (User.moveToFirst()) {
                 IdUser = Integer.valueOf(User.getString(0));
             }
@@ -190,7 +244,7 @@ public class Fragment_Splash extends Fragment implements IBase {
                 final boolean ClearCatch = VersionApp.getBoolean("ClearCatche");
 
 
-                Cursor Setting = dbAdapter.ExecuteQ("SELECT Version,Exter1 FROM TblSetting LIMIT 1");
+                Cursor Setting = dbAdapter.executeQuery("SELECT Version,Exter1 FROM TblSetting LIMIT 1");
 
                 //در اینجا ورژن ها در گوشی کاربر خوانده می شود
                 float MyVersionApp = Float.valueOf(Setting.getString(0));
@@ -268,7 +322,7 @@ public class Fragment_Splash extends Fragment implements IBase {
                                         GoToUpdate(TypeToUpdate, Url2);
 
 //                                        Stack_Back.MyStack_Back.Push("Fragment_Home", getContext());
-                                        ((MainActivity)getActivity()).onAddFragment(new Fragment_Home(),0,0,false,Fragment_Home.TAG);
+                                        ((MainActivity) getActivity()).onAddFragment(new Fragment_Home(), 0, 0, false, Fragment_Home.TAG);
                                     }
                                 })
                                 .setNegativeButton(R.string.NotNo, (dialogInterface, i) -> SetVersionSql(VersionSqls, MyVersionSql))
@@ -302,7 +356,7 @@ public class Fragment_Splash extends Fragment implements IBase {
                                 shaar.setVisibility(View.GONE);
                                 CityInYourHand.setVisibility(View.GONE);
                                 lbl_Text.setVisibility(View.GONE);
-                                ShowItem();
+                                showItem();
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -318,7 +372,7 @@ public class Fragment_Splash extends Fragment implements IBase {
                                 shaar.setVisibility(View.GONE);
                                 CityInYourHand.setVisibility(View.GONE);
                                 lbl_Text.setVisibility(View.GONE);
-                                ShowItem();
+                                showItem();
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -411,7 +465,7 @@ public class Fragment_Splash extends Fragment implements IBase {
                 //در اینجا اگر ورژن اسکیوال ارسال شده از سمت سرور از ورژن فعلی کاربر بزرگتر باشد کویری ارسال شده در دیتابیس ست می شود
                 if (version > MyVersionSql) {
                     try {
-                        dbAdapter.ExecuteQ(object.getString("Query"));
+                        dbAdapter.executeQuery(object.getString("Query"));
                     } catch (Exception e) {
 
                     }
@@ -420,13 +474,14 @@ public class Fragment_Splash extends Fragment implements IBase {
 
             //در اینجا ورژن اسکیوال در دیتابیس ویرایش می شود
             if (version > MyVersionSql) {
-                dbAdapter.ExecuteQ("update TblSetting set Exter1=" + version);
+                dbAdapter.executeQuery("update TblSetting set Exter1=" + version);
             }
 
             ProgressBar.setVisibility(View.INVISIBLE);
 
 //            Stack_Back.MyStack_Back.Push("Fragment_Home", getContext());
-            ((MainActivity)getActivity()).onAddFragment(new Fragment_Home(),0,0,false,Fragment_Home.TAG);
+            ((MainActivity) getActivity()).onAddFragment(new Fragment_Home(), 0, 0, false, Fragment_Home.TAG);
         }
     }
+
 }

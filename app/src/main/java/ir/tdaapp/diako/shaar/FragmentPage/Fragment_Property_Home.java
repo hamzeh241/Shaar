@@ -110,7 +110,7 @@ public class Fragment_Property_Home extends Fragment {
     // در اینجا داده ها درون اسپینر set می شوند
     void SetDataSpinner() {
 
-        Cursor cursor = dbAdapter.ExecuteQ("select * from TblFeatures where TblFeatures.FkFormat=4");
+        Cursor cursor = dbAdapter.executeQuery("select * from TblFeatures where TblFeatures.FkFormat=4");
 
         if (cursor != null && cursor.moveToFirst()) {
             for (int i = 0; i < cursor.getCount(); i++) {
@@ -319,7 +319,7 @@ public class Fragment_Property_Home extends Fragment {
 
     //در ابنجا ویژگی های مربوطه نمایش و بقیه مخفی می شوند
     void SetShowProperty(View view) {
-        Cursor cursor = dbAdapter.ExecuteQ("SELECT TblFeatures.Id,TblFeatures.FkFeaturesGroup FROM TblTypeFeatures INNER JOIN TblFeatures on TblTypeFeatures.FkFeatures=TblFeatures.Id WHERE TblTypeFeatures.FkType =" + DA_Add_Home.TypeHome);
+        Cursor cursor = dbAdapter.executeQuery("SELECT TblFeatures.Id,TblFeatures.FkFeaturesGroup FROM TblTypeFeatures INNER JOIN TblFeatures on TblTypeFeatures.FkFeatures=TblFeatures.Id WHERE TblTypeFeatures.FkType =" + DA_Add_Home.TypeHome);
 
         List<Id_FeaturesGroup> id_featuresGroups = new ArrayList<>();
 

@@ -62,12 +62,12 @@ public class UserItemsFragmentCityGuide extends CityGuideBaseFragment implements
         list = view.findViewById(R.id.userItemList);
         loading = view.findViewById(R.id.userItemLoading);
         linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_city_guide);
-        userId = new User(getContext()).GetUserId();
+        userId = new User(getContext()).getUserId();
         linearLayoutNoItemMessage = view.findViewById(R.id.no_item_messag_layout);
     }
 
     private void implement() {
-        presenter.start(new User(getContext()).GetUserId());
+        presenter.start(new User(getContext()).getUserId());
         list.setLayoutManager(layoutManager);
         list.setAdapter(adapter);
         hideSoftKeyBoard();

@@ -8,7 +8,7 @@ public class Common {
   //در اینجا نام یک جدول می گیرد و آیدی بعدی آن را پاس می دهد
   public static int getId(DBAdapter db, String tableName) {
 
-    Cursor GetId = db.ExecuteQ("select MAX(Id) from "+tableName);
+    Cursor GetId = db.executeQuery("select MAX(Id) from "+tableName);
     int Id;
     if (GetId.getString(0) != null)
       Id = Integer.parseInt(GetId.getString(0)) + 1;

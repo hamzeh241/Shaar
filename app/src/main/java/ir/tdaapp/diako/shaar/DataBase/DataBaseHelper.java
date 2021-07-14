@@ -20,12 +20,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private final Context myContext;
 
     public int getVer() {
-
-        return 0;
+        return myDataBase.getVersion();
     }
 
     public DataBaseHelper(Context context) {
-        super(context, DB_NAME, null, 6);
+        super(context, DB_NAME, null, 7);
 
         this.myContext = context;
     }
@@ -47,21 +46,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     private boolean checkDataBase() {
-        if (android.os.Build.VERSION.SDK_INT >= 17) {
-            DB_PATH = myContext.getApplicationInfo().dataDir + "/databases/";
-        } else {
-            DB_PATH = "/data/data/" + myContext.getPackageName() + "/databases/";
-        }
+        DB_PATH = myContext.getApplicationInfo().dataDir + "/databases/";
         File dbFile = new File(DB_PATH + DB_NAME);
         return dbFile.exists();
     }
 
     private void copyDataBase() throws IOException {
-        if (android.os.Build.VERSION.SDK_INT >= 17) {
-            DB_PATH = myContext.getApplicationInfo().dataDir + "/databases/";
-        } else {
-            DB_PATH = "/data/data/" + myContext.getPackageName() + "/databases/";
-        }
+        DB_PATH = myContext.getApplicationInfo().dataDir + "/databases/";
         //Open your local db as the input stream
         InputStream myInput = myContext.getAssets().open(DB_NAME);
         myContext.getAssets().open(DB_NAME);
@@ -82,12 +73,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public void openDataBase() throws SQLException {
-
-        if (android.os.Build.VERSION.SDK_INT >= 17) {
-            DB_PATH = myContext.getApplicationInfo().dataDir + "/databases/";
-        } else {
-            DB_PATH = "/data/data/" + myContext.getPackageName() + "/databases/";
-        }
+        DB_PATH = myContext.getApplicationInfo().dataDir + "/databases/";
         //Open the database
         String myPath = DB_PATH + DB_NAME;
         String filePath = myContext.getDatabasePath(DB_NAME).getAbsolutePath();
@@ -95,12 +81,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
     }
 
+    public void deleteDatabase() {
+
+    }
+
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            db.disableWriteAheadLogging();
-        }
+        db.disableWriteAheadLogging();
     }
 
     @Override
@@ -198,13 +186,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "INSERT into TblLocation ([Id], [Title],  [FkCity]) VALUES (112, 'جور آباد', 1)",
                 "INSERT into TblLocation ([Id], [Title],  [FkCity]) VALUES (113, 'چهار راه شهدا', 1)"
         };
-        String[] bug={ "DELETE FROM TblLocation WHERE Id in(99,100) "};
+        String[] bug = {"DELETE FROM TblLocation WHERE Id in(99,100) "};
 
-        String[] AllUpdateLocationV5={
+        String[] AllUpdateLocationV5 = {
                 "DELETE FROM TblLocation WHERE Id =1 ",
                 "update TblLocation set Title='مسکن مهر(بهاران)' where Id=49",
                 "update TblLocation set Title='بلوار شبلی' where Id=5"};
-        String[] AllUpdateLocationV6={ "update TblSetting set Version='3.1',Exter1='3.5'"};
+        String[] AllUpdateLocationV6 = {"update TblSetting set Version='3.1',Exter1='3.5'"};
 
         if (oldVersion < 2) {
             for (int i = 0; i < AllUpdateLocation.length; i++)
@@ -242,7 +230,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             for (int i = 0; i < AllUpdateLocationV5.length; i++)
                 try {
                     db.execSQL(AllUpdateLocationV5[i]);
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
 
@@ -256,9 +244,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 }
 
         }
+        if (oldVersion < 7) {
+//            for (int i = 0; i < AllUpdateLocationV6.length; i++)
+//                try {
+//                    db.execSQL(AllUpdateLocationV6[i]);
+//                } catch (Exception e) {
+//
+//                }
+
+
+
+
+        }
 
 
     }
 
 
+    public String getDB_PATH() {
+        return DB_PATH + DB_NAME;
+    }
 }

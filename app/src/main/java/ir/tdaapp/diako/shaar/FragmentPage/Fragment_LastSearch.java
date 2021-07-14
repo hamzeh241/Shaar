@@ -63,7 +63,7 @@ public class Fragment_LastSearch extends Fragment implements IBase {
 
     void SetDataRecycle(){
 
-        Cursor GetAll=dbAdapter.ExecuteQ("select * from TblLastSearchSave");
+        Cursor GetAll=dbAdapter.executeQuery("select * from TblLastSearchSave");
 
         lbl_CountItem.setText("تعداد اگهی: "+ GetAll.getCount());
 

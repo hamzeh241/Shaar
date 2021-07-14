@@ -1,12 +1,9 @@
 package ir.tdaapp.diako.shaar.Cars.View.Fragments;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.InputType;
 import android.transition.Fade;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -16,7 +13,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -47,7 +43,6 @@ import ir.tdaapp.diako.shaar.Cars.View.Dialogs.CarSearchFilterDialog;
 import ir.tdaapp.diako.shaar.ETC.User;
 import ir.tdaapp.diako.shaar.ErrorHandling.ErrorDialog;
 import ir.tdaapp.diako.shaar.FragmentPage.Fragment_Login_Home;
-import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.Volley.Enum.ResaultCode;
 
@@ -239,7 +234,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
         dialog.show(getActivity().getSupportFragmentManager(), CarSearchFilterDialog.TAG);
         break;
       case R.id.fabAddCar:
-        if (new User(getContext()).GetUserId() == 0) {
+        if (new User(getContext()).getUserId() == 0) {
           Toasty.info(getContext(), R.string.addAccuont, Toast.LENGTH_SHORT, false).show();
           ((CarActivity) getActivity()).onAddFragment(new Fragment_Login_Home(2), R.anim.fadein, R.anim.fadeout, true, Fragment_Login_Home.TAG);
         } else {
@@ -275,7 +270,7 @@ public class CarListFragment extends CarBaseFragment implements View.OnClickList
     setPagination();
 
 //     userId= new User(getContext()).GetUserId();
-    userId = new User(getContext()).GetUserId();
+    userId = new User(getContext()).getUserId();
     Log.i(TAG, "onPresenterStart: "+ userId);
   }
 

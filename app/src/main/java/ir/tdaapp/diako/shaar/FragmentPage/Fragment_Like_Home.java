@@ -60,7 +60,7 @@ public class Fragment_Like_Home extends Fragment {
         lbl_CountItem=view.findViewById(R.id.CountItem);
         img_not_item=view.findViewById(R.id.img_not_item);
         BackAll=view.findViewById(R.id.backall);
-        userId = new User(getContext()).GetUserId();
+        userId = new User(getContext()).getUserId();
         linearLayoutNotLogIn = view.findViewById(R.id.no_item_to_show_home);
 
     }
@@ -77,7 +77,7 @@ public class Fragment_Like_Home extends Fragment {
 
     void SetDataRecycle(){
 
-        Cursor GetAll=dbAdapter.ExecuteQ("select * from TblSearch where IsFavorit=1");
+        Cursor GetAll=dbAdapter.executeQuery("select * from TblSearch where IsFavorit=1");
 
         lbl_CountItem.setText("تعداد اگهی: "+ GetAll.getCount());
 

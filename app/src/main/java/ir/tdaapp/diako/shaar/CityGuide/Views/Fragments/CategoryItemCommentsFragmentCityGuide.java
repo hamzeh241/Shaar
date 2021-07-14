@@ -1,7 +1,6 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -140,7 +139,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
     JSONObject object = new JSONObject();
     PostJsonObjectVolley volley;
     try {
-      object.put("UserId", new User(getContext()).GetUserId());
+      object.put("UserId", new User(getContext()).getUserId());
       object.put("CommentId", model.getId());
       object.put("IsLiked", liked);
     } catch (JSONException e) {
@@ -221,7 +220,7 @@ public class CategoryItemCommentsFragmentCityGuide extends CityGuideBaseFragment
 
     switch (v.getId()) {
       case R.id.imgPostComment:
-        if (new User(getContext()).GetUserId() == 0) {
+        if (new User(getContext()).getUserId() == 0) {
           Toasty.error(getContext(), getString(R.string.createAccountFirst)).show();
         } else {
           if (commentText.getText().toString() != "") {

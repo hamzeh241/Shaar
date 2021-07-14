@@ -81,7 +81,7 @@ public class Tab_Published_Home extends Fragment implements IBase {
             progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
             progress.show();
 
-            String url = Api + "Item/getUseritem?Id=" + user.GetUserId();
+            String url = Api + "Item/getUseritem?Id=" + user.getUserId();
 
             JsonArrayRequest jsonObjReq = new JsonArrayRequest(Request.Method.GET, url, null
                     , new Response.Listener<JSONArray>() {
