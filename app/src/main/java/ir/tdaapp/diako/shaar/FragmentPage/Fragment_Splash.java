@@ -105,7 +105,7 @@ public class Fragment_Splash extends Fragment implements IBase, DBAdapter.OnData
         }
         cursor.close();
         dbAdapter.close();
-        return (version - 1);
+        return version;
     }
 
     @Override

@@ -1,82 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  package="ir.tdaapp.diako.shaar">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ir.tdaapp.diako.shaar">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
-  <application
-    android:name="ir.tdaapp.diako.shaar.ETC.AppController"
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:largeHeap="true"
-    android:networkSecurityConfig="@xml/network_security_config"
-    android:requestLegacyExternalStorage="true"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/CityGuideTheme"
-    android:usesCleartextTraffic="true">
+    <application
+        android:name=".ETC.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/CityGuideTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Fruits.View.Activities.FruitsActivity"></activity>
+        <activity
+            android:name=".Cars.View.Activities.CarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CityGuideTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity
+            android:name=".CityGuide.Views.Activities.GuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CityGuideTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CityGuideTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-    <activity
-      android:name="ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity"
-      android:screenOrientation="portrait"
-      android:windowSoftInputMode="stateVisible|adjustResize"
-      android:theme="@style/CityGuideTheme">
+        <meta-data
+            android:name="co.ronash.pushe.token"
+            android:value="PUSHE_157859137951" />
 
-    </activity>
-    <activity
-      android:name="ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity"
-      android:screenOrientation="portrait"
-      android:windowSoftInputMode="stateVisible|adjustResize"
-      android:theme="@style/CityGuideTheme">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
-    </activity>
-    <activity
-      android:name="ir.tdaapp.diako.shaar.MainActivity"
-      android:screenOrientation="portrait"
-      android:theme="@style/CityGuideTheme">
-
-
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-
-    </activity>
-
-
-    <meta-data
-      android:name="co.ronash.pushe.token"
-      android:value="PUSHE_157859137951" />
-    <provider
-      android:name="androidx.core.content.FileProvider"
-      android:authorities="${applicationId}.provider"
-      android:exported="false"
-      android:grantUriPermissions="true">
-      <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/provider_paths" />
-    </provider>
-
-    <uses-library
-      android:name="org.apache.http.legacy"
-      android:required="false" />
-  </application>
-
-
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.VIBRATE" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.CAMERA" />
-
-  <uses-permission android:name="android.permission.SEND_SMS" />
-
-
-  <uses-permission
-    android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-    tools:ignore="ScopedStorage" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+    </application>
 
 </manifest>

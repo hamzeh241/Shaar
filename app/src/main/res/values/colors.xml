@@ -12,6 +12,7 @@
     <color name="colorBlack">#000000</color>
     <color name="colorPaleBlack">#E1E1E1</color>
     <color name="colorGray">#828282</color>
+    <color name="colorPaleGray">#B5B5B5</color>
     <color name="colorRed">#d50000</color>
     <color name="colorGrey_Darken_4">#212121</color>
     <color name="colorResend">#006064</color>

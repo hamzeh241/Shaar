@@ -321,6 +321,7 @@
     <string name="Permission">شما اجازه استفاده از این بخش را ندارید</string>
     <string name="categories">دسته بندی ها</string>
     <string name="fastSearch">جستجوی سریع</string>
+    <string name="fruitSearch">جستجوی راحت میوه</string>
     <string name="addComment">ثبت نظر</string>
     <string name="addAccuont">لطفا یک حساب کاربری ایجاد کنید</string>
     <string name="usersComments">نظرات کاربران</string>
@@ -353,8 +354,10 @@
     <string name="try_again">تلاش مجدد</string>
     <string name="no_data_to_show">داده ای برای نمایش وجود ندارد</string>
     <string name="exit">برای خروج دوباره دکمه ی بازگشت را فشار دهید</string>
-  <string name="uploading_photos">در حال آپلود عکس ها...</string>
-  <string-array name="ListVideoApp">
+    <string name="uploading_photos">در حال آپلود عکس ها...</string>
+    <string name="fruits">میوه</string>
+    <string name="addToCart">افزودن به سبد</string>
+    <string-array name="ListVideoApp">
         <item>آپارات</item>
         <item>تماشا</item>
     </string-array>

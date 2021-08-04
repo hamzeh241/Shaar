@@ -38,7 +38,6 @@ public class CarListFragmentPresenter {
     getCarChips();
   }
 
-
   private void getCarChips() {
     service.loadingState(true);
     Single<List<CarChipsListModel>> data = api.getChips();

@@ -26,10 +26,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import es.dmoral.toasty.Toasty;
 import ir.tdaapp.diako.shaar.Adapter.DBAdapter;
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.ETC.Vibrate;
+import ir.tdaapp.diako.shaar.Fruits.View.Activities.FruitsActivity;
 import ir.tdaapp.diako.shaar.MainActivity;
 import ir.tdaapp.diako.shaar.R;
 import ir.tdaapp.diako.shaar.ViewModel.VM_Search;
@@ -44,8 +46,8 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 
     public static final String TAG = "Fragment_Home";
 
-    ImageView AddHouse, Car, b_information;
-    TextView txt_AddHouse, txt_car, txt_NewHome;
+    ImageView AddHouse, Car, b_information, imgFruits;
+    TextView txt_AddHouse, txt_car, txt_NewHome, txtFruits;
     Toolbar mtoolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -96,6 +98,8 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
         Car = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHouse);
         b_information = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_NewsHome);
 
+        txtFruits = view.findViewById(R.id.txtFruits);
+        imgFruits = view.findViewById(R.id.imgFruits);
         txt_AddHouse = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_AddHomeText);
         txt_car = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHometext);
         txt_NewHome = view.findViewById(ir.tdaapp.diako.shaar.R.id.NewsHomeText);
@@ -122,6 +126,29 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
             public void onClick(View view) {
                 Vibrate.ButtonClick(getActivity());
                 SetNews();
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+//                ((MainActivity)getActivity()).onAddFragment(new Fragment_Resault_Search(),0,0,true,Fragment_Resault_Search.TAG);
+            }
+        });
+
+        imgFruits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Vibrate.ButtonClick(getActivity());
+
+                Intent intentFruits = new Intent(getActivity(), FruitsActivity.class);
+                startActivity(intentFruits);
+//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
+//                ((MainActivity)getActivity()).onAddFragment(new Fragment_Resault_Search(),0,0,true,Fragment_Resault_Search.TAG);
+            }
+        });
+        txtFruits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Vibrate.ButtonClick(getActivity());
+
+                Intent intentFruits = new Intent(getActivity(), FruitsActivity.class);
+                startActivity(intentFruits);
 //                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
 //                ((MainActivity)getActivity()).onAddFragment(new Fragment_Resault_Search(),0,0,true,Fragment_Resault_Search.TAG);
             }
