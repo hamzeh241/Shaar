@@ -31,6 +31,7 @@ import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
 import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
 import ir.tdaapp.diako.shaar.ETC.ReplaceData;
+import ir.tdaapp.diako.shaar.Fruits.View.Activities.FruitsActivity;
 import ir.tdaapp.diako.shaar.Interface.IBase;
 import ir.tdaapp.diako.shaar.MainActivity;
 
@@ -276,6 +277,9 @@ public class Fragment_SMS_Panel extends Fragment implements IBase {
 
                                 case 2:
                                     ((CarActivity) getActivity()).onAddFragment(new Succefull_Register(), 0, 0, true, Succefull_Register.TAG);
+                                    break;
+                                case 3:
+                                    ((FruitsActivity) getActivity()).onAddFragment(new Succefull_Register(), 0, 0, true, Succefull_Register.TAG);
                                     break;
                             }
 

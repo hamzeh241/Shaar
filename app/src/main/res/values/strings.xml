@@ -336,6 +336,7 @@
     <string name="instagramPage">صفحه اینستاگرام</string>
     <string name="telegramChannel">کانال تلگرام</string>
     <string name="commentPostedSuccessfully">نظر شما با موفقیت درج شد</string>
+    <string name="addToCartSuccessfully">اضافه کردن با موفقیت انجام شد</string>
     <string name="postingComment">در حال درج کامنت...</string>
     <string name="createAccountFirst">ابتدا یک حساب کاربری ایجاد کنید</string>
     <string name="rateThisShop">به این مغازه امتیاز دهید</string>

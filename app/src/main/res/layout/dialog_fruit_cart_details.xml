@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center">
+
+  <EditText
+    android:id="@+id/edtAddress"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@drawable/light_gray_background"
+    android:gravity="right|top"
+    android:hint="آدرس گیرنده را وارد کنید"
+    android:inputType="textMultiLine|textPersonName"
+    android:padding="8dp"
+    android:scrollbars="vertical"
+    android:textSize="14sp"
+    android:layout_marginTop="16dp" />
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="phone"
+    android:ems="10"
+    android:id="@+id/edtPhone"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@drawable/light_gray_background"
+    android:padding="8dp"
+    android:hint="شماره تلفن"
+    android:textSize="14sp"
+    android:gravity="right" />
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:ems="10"
+    android:id="@+id/edtDescription"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@drawable/light_gray_background"
+    android:padding="8dp"
+    android:hint="توضیحات (اختیاری)"
+    android:textSize="14sp" />
+
+  <Button
+    android:text="ثبت سفارش"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/btnSubmitBuy"
+    android:layout_marginTop="8dp"
+    style="@style/Widget.AppCompat.Button.Colored"
+    android:background="@color/colorBlue"
+    android:layout_marginBottom="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp" />
+</LinearLayout>

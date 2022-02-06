@@ -17,6 +17,7 @@ import java.util.List;
 
 import ir.tdaapp.diako.shaar.Cars.View.Activities.CarActivity;
 import ir.tdaapp.diako.shaar.CityGuide.Views.Activities.GuideActivity;
+import ir.tdaapp.diako.shaar.Fruits.View.Activities.FruitsActivity;
 import ir.tdaapp.diako.shaar.MainActivity;
 
 /**
@@ -60,6 +61,10 @@ public class Succefull_Register extends Fragment {
 
                     case "CarActivity":
                         ((CarActivity) getActivity()).removeStack();
+                        break;
+
+                    case "FruitsActivity":
+                        ((FruitsActivity) getActivity()).removeStack();
                         break;
                 }
 

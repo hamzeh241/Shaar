@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+  android:clickable="true"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,18 +32,7 @@
                 app:srcCompat="@drawable/ic_baseline_search_24"
                 app:tint="#1a1d24" />
 
-            <ImageButton
-                android:id="@+id/imgCarListFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                app:srcCompat="@drawable/ic_outline_filter_alt_24"
-                app:tint="#1a1d24" />
-
-            <ImageView
+          <ImageView
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
@@ -74,82 +64,217 @@
 
         </LinearLayout>
 
-        <ScrollView
+      <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/shimmer"
+        android:layout_marginTop="32dp">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="right"
+          android:orientation="vertical">
+
+          <TextView
+            android:text="تازه رسیده"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="right">
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
 
-        <androidx.recyclerview.widget.RecyclerView
+            <androidx.cardview.widget.CardView
+              android:layout_width="136dp"
+              android:layout_height="168dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginRight="16dp"
+              app:cardBackgroundColor="#A3A3A3"
+              app:cardCornerRadius="8dp" />
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="136dp"
+              android:layout_height="168dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginRight="16dp"
+              app:cardBackgroundColor="#A3A3A3"
+              app:cardCornerRadius="8dp" />
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="136dp"
+              android:layout_height="168dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginRight="16dp"
+              app:cardBackgroundColor="#A3A3A3"
+              app:cardCornerRadius="8dp" />
+          </LinearLayout>
+
+          <TextView
+            android:text="پرفروش ترین ها"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
+            android:textSize="16sp" />
+
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="136dp"
+              android:layout_height="168dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginRight="16dp"
+              app:cardBackgroundColor="#A3A3A3"
+              app:cardCornerRadius="8dp" />
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="136dp"
+              android:layout_height="168dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginRight="16dp"
+              app:cardBackgroundColor="#A3A3A3"
+              app:cardCornerRadius="8dp" />
+          </LinearLayout>
+
+          <TextView
+            android:text="همه میوه ها"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp" />
+
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right">
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="136dp"
+              android:layout_height="168dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginRight="16dp"
+              app:cardBackgroundColor="#A3A3A3"
+              app:cardCornerRadius="8dp" />
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </com.facebook.shimmer.ShimmerFrameLayout>
+
+      <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fruitListScrollView"
+        android:visibility="gone">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="right">
+
+          <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fruitChipsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"  />
+            android:layout_marginBottom="4dp" />
 
-        <ImageView
+          <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#888888" />
 
-        <TextView
+          <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginRight="8dp"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:text="تازه رسیده"/>
+            android:text="تازه رسیده" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/newFruitsList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/colorPaleGray"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:text="پیشنهادی ها"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/suggestedFruitsList"
+          <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newFruitsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <ImageView
+          <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/content_fruit_no_item"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:id="@+id/includeNoItemNewFruits" />
+
+          <ImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@color/colorPaleGray"/>
+            android:background="@color/colorPaleGray" />
 
-        <TextView
+          <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginRight="8dp"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:text="پرفروشترین ها"/>
+            android:text="پرفروشترین ها" />
 
-        <androidx.recyclerview.widget.RecyclerView
+          <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mostSaledList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-            </LinearLayout>
-        </ScrollView>
+          <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/content_fruit_no_item"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:id="@+id/includeNoItemMostSold" />
+
+          <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPaleGray" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="همه میوه ها" />
+
+          <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/allFruitsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+          <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/content_fruit_no_item"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:id="@+id/includeNoItemAllFruits" />
+
+        </LinearLayout>
+      </ScrollView>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -29,6 +29,7 @@ import ir.tdaapp.diako.shaar.ETC.AppController;
 import ir.tdaapp.diako.shaar.ETC.Internet;
 import ir.tdaapp.diako.shaar.ETC.Policy_Volley;
 import ir.tdaapp.diako.shaar.ETC.ReplaceData;
+import ir.tdaapp.diako.shaar.Fruits.View.Activities.FruitsActivity;
 import ir.tdaapp.diako.shaar.Interface.IBase;
 import ir.tdaapp.diako.shaar.MainActivity;
 
@@ -108,6 +109,9 @@ public class Fragment_Login_Home extends Fragment implements IBase {
                     case 2:
                         ((CarActivity) getActivity()).onAddFragment(new Fragment_Add_Account(2), 0, 0, false, Fragment_Add_Account.TAG);
                         break;
+                    case 3:
+                        ((FruitsActivity) getActivity()).onAddFragment(new Fragment_Add_Account(2), 0, 0, false, Fragment_Add_Account.TAG);
+                        break;
                 }
             }
         });
@@ -165,6 +169,10 @@ public class Fragment_Login_Home extends Fragment implements IBase {
 
                                                 case 2:
                                                     ((CarActivity) getActivity()).onAddFragment(fragment_sms_panel, 0, 0, true, Fragment_SMS_Panel.TAG);
+                                                    break;
+
+                                                case 3:
+                                                    ((FruitsActivity) getActivity()).onAddFragment(fragment_sms_panel, 0, 0, true, Fragment_SMS_Panel.TAG);
                                                     break;
 
                                             }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shaar.iml" filepath="$PROJECT_DIR$/.idea/modules/Shaar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/li_utility/Shaar.li_utility.iml" filepath="$PROJECT_DIR$/.idea/modules/li_utility/Shaar.li_utility.iml" />
+    </modules>
+  </component>
+</project>
