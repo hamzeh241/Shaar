@@ -46,8 +46,8 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 
     public static final String TAG = "Fragment_Home";
 
-    ImageView AddHouse, Car, b_information, imgFruits;
-    TextView txt_AddHouse, txt_car, txt_NewHome, txtFruits;
+    ImageView AddHouse, b_information;
+    TextView txt_AddHouse, txt_NewHome;
     Toolbar mtoolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -95,13 +95,12 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 
     void FindItem(View view) {
         AddHouse = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_AddHouse);
-        Car = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHouse);
         b_information = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_NewsHome);
 
-        txtFruits = view.findViewById(R.id.txtFruits);
-        imgFruits = view.findViewById(R.id.imgFruits);
+//        txtFruits = view.findViewById(R.id.txtFruits);
+//        imgFruits = view.findViewById(R.id.imgFruits);
         txt_AddHouse = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_AddHomeText);
-        txt_car = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHometext);
+//        txt_car = view.findViewById(ir.tdaapp.diako.shaar.R.id.Home_SearchHometext);
         txt_NewHome = view.findViewById(ir.tdaapp.diako.shaar.R.id.NewsHomeText);
         mtoolbar = view.findViewById(ir.tdaapp.diako.shaar.R.id.mtoolbar);
         navigationView = view.findViewById(ir.tdaapp.diako.shaar.R.id.nav_view);
@@ -128,47 +127,6 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
                 SetNews();
 //                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
 //                ((MainActivity)getActivity()).onAddFragment(new Fragment_Resault_Search(),0,0,true,Fragment_Resault_Search.TAG);
-            }
-        });
-
-        imgFruits.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Vibrate.ButtonClick(getActivity());
-
-                Intent intentFruits = new Intent(getActivity(), FruitsActivity.class);
-                startActivity(intentFruits);
-//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
-//                ((MainActivity)getActivity()).onAddFragment(new Fragment_Resault_Search(),0,0,true,Fragment_Resault_Search.TAG);
-            }
-        });
-        txtFruits.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Vibrate.ButtonClick(getActivity());
-
-                Intent intentFruits = new Intent(getActivity(), FruitsActivity.class);
-                startActivity(intentFruits);
-//                Stack_Back.MyStack_Back.Push("Fragment_Resault_Search", getActivity());
-//                ((MainActivity)getActivity()).onAddFragment(new Fragment_Resault_Search(),0,0,true,Fragment_Resault_Search.TAG);
-            }
-        });
-
-        Car.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intentCar = new Intent(getActivity(), CarActivity.class);
-                intentCar.putExtra("carList", "car");
-                startActivity(intentCar);
-
-            }
-        });
-
-        txt_car.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), CarActivity.class));
             }
         });
 
@@ -266,37 +224,37 @@ public class Fragment_Home extends Fragment implements NavigationView.OnNavigati
 ////                Stack_Back.MyStack_Back.Push("Fragment_Search_Home", getContext());
 //                ((MainActivity)getActivity()).onAddFragment(new Fragment_Search_Home(),0,0,true,Fragment_Search_Home.TAG);
 //                break;
-            case ir.tdaapp.diako.shaar.R.id.navigation_AddHome:
+            case R.id.navigation_AddHome:
 //                Stack_Back.MyStack_Back.Push("Fragment_Add_Home", getContext());
                 ((MainActivity) getActivity()).onAddFragment(new Fragment_Add_Home(), 0, 0, true, Fragment_Add_Home.TAG);
                 break;
-            case ir.tdaapp.diako.shaar.R.id.navigation_Like:
+            case R.id.navigation_Like:
 //                Stack_Back.MyStack_Back.Push("Fragment_Like_Home", getContext());
                 ((MainActivity) getActivity()).onAddFragment(new Fragment_Like_Home(), 0, 0, true, Fragment_Like_Home.TAG);
                 break;
-            case ir.tdaapp.diako.shaar.R.id.navigation_SearchSaved:
+            case R.id.navigation_SearchSaved:
 //                Stack_Back.MyStack_Back.Push("Fragment_List_Search", getContext());
                 ((MainActivity) getActivity()).onAddFragment(new Fragment_List_Search(), 0, 0, true, Fragment_List_Search.TAG);
                 break;
 
-            case ir.tdaapp.diako.shaar.R.id.navigation_AboutMe:
+            case R.id.navigation_AboutMe:
 //                Stack_Back.MyStack_Back.Push("Fragment_About_Me", getContext());
                 ((MainActivity) getActivity()).onAddFragment(new Fragment_About_Me(), 0, 0, true, Fragment_About_Me.TAG);
                 break;
 
-            case R.id.navigation_carFavorite:
-
-                Intent intentFavCar = new Intent(getActivity(), CarActivity.class);
-                intentFavCar.putExtra("FavCar", 1);
-                startActivity(intentFavCar);
-
-                break;
-
-            case R.id.navigation_myCar:
-                Intent intentMyCar = new Intent(getActivity(), CarActivity.class);
-                intentMyCar.putExtra("FavCar", 2);
-                startActivity(intentMyCar);
-                break;
+//            case R.id.navigation_carFavorite:
+//
+//                Intent intentFavCar = new Intent(getActivity(), CarActivity.class);
+//                intentFavCar.putExtra("FavCar", 1);
+//                startActivity(intentFavCar);
+//
+//                break;
+//
+//            case R.id.navigation_myCar:
+//                Intent intentMyCar = new Intent(getActivity(), CarActivity.class);
+//                intentMyCar.putExtra("FavCar", 2);
+//                startActivity(intentMyCar);
+//                break;
 
             case R.id.city_guide_favorite:
                 Intent intentBank = new Intent(getActivity(), GuideActivity.class);

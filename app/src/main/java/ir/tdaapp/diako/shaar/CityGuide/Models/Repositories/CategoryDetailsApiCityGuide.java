@@ -57,12 +57,12 @@ public class CategoryDetailsApiCityGuide extends CityGuideBaseApi {
     });
   }
 
-  public Single<List<CategoryDetailsModel>> getItems(String search, int filterId, int page) {
+  public Single<List<CategoryDetailsModel>> getItems(int cityId, String search, int filterId, int page) {
     return Single.create(emitter -> {
 
       new Thread(() -> {
         try {
-          getItemVolley = new GetJsonArrayVolley(API_URL + "CityGuide/GetCityGuideListsForSerch?TextSerch=\"" + search + "\"&Page=" + page + "&FilterId=" + filterId, resault -> {
+          getItemVolley = new GetJsonArrayVolley(API_URL + "CityGuide/GetCityGuideListsForSerch?cityId="+cityId+"&TextSerch=\"" + search + "\"&Page=" + page + "&FilterId=" + filterId, resault -> {
             if (resault.getResault() == ResaultCode.Success) {
 
               List<CategoryDetailsModel> models = new ArrayList<>();

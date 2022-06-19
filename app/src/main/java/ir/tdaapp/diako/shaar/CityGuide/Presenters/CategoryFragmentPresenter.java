@@ -11,6 +11,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Repositories.CategoryApiCityGuide;
 import ir.tdaapp.diako.shaar.CityGuide.Models.Services.CategoryFragmentService;
 import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CategoryModel;
+import ir.tdaapp.diako.shaar.CityGuide.Models.ViewModels.CityModel;
 import ir.tdaapp.diako.shaar.ErrorHandling.Error;
 
 public class CategoryFragmentPresenter {
@@ -18,7 +19,7 @@ public class CategoryFragmentPresenter {
   Context context;
   CategoryFragmentService categoryFragmentService;
   CategoryApiCityGuide categoryApi;
-  Disposable getCategoryDisposable, setCategoryDisposable;
+  Disposable getCategoryDisposable, setCategoryDisposable, getCityDisposable, setCityDisposable;
 
   public CategoryFragmentPresenter(Context context, CategoryFragmentService categoryFragmentService) {
     this.context = context;
@@ -28,12 +29,29 @@ public class CategoryFragmentPresenter {
 
   public void start() {
     categoryFragmentService.onPresenterStart();
-    getCategories();
+    getCities();
   }
 
-  private void getCategories() {
+  private void getCities() {
+    Single<List<CityModel>> data = categoryApi.getCities();
 
-    Single<List<CategoryModel>> data = categoryApi.getCategories();
+    getCityDisposable = data.subscribeWith(new DisposableSingleObserver<List<CityModel>>() {
+
+      @Override
+      public void onSuccess(List<CityModel> cityModels) {
+        categoryFragmentService.onCitiesReceived(cityModels);
+      }
+
+      @Override
+      public void onError(Throwable e) {
+        categoryFragmentService.onError(Error.getErrorVolley(e.toString()));
+      }
+    });
+  }
+
+  public void getCategories(int cityId) {
+
+    Single<List<CategoryModel>> data = categoryApi.getCategories(cityId);
 
     getCategoryDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryModel>>() {
       @Override
@@ -51,10 +69,10 @@ public class CategoryFragmentPresenter {
   private void setCategories(List<CategoryModel> categoryModels) {
     Observable<CategoryModel> data = Observable.fromIterable(categoryModels);
     setCategoryDisposable = data.subscribe(category ->
-      categoryFragmentService.onItemsReceived(category),
+        categoryFragmentService.onItemsReceived(category),
       throwable -> {
 
-    }, () -> categoryFragmentService.onFinish());
+      }, () -> categoryFragmentService.onFinish());
 
   }
 }

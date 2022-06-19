@@ -89,25 +89,25 @@
     </item>
 
 
-    <item
-        android:title="@string/CarTitleNav">
+<!--    <item-->
+<!--        android:title="@string/CarTitleNav">-->
 
-        <menu>
+<!--        <menu>-->
 
-            <group
-                android:id="@+id/carGroup"
-                android:checkableBehavior="single">
+<!--            <group-->
+<!--                android:id="@+id/carGroup"-->
+<!--                android:checkableBehavior="single">-->
 
 
-                <item
-                    android:id="@+id/navigation_carFavorite"
-                    android:icon="@drawable/ic_car_favorite_icon"
-                    android:title="@string/CarFavorite" />
+<!--                <item-->
+<!--                    android:id="@+id/navigation_carFavorite"-->
+<!--                    android:icon="@drawable/ic_car_favorite_icon"-->
+<!--                    android:title="@string/CarFavorite" />-->
 
-                <item
-                    android:id="@+id/navigation_myCar"
-                    android:icon="@drawable/ic_navigation_mycar"
-                    android:title="@string/myCar" />
+<!--                <item-->
+<!--                    android:id="@+id/navigation_myCar"-->
+<!--                    android:icon="@drawable/ic_navigation_mycar"-->
+<!--                    android:title="@string/myCar" />-->
 
                 <item
                     android:id="@+id/navigation_CallMe"
@@ -131,8 +131,8 @@
                     android:title="@string/Exit" />
 
 
-            </group>
-        </menu>
-    </item>
+<!--            </group>-->
+<!--        </menu>-->
+<!--    </item>-->
 
 </menu>

@@ -77,7 +77,7 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
     }
 
     private void implement() {
-        presenter.start(title, page);
+        presenter.start(((GuideActivity)requireActivity()).tblCityId.getCityId(),title, page);
         back.setOnClickListener(this::onClick);
     }
 
@@ -137,7 +137,7 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
                             <= (firstVisibleItem + visibleThreshold)) {
                         // End has been reached
                         page++;
-                        presenter.getItemByPage(title, page);
+                        presenter.getItemByPage(((GuideActivity)requireActivity()).tblCityId.getCityId(),title, page);
                         // Do something
                         isLoading = true;
                     }
@@ -191,7 +191,7 @@ public class SearchResultFragment extends CityGuideBaseFragment implements View.
                 .setImageUrl(imageRes)
                 .setButtonText(R.string.try_again)
                 .setClickListener(() ->
-                        presenter.start()));
+                        presenter.start(((GuideActivity)requireActivity()).tblCityId.getCityId())));
     }
     @Override
     public void onPageFinished(List<CategoryDetailsModel> models) {

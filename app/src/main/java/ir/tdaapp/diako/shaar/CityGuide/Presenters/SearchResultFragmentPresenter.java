@@ -25,27 +25,27 @@ public class SearchResultFragmentPresenter {
         api = new SearchResultApi();
     }
 
-    public void start(){
+    public void start(int cityId){
         service.onPresenterRestart();
-        getItems("",0);
+        getItems(cityId,"",0);
 
     }
 
-    public void start(String title, int page) {
+    public void start(int cityId,String title, int page) {
 
         service.onPresenterRestart();
-        getItems(title, page);
+        getItems(cityId,title, page);
 
 
     }
 
-    public void getItemByPage(String title , int page){
-        getItems(title,page);
+    public void getItemByPage(int cityId,String title , int page){
+        getItems(cityId,title,page);
     }
 
-    private void getItems(String title, int page) {
+    private void getItems(int cityId,String title, int page) {
         service.onLoading(true);
-        Single<List<CategoryDetailsModel>> data = api.getItems(title, page);
+        Single<List<CategoryDetailsModel>> data = api.getItems(cityId,title, page);
 
         getItemDisposable = data.subscribeWith(new DisposableSingleObserver<List<CategoryDetailsModel>>() {
             @Override

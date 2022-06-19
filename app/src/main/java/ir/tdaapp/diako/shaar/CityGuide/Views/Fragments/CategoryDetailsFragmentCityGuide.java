@@ -44,7 +44,6 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
 
     public static final String TAG = "CategoryDetailsFragment";
 
-
     private int previousTotal = 0;
     private int page = 0;
     private boolean isLoading = true;
@@ -103,7 +102,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
     private void implement() {
         detailsList.setLayoutManager(detailsLayoutManager);
         chipsList.setLayoutManager(chipsLayoutManager);
-        presenter.start(getArguments().getInt("ID"));
+        presenter.start(((GuideActivity)requireActivity()).tblCityId.getCityId(),getArguments().getInt("ID"));
         hideKeyBoard();
         root.setOnClickListener(this);
         searchBar.setOnKeyListener((v, keyCode, event) -> {
@@ -157,13 +156,13 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
             if (model.isSelected()) {
                 detailsAdapter.clear();
                 chipsAdapter.clearSelected();
-                presenter.getItemByFilter(searchBar.getText().toString(), selectedModel.getId(), page);
+                presenter.getItemByFilter(((GuideActivity)requireActivity()).tblCityId.getCityId(),searchBar.getText().toString(), selectedModel.getId(), page);
             } else {
                 detailsAdapter.clear();
                 chipsAdapter.clearSelected();
                 chipsAdapter.setSelected(position);
                 selectedModel = model;
-                presenter.getItemByFilter(searchBar.getText().toString(), selectedModel.getId(), page);
+                presenter.getItemByFilter(((GuideActivity)requireActivity()).tblCityId.getCityId(),searchBar.getText().toString(), selectedModel.getId(), page);
             }
         });
     }
@@ -201,7 +200,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
                             <= (firstVisibleItem + visibleThreshold)) {
                         // End has been reached
                         page++;
-                        presenter.getItemByFilter(searchBar.getText().toString(), selectedModel != null ? selectedModel.getId() : 0, page);
+                        presenter.getItemByFilter(((GuideActivity)requireActivity()).tblCityId.getCityId(),searchBar.getText().toString(), selectedModel != null ? selectedModel.getId() : 0, page);
                         // Do something
 
                         isLoading = true;
@@ -282,7 +281,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
                 .setImageUrl(imageRes)
                 .setButtonText(R.string.try_again)
                 .setClickListener(() -> {
-                    presenter.start(getArguments().getInt("ID"));
+                    presenter.start(((GuideActivity)requireActivity()).tblCityId.getCityId(),getArguments().getInt("ID"));
                     try {
                         chipsAdapter.clearSelected();
                         chipsAdapter.setSelected(0);
@@ -315,7 +314,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
                 }
                 break;
             case R.id.imgCategoryDetailsFilter:
-                presenter.start(searchBar.getText().toString(), selectedModel.getId(), 0);
+                presenter.start(((GuideActivity)requireActivity()).tblCityId.getCityId(),searchBar.getText().toString(), selectedModel.getId(), 0);
                 break;
             case R.id.imgCategoryDetailsBack:
                 getActivity().onBackPressed();

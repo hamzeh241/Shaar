@@ -41,6 +41,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     notifyItemInserted(models.size());
   }
 
+  public void clear() {
+    models.clear();
+    notifyDataSetChanged();
+  }
+
   public void setOnItemClick(onCategoryClick clickListener) {
     this.clickListener = clickListener;
   }

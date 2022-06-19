@@ -16,48 +16,48 @@ import ir.tdaapp.diako.shaar.Volley.Volleys.GetJsonArrayVolley;
 
 public class SearchResultApi extends CityGuideBaseApi {
 
-    GetJsonArrayVolley getItemsVolley;
+  GetJsonArrayVolley getItemsVolley;
 
-    public Single<List<CategoryDetailsModel>> getItems(String title,  int page) {
-        return Single.create(emitter -> {
+  public Single<List<CategoryDetailsModel>> getItems(int cityId, String title, int page) {
+    return Single.create(emitter -> {
 
-            new Thread(() -> {
+      new Thread(() -> {
+        try {
+          getItemsVolley = new GetJsonArrayVolley(API_URL + "CityGuide/GetCityGuideListsBySearch?cityId="+cityId+"&TextSearch=\"" + title + "\"&Page=" + page, resault -> {
+            if (resault.getResault() == ResaultCode.Success) {
+
+              List<CategoryDetailsModel> models = new ArrayList<>();
+              JSONArray array = resault.getJsonArray();
+
+              for (int i = 0; i < array.length(); i++) {
+                CategoryDetailsModel model = new CategoryDetailsModel();
+
                 try {
-                    getItemsVolley = new GetJsonArrayVolley(API_URL + "CityGuide/GetCityGuideListsBySearch?TextSearch=\"" + title + "\"&Page=" + page, resault -> {
-                        if (resault.getResault() == ResaultCode.Success) {
+                  JSONObject object = array.getJSONObject(i);
+                  model.setId(object.getInt("Id"));
+                  model.setTitle(object.getString("Title"));
+                  model.setAddress(object.getString("Address"));
+                  model.setImageUrl(object.getString("ImageCityGuide"));
+                  model.setRating(object.getInt("Stars"));
+                  model.setRateCount(object.getInt("RateCount"));
 
-                            List<CategoryDetailsModel> models = new ArrayList<>();
-                            JSONArray array = resault.getJsonArray();
-
-                            for (int i = 0; i < array.length(); i++) {
-                                CategoryDetailsModel model = new CategoryDetailsModel();
-
-                                try {
-                                    JSONObject object = array.getJSONObject(i);
-                                    model.setId(object.getInt("Id"));
-                                    model.setTitle(object.getString("Title"));
-                                    model.setAddress(object.getString("Address"));
-                                    model.setImageUrl(object.getString("ImageCityGuide"));
-                                    model.setRating(object.getInt("Stars"));
-                                    model.setRateCount(object.getInt("RateCount"));
-
-                                    models.add(model);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                            emitter.onSuccess(models);
-                        } else {
-                            emitter.onError(new IOException(resault.getResault().toString()));
-                        }
-                    });
-                } catch (Exception e) {
-                    emitter.onError(e);
+                  models.add(model);
+                } catch (JSONException e) {
+                  e.printStackTrace();
                 }
-            }).start();
-        });
-    }
+              }
+
+              emitter.onSuccess(models);
+            } else {
+              emitter.onError(new IOException(resault.getResault().toString()));
+            }
+          });
+        } catch (Exception e) {
+          emitter.onError(e);
+        }
+      }).start();
+    });
+  }
 
 
 }
