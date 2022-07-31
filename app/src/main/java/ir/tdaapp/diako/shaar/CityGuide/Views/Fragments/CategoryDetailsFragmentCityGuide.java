@@ -119,7 +119,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
 
         fab.setOnClickListener(this);
         filter.setOnClickListener(this);
-        back.setOnClickListener(this::onClick);
+        back.setOnClickListener(this);
     }
 
     public void hideKeyBoard() {
@@ -156,7 +156,7 @@ public class CategoryDetailsFragmentCityGuide extends CityGuideBaseFragment impl
             if (model.isSelected()) {
                 detailsAdapter.clear();
                 chipsAdapter.clearSelected();
-                presenter.getItemByFilter(((GuideActivity)requireActivity()).tblCityId.getCityId(),searchBar.getText().toString(), selectedModel.getId(), page);
+                presenter.getItemByFilter(((GuideActivity)requireActivity()).tblCityId.getCityId(),"", getArguments().getInt("ID"), 0);
             } else {
                 detailsAdapter.clear();
                 chipsAdapter.clearSelected();

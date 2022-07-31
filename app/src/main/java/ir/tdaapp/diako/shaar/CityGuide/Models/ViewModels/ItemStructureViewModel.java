@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ItemStructureViewModel {
 
   String title, desciption, instagramId, telegramId, address, cellPhone, tel1, tel2;
-  int filterId, userId;
+  int filterId, userId, cityId;
 
   ArrayList<String> images;
 
@@ -112,5 +112,13 @@ public class ItemStructureViewModel {
 
   public void setImages(ArrayList<String> images) {
     this.images = images;
+  }
+
+  public int getCityId() {
+    return cityId;
+  }
+
+  public void setCityId(int cityId) {
+    this.cityId = cityId;
   }
 }

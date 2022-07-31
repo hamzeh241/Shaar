@@ -124,6 +124,7 @@ public class AddItemFragmentPresenter {
       object.put("TelegramId", model.getTelegramId());
       object.put("Address", model.getAddress());
       object.put("Description", model.getDesciption());
+      object.put("CityId", model.getCityId());
 
       for (String image : images) {
         array.put(image);

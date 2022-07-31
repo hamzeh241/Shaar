@@ -16,7 +16,6 @@
             <option value="$PROJECT_DIR$/li_utility" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

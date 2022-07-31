@@ -1,5 +1,6 @@
 package ir.tdaapp.diako.shaar.CityGuide.Views.Fragments;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -64,7 +65,6 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
   MessageDialog sending;
 
   ImageButton back;
-
 
   @Nullable
   @Override
@@ -142,6 +142,7 @@ public class AddItemFragmentCityGuide extends CityGuideBaseFragment implements V
           viewModel.setImages(images);
           viewModel.setFilterId(((CategoryDetailsChipModel) filter.getSelectedItem()).getId());
           viewModel.setUserId(new User(getContext()).getUserId());
+          viewModel.setCityId(((GuideActivity)requireActivity()).tblCityId.getCityId());
           presenter.sendDetails(viewModel);
         }
         break;
