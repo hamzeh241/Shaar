@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Shaar.iml" filepath="$PROJECT_DIR$/.idea/Shaar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shaar.iml" filepath="$PROJECT_DIR$/.idea/modules/Shaar.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shaar.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shaar.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shaar.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shaar.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shaar.app.main.iml" />

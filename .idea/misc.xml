@@ -9,6 +9,8 @@
         <entry key="..\:/AndroidStudioProjects/Shaar/app/src/main/res/layout/fragment_home.xml" value="0.35054347826086957" />
         <entry key="..\:/AndroidStudioProjects/Shaar/app/src/main/res/layout/recycler_city_layout.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Shaar/app/src/main/res/menu/menu_navigation.xml" value="0.3625" />
+        <entry key="..\:/Projects/Android/Shaar/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2985" />
+        <entry key="..\:/Projects/Android/Shaar/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2985" />
         <entry key="..\:/Users/sam/AndroidStudioProjects/Shaar/app/src/main/res/drawable/ic_baseline_running_with_errors_24.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/sam/AndroidStudioProjects/Shaar/app/src/main/res/layout/content_add_car_contact_info.xml" value="0.259375" />
         <entry key="..\:/Users/sam/AndroidStudioProjects/Shaar/app/src/main/res/layout/content_add_car_description.xml" value="0.1" />
@@ -30,7 +32,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
